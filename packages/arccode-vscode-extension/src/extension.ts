@@ -1,10 +1,15 @@
 import * as vscode from 'vscode'
 
-import type { Registry } from './types'
-import { handleDocumentChange, populateRegistry } from './handlers'
-import ArccodeAuthenticationProvider, { AUTH_TYPE } from './ArccodeAuthenticationProvider'
+import type { FileRegistry, KeywordRegistry } from './types'
+import { AUTH_TYPE } from './constants'
+import ArccodeAuthenticationProvider from './ArccodeAuthenticationProvider'
+import { handleDocumentChange, populateFileRegistry } from './handlers'
 
 export function activate(context: vscode.ExtensionContext) {
+  /* ---
+    Authentication
+  --- */
+
   context.subscriptions.push(
     vscode.commands.registerCommand('arccode.signIn', async () => {
       const session = await vscode.authentication.getSession(AUTH_TYPE, [], { createIfNone: true })
@@ -24,11 +29,16 @@ export function activate(context: vscode.ExtensionContext) {
 
   getSession()
 
-  const registry: Registry = {}
+  /* ---
+    Keywords
+  --- */
 
-  vscode.workspace.textDocuments.forEach(document => populateRegistry(registry, document))
-  vscode.workspace.onDidOpenTextDocument(document => populateRegistry(registry, document))
-  vscode.workspace.onDidChangeTextDocument(event => handleDocumentChange(registry, event.document))
+  const fileRegistry: FileRegistry = {}
+  const keywordRegistry: KeywordRegistry = {}
+
+  vscode.workspace.textDocuments.forEach(document => populateFileRegistry(document, fileRegistry))
+  vscode.workspace.onDidOpenTextDocument(document => populateFileRegistry(document, fileRegistry))
+  vscode.workspace.onDidChangeTextDocument(event => handleDocumentChange(event.document, fileRegistry, keywordRegistry))
 }
 
 export function deactivate() {}

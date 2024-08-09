@@ -1,14 +1,6 @@
 import { Disposable, Event, EventEmitter } from 'vscode'
 
-export interface PromiseAdapter<T, U> {
-  (
-    value: T,
-    resolve:
-      (value: U | PromiseLike<U>) => void,
-    reject:
-      (reason: any) => void
-  ): any;
-}
+import type { PromiseAdapter } from './types'
 
 const passthrough = (value: any, resolve: (value?: any) => void) => resolve(value)
 

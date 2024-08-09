@@ -1,13 +1,13 @@
 import * as vscode from 'vscode'
 import diffArray from 'array-differences'
 
-import type { Registry } from './types'
+import type { FileRegistry, KeywordRegistry, Language } from './types'
 import languageToKeywords from './keywords'
 import { MAX_LINES } from './constants'
 
 const supportedLanguageIds = Object.keys(languageToKeywords)
 
-export function populateRegistry(registry: Registry, document: vscode.TextDocument) {
+export function populateFileRegistry(document: vscode.TextDocument, fileRegistry: FileRegistry) {
   if (!supportedLanguageIds.includes(document.languageId)) return
 
   const currentText = document.getText()
@@ -15,18 +15,19 @@ export function populateRegistry(registry: Registry, document: vscode.TextDocume
 
   if (currentLines.length > MAX_LINES) return
 
-  registry[document.uri.toString()] = currentText
+  fileRegistry[document.uri.toString()] = currentText
 }
 
-export function handleDocumentChange(registry: Registry, document: vscode.TextDocument) {
+export function handleDocumentChange(document: vscode.TextDocument, fileRegistry: FileRegistry, keywordRegistry: KeywordRegistry) {
   if (!supportedLanguageIds.includes(document.languageId)) return
 
+  const language = document.languageId as Language
   const editorUri = document.uri.toString()
-  const previousLines = (registry[editorUri] ?? '').split('\n')
+  const previousLines = (fileRegistry[editorUri] ?? '').split('\n')
   const currentText = document.getText()
   const currentLines = currentText.split('\n')
 
-  registry[editorUri] = currentText
+  fileRegistry[editorUri] = currentText
 
   if (previousLines.length > MAX_LINES || currentLines.length > MAX_LINES) return
 
@@ -41,7 +42,7 @@ export function handleDocumentChange(registry: Registry, document: vscode.TextDo
 
     if (lineDiff[0] === 'inserted') {
       extractKeywords(lineDiff[2], document.languageId).forEach(keyword => {
-        vscode.window.showInformationMessage(keyword)
+        registerKeyword(keyword)
       })
     }
 
@@ -51,9 +52,16 @@ export function handleDocumentChange(registry: Registry, document: vscode.TextDo
     const addedKeywords = new Set([...nextKeywords].filter(keyword => !previousKeywords.has(keyword)))
 
     addedKeywords.forEach(keyword => {
-      vscode.window.showInformationMessage(keyword)
+      registerKeyword(keyword)
     })
   })
+
+  function registerKeyword(keyword: string) {
+    if (!keywordRegistry[language]) keywordRegistry[language] = {}
+    if (!keywordRegistry[language][keyword]) keywordRegistry[language][keyword] = 0
+
+    keywordRegistry[language][keyword]++
+  }
 }
 
 function extractKeywords(line: string, language: string) {

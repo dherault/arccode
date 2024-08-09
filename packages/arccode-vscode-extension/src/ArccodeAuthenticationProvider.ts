@@ -15,16 +15,19 @@ import {
 } from 'vscode'
 import { v4 as uuid } from 'uuid'
 
-import type { UserInfo } from './types'
-import { AUTHENTICATION_URL } from './constants'
+import type {
+  PromiseAdapter,
+  UserInfo,
+} from './types'
+import {
+  AUTHENTICATION_URL,
+  AUTH_NAME,
+  AUTH_TYPE,
+  CODE_EXCHANGE_PROMISE_KEY,
+  SESSIONS_SECRET_KEY,
+} from './constants'
 import UriEventHandler from './UriEventHandler'
-import { type PromiseAdapter, promiseFromEvent } from './utils'
-
-export const AUTH_TYPE = 'arccode'
-
-const AUTH_NAME = 'Arccode'
-const SESSIONS_SECRET_KEY = `${AUTH_TYPE}.sessions`
-const CODE_EXCHANGE_PROMISE_KEY = 'CODE_EXCHANGE_PROMISE'
+import { promiseFromEvent } from './utils'
 
 class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposable {
   private _sessionChangeEmitter = new EventEmitter<AuthenticationProviderAuthenticationSessionsChangeEvent>()
