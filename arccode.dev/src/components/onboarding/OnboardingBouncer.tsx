@@ -10,7 +10,7 @@ function OnboardingBouncer({ children }: PropsWithChildren) {
     return (
       <Navigate
         replace
-        to="/start-adventure"
+        to="/onboarding/start-adventure"
       />
     )
   }
@@ -19,7 +19,7 @@ function OnboardingBouncer({ children }: PropsWithChildren) {
     return (
       <Navigate
         replace
-        to="/install-extension"
+        to="/onboarding/install-extension"
       />
     )
   }

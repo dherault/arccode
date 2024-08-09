@@ -5,7 +5,7 @@ import type { DatabaseResource } from '~types'
 
 function useLiveDocument<T extends DatabaseResource>(doc: DocumentReference, enabled = true) {
   const [data, setData] = useState<T | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true) // ! Careful here
   const [error, setError] = useState<Error | null>(null)
 
   const fetch = useCallback(() => {
