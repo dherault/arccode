@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore'
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -10,9 +10,7 @@ import { SignInProvider, type User } from '~types'
 
 import { AUTHENTICATION_ERRORS } from '~constants'
 
-import { auth, db, githubProvider, googleProvider, logAnalytics } from '~firebase'
-
-import createUser from '~utils/db/createUser'
+import { auth, db, githubProvider, googleProvider } from '~firebase'
 
 import {
   Form,
@@ -129,21 +127,6 @@ function Authentication() {
     const email = emailForm.getValues().email.trim().toLowerCase()
 
     createUserWithEmailAndPassword(auth, email, values.password)
-      .then(async userCredential => {
-        const user = createUser({
-          id: userCredential.user.uid,
-          email,
-          imageUrl: '',
-          userId: userCredential.user.uid,
-          signInProviders: ['password'],
-        })
-
-        await setDoc(doc(db, 'users', user.id), user)
-
-        logAnalytics('sign_up', {
-          method: 'email',
-        })
-      })
       .catch(error => {
         setLoading(false)
         setErrorCode(error.code)
@@ -162,11 +145,6 @@ function Authentication() {
     const email = emailForm.getValues().email.trim().toLowerCase()
 
     signInWithEmailAndPassword(auth, email, values.password)
-      .then(() => {
-        logAnalytics('login', {
-          method: 'email',
-        })
-      })
       .catch(error => {
         setLoading(false)
         setErrorCode(error.code)

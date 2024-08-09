@@ -1,6 +1,6 @@
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { motion } from 'framer-motion'
-import { type FormEvent, useCallback, useMemo, useState } from 'react'
+import { type FormEvent, useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { db } from '~firebase'
@@ -44,13 +44,11 @@ function OnboardingName() {
     })
 
     setLoading(false)
-    navigate('/install-extension')
   }, [
     loading,
     q,
     name,
     updateUser,
-    navigate,
   ])
 
   const handleCheckName = useCallback(async () => {
@@ -75,6 +73,12 @@ function OnboardingName() {
   }, 250, [
     handleCheckName,
   ])
+
+  useEffect(() => {
+    if (!user?.name) return
+
+    navigate('/install-extension')
+  })
 
   if (boatStatus === 'loading') {
     return (

@@ -6,23 +6,23 @@ import useUser from '~hooks/user/useUser'
 import CenteredSpinner from '~components/common/CenteredSpinner'
 
 function AuthenticationBouncer({ children }: PropsWithChildren) {
-  const { viewer, loadingAuthentication } = useUser()
+  const { viewer, loading } = useUser()
 
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
   useEffect(() => {
-    if (viewer || loadingAuthentication) return
+    if (viewer || loading) return
 
     navigate('/authentication', { replace: true })
   }, [
     viewer,
-    loadingAuthentication,
+    loading,
     pathname,
     navigate,
   ])
 
-  if (loadingAuthentication || !viewer) {
+  if (loading) {
     return (
       <CenteredSpinner />
     )

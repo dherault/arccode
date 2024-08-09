@@ -6,7 +6,7 @@ import useUser from '~hooks/user/useUser'
 import CenteredSpinner from '~components/common/CenteredSpinner'
 
 function AuthenticationRedirect({ children }: PropsWithChildren) {
-  const { user, viewer, loadingAuthentication } = useUser()
+  const { user, viewer, loading } = useUser()
   const navigate = useNavigate()
 
   const handleRedirect = useCallback(async () => {
@@ -23,7 +23,7 @@ function AuthenticationRedirect({ children }: PropsWithChildren) {
     handleRedirect()
   }, [handleRedirect])
 
-  if (loadingAuthentication || user) {
+  if (loading || user) {
     return (
       <CenteredSpinner />
     )
