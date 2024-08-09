@@ -9,6 +9,7 @@ import {
   python,
   ruby,
   typescript,
+// @ts-expect-error
 } from 'language-keywords'
 
 export default {

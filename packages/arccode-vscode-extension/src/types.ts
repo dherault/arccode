@@ -10,7 +10,7 @@ export type Language = keyof typeof languageToKeywords
 
 export type FileRegistry = Record<string, string> // File uri -> file content
 
-export type KeywordRegistry = Partial<Record<Language, Record<string, number>>> // Language -> keyword -> count
+export type KeywordData = Partial<Record<Language, Record<string, number>>> // Language -> keyword -> count
 
 export interface PromiseAdapter<T, U> {
   (

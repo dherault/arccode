@@ -1,9 +1,10 @@
 import * as vscode from 'vscode'
 import diffArray from 'array-differences'
 
-import type { FileRegistry, KeywordRegistry, Language } from './types'
-import languageToKeywords from './keywords'
+import type { FileRegistry, Language } from './types'
 import { MAX_LINES } from './constants'
+import languageToKeywords from './keywords'
+import type KeywordRegistry from './KeywordRegistry'
 
 const supportedLanguageIds = Object.keys(languageToKeywords)
 
@@ -34,7 +35,7 @@ export function handleDocumentChange(document: vscode.TextDocument, fileRegistry
   diffArray(previousLines, currentLines).forEach(lineDiff => {
     if (lineDiff[0] === 'deleted') {
       extractKeywords(previousLines[lineDiff[1]] ?? '', language).forEach(keyword => {
-        registerKeyword(keyword, -1)
+        keywordRegistry.registerKeyword(language, keyword, -1)
       })
     }
 
@@ -46,7 +47,7 @@ export function handleDocumentChange(document: vscode.TextDocument, fileRegistry
 
     if (lineDiff[0] === 'inserted') {
       extractKeywords(lineDiff[2], language).forEach(keyword => {
-        registerKeyword(keyword)
+        keywordRegistry.registerKeyword(language, keyword)
       })
     }
 
@@ -56,16 +57,9 @@ export function handleDocumentChange(document: vscode.TextDocument, fileRegistry
     const addedKeywords = new Set([...nextKeywords].filter(keyword => !previousKeywords.has(keyword)))
 
     addedKeywords.forEach(keyword => {
-      registerKeyword(keyword)
+      keywordRegistry.registerKeyword(language, keyword)
     })
   })
-
-  function registerKeyword(keyword: string, delta = 1) {
-    if (!keywordRegistry[language]) keywordRegistry[language] = {}
-    if (!keywordRegistry[language][keyword]) keywordRegistry[language][keyword] = 0
-
-    keywordRegistry[language][keyword] = Math.max(0, keywordRegistry[language][keyword] + delta)
-  }
 }
 
 function extractKeywords(line: string, language: Language) {
