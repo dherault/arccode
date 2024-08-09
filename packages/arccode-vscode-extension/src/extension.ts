@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 
 import type { FileRegistry } from './types'
-import { AUTH_TYPE } from './constants'
+import { AUTHENTICATION_TYPE } from './constants'
 import ArccodeAuthenticationProvider from './ArccodeAuthenticationProvider'
 import KeywordRegistry from './KeywordRegistry'
 import { handleDocumentChange, populateFileRegistry } from './core'
@@ -27,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.authentication.onDidChangeSessions(async event => {
-      if (event.provider.id !== AUTH_TYPE) return
+      if (event.provider.id !== AUTHENTICATION_TYPE) return
 
       getSession()
     })

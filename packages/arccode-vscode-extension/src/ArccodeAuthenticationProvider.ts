@@ -20,9 +20,9 @@ import type {
   UserInfo,
 } from './types'
 import {
+  AUTHENTICATION_NAME,
+  AUTHENTICATION_TYPE,
   AUTHENTICATION_URL,
-  AUTH_NAME,
-  AUTH_TYPE,
   CODE_EXCHANGE_PROMISE_KEY,
   SESSIONS_SECRET_KEY,
 } from './constants'
@@ -42,7 +42,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
 
   constructor(private readonly context: ExtensionContext) {
     this._disposable = Disposable.from(
-      authentication.registerAuthenticationProvider(AUTH_TYPE, AUTH_NAME, this, { supportsMultipleAccounts: false }),
+      authentication.registerAuthenticationProvider(AUTHENTICATION_TYPE, AUTHENTICATION_NAME, this, { supportsMultipleAccounts: false }),
       window.registerUriHandler(this._uriHandler)
     )
   }
