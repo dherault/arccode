@@ -29,7 +29,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "firebase": "^10.12.5",
-    "framer-motion": "^11.3.21",
+    "framer-motion": "^11.3.24",
     "logrocket": "^8.1.2",
     "lucide-react": "^0.424.0",
     "luxon": "^3.4.4",

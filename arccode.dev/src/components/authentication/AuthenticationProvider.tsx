@@ -10,8 +10,6 @@ import { auth, db, persistancePromise } from '~firebase'
 
 import UserContext, { type UserContextType } from '~contexts/authentication/UserContext'
 
-import sendSignupEmail from '~emails/signup'
-
 function AuthenticationProvider({ children }: PropsWithChildren) {
   const [viewer, setViewer] = useState<Viewer | null>(null)
   const [user, setUser] = useState<User | null>(null)
@@ -80,7 +78,7 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
     if (!viewer) return
     if (!user || user.signupMessagesSent) return
 
-    sendSignupEmail(user)
+    // sendSignupEmail(user)
 
     if (import.meta.env.PROD && user.signInProviders.includes('password')) {
       sendEmailVerification(viewer)
