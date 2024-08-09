@@ -29,6 +29,28 @@ export type Email = DatabaseResource<{
 }>
 
 /* ---
+  Data
+--- */
+
+export type ItemType = 'main-hand'
+  | 'off-hand'
+  | 'both-hands'
+  | 'helm'
+  | 'armor'
+  | 'gloves'
+  | 'boots'
+  | 'amulet'
+  | 'ring'
+  | 'spell'
+
+export type Item = {
+  id: string
+  name: string
+  type: ItemType
+  rarity: number
+}
+
+/* ---
   Helpers
 --- */
 
