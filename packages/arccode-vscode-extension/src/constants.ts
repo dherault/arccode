@@ -1,6 +1,6 @@
-export const AUTHENTICATION_URL = process.env.NODE_ENV === 'production'
-  ? 'https://arccode-app.web.app/authentication'
-  : 'http://localhost:5173/authentication'
+export const AUTHENTICATION_URL = process.env.DEV
+  ? 'http://localhost:5173/authentication'
+  : 'https://arccode.dev/authentication'
 
 export const AUTHENTICATION_TYPE = 'arccode'
 

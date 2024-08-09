@@ -55,3 +55,12 @@ export type Item = {
 --- */
 
 export type SignInProvider = 'password' | 'google' | 'github'
+
+/* ---
+ Authentication
+--- */
+
+export type VscodeExtensionRedirectionState = {
+  uri: string
+  state: string
+}
