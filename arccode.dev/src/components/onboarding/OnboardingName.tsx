@@ -7,12 +7,15 @@ import { db } from '~firebase'
 
 import useThrottledEffect from '~hooks/common/useThrottledEffect'
 import useUser from '~hooks/user/useUser'
+import useImageLoading from '~hooks/common/useImageLoading'
 
 import { Button } from '~components/ui/Button'
 import { Input } from '~components/ui/Input'
+import SpinnerCentered from '~components/common/CenteredSpinner'
 
 function OnboardingName() {
   const { user, updateUser } = useUser()
+  const { src: boatSrc, status: boatStatus } = useImageLoading('/images/onboarding/boat.png')
   const navigate = useNavigate()
 
   const [name, setName] = useState(user?.name ?? '')
@@ -73,6 +76,12 @@ function OnboardingName() {
     handleCheckName,
   ])
 
+  if (boatStatus === 'loading') {
+    return (
+      <SpinnerCentered />
+    )
+  }
+
   return (
     <div className="h-full flex flex-col overflow-hidden">
       <motion.div
@@ -95,7 +104,7 @@ function OnboardingName() {
         className="relative h-full shrink-0 flex flex-col items-center justify-center"
       >
         <img
-          src="/images/onboarding/boat.png"
+          src={boatSrc}
           alt="Boat at sea"
           className="absolute inset-0 h-full object-cover z-0"
         />
