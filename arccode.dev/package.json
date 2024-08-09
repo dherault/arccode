@@ -11,9 +11,9 @@
     "preview": "vite preview",
     "lint": "tsc -b && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "router": "bun src/router/logic/index.ts && bunx eslint ./src/router --fix",
-    "emulators": "mkdir -p emulators-data/current-export && firebase emulators:start --only auth,functions,storage,firestore,extensions --import=./emulators-data/current-export --export-on-exit=./emulators-data/current-export",
+    "emulators": "mkdir -p emulators-data/current-export && firebase emulators:start --only auth,functions,firestore,extensions --import=./emulators-data/current-export --export-on-exit=./emulators-data/current-export",
     "analyze": "npx vite-bundle-visualizer",
-    "deploy:rules": "firebase deploy --only firestore:rules,storage"
+    "deploy:rules": "firebase deploy --only firestore:rules"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
