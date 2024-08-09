@@ -174,7 +174,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
             setTimeout(() => reject(new Error('Cancelled')), 60000)
           }),
           promiseFromEvent<any, any>(token.onCancellationRequested, (_, __, reject) => {
-            reject('User Cancelled')
+            reject('User cancelled the sign in flow')
           }).promise,
         ])
       }

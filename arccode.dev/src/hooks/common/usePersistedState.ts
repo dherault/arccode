@@ -4,7 +4,7 @@ const identity = (x: any) => x
 
 // useState with localStorage persistence
 function usePersistedState<T>(key: string, defaultValue: T, parser = identity) {
-  const getLocalStorageKey = useCallback(() => `designsystemworkshop:${key}`, [key])
+  const getLocalStorageKey = useCallback(() => `arccode:${key}`, [key])
 
   const getLocalStorageValue = useCallback(() => {
     try {
