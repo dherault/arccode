@@ -32,7 +32,11 @@ export function handleDocumentChange(document: vscode.TextDocument, fileRegistry
   if (previousLines.length > MAX_LINES || currentLines.length > MAX_LINES) return
 
   diffArray(previousLines, currentLines).forEach(lineDiff => {
-    if (lineDiff[0] === 'deleted') return
+    if (lineDiff[0] === 'deleted') {
+      extractKeywords(previousLines[lineDiff[1]] ?? '', language).forEach(keyword => {
+        registerKeyword(keyword, -1)
+      })
+    }
 
     const otherLines = [...currentLines]
 
@@ -41,14 +45,14 @@ export function handleDocumentChange(document: vscode.TextDocument, fileRegistry
     if (otherLines.some(l => l === lineDiff[2])) return
 
     if (lineDiff[0] === 'inserted') {
-      extractKeywords(lineDiff[2], document.languageId).forEach(keyword => {
+      extractKeywords(lineDiff[2], language).forEach(keyword => {
         registerKeyword(keyword)
       })
     }
 
     // Here lineDiff[0] === 'modified'
-    const previousKeywords = extractKeywords(previousLines[lineDiff[1]], document.languageId)
-    const nextKeywords = extractKeywords(lineDiff[2], document.languageId)
+    const previousKeywords = extractKeywords(previousLines[lineDiff[1]], language)
+    const nextKeywords = extractKeywords(lineDiff[2], language)
     const addedKeywords = new Set([...nextKeywords].filter(keyword => !previousKeywords.has(keyword)))
 
     addedKeywords.forEach(keyword => {
@@ -56,17 +60,17 @@ export function handleDocumentChange(document: vscode.TextDocument, fileRegistry
     })
   })
 
-  function registerKeyword(keyword: string) {
+  function registerKeyword(keyword: string, delta = 1) {
     if (!keywordRegistry[language]) keywordRegistry[language] = {}
     if (!keywordRegistry[language][keyword]) keywordRegistry[language][keyword] = 0
 
-    keywordRegistry[language][keyword]++
+    keywordRegistry[language][keyword] = Math.max(0, keywordRegistry[language][keyword] + delta)
   }
 }
 
-function extractKeywords(line: string, language: string) {
+function extractKeywords(line: string, language: Language) {
   const foundKeywords = new Set<string>()
-  const keywords = languageToKeywords[language as keyof typeof languageToKeywords]
+  const keywords = languageToKeywords[language]
 
   if (!keywords) return foundKeywords
 
