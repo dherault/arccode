@@ -22,7 +22,7 @@ const javascriptKeywords = [
   'import',
   'in',
   'instanceof',
-  'let ',
+  'let',
   'new',
   'null',
   'return',
@@ -38,7 +38,7 @@ const javascriptKeywords = [
   'void',
   'while',
   'with',
-  'yield ',
+  'yield',
 ] as const
 
 export default javascriptKeywords
