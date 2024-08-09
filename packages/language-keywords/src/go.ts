@@ -1,0 +1,30 @@
+// https://go.dev/ref/spec#Keywords
+const goKeywords = [
+  'break',
+  'case',
+  'chan',
+  'const',
+  'continue',
+  'default',
+  'defer',
+  'else',
+  'fallthrough',
+  'for',
+  'func',
+  'go',
+  'goto',
+  'if',
+  'import',
+  'interface',
+  'map',
+  'package',
+  'range',
+  'return',
+  'select',
+  'struct',
+  'switch',
+  'type',
+  'var',
+] as const
+
+export default goKeywords
