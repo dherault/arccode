@@ -22,17 +22,21 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
   const userId = useMemo(() => viewer?.uid ?? '', [viewer?.uid])
   const userDocument = useMemo(() => doc(db, 'users', userId || NULL_DOCUMENT_ID), [userId])
 
-  const { data: user, error, loading: loadingUser } = useLiveDocument<User>(userDocument, !!userId)
+  const { data: user, error, loading } = useLiveDocument<User>(userDocument, !!userId)
 
   const [loadingAuthentication, setLoadingAuthentication] = useState(true)
 
   const navigate = useNavigate()
 
-  const handleUpdateUser = useCallback(async (updatedUser: Record<string, any>) => {
+  const handleUpdateUser = useCallback(async (payload: Record<string, any>) => {
     if (!userId) return
 
+    console.groupCollapsed('--> Updating user')
+    console.log(payload)
+    console.groupEnd()
+
     await updateDoc(userDocument, {
-      ...updatedUser,
+      ...payload,
       updatedAt: new Date().toISOString(),
     })
   }, [
@@ -62,7 +66,7 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
 
   const handleCreateUser = useCallback(async () => {
     if (!viewer) return
-    if (loadingUser || user) return
+    if (loading || user) return
 
     const signInProvider = viewer.providerData[0].providerId as SignInProvider
     const createdUser = createUser({
@@ -81,7 +85,7 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
   }, [
     viewer,
     user,
-    loadingUser,
+    loading,
     userDocument,
   ])
 
@@ -92,7 +96,7 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
     const signInProviders = viewer.providerData.map(x => x.providerId as SignInProvider).sort()
 
     if (viewer.email !== user.email) updatedUser.email = viewer.email
-    if (viewer.photoURL !== user.imageUrl) updatedUser.imageUrl = viewer.photoURL
+    if (viewer.photoURL && viewer.photoURL !== user.imageUrl) updatedUser.imageUrl = viewer.photoURL
     if (user.signInProviders.length !== signInProviders.length || user.signInProviders.some((x, i) => x !== signInProviders[i])) updatedUser.signInProvider = signInProviders
 
     if (!Object.entries(updatedUser).length) return
@@ -106,7 +110,7 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
 
   const handleFirstTimeUser = useCallback(async () => {
     if (!viewer) return
-    if (!user || user.signupMessagesSent) return
+    if (!user || user.hasSentSignupMessages) return
 
     // sendSignupEmail(user)
 
@@ -114,7 +118,9 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
       sendEmailVerification(viewer)
     }
 
-    await handleUpdateUser({ signupMessagesSent: true })
+    await handleUpdateUser({
+      hasSentSignupMessages: true,
+    })
   }, [
     viewer,
     user,
@@ -161,16 +167,14 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
   const viewerContextValue = useMemo<UserContextType>(() => ({
     viewer,
     user,
-    loading: loadingUser || loadingAuthentication,
-    setViewer,
+    loading: loading || loadingAuthentication,
     updateUser: handleUpdateUser,
     signOut: handleSignOut,
   }), [
     viewer,
     user,
-    loadingUser,
+    loading,
     loadingAuthentication,
-    setViewer,
     handleUpdateUser,
     handleSignOut,
   ])

@@ -15,8 +15,8 @@ export type User = DatabaseResource<{
   name: string
   imageUrl: string
   signInProviders: SignInProvider[]
-  signupMessagesSent: boolean
-  onboarded: boolean
+  hasSentSignupMessages: boolean
+  hasConnectedExtension: boolean
 }>
 
 export type Email = DatabaseResource<{

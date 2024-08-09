@@ -78,7 +78,10 @@ function OnboardingName() {
     if (!user?.name) return
 
     navigate('/install-extension')
-  })
+  }, [
+    user?.name,
+    navigate,
+  ])
 
   if (boatStatus === 'loading') {
     return (

@@ -18,11 +18,16 @@ function useQuery<T>(doc: DocumentReference, enabled = true) {
     }
 
     setLoading(false)
-  }, [doc, enabled])
+  }, [
+    doc,
+    enabled,
+  ])
 
   useEffect(() => {
     fetch()
-  }, [fetch])
+  }, [
+    fetch,
+  ])
 
   return { data, loading }
 }

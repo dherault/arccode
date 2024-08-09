@@ -5,22 +5,21 @@ import type { DatabaseResource } from '~types'
 
 function useLiveDocument<T extends DatabaseResource>(doc: DocumentReference, enabled = true) {
   const [data, setData] = useState<T | null>(null)
-  const [loading, setLoading] = useState(!data)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
   const fetch = useCallback(() => {
     if (!enabled) {
       setData(null)
-      setLoading(false)
 
       return
     }
 
-    onSnapshot(doc, querySnapshot => {
-      if (querySnapshot.exists()) {
-        const data = querySnapshot.data() as T
+    setLoading(true)
 
-        setData(data)
+    return onSnapshot(doc, querySnapshot => {
+      if (querySnapshot.exists()) {
+        setData(querySnapshot.data() as T)
       }
 
       setError(null)
@@ -31,11 +30,18 @@ function useLiveDocument<T extends DatabaseResource>(doc: DocumentReference, ena
       setLoading(false)
       setError(error)
     })
-  }, [doc, enabled])
+  }, [
+    doc,
+    enabled,
+  ])
 
   useEffect(fetch, [fetch])
 
-  return { data, loading, error }
+  return {
+    data,
+    loading,
+    error,
+  }
 }
 
 export default useLiveDocument

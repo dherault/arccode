@@ -31,11 +31,16 @@ function useDocument<T extends DatabaseResource>(doc: DocumentReference, enabled
     }
 
     setLoading(false)
-  }, [doc, enabled])
+  }, [
+    doc,
+    enabled,
+  ])
 
   useEffect(() => {
     fetch()
-  }, [fetch])
+  }, [
+    fetch,
+  ])
 
   return { data, loading, error, refetch: fetch }
 }

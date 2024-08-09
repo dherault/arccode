@@ -2,15 +2,12 @@ import { type ButtonHTMLAttributes, useCallback, useState } from 'react'
 import { type AuthProvider, signInWithPopup } from 'firebase/auth'
 import _ from 'clsx'
 
-import type { SignInProvider } from '~types'
-
 import { auth } from '~firebase'
 
 import { Button } from '~components/ui/Button'
 import Spinner from '~components/common/Spinner'
 
 type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
-  signInProvider: SignInProvider
   firebaseAuthProvider: AuthProvider
   logoSrc: string
 }

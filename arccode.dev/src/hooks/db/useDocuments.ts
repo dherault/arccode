@@ -39,11 +39,16 @@ function useDocuments<T extends DatabaseResource>(query: Query, enabled = true) 
     await refetch()
 
     setLoading(false)
-  }, [enabled, refetch])
+  }, [
+    enabled,
+    refetch,
+  ])
 
   useEffect(() => {
     fetch()
-  }, [fetch])
+  }, [
+    fetch,
+  ])
 
   return { data, loading, error, refetch }
 }

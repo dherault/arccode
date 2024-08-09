@@ -7,11 +7,12 @@ import useDebounce from '~hooks/common/useDebounce'
 
 function useLiveDocuments<T extends DatabaseResource>(query: Query, enabled = true) {
   const [data, setData] = useState<T[]>([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(!!enabled)
   const [error, setError] = useState<Error | null>(null)
   // The first querysnapshot being always empty, but the second one being correct
   // we debounce loading to be certain we waited for the possible second fetch
-  const debouncedLoading = useDebounce(loading, 500)
+  const debouncedLoading = useDebounce(loading, 300)
+  const finalLoading = loading || debouncedLoading
 
   const fetch = useCallback(() => {
     if (!enabled) {
@@ -20,6 +21,8 @@ function useLiveDocuments<T extends DatabaseResource>(query: Query, enabled = tr
 
       return
     }
+
+    setLoading(true)
 
     return onSnapshot(
       query,
@@ -42,11 +45,18 @@ function useLiveDocuments<T extends DatabaseResource>(query: Query, enabled = tr
         setLoading(false)
         setError(error)
       })
-  }, [query, enabled])
+  }, [
+    query,
+    enabled,
+  ])
 
   useEffect(fetch, [fetch])
 
-  return { data, loading: debouncedLoading, error }
+  return {
+    data,
+    error,
+    loading: finalLoading,
+  }
 }
 
 export default useLiveDocuments

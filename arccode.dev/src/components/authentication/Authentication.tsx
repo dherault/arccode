@@ -177,7 +177,6 @@ function Authentication() {
       {(mode === MODES.START || providers.includes('google')) && (
         <>
           <SocialButton
-            signInProvider="google"
             firebaseAuthProvider={googleProvider}
             logoSrc="/images/google-logo.png"
             className="mt-8"
@@ -185,7 +184,6 @@ function Authentication() {
             Continue with Google
           </SocialButton>
           <SocialButton
-            signInProvider="github"
             firebaseAuthProvider={githubProvider}
             logoSrc="/images/github-logo.svg"
             className="mt-2"

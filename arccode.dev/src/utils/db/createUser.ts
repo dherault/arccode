@@ -3,8 +3,8 @@ import { User } from '~types'
 type CreateUserArg = Omit<
   User,
   'name'
-  | 'signupMessagesSent'
-  | 'onboarded'
+  | 'hasSentSignupMessages'
+  | 'hasConnectedExtension'
   | 'createdAt'
   | 'updatedAt'
   | 'deletedAt'
@@ -16,8 +16,8 @@ function createUser(user: CreateUserArg): User {
   return {
     ...user,
     name: '',
-    signupMessagesSent: false,
-    onboarded: false,
+    hasSentSignupMessages: false,
+    hasConnectedExtension: false,
     createdAt: now,
     updatedAt: now,
     deletedAt: '',
