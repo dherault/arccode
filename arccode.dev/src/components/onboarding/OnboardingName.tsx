@@ -77,7 +77,7 @@ function OnboardingName() {
   useEffect(() => {
     if (!user?.name) return
 
-    navigate('/install-extension')
+    navigate('/onboarding/install-extension')
   }, [
     user?.name,
     navigate,
@@ -161,7 +161,7 @@ function OnboardingName() {
           alt="Laurel left"
           className="h-44"
           style={{
-            filter: 'invert(69%) sepia(74%) saturate(454%) hue-rotate(354deg) brightness(107%) contrast(105%)',
+            filter: 'invert(53%) sepia(54%) saturate(4980%) hue-rotate(198deg) brightness(102%) contrast(101%)',
           }}
         />
         <form onSubmit={handleSubmit}>
@@ -198,7 +198,7 @@ function OnboardingName() {
           alt="Laurel right"
           className="h-44"
           style={{
-            filter: 'invert(69%) sepia(74%) saturate(454%) hue-rotate(354deg) brightness(107%) contrast(105%)',
+            filter: 'invert(53%) sepia(54%) saturate(4980%) hue-rotate(198deg) brightness(102%) contrast(101%)',
           }}
         />
       </motion.div>

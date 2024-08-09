@@ -39,7 +39,7 @@ function useLiveDocument<T extends DatabaseResource>(doc: DocumentReference, ena
 
   return {
     data,
-    loading,
+    loading: loading && enabled,
     error,
   }
 }

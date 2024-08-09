@@ -17,7 +17,6 @@ function useLiveDocuments<T extends DatabaseResource>(query: Query, enabled = tr
   const fetch = useCallback(() => {
     if (!enabled) {
       setData([])
-      setLoading(false)
 
       return
     }
@@ -55,7 +54,7 @@ function useLiveDocuments<T extends DatabaseResource>(query: Query, enabled = tr
   return {
     data,
     error,
-    loading: finalLoading,
+    loading: finalLoading && enabled,
   }
 }
 
