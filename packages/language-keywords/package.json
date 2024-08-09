@@ -1,0 +1,38 @@
+{
+  "name": "language-keywords",
+  "description": "A list of reserved keyword of various programming languages",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/language-keywords.umd.cjs",
+  "module": "./dist/language-keywords.js",
+  "exports": {
+    ".": {
+      "import": "./dist/language-keywords.js",
+      "require": "./dist/language-keywords.umd.cjs"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dherault/arccode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dherault/arccode/issues"
+  },
+  "homepage": "https://github.com/dherault/arccode",
+  "keywords": [
+    "language",
+    "keyword",
+    "reserved"
+  ],
+  "author": "David Hérault <dherault@gmail.com> (https://github.com/dherault)",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && vite build",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "vite": "^5.4.0",
+    "vite-plugin-dts": "^4.0.2"
+  }
+}
