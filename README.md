@@ -24,24 +24,24 @@ Spells x6
 
 ## Technologies x100
 
-HTML5
-CSS3
-JavaScript
-TypeScript
-React
+<!-- HTML5 -->
+<!-- CSS -->
+<!-- JavaScript -->
+<!-- TypeScript -->
+<!-- React -->
 Angular
 Vue
 Svelte
 Bootstrap
-Tailwind CSS
+<!-- Tailwind CSS -->
 Foundation
 Materialize
 Bulma
-Node
+<!-- Node -->
 Express
 Django
-Flask
-Ruby on Rails
+<!-- Flask -->
+<!-- Ruby on Rails -->
 Laravel
 ASP.NET Core
 Phoenix
@@ -50,7 +50,7 @@ Sails.js
 FastAPI
 NestJS
 MySQL
-PostgreSQL
+<!-- PostgreSQL -->
 MongoDB
 SQLite
 Oracle Database
@@ -62,7 +62,7 @@ CouchDB
 MariaDB
 Elasticsearch
 DynamoDB
-Git
+<!-- Git -->
 GitHub
 GitLab
 Bitbucket
@@ -78,7 +78,7 @@ Ansible
 Chef
 Puppet
 Amazon Web Services
-Google Cloud Platform
+<!-- Google Cloud Platform -->
 Microsoft Azure
 Heroku
 DigitalOcean
@@ -96,7 +96,7 @@ Karma
 Selenium
 Cypress
 Puppeteer
-REST
+<!-- REST -->
 GraphQL
 gRPC
 Apollo
@@ -106,21 +106,21 @@ Webpack
 Gulp
 Grunt
 Parcel
-Rollup
-npm
+<!-- Rollup -->
+<!-- npm -->
 Yarn
 pnpm
 pip
 Apache
 Nginx
-VS Code
+<!-- VS Code -->
 Sublime Text
 WebStorm
 Postman
-Figma
+<!-- Figma -->
 Sketch
 InVision
-React Native
+<!-- React Native -->
 Flutter
 Ionic
 NativeScript
@@ -154,32 +154,32 @@ Spells - 100, 100, 100, 97, 93, 89, 85, 81, 77, 73, 69, 65, 61, 57, 53, 49, 45, 
 ## Items
 
 ### Main hand
-- 100
+- 100 - CSS dagger
 - 85
 - 70
 - 55
 - 40
 - 25
 - 10
-- 1
+- 1 - Git sword
 ### Off hand
-- 100
+- 100 - TypeScript kite shield
 - 85
 - 70
 - 55
 - 40
 - 25
 - 10
-- 1
+- 1 - React shield
 ### Both hands
-- 100
+- 100 - Node.js greatsword
 - 85
 - 70
 - 55
 - 40
 - 25
 - 10
-- 1
+- 1 - Google Cloud Platform Maul
 ### Head
 - 100
 - 85
@@ -188,54 +188,54 @@ Spells - 100, 100, 100, 97, 93, 89, 85, 81, 77, 73, 69, 65, 61, 57, 53, 49, 45, 
 - 40
 - 25
 - 10
-- 1
+- 1 - Javascript helm
 ### Body
-- 100
+- 100 - Flask chestplate
 - 85
 - 70
 - 55
 - 40
 - 25
 - 10
-- 1
+- 1 - REST armor
 ### Feet
-- 100
+- 100 - PostgreSQL shoes
 - 85
 - 70
 - 55
 - 40
 - 25
 - 10
-- 1
+- 1 - NPM Boots
 ### Gloves
-- 100
+- 100 - React Native gloves
 - 85
 - 70
 - 55
 - 40
 - 25
 - 10
-- 1
+- 1 - Figma hands
 ### Amulet
 - 100
-- 85
+- 85 - Tailwind CSS amulet
 - 70
 - 55
 - 40
 - 25
 - 10
-- 1
+- 1 - Ruby on Rails ruby
 ### Rings
 - 100
 - 85
-- 70
+- 70 - Rollup ring
 - 55
 - 40
 - 25
 - 10
-- 1
+- 1 - HTML5 ring
 ### Spells
-- 100
+- 100 - VS Code spell
 - 100
 - 100
 - 97
