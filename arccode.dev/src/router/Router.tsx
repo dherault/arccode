@@ -9,6 +9,7 @@ import NotFound from '~components/common/NotFound'
 import CenteredSpinner from '~components/common/CenteredSpinner'
 
 const AuthenticationSubRouter = lazy(() => import('~router/subRouters/AuthenticationSubRouter'))
+const InstallExtensionSubRouter = lazy(() => import('~router/subRouters/InstallExtensionSubRouter'))
 const TildeSubRouter = lazy(() => import('~router/subRouters/TildeSubRouter'))
 const StartAdventureSubRouter = lazy(() => import('~router/subRouters/StartAdventureSubRouter'))
 const SupportSubRouter = lazy(() => import('~router/subRouters/SupportSubRouter'))
@@ -30,6 +31,10 @@ function Router() {
             <Route
               path="authentication/*"
               element={<Suspense fallback={<CenteredSpinner />}><AuthenticationSubRouter /></Suspense>}
+            />
+            <Route
+              path="install-extension/*"
+              element={<Suspense fallback={<CenteredSpinner />}><InstallExtensionSubRouter /></Suspense>}
             />
             <Route
               path="~/*"

@@ -7,10 +7,19 @@ function OnboardingBouncer({ children }: PropsWithChildren) {
   const { user } = useUser()
 
   if (!user?.onboarded) {
+    if (!user?.name) {
+      return (
+        <Navigate
+          replace
+          to="/start-adventure"
+        />
+      )
+    }
+
     return (
       <Navigate
         replace
-        to="/start-adventure"
+        to="/install-extension"
       />
     )
   }

@@ -132,8 +132,8 @@ function Authentication() {
       .then(async userCredential => {
         const user = createUser({
           id: userCredential.user.uid,
-          name: '',
           email,
+          imageUrl: '',
           userId: userCredential.user.uid,
           signInProviders: ['password'],
         })

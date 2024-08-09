@@ -1,3 +1,3 @@
-import Onboarding from '~components/onboarding/Onboarding'
+import OnboardingName from '~components/onboarding/OnboardingName'
 
-export default Onboarding
+export default OnboardingName

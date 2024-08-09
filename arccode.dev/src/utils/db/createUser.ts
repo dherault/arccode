@@ -2,7 +2,7 @@ import { User } from '~types'
 
 type CreateUserArg = Omit<
   User,
-  'imageUrl'
+  'name'
   | 'signupMessagesSent'
   | 'onboarded'
   | 'createdAt'
@@ -15,7 +15,7 @@ function createUser(user: CreateUserArg): User {
 
   return {
     ...user,
-    imageUrl: '',
+    name: '',
     signupMessagesSent: false,
     onboarded: false,
     createdAt: now,

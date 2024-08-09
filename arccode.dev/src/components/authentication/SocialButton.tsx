@@ -57,8 +57,8 @@ function SocialButton({
           const fetchedUser = fetchResult.data() as User
           const updatedUser: Partial<User> = {
             email: user.email ?? fetchedUser.email ?? '',
-            name: user.displayName ?? fetchedUser.name ?? '',
             updatedAt: new Date().toISOString(),
+            imageUrl: user.photoURL ?? fetchedUser.imageUrl ?? '',
             signInProviders: fetchedUser.signInProviders.includes(signInProvider)
               ? fetchedUser.signInProviders
               : [...fetchedUser.signInProviders, signInProvider],
@@ -74,13 +74,11 @@ function SocialButton({
 
           const createdUser = createUser({
             id: user.uid,
-            name: user.displayName ?? '',
             email: user.email ?? '',
             userId: user.uid,
+            imageUrl: user.photoURL ?? '',
             signInProviders: [signInProvider],
           })
-
-          createdUser.imageUrl = user.photoURL ?? ''
 
           await setDoc(docRef, createdUser)
           await signIn(user, createdUser)

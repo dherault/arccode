@@ -1,11 +1,77 @@
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { type FormEvent, useCallback, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { db } from '~firebase'
+
+import useThrottledEffect from '~hooks/common/useThrottledEffect'
+import useUser from '~hooks/user/useUser'
 
 import { Button } from '~components/ui/Button'
 import { Input } from '~components/ui/Input'
 
-function Onboarding() {
-  const [name, setName] = useState('')
+function OnboardingName() {
+  const { user, updateUser } = useUser()
+  const navigate = useNavigate()
+
+  const [name, setName] = useState(user?.name ?? '')
+  const [valid, setValid] = useState(false)
+  const [loading, setLoading] = useState(false)
+
+  const q = useMemo(() => query(collection(db, 'users'), where('name', '==', name.trim())), [name])
+
+  const handleSubmit = useCallback(async (event: FormEvent) => {
+    event.preventDefault()
+
+    if (loading) return
+
+    const finalName = name.trim()
+
+    if (!finalName) return
+
+    setLoading(true)
+
+    const docs = await getDocs(q)
+
+    if (!docs.empty) return
+
+    await updateUser({
+      name: finalName,
+    })
+
+    setLoading(false)
+    navigate('/install-extension')
+  }, [
+    loading,
+    q,
+    name,
+    updateUser,
+    navigate,
+  ])
+
+  const handleCheckName = useCallback(async () => {
+    const finalName = name.trim()
+
+    if (!finalName) {
+      setValid(true)
+
+      return
+    }
+
+    const docs = await getDocs(q)
+
+    setValid(docs.empty)
+  }, [
+    name,
+    q,
+  ])
+
+  useThrottledEffect(() => {
+    handleCheckName()
+  }, 250, [
+    handleCheckName,
+  ])
 
   return (
     <div className="h-full flex flex-col overflow-hidden">
@@ -22,7 +88,7 @@ function Onboarding() {
           exit: {
             top: '-100%',
             transition: {
-              delay: 7,
+              delay: 7.5,
             },
           },
         }}
@@ -71,7 +137,7 @@ function Onboarding() {
       <motion.div
         initial={{ top: 0 }}
         animate={{ top: '-100%' }}
-        transition={{ delay: 7 }}
+        transition={{ delay: 7.5 }}
         className="relative h-full shrink-0 flex items-center justify-center gap-16"
       >
         <img
@@ -82,9 +148,9 @@ function Onboarding() {
             filter: 'invert(69%) sepia(74%) saturate(454%) hue-rotate(354deg) brightness(107%) contrast(105%)',
           }}
         />
-        <div>
+        <form onSubmit={handleSubmit}>
           <div className="text-4xl font-black">
-            This hero's name was:
+            This hero's name is:
           </div>
           <Input
             value={name}
@@ -92,12 +158,25 @@ function Onboarding() {
             placeholder="Pick your pseudo!"
             className="mt-6 mx-auto h-11 w-full text-center"
           />
-          <div className="mt-6 flex justify-center">
-            <Button size="lg">
+          {valid && (
+            <div className="mt-1 h-5" />
+          )}
+          {!valid && (
+            <div className="mt-1 text-sm text-red-500 text-center">
+              Name already taken
+            </div>
+          )}
+          <div className="mt-2 flex justify-center">
+            <Button
+              size="lg"
+              disabled={!valid || !name.trim()}
+              loading={loading}
+              type="submit"
+            >
               Continue
             </Button>
           </div>
-        </div>
+        </form>
         <img
           src="/images/onboarding/laurel-right.png"
           alt="Laurel right"
@@ -111,4 +190,4 @@ function Onboarding() {
   )
 }
 
-export default Onboarding
+export default OnboardingName
