@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-white overflow-hidden;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number'] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+
+  /* Border color */
+  *,
+  ::before,
+  ::after {
+    @apply border-neutral-200 dark:border-neutral-700;
+  }
+
+  /* Link */
+  .link {
+    @apply text-blue hover:underline font-medium cursor-pointer
+  }
+
+  /* Elevation */
+  .elevation-0 {
+    @apply shadow-none;
+  }
+
+  .elevation-1 {
+    @apply shadow-[rgba(17,17,26,0.1)_0px_0px_4px] dark:shadow-[rgba(51,65,85,0.333)_0px_0px_4px];
+  }
+
+  .elevation-2 {
+    @apply shadow-[rgba(17,17,26,0.1)_0px_0px_8px] dark:shadow-[rgba(51,65,85,0.333)_0px_0px_8px];
+  }
+
+  .elevation-3 {
+    @apply shadow-[rgba(17,17,26,0.1)_0px_0px_12px] dark:shadow-[rgba(51,65,85,0.333)_0px_0px_12px];
+  }
+
+  .elevation-4 {
+    @apply shadow-[rgba(17,17,26,0.1)_0px_0px_16px] dark:shadow-[rgba(51,65,85,0.333)_0px_0px_16px];
+  }
+
+  /* Markdown */
+  .markdown {
+    h1 {
+      @apply text-2xl font-semibold;
+    }
+
+    h2 {
+      @apply text-xl font-semibold;
+    }
+
+    h3 {
+      @apply text-lg font-semibold;
+    }
+
+    h4 {
+      @apply text-base font-semibold;
+    }
+
+    h5 {
+      @apply text-sm font-semibold;
+    }
+
+    h6 {
+      @apply text-xs font-semibold;
+    }
+
+    p {
+      @apply text-base;
+    }
+
+    a {
+      @apply text-blue hover:underline;
+    }
+
+    ul {
+      @apply list-disc pl-4;
+    }
+
+    ol {
+      @apply list-decimal pl-4;
+    }
+
+    blockquote {
+      @apply border-l-4 border-neutral-200 dark:border-neutral-700 pl-4;
+    }
+
+    pre {
+      @apply bg-neutral-100 dark:bg-neutral-800 p-4 rounded-lg;
+    }
+
+    code {
+      @apply bg-neutral-100 dark:bg-neutral-800 p-1 rounded;
+    }
+
+    img {
+      @apply mx-auto my-4;
+    }
+
+    table {
+      @apply w-full border-collapse;
+    }
+
+    th {
+      @apply text-left font-semibold;
+    }
+
+    td {
+      @apply border-t border-neutral-200 dark:border-neutral-700;
+    }
+
+    thead {
+      @apply bg-neutral-100 dark:bg-neutral-800;
+    }
+
+    tbody {
+      @apply bg-neutral-50 dark:bg-neutral-900;
+    }
+
+    tr {
+      @apply border-b border-neutral-200 dark:border-neutral-700;
+    }
+  }
+
+}

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    /* Custom */
+    "baseUrl": "./src",
+    "paths": {
+      "~types": ["types.ts"],
+      "~constants": ["constants.ts"],
+      "~firebase": ["firebase.ts"],
+      "~vendor/*": ["../public/vendor/*"],
+      "~logic/*": ["logic/*"],
+      "~contexts/*": ["contexts/*"],
+      "~hooks/*": ["hooks/*"],
+      "~utils/*": ["utils/*"],
+      "~app/*": ["app/*"],
+      "~components/*": ["components/*"],
+      "~emails/*": ["emails/*"],
+      "~data/*": ["data/*"],
+      "~router/*": ["router/*"]
+    },
+    "esModuleInterop": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}

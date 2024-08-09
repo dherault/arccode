@@ -1,0 +1,13 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": ["javascript", "typescript"],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "typescript.preferences.importModuleSpecifier": "non-relative"
+}
