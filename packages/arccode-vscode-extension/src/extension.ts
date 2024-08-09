@@ -3,12 +3,15 @@ import * as vscode from 'vscode'
 import type { FileRegistry } from './types'
 import { AUTH_TYPE } from './constants'
 import ArccodeAuthenticationProvider from './ArccodeAuthenticationProvider'
-import { handleDocumentChange, populateFileRegistry } from './handlers'
-import printProgress from './printProgress'
 import KeywordRegistry from './KeywordRegistry'
+import { handleDocumentChange, populateFileRegistry } from './core'
+import getSession from './getSession'
+import printProgress from './printProgress'
 
 export function activate(context: vscode.ExtensionContext) {
-  vscode.window.showInformationMessage('Arccode!')
+  if (process.env.DEV) {
+    vscode.window.showInformationMessage('Arccode dev mode loaded')
+  }
 
   /* ---
     Authentication
@@ -16,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('arccode.signIn', async () => {
-      await vscode.authentication.getSession(AUTH_TYPE, [], { createIfNone: true })
+      getSession(true)
     })
   )
 
@@ -55,11 +58,3 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {}
-
-async function getSession() {
-  const session = await vscode.authentication.getSession(AUTH_TYPE, [], { createIfNone: false })
-
-  if (!session) return
-
-  vscode.window.showInformationMessage(`Arccode: logged in as ${session.account.label}`)
-}

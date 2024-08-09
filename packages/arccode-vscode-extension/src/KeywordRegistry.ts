@@ -24,12 +24,18 @@ class KeywordRegistry {
     this.updatedAt = new Date()
   }
 
-  public getCurrent() {
+  public flush() {
     return this.currentKeywordData
   }
 
-  public resetCurrent() {
+  public reset() {
     this.currentKeywordData = {}
+
+    if (new Date().getDate() !== this.updatedAt.getDate()) {
+      this.dailyKeywordData = {}
+    }
+
+    this.updatedAt = new Date()
   }
 }
 

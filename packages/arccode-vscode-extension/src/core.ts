@@ -62,15 +62,19 @@ export function handleDocumentChange(document: vscode.TextDocument, fileRegistry
   })
 }
 
+const formatWordRegex = /[^a-zA-Z0-9-_]/g
+
 function extractKeywords(line: string, language: Language) {
   const foundKeywords = new Set<string>()
   const keywords = languageToKeywords[language]
 
   if (!keywords) return foundKeywords
 
-  const words = line.split(' ')
-
-  words.filter(word => keywords.includes(word as any)).forEach(word => foundKeywords.add(word))
+  line
+  .split(' ')
+  .map(word => word.replace(formatWordRegex, ''))
+  .filter(word => keywords.includes(word as any))
+  .forEach(word => foundKeywords.add(word))
 
   return foundKeywords
 }
