@@ -15,6 +15,14 @@
     "rpg",
     "mmorpg"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dherault/arccode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dherault/arccode/issues"
+  },
+  "homepage": "https://github.com/dherault/arccode",
   "activationEvents": [
     "onLanguage:c",
     "onLanguage:cpp",
@@ -73,7 +81,7 @@
     "@types/node": "22.x",
     "@types/tmp": "^0.2.6",
     "@types/uuid": "^10.0.0",
-    "@types/vscode": "^1.92.0",
+    "@types/vscode": "^1.90.0",
     "@vscode/test-cli": "^0.0.10",
     "@vscode/test-electron": "^2.4.1",
     "eslint": "^8.57.0",

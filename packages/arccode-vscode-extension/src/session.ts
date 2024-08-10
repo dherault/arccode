@@ -3,6 +3,8 @@ import * as vscode from 'vscode'
 import { AUTHENTICATION_TYPE } from './constants'
 import { activateExtension, setAuthorizationToken } from './api'
 
+let extensionActivated = false
+
 export async function getSession(createIfNone = false) {
   const session = await vscode.authentication.getSession(AUTHENTICATION_TYPE, [], { createIfNone })
 
@@ -10,7 +12,11 @@ export async function getSession(createIfNone = false) {
 
   setAuthorizationToken(session.accessToken)
 
-  await activateExtension()
+  if (!extensionActivated) {
+    await activateExtension()
+
+    extensionActivated = true
+  }
 
   return session
 }

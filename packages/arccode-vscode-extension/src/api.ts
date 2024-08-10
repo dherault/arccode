@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import { ACTIVATE_EXTENSION_API_URL, REGISTER_KEYWORDS_API_URL } from './constants'
 import type KeywordRegistry from './KeywordRegistry'
+import { getSession } from './session'
 
 const headers: Record<string, string> = {}
 
@@ -21,6 +22,10 @@ export async function activateExtension() {
 
 export async function sync(keywordRegistry: KeywordRegistry) {
   try {
+    const session = await getSession()
+
+    if (!session) return
+
     await axios.post(
       REGISTER_KEYWORDS_API_URL,
       {
