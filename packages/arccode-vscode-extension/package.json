@@ -2,8 +2,13 @@
   "name": "arccode",
   "publisher": "arccode",
   "displayName": "Arccode",
-  "description": "A game for developers",
-  "version": "0.0.1",
+  "description": "A role-playing game for developers",
+  "version": "0.0.2",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#328bff",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -69,6 +74,7 @@
     }
   },
   "scripts": {
+    "publish": "vsce publish",
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
