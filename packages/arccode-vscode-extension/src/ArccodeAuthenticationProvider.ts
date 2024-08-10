@@ -102,10 +102,10 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
 
       return session
     }
-    catch (e) {
-      window.showErrorMessage(`Sign in failed: ${e}`)
+    catch (error) {
+      window.showErrorMessage(`Sign in failed: ${error}`)
 
-      throw e
+      throw error
     }
   }
 
@@ -173,7 +173,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
           new Promise<string>((_, reject) => {
             setTimeout(() => reject(new Error('Cancelled')), 60000)
           }),
-          promiseFromEvent<any, any>(token.onCancellationRequested, (_, __, reject) => {
+          promiseFromEvent<any, any>(token.onCancellationRequested, (_event, _adapter, reject) => {
             reject('User cancelled the sign in flow')
           }).promise,
         ])

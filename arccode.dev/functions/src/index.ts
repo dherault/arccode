@@ -110,6 +110,8 @@ export const activateVscodeExtension = onRequest(
     .doc(userId)
     .update(payload)
 
+    logger.info('Activated extension for user', userId)
+
     res.status(200).send()
   }
 )

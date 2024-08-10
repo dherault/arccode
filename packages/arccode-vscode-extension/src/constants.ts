@@ -7,12 +7,14 @@ export const AUTHENTICATION_TYPE = 'arccode'
 export const AUTHENTICATION_NAME = 'Arccode'
 
 export const ACTIVATE_EXTENSION_API_URL = process.env.DEV
-  ? 'http://localhost:5001/arccode-dev/us-central/activateVscodeExtension'
+  ? 'http://localhost:5001/arccode-dev/us-central1/activateVscodeExtension'
   : 'https://activatevscodeextension-ynstfmkxyq-uc.a.run.app'
 
 export const REGISTER_KEYWORDS_API_URL = process.env.DEV
-  ? 'http://localhost:5001/arccode-dev/us-central/registerKeywords'
+  ? 'http://localhost:5001/arccode-dev/us-central1/registerKeywords'
   : 'https://registerkeywords-ynstfmkxyq-uc.a.run.app'
+
+export const SYNC_PERIOD = 1000 * 60 * 10
 
 export const SESSIONS_SECRET_KEY = `${AUTHENTICATION_TYPE}.sessions`
 

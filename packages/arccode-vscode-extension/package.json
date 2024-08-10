@@ -39,6 +39,12 @@
         "icon": "$(sign-in)"
       },
       {
+        "command": "arccode.sync",
+        "title": "Sync now",
+        "category": "Arccode",
+        "icon": "$(sync)"
+      },
+      {
         "command": "arccode.print",
         "title": "Print progress",
         "category": "Arccode",
@@ -75,8 +81,8 @@
   },
   "dependencies": {
     "array-differences": "^1.3.1",
+    "axios": "^1.7.3",
     "language-keywords": "^0.1.2",
-    "node-fetch": "^3.3.2",
     "tmp-promise": "^3.0.3",
     "uuid": "^10.0.0"
   }

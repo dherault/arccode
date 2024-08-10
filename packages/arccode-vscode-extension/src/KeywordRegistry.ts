@@ -1,16 +1,16 @@
 import type { KeywordData, Language } from './types'
 
 class KeywordRegistry {
+  public updatedAt: Date
+
   public dailyKeywordData: KeywordData
 
   private currentKeywordData: KeywordData
 
-  private updatedAt: Date
-
   constructor() {
+    this.updatedAt = new Date()
     this.dailyKeywordData = {}
     this.currentKeywordData = {}
-    this.updatedAt = new Date()
   }
 
   public registerKeyword(language: Language, keyword: string, delta = 1) {
@@ -25,10 +25,8 @@ class KeywordRegistry {
   }
 
   public flush() {
-    return this.currentKeywordData
-  }
+    const data = this.currentKeywordData
 
-  public reset() {
     this.currentKeywordData = {}
 
     if (new Date().getDate() !== this.updatedAt.getDate()) {
@@ -36,6 +34,8 @@ class KeywordRegistry {
     }
 
     this.updatedAt = new Date()
+
+    return data
   }
 }
 
