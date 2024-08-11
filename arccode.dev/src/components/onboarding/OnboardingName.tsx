@@ -22,7 +22,7 @@ function OnboardingName() {
   const [valid, setValid] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  const q = useMemo(() => query(collection(db, 'users'), where('name', '==', name.trim())), [name])
+  const q = useMemo(() => query(collection(db, 'users'), where('character.name', '==', name.trim())), [name])
 
   const handleSubmit = useCallback(async (event: FormEvent) => {
     event.preventDefault()
@@ -40,7 +40,7 @@ function OnboardingName() {
     if (!docs.empty) return
 
     await updateUser({
-      name: finalName,
+      'character.name': finalName,
     })
 
     setLoading(false)
@@ -75,11 +75,11 @@ function OnboardingName() {
   ])
 
   useEffect(() => {
-    if (!user?.name) return
+    if (!user?.character.name) return
 
     navigate('/onboarding/install-extension')
   }, [
-    user?.name,
+    user?.character.name,
     navigate,
   ])
 

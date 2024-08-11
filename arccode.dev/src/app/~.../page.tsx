@@ -1,9 +1,3 @@
-function Page() {
-  return (
-    <>
-      Page
-    </>
-  )
-}
+import CharacterProfile from '~components/character/CharacterProfile'
 
-export default Page
+export default CharacterProfile

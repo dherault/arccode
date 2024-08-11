@@ -6,7 +6,7 @@ import useUser from '~hooks/user/useUser'
 function OnboardingBouncer({ children }: PropsWithChildren) {
   const { user } = useUser()
 
-  if (!user?.name) {
+  if (!user?.character.name) {
     return (
       <Navigate
         replace
