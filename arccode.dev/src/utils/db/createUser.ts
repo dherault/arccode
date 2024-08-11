@@ -1,10 +1,13 @@
 import { User } from '~types'
 
+import { INITIAL_CHARACTER } from '~constants'
+
 type CreateUserArg = Omit<
   User,
   'name'
   | 'hasSentSignupMessages'
   | 'hasConnectedExtension'
+  | 'character'
   | 'createdAt'
   | 'updatedAt'
   | 'deletedAt'
@@ -18,6 +21,7 @@ function createUser(user: CreateUserArg): User {
     name: '',
     hasSentSignupMessages: false,
     hasConnectedExtension: false,
+    character: INITIAL_CHARACTER,
     createdAt: now,
     updatedAt: now,
     deletedAt: '',

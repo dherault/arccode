@@ -2,6 +2,8 @@
   Common
 --- */
 
+import type { Character } from '~types'
+
 export const APP_URL = 'https://arccode.dev'
 
 /* ---
@@ -40,3 +42,30 @@ export const SUPPORT_EMAIL = 'dherault@gmail.com'
 --- */
 
 export const NULL_DOCUMENT_ID = '_null_'
+
+/* ---
+  Character
+--- */
+
+export const INITIAL_CHARACTER: Character = {
+  unlockedItems: {
+    'avatar-7': 1,
+  },
+  avatarItemId: 'avatar-7',
+  mainHandItemId: '',
+  offHandItemId: '',
+  bothHandsItemId: '',
+  helmItemId: '',
+  armorItemId: '',
+  glovesItemId: '',
+  bootsItemId: '',
+  amuletItemId: '',
+  ring1ItemId: '',
+  ring2ItemId: '',
+  spell1ItemId: '',
+  spell2ItemId: '',
+  spell3ItemId: '',
+  spell4ItemId: '',
+  spell5ItemId: '',
+  spell6ItemId: '',
+}

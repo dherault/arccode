@@ -17,6 +17,7 @@ export type User = DatabaseResource<{
   signInProviders: SignInProvider[]
   hasSentSignupMessages: boolean
   hasConnectedExtension: boolean
+  character: Character
 }>
 
 export type Email = DatabaseResource<{
@@ -29,10 +30,42 @@ export type Email = DatabaseResource<{
 }>
 
 /* ---
-  Data
+  Character
 --- */
 
-export type ItemType = 'main-hand'
+export type Character = {
+  unlockedItems: Record<string, number>
+  avatarItemId: string
+  mainHandItemId: string
+  offHandItemId: string
+  bothHandsItemId: string
+  helmItemId: string
+  armorItemId: string
+  glovesItemId: string
+  bootsItemId: string
+  amuletItemId: string
+  ring1ItemId: string
+  ring2ItemId: string
+  spell1ItemId: string
+  spell2ItemId: string
+  spell3ItemId: string
+  spell4ItemId: string
+  spell5ItemId: string
+  spell6ItemId: string
+}
+
+/* ---
+  Items
+--- */
+
+export type ItemRarity = 'legendary'
+  | 'epic'
+  | 'rare'
+  | 'uncommon'
+  | 'common'
+
+export type ItemType = 'avatar'
+  | 'main-hand'
   | 'off-hand'
   | 'both-hands'
   | 'helm'
@@ -46,19 +79,16 @@ export type ItemType = 'main-hand'
 export type Item = {
   id: string
   name: string
+  image: string
   type: ItemType
-  rarity: number
+  rarity: ItemRarity
 }
 
 /* ---
-  Helpers
+Authentication
 --- */
 
 export type SignInProvider = 'password' | 'google' | 'github'
-
-/* ---
- Authentication
---- */
 
 export type VscodeExtensionRedirectionState = {
   uri: string
