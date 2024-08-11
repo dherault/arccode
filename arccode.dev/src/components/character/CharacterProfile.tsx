@@ -1,13 +1,16 @@
 import useCharacter from '~hooks/character/useCharacter'
 
+import CharacterGear from '~components/character/CharacterGear'
+
 function CharacterProfile() {
   const character = useCharacter()
 
   return (
     <>
-      CharacterProfile
-      <br />
       {character.name}
+      <div className="container">
+        <CharacterGear />
+      </div>
     </>
   )
 }
