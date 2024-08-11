@@ -1,3 +1,3 @@
 # Arccode
 
-A game for developers
+A role-playing game for developers

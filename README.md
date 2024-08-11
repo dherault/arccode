@@ -24,24 +24,24 @@ Spells x6
 
 ## Technologies x100
 
-<!-- HTML5 -->
-<!-- CSS -->
-<!-- JavaScript -->
-<!-- TypeScript -->
-<!-- React -->
+HTML5
+CSS
+JavaScript
+TypeScript
+React
 Angular
-Vue
+Vue.js
 Svelte
 Bootstrap
-<!-- Tailwind CSS -->
+Tailwind CSS
 Foundation
 Materialize
 Bulma
-<!-- Node -->
+Node
 Express
 Django
-<!-- Flask -->
-<!-- Ruby on Rails -->
+Flask
+Ruby on Rails
 Laravel
 ASP.NET Core
 Phoenix
@@ -50,7 +50,7 @@ Sails.js
 FastAPI
 NestJS
 MySQL
-<!-- PostgreSQL -->
+PostgreSQL
 MongoDB
 SQLite
 Oracle Database
@@ -62,7 +62,7 @@ CouchDB
 MariaDB
 Elasticsearch
 DynamoDB
-<!-- Git -->
+Git
 GitHub
 GitLab
 Bitbucket
@@ -78,7 +78,7 @@ Ansible
 Chef
 Puppet
 Amazon Web Services
-<!-- Google Cloud Platform -->
+Google Cloud Platform
 Microsoft Azure
 Heroku
 DigitalOcean
@@ -96,7 +96,7 @@ Karma
 Selenium
 Cypress
 Puppeteer
-<!-- REST -->
+REST
 GraphQL
 gRPC
 Apollo
@@ -106,21 +106,21 @@ Webpack
 Gulp
 Grunt
 Parcel
-<!-- Rollup -->
-<!-- npm -->
+Rollup
+npm
 Yarn
 pnpm
 pip
 Apache
 Nginx
-<!-- VS Code -->
+VS Code
 Sublime Text
 WebStorm
 Postman
-<!-- Figma -->
+Figma
 Sketch
 InVision
-<!-- React Native -->
+React Native
 Flutter
 Ionic
 NativeScript
@@ -138,128 +138,25 @@ Amulet - 1 - 100 / 12 - 8
 Rings - 1 - 100 / 12 - 8
 Spells - 3 - 3 * 100 / 12 - 28
 
+## Rarity
+
+1 - Common
+2 - Uncommon
+3 - Rare
+4 - Epic
+5 - Legendary
+
 ## Rarity repartition
 
-Main hand - 100, 85, 70, 55, 40, 25, 10, 1
-Off hand - 100, 85, 70, 55, 40, 25, 10, 1
-Both hands - 100, 85, 70, 55, 40, 25, 10, 1
-Head - 100, 85, 70, 55, 40, 25, 10, 1
-Body - 100, 85, 70, 55, 40, 25, 10, 1
-Feet - 100, 85, 70, 55, 40, 25, 10, 1
-Gloves - 100, 85, 70, 55, 40, 25, 10, 1
-Amulet - 100, 85, 70, 55, 40, 25, 10, 1
-Rings - 100, 85, 70, 55, 40, 25, 10, 1
-Spells - 100, 100, 100, 97, 93, 89, 85, 81, 77, 73, 69, 65, 61, 57, 53, 49, 45, 41, 37, 33, 29, 25, 21, 17, 13, 9, 5, 1
+Main hand   8: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 3 x Common
+Off hand    8: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 3 x Common
+Both hands  8: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 3 x Common
+Head        8: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 3 x Common
+Body        8: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 3 x Common
+Feet        8: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 3 x Common
+Gloves      8: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 3 x Common
+Amulet      8: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 3 x Common
+Rings       8: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 3 x Common
+Spells      28: 2 x Legendary, 3 x Epic, 5 x Rare, 8 x Uncommon, 10 x Common
 
 ## Items
-
-### Main hand
-- 100 - CSS dagger
-- 85
-- 70
-- 55
-- 40
-- 25
-- 10
-- 1 - Git sword
-### Off hand
-- 100 - TypeScript kite shield
-- 85
-- 70
-- 55
-- 40
-- 25
-- 10
-- 1 - React shield
-### Both hands
-- 100 - Node.js greatsword
-- 85
-- 70
-- 55
-- 40
-- 25
-- 10
-- 1 - Google Cloud Platform Maul
-### Head
-- 100
-- 85
-- 70
-- 55
-- 40
-- 25
-- 10
-- 1 - Javascript helm
-### Body
-- 100 - Flask chestplate
-- 85
-- 70
-- 55
-- 40
-- 25
-- 10
-- 1 - REST armor
-### Feet
-- 100 - PostgreSQL shoes
-- 85
-- 70
-- 55
-- 40
-- 25
-- 10
-- 1 - NPM Boots
-### Gloves
-- 100 - React Native gloves
-- 85
-- 70
-- 55
-- 40
-- 25
-- 10
-- 1 - Figma hands
-### Amulet
-- 100
-- 85 - Tailwind CSS amulet
-- 70
-- 55
-- 40
-- 25
-- 10
-- 1 - Ruby on Rails ruby
-### Rings
-- 100
-- 85
-- 70 - Rollup ring
-- 55
-- 40
-- 25
-- 10
-- 1 - HTML5 ring
-### Spells
-- 100 - VS Code spell
-- 100
-- 100
-- 97
-- 93
-- 89
-- 85
-- 81
-- 77
-- 73
-- 69
-- 65
-- 61
-- 57
-- 53
-- 49
-- 45
-- 41
-- 37
-- 33
-- 29
-- 25
-- 21
-- 17
-- 13
-- 9
-- 5
-- 1
