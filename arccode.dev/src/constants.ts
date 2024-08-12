@@ -68,6 +68,7 @@ export const INITIAL_CHARACTER: Character = {
 }
 
 export const CHARACTER_SLOTS = [
+  'avatarItemId',
   'mainHandItemId',
   'offHandItemId',
   'helmItemId',
@@ -83,6 +84,7 @@ export const CHARACTER_SLOTS = [
 ] as const
 
 export const CHARACTER_SLOT_LABELS: Record<typeof CHARACTER_SLOTS[number], string> = {
+  avatarItemId: 'Avatar',
   mainHandItemId: 'Main Hand',
   offHandItemId: 'Off Hand',
   helmItemId: 'Helm',
@@ -98,6 +100,7 @@ export const CHARACTER_SLOT_LABELS: Record<typeof CHARACTER_SLOTS[number], strin
 } as const
 
 export const CHARACTER_SLOT_TYPES: Record<typeof CHARACTER_SLOTS[number], ItemType> = {
+  avatarItemId: 'avatar',
   mainHandItemId: 'main-hand',
   offHandItemId: 'off-hand',
   helmItemId: 'helm',

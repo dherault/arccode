@@ -1,7 +1,7 @@
 import { type Dispatch, type SetStateAction, useCallback } from 'react'
 import { doc, updateDoc } from 'firebase/firestore'
 
-import { CHARACTER_SLOTS, CHARACTER_SLOT_LABELS } from '~constants'
+import { CHARACTER_SLOTS, CHARACTER_SLOT_LABELS, CHARACTER_SLOT_TYPES } from '~constants'
 
 import { db } from '~firebase'
 
@@ -21,6 +21,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '~components/ui/Select'
+
+import items from '~data/items'
 
 type Props = {
   userId: string
@@ -55,7 +57,7 @@ function UserAssignGearDialog({ userId, setUserId }: Props) {
       open={!!user}
       onOpenChange={open => !open && handleClose()}
     >
-      <DialogContent>
+      <DialogContent onOpenAutoFocus={event => event.preventDefault()}>
         <DialogHeader>
           <DialogTitle>
             Assign
@@ -64,30 +66,46 @@ function UserAssignGearDialog({ userId, setUserId }: Props) {
             's gear
           </DialogTitle>
         </DialogHeader>
-        <div>
-          {CHARACTER_SLOTS.map(slot => (
-            <div
-              key={slot}
-              className="grid grid-cols-2"
-            >
-              <div>
-                {CHARACTER_SLOT_LABELS[slot]}
-              </div>
-              <Select
-                value={finalUser?.character[slot]}
-                onValueChange={value => handleGear(slot, value)}
+        <div className="flex flex-col gap-2">
+          {CHARACTER_SLOTS.map(slot => {
+            const slotItems = Object.values(items)
+              .filter(item => item.type === CHARACTER_SLOT_TYPES[slot])
+              .filter(item => (finalUser?.character.unlockedItems[item.id] ?? 0) > 0)
+
+            return (
+              <div
+                key={slot}
+                className="flex items-center gap-2"
               >
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Theme" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="light">Light</SelectItem>
-                  <SelectItem value="dark">Dark</SelectItem>
-                  <SelectItem value="system">System</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          ))}
+                <div className="grow text-sm">
+                  {CHARACTER_SLOT_LABELS[slot]}
+                </div>
+                <Select
+                  value={finalUser?.character[slot]}
+                  onValueChange={value => handleGear(slot, value)}
+                >
+                  <SelectTrigger className="w-[256px]">
+                    <SelectValue placeholder="Unassigned" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {slotItems.map(item => (
+                      <SelectItem
+                        key={item.id}
+                        value={item.id}
+                      >
+                        {item.name}
+                      </SelectItem>
+                    ))}
+                    {!slotItems.length && (
+                      <div className="p-2 text-sm text-gray-700">
+                        No items
+                      </div>
+                    )}
+                  </SelectContent>
+                </Select>
+              </div>
+            )
+          })}
         </div>
       </DialogContent>
     </Dialog>

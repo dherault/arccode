@@ -51,7 +51,7 @@ function UserUnlockGearDialog({ userId, setUserId }: Props) {
       open={!!user}
       onOpenChange={open => !open && handleClose()}
     >
-      <DialogContent>
+      <DialogContent onOpenAutoFocus={event => event.preventDefault()}>
         <DialogHeader>
           <DialogTitle>
             Unlock

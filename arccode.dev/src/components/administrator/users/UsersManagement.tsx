@@ -65,6 +65,12 @@ function UsersManagement() {
                     >
                       Unlock gear
                     </Button>
+                    <Button
+                      size="xs"
+                      onClick={() => setAssignGearUserId(user.id)}
+                    >
+                      Assign gear
+                    </Button>
                   </div>
                 </TableCell>
               </TableRow>
