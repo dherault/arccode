@@ -7,6 +7,7 @@ type CreateUserArg = Omit<
   'name'
   | 'hasSentSignupMessages'
   | 'hasConnectedExtension'
+  | 'isAdministrator'
   | 'character'
   | 'createdAt'
   | 'updatedAt'
@@ -21,6 +22,7 @@ function createUser(user: CreateUserArg): User {
     name: '',
     hasSentSignupMessages: false,
     hasConnectedExtension: false,
+    isAdministrator: false,
     character: INITIAL_CHARACTER,
     createdAt: now,
     updatedAt: now,

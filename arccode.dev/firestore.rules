@@ -3,6 +3,10 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isAdministrator() {
+      return request.auth != null && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdministrator;
+    }
+
     function isNotAffectingUnlockedItems() {
       return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny(['unlockedItems'])
     }
@@ -14,10 +18,11 @@ service cloud.firestore {
     }
 
     match /users/{userId} {
-      allow list: if false;
-      allow read: if true;
-      allow create, delete: if request.auth != null && request.auth.uid == userId;
-      allow update: if request.auth != null && request.auth.uid == userId
+      allow list: if isAdministrator();
+      allow get: if true;
+      allow create: if request.auth != null && request.auth.uid == userId;
+      allow delete: if isAdministrator() || request.auth != null && request.auth.uid == userId;
+      allow update: if isAdministrator() || request.auth != null && request.auth.uid == userId
         && isNotAffectingUnlockedItems()
         && hasUnlockedItem('avatarItemId')
         && hasUnlockedItem('mainHandItemId')

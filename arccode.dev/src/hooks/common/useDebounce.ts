@@ -4,11 +4,11 @@ function prepareFunction(value: any) {
   return typeof value === 'function' ? () => value : value
 }
 
-function useDebounce<T>(value: T, delay?: number): T {
+function useDebounce<T>(value: T, delay = 300): T {
   const [debouncedValue, setDebouncedValue] = useState<T>(prepareFunction(value))
 
   useEffect(() => {
-    const timer = setTimeout(() => setDebouncedValue(prepareFunction(value)), delay || 500)
+    const timer = setTimeout(() => setDebouncedValue(prepareFunction(value)), delay)
 
     return () => {
       clearTimeout(timer)

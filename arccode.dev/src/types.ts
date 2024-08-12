@@ -17,6 +17,7 @@ export type User = DatabaseResource<{
   signInProviders: SignInProvider[]
   hasSentSignupMessages: boolean
   hasConnectedExtension: boolean
+  isAdministrator: boolean
   character: Character
 }>
 
