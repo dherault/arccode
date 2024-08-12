@@ -2,7 +2,7 @@
   Common
 --- */
 
-import type { Character } from '~types'
+import type { Character, ItemType } from '~types'
 
 export const APP_URL = 'https://arccode.dev'
 
@@ -66,3 +66,48 @@ export const INITIAL_CHARACTER: Character = {
   spell3ItemId: '',
   spell4ItemId: '',
 }
+
+export const CHARACTER_SLOTS = [
+  'mainHandItemId',
+  'offHandItemId',
+  'helmItemId',
+  'armorItemId',
+  'glovesItemId',
+  'bootsItemId',
+  'amuletItemId',
+  'ringItemId',
+  'spell1ItemId',
+  'spell2ItemId',
+  'spell3ItemId',
+  'spell4ItemId',
+] as const
+
+export const CHARACTER_SLOT_LABELS: Record<typeof CHARACTER_SLOTS[number], string> = {
+  mainHandItemId: 'Main Hand',
+  offHandItemId: 'Off Hand',
+  helmItemId: 'Helm',
+  armorItemId: 'Armor',
+  glovesItemId: 'Gloves',
+  bootsItemId: 'Boots',
+  amuletItemId: 'Amulet',
+  ringItemId: 'Ring',
+  spell1ItemId: 'Spell 1',
+  spell2ItemId: 'Spell 2',
+  spell3ItemId: 'Spell 3',
+  spell4ItemId: 'Spell 4',
+} as const
+
+export const CHARACTER_SLOT_TYPES: Record<typeof CHARACTER_SLOTS[number], ItemType> = {
+  mainHandItemId: 'main-hand',
+  offHandItemId: 'off-hand',
+  helmItemId: 'helm',
+  armorItemId: 'armor',
+  glovesItemId: 'gloves',
+  bootsItemId: 'boots',
+  amuletItemId: 'amulet',
+  ringItemId: 'ring',
+  spell1ItemId: 'spell',
+  spell2ItemId: 'spell',
+  spell3ItemId: 'spell',
+  spell4ItemId: 'spell',
+} as const

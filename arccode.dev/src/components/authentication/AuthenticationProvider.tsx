@@ -1,7 +1,7 @@
 import { type PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { type User as Viewer, onAuthStateChanged, sendEmailVerification, signOut } from 'firebase/auth'
-import { doc, setDoc, updateDoc } from 'firebase/firestore'
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
 import LogRocket from 'logrocket'
 
 import type { SignInProvider, User } from '~types'
@@ -68,7 +68,9 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
     if (!viewer) return
     if (loading || user) return
 
-    console.log('Creating user')
+    const existingUser = await getDoc(userDocument)
+
+    if (existingUser.exists()) return
 
     const signInProvider = viewer.providerData[0].providerId as SignInProvider
     const createdUser = createUser({

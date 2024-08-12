@@ -9,6 +9,8 @@ export async function getSession(createIfNone = false) {
   if (!session) return null
 
   if (createIfNone) {
+    vscode.window.showInformationMessage(`Arccode - Signed in as ${session.account.label}`)
+
     await activateExtension()
   }
 

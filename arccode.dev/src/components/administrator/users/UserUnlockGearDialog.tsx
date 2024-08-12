@@ -1,12 +1,11 @@
-import { type Dispatch, type SetStateAction, useCallback, useState } from 'react'
+import { type Dispatch, type SetStateAction, useCallback } from 'react'
 import { Minus, Plus } from 'lucide-react'
 import { doc, updateDoc } from 'firebase/firestore'
-
-import type { User } from '~types'
 
 import { db } from '~firebase'
 
 import useDebounce from '~hooks/common/useDebounce'
+import useUsers from '~hooks/administrator/useUsers'
 
 import {
   Dialog,
@@ -18,21 +17,21 @@ import {
 import items from '~data/items'
 
 type Props = {
-  user: User | null
-  setUser: Dispatch<SetStateAction<User | null>>
+  userId: string
+  setUserId: Dispatch<SetStateAction<string>>
 }
 
-function UserAssignGearDialog({ user, setUser }: Props) {
-  const debouncedUser = useDebounce(user)
+function UserUnlockGearDialog({ userId, setUserId }: Props) {
+  const { users } = useUsers()
+
+  const user = users.find(user => user.id === userId) ?? null
+  const debouncedUser = useDebounce(user, 300)
   const finalUser = user ?? debouncedUser
 
-  const [unlockedItems, setUnlockItems] = useState<Record<string, number>>({})
-
   const handleClose = useCallback(() => {
-    setUser(null)
-    setUnlockItems({})
+    setUserId('')
   }, [
-    setUser,
+    setUserId,
   ])
 
   const handleGear = useCallback((itemId: string, delta = 1) => {
@@ -40,7 +39,6 @@ function UserAssignGearDialog({ user, setUser }: Props) {
 
     const nextValue = Math.max(0, (user.character.unlockedItems[itemId] ?? 0) + delta)
 
-    setUnlockItems(x => ({ ...x, [itemId]: nextValue }))
     updateDoc(doc(db, 'users', user.id), {
       [`character.unlockedItems.${itemId}`]: nextValue,
     })
@@ -56,11 +54,10 @@ function UserAssignGearDialog({ user, setUser }: Props) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            Edit
+            Unlock
             {' '}
             {finalUser?.character.name}
-            {' '}
-            gear
+            's gear
           </DialogTitle>
         </DialogHeader>
         <div>
@@ -76,7 +73,7 @@ function UserAssignGearDialog({ user, setUser }: Props) {
                 {item.name}
               </div>
               <div>
-                {unlockedItems[item.id] ?? finalUser?.character.unlockedItems[item.id] ?? 0}
+                {finalUser?.character.unlockedItems[item.id] ?? 0}
               </div>
               <div className="flex gap-2">
                 <Plus
@@ -96,4 +93,4 @@ function UserAssignGearDialog({ user, setUser }: Props) {
   )
 }
 
-export default UserAssignGearDialog
+export default UserUnlockGearDialog

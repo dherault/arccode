@@ -1,3 +1,3 @@
-import UsersProvider from '~components/administrator/UsersProvider'
+import UsersProvider from '~components/administrator/users/UsersProvider'
 
 export default UsersProvider

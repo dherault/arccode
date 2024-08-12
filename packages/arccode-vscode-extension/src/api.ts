@@ -22,7 +22,7 @@ export async function activateExtension() {
     )
   }
   catch (error: any) {
-    vscode.window.showInformationMessage(`Arccode: error activating extension: ${error.message}`)
+    vscode.window.showInformationMessage(`Arccode - error activating extension: ${error.message}`)
   }
 }
 
@@ -45,6 +45,6 @@ export async function sync(keywordRegistry: KeywordRegistry) {
     )
   }
   catch (error: any) {
-    vscode.window.showInformationMessage(`Arccode: error syncing: ${error.message}`)
+    vscode.window.showInformationMessage(`Arccode - error syncing: ${error.message}`)
   }
 }

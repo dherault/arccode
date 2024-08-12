@@ -16,6 +16,7 @@ function CharacterGear() {
       <img
         src={`/images/avatars/${avatar.image}`}
         alt={avatar.name}
+        draggable={false}
         className="absolute inset-0 z-0"
         style={{
           filter: 'invert(96%) sepia(6%) saturate(96%) hue-rotate(202deg) brightness(89%) contrast(93%)',
@@ -23,60 +24,60 @@ function CharacterGear() {
       />
       <CharacterGearSlot
         type="helm"
-        itemId={null}
+        itemId={character.helmItemId}
       />
       <div className="flex justify-end">
         <CharacterGearSlot
           type="amulet"
-          itemId={null}
+          itemId={character.amuletItemId}
         />
       </div>
       <CharacterGearSlot
         type="armor"
-        itemId={null}
+        itemId={character.armorItemId}
       />
       <div className="flex justify-end">
         <CharacterGearSlot
           type="ring"
-          itemId={null}
+          itemId={character.ringItemId}
         />
       </div>
       <CharacterGearSlot
         type="main-hand"
-        itemId={null}
+        itemId={character.mainHandItemId}
       />
       <div className="flex justify-end">
         <CharacterGearSlot
           type="off-hand"
-          itemId={null}
+          itemId={character.offHandItemId}
         />
       </div>
       <CharacterGearSlot
         type="gloves"
-        itemId={null}
+        itemId={character.glovesItemId}
       />
       <div className="flex justify-end">
         <CharacterGearSlot
           type="boots"
-          itemId={null}
+          itemId={character.bootsItemId}
         />
       </div>
       <div className="col-span-2 flex justify-between">
         <CharacterGearSlot
           type="spell"
-          itemId={null}
+          itemId={character.spell1ItemId}
         />
         <CharacterGearSlot
           type="spell"
-          itemId={null}
+          itemId={character.spell2ItemId}
         />
         <CharacterGearSlot
           type="spell"
-          itemId={null}
+          itemId={character.spell3ItemId}
         />
         <CharacterGearSlot
           type="spell"
-          itemId={null}
+          itemId={character.spell4ItemId}
         />
       </div>
     </div>
