@@ -9,7 +9,15 @@ function CharacterGearSlot({ type, itemId }: Props) {
   if (false) console.log(type, itemId)
 
   return (
-    <div className="w-24 aspect-square border-2 bg-white z-10" />
+    <div className="w-24 aspect-square border-2 bg-white z-10">
+      {!itemId && (
+        <img
+          src={`/images/gear-placeholders/${type}.png`}
+          alt={type}
+          className="w-full h-full grayscale opacity-20"
+        />
+      )}
+    </div>
   )
 }
 

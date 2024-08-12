@@ -12,7 +12,7 @@ function CharacterGear() {
   if (!avatar) return null
 
   return (
-    <div className="pt-12 relative w-[512px] grid grid-cols-2 gap-y-20">
+    <div className="pt-16 relative w-[512px] grid grid-cols-2 gap-y-20">
       <img
         src={avatar.image}
         alt={avatar.name}
