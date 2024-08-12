@@ -31,9 +31,7 @@ service cloud.firestore {
         && hasUnlockedItem('spell1ItemId')
         && hasUnlockedItem('spell2ItemId')
         && hasUnlockedItem('spell3ItemId')
-        && hasUnlockedItem('spell4ItemId')
-        && hasUnlockedItem('spell5ItemId')
-        && hasUnlockedItem('spell6ItemId');
+        && hasUnlockedItem('spell4ItemId');
     }
 
     match /emails/{emailId} {

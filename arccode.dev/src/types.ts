@@ -49,8 +49,6 @@ export type Character = {
   spell2ItemId: string
   spell3ItemId: string
   spell4ItemId: string
-  spell5ItemId: string
-  spell6ItemId: string
 }
 
 /* ---

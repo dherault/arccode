@@ -12,7 +12,7 @@ function CharacterGear() {
   if (!avatar) return null
 
   return (
-    <div className="pt-16 relative w-[448px] grid grid-cols-2 gap-y-16">
+    <div className="relative w-[448px] grid grid-cols-2 gap-y-14">
       <img
         src={`/images/avatars/${avatar.image}`}
         alt={avatar.name}
@@ -58,6 +58,24 @@ function CharacterGear() {
       <div className="flex justify-end">
         <CharacterGearSlot
           type="boots"
+          itemId={null}
+        />
+      </div>
+      <div className="col-span-2 flex justify-between">
+        <CharacterGearSlot
+          type="spell"
+          itemId={null}
+        />
+        <CharacterGearSlot
+          type="spell"
+          itemId={null}
+        />
+        <CharacterGearSlot
+          type="spell"
+          itemId={null}
+        />
+        <CharacterGearSlot
+          type="spell"
           itemId={null}
         />
       </div>

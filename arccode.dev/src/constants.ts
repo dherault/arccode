@@ -65,6 +65,4 @@ export const INITIAL_CHARACTER: Character = {
   spell2ItemId: '',
   spell3ItemId: '',
   spell4ItemId: '',
-  spell5ItemId: '',
-  spell6ItemId: '',
 }
