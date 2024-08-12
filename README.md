@@ -359,31 +359,31 @@ Common - Sketch Signet
 Common - JWT Military Ring
 
 ### Spells
-Legendary - PostgreSQL
-Legendary - REST
-Epic - GitLab
-Epic - Vue.js
-Epic - Tailwind CSS
-Rare - Firebase
-Rare - Jest
-Rare - Django
-Rare - GraphQL
-Rare - ASP.NET Core
-Uncommon - Cypress
-Uncommon - Mocha
-Uncommon - Ansible
-Uncommon - CircleCI
-Uncommon - Laravel
-Uncommon - Sublime Text
-Uncommon - Apache
-Uncommon - npm
-Common - Jenkins
-Common - MariaDB
-Common - Chef
-Common - NestJS
-Common - Postman
-Common - Webpack
-Common - Swagger
-Common - gRPC
-Common - Selenium
-Common - Jasmine
+Legendary - PostgreSQL Summoning
+Legendary - REST Fireball
+Epic - GitLab Arcane Echo
+Epic - Vue.js Eclipse Veil
+Epic - Tailwind CSS Twilight Cascade
+Rare - Firebase Blades of the Fallen
+Rare - Jest Aether Step
+Rare - Django Celestial Convergence
+Rare - GraphQL Wildfire Chain
+Rare - ASP.NET Core Shattered Reality
+Uncommon - Cypress Lunar Requiem
+Uncommon - Mocha Mirror's Edge
+Uncommon - Ansible Soul Syphon
+Uncommon - CircleCI Crimson Vortex
+Uncommon - Laravel Frostveil Embrace
+Uncommon - Sublime Text Stormbinder's Wrath
+Uncommon - Apache Echoes of Eternity
+Uncommon - npm Temporal Rift
+Common - Jenkins Nether Grasp
+Common - MariaDB Arcane Reversal
+Common - Chef Dreadnought Strike
+Common - NestJS Searing Radiance
+Common - Postman Astral Beacon
+Common - Webpack Void Chain
+Common - Swagger Soulbound Sentinel
+Common - gRPC Veil of Shadows
+Common - Selenium Serpent’s Bite
+Common - Jasmine Chaos Spiral
