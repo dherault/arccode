@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 import { User } from '~types'
 
@@ -45,7 +46,12 @@ function UsersManagement() {
                 {user.character.name}
               </TableCell>
               <TableCell>
-                <div className="flex justify-end">
+                <div className="flex justify-end gap-2">
+                  <Link to={`/~/${user.id}`}>
+                    <Button size="xs">
+                      Go to
+                    </Button>
+                  </Link>
                   <Button
                     size="xs"
                     onClick={() => setGearUser(user)}

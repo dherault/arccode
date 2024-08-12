@@ -3,6 +3,7 @@ import { Outlet, Route, Routes } from 'react-router-dom'
 
 import TildeLayout from '~app/~.../layout'
 import Tilde from '~app/~.../page'
+import UserId from '~app/~.../[userId]/page'
 
 import NotFound from '~components/common/NotFound'
 
@@ -17,6 +18,19 @@ function TildeSubRouter() {
           index
           element={<Tilde />}
         />
+        <Route
+          path=":userId"
+          element={<Outlet />}
+        >
+          <Route
+            index
+            element={<UserId />}
+          />
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
+        </Route>
         <Route
           path="*"
           element={<NotFound />}
