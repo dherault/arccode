@@ -2,7 +2,7 @@
   Common
 --- */
 
-import type { Character, ItemRarity, ItemType } from '~types'
+import type { Character, CharacterSlot, ItemRarity, ItemType } from '~types'
 
 export const APP_URL = 'https://arccode.dev'
 
@@ -83,7 +83,7 @@ export const CHARACTER_SLOTS = [
   'spell4ItemId',
 ] as const
 
-export const CHARACTER_SLOT_LABELS: Record<typeof CHARACTER_SLOTS[number], string> = {
+export const CHARACTER_SLOT_LABELS: Record<CharacterSlot, string> = {
   avatarItemId: 'Avatar',
   mainHandItemId: 'Main Hand',
   offHandItemId: 'Off Hand',
@@ -99,7 +99,7 @@ export const CHARACTER_SLOT_LABELS: Record<typeof CHARACTER_SLOTS[number], strin
   spell4ItemId: 'Spell 4',
 } as const
 
-export const CHARACTER_SLOT_TYPES: Record<typeof CHARACTER_SLOTS[number], ItemType> = {
+export const CHARACTER_SLOT_TYPES: Record<CharacterSlot, ItemType> = {
   avatarItemId: 'avatar',
   mainHandItemId: 'main-hand',
   offHandItemId: 'off-hand',
@@ -114,6 +114,19 @@ export const CHARACTER_SLOT_TYPES: Record<typeof CHARACTER_SLOTS[number], ItemTy
   spell3ItemId: 'spell',
   spell4ItemId: 'spell',
 } as const
+
+export const ITEM_TYPE_LABELS: Record<ItemType, string> = {
+  avatar: 'Avatar',
+  'main-hand': 'Main Hand',
+  'off-hand': 'Off Hand',
+  helm: 'Helm',
+  armor: 'Armor',
+  gloves: 'Gloves',
+  boots: 'Boots',
+  amulet: 'Amulet',
+  ring: 'Ring',
+  spell: 'Spell',
+}
 
 export const RARITY_COLORS: Record<ItemRarity, string> = {
   common: '#328BFF',

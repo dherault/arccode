@@ -29,7 +29,7 @@ function UsersManagement() {
           Arccode • Users
         </title>
       </Helmet>
-      <div className="py-8 container">
+      <div className="container">
         <h1 className="font-display font-bold text-4xl">
           Users
         </h1>

@@ -103,7 +103,7 @@ function Page() {
         </p>
       )}
       <div>
-        <p className="mt-4 text-sm font-light text-gray-500 dark:text-gray-400">
+        <p className="mt-4 text-sm font-light text-neutral-500 dark:text-neutral-400">
           Remembered your password?
           {' '}
           <Link

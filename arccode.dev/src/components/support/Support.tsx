@@ -22,7 +22,7 @@ function Support() {
           Support
         </h1>
         <div className="mt-4">
-          If you need help, please contact David at
+          For any inquiry, please contact David at
           {' '}
           <a
             href={`mailto:${SUPPORT_EMAIL}`}

@@ -39,7 +39,7 @@ function SocialButton({
     <Button
       {...props}
       onClick={handleClick}
-      className={_('w-full bg-white hover:bg-gray-100 text-gray-900 border elevation-1', className)}
+      className={_('w-full bg-white hover:bg-neutral-100 text-neutral-900 border elevation-1', className)}
     >
       {loading && (
         <Spinner className="w-6 h-6" />

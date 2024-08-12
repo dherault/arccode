@@ -1,15 +1,18 @@
 import type { PropsWithChildren } from 'react'
 
 import AuthenticationBouncer from '~components/authentication/AuthenticationBouncer'
-import CharacterProvider from '~components/character/CharacterProvider'
 import OnboardingBouncer from '~components/onboarding/OnboardingBouncer'
+import CharacterProvider from '~components/character/CharacterProvider'
+import AppLayout from '~components/common/AppLayout'
 
 function Layout({ children }: PropsWithChildren) {
   return (
     <AuthenticationBouncer>
       <OnboardingBouncer>
         <CharacterProvider>
-          {children}
+          <AppLayout>
+            {children}
+          </AppLayout>
         </CharacterProvider>
       </OnboardingBouncer>
     </AuthenticationBouncer>

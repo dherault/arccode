@@ -5,7 +5,7 @@ import CharacterGearSlot from '~components/character/CharacterGearSlot'
 import items from '~data/items'
 
 function CharacterGear() {
-  const character = useCharacter()
+  const { character } = useCharacter()
 
   const avatar = items[character.avatarItemId]
 
@@ -24,59 +24,71 @@ function CharacterGear() {
       />
       <CharacterGearSlot
         type="helm"
+        slotId="helmItemId"
         itemId={character.helmItemId}
       />
       <div className="flex justify-end">
         <CharacterGearSlot
           type="amulet"
+          slotId="amuletItemId"
           itemId={character.amuletItemId}
         />
       </div>
       <CharacterGearSlot
         type="armor"
+        slotId="armorItemId"
         itemId={character.armorItemId}
       />
       <div className="flex justify-end">
         <CharacterGearSlot
           type="ring"
+          slotId="ringItemId"
           itemId={character.ringItemId}
         />
       </div>
       <CharacterGearSlot
         type="main-hand"
+        slotId="mainHandItemId"
         itemId={character.mainHandItemId}
       />
       <div className="flex justify-end">
         <CharacterGearSlot
           type="off-hand"
+          slotId="offHandItemId"
           itemId={character.offHandItemId}
         />
       </div>
       <CharacterGearSlot
         type="gloves"
+        slotId="glovesItemId"
         itemId={character.glovesItemId}
       />
       <div className="flex justify-end">
         <CharacterGearSlot
           type="boots"
+          slotId="bootsItemId"
           itemId={character.bootsItemId}
         />
       </div>
       <div className="col-span-2 flex justify-between">
         <CharacterGearSlot
           type="spell"
+          slotId="spell1ItemId"
           itemId={character.spell1ItemId}
         />
         <CharacterGearSlot
           type="spell"
+          slotId="spell2ItemId"
           itemId={character.spell2ItemId}
         />
         <CharacterGearSlot
           type="spell"
+          slotId="spell3ItemId"
           itemId={character.spell3ItemId}
         />
         <CharacterGearSlot
           type="spell"
+          slotId="spell4ItemId"
           itemId={character.spell4ItemId}
         />
       </div>

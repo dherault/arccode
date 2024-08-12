@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { CircleHelp, LogOut, User } from 'lucide-react'
+import { CircleHelp, LogOut, Shield, User } from 'lucide-react'
 
 import useUser from '~hooks/user/useUser'
 import useUserInitials from '~hooks/user/useUserInitials'
@@ -33,7 +33,18 @@ function UserAvatarMenu() {
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent
+        align="end"
+        sideOffset={8}
+      >
+        {user.isAdministrator && (
+          <Link to="/administrator">
+            <DropdownMenuItem>
+              <Shield className="mr-2 w-4 h-4" />
+              Administrator
+            </DropdownMenuItem>
+          </Link>
+        )}
         <DropdownMenuItem>
           <User className="mr-2 w-4 h-4" />
           Account

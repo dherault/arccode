@@ -2,6 +2,8 @@
   Database resources
 --- */
 
+import type { CHARACTER_SLOTS } from '~constants'
+
 export type DatabaseResource<T = unknown> = T & {
   id: string
   userId: string
@@ -51,6 +53,8 @@ export type Character = {
   spell3ItemId: string
   spell4ItemId: string
 }
+
+export type CharacterSlot = typeof CHARACTER_SLOTS[number]
 
 /* ---
   Items
