@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { CircleSlash2 } from 'lucide-react'
+import _ from 'clsx'
 
 import type { CharacterSlot, ItemType } from '~types'
 
@@ -23,7 +24,7 @@ type Props = {
 }
 
 function CharacterGearSlot({ type, slotId, itemId }: Props) {
-  const { character, updateCharacter } = useCharacter()
+  const { character, isEditable, updateCharacter } = useCharacter()
 
   const [open, setOpen] = useState(false)
 
@@ -47,7 +48,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
 
   return (
     <Popover
-      open={open}
+      open={open && isEditable}
       onOpenChange={setOpen}
     >
       <PopoverTrigger
@@ -80,7 +81,13 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
           )}
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-[346px] flex flex-wrap gap-4">
+      <PopoverContent
+        className={_('w-fit grid gap-4', {
+          'grid-cols-2': unlockedItemIds.length === 1,
+          'grid-cols-3': unlockedItemIds.length === 2,
+          'grid-cols-4': unlockedItemIds.length > 2,
+        })}
+      >
         {!unlockedItemIds.length && (
           <div className="text-sm text-neutral-500">
             No

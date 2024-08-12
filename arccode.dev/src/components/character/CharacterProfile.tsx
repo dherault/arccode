@@ -17,11 +17,11 @@ function CharacterProfile() {
           {characterName}
         </title>
       </Helmet>
-      <div className="-mt-10 container">
+      <div className="mt-4 container">
         <h1 className="font-display font-bold text-4xl text-center">
           {characterName}
         </h1>
-        <div className="mt-4 flex items-start gap-8">
+        <div className="mt-8 flex items-start gap-8">
           <CharacterGear />
         </div>
       </div>

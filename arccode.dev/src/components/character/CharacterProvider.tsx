@@ -2,7 +2,7 @@ import { doc } from 'firebase/firestore'
 import { type PropsWithChildren, useCallback, useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { User } from '~types'
+import { type Character, User } from '~types'
 
 import { NULL_DOCUMENT_ID } from '~constants'
 
@@ -22,7 +22,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
 
   const d = useMemo(() => doc(db, 'users', userId ?? NULL_DOCUMENT_ID), [userId])
   const { data: user, loading, error } = useDocument<User>(d, !!userId)
-  const finalUser = userId ? user : currentUser
+  const finalUser = userId && userId !== currentUser?.id ? user : currentUser
   const isEditable = currentUser?.id === finalUser?.id
 
   const updateCharacter = useCallback(async (payload: Record<string, any>) => {
@@ -38,7 +38,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
   ])
 
   const characterContextValue = useMemo<CharacterContextType>(() => ({
-    character: finalUser!.character,
+    character: finalUser ? finalUser.character : {} as Character,
     isEditable,
     updateCharacter,
   }), [
