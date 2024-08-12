@@ -2,7 +2,7 @@
   Common
 --- */
 
-import type { Character, ItemType } from '~types'
+import type { Character, ItemRarity, ItemType } from '~types'
 
 export const APP_URL = 'https://arccode.dev'
 
@@ -114,3 +114,11 @@ export const CHARACTER_SLOT_TYPES: Record<typeof CHARACTER_SLOTS[number], ItemTy
   spell3ItemId: 'spell',
   spell4ItemId: 'spell',
 } as const
+
+export const RARITY_COLORS: Record<ItemRarity, string> = {
+  common: '#328BFF',
+  uncommon: '#3DFF7B',
+  rare: '#F30A54',
+  epic: '#FF49BF',
+  legendary: '#FFBE3D',
+}
