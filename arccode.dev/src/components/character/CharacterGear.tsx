@@ -12,7 +12,7 @@ function CharacterGear() {
   if (!avatar) return null
 
   return (
-    <div className="relative w-[512px] grid grid-cols-2">
+    <div className="pt-12 relative w-[512px] grid grid-cols-2 gap-y-20">
       <img
         src={avatar.image}
         alt={avatar.name}
@@ -25,43 +25,42 @@ function CharacterGear() {
         type="helm"
         itemId={null}
       />
+      <div className="flex justify-end">
+        <CharacterGearSlot
+          type="amulet"
+          itemId={null}
+        />
+      </div>
       <CharacterGearSlot
-        type="amulet"
+        type="armor"
         itemId={null}
       />
+      <div className="flex justify-end">
+        <CharacterGearSlot
+          type="ring"
+          itemId={null}
+        />
+      </div>
       <CharacterGearSlot
         type="off-hand"
         itemId={null}
       />
-      <CharacterGearSlot
-        type="main-hand"
-        itemId={null}
-      />
-      <div className="col-span-2 flex flex-col items-center z-10">
-        <div className="w-1/2">
-          <CharacterGearSlot
-            type="armor"
-            itemId={null}
-          />
-        </div>
+      <div className="flex justify-end">
+        <CharacterGearSlot
+          type="main-hand"
+          itemId={null}
+        />
       </div>
-      <CharacterGearSlot
-        type="ring"
-        itemId={null}
-      />
-      <CharacterGearSlot
-        type="ring"
-        itemId={null}
-      />
       <CharacterGearSlot
         type="gloves"
         itemId={null}
       />
-      <CharacterGearSlot
-        type="boots"
-        itemId={null}
-      />
-
+      <div className="flex justify-end">
+        <CharacterGearSlot
+          type="boots"
+          itemId={null}
+        />
+      </div>
     </div>
   )
 }

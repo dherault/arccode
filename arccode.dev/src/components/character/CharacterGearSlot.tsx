@@ -6,12 +6,10 @@ type Props = {
 }
 
 function CharacterGearSlot({ type, itemId }: Props) {
-  if (false) console.log(itemId)
+  if (false) console.log(type, itemId)
 
   return (
-    <div className="border-2 bg-white z-10">
-      {type}
-    </div>
+    <div className="w-24 aspect-square border-2 bg-white z-10" />
   )
 }
 
