@@ -129,4 +129,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+.DS_Store
 5000FantasyIcons/
