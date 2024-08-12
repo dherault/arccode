@@ -271,92 +271,92 @@ Spells      28: 2 x Legendary, 3 x Epic, 5 x Rare, 8 x Uncommon, 10 x Common
 ## Items
 
 ### Main hand
-Legendary - JavaScript
-Epic - Node
-Rare - Vercel
-Uncommon - OAuth
-Uncommon - Karma
-Common - Phoenix
-Common - Cassandra
-Common - WebStorm
-Common - MySQL
+Legendary - JavaScript Sword
+Epic - Node Greatsword
+Rare - Vercel Rapier
+Uncommon - OAuth Shortsword
+Uncommon - Karma Sabre
+Common - Phoenix Scimitar
+Common - Cassandra Dagger
+Common - WebStorm Mace
+Common - MySQL Axe
 
 ### Off hand
-Legendary - GitHub
-Epic - Angular
-Rare - Kubernetes
-Uncommon - Yarn
-Uncommon - Apollo
-Common - Auth0
-Common - Foundation
-Common - Koa.js
-Common - Elasticsearch
+Legendary - GitHub Buckler
+Epic - Angular Kite Shield
+Rare - Kubernetes Round Shield
+Uncommon - Yarn Heater Shield
+Uncommon - Apollo Pavise
+Common - Auth0 Targe
+Common - Foundation Hoplon
+Common - Koa.js Aspis
+Common - Elasticsearch Riot Shield
 
 ### Head
-Legendary - Git
+Legendary - Git Great Helm
 Epic - Google Cloud Platform
-Rare - Svelte
-Uncommon - Rollup
-Uncommon - pip
-Common - Oracle Database
-Common - Nginx
-Common - NativeScript
-Common - Bitbucket
+Rare - Svelte Shako
+Uncommon - Rollup Hard Hat
+Uncommon - pip Corinthian Helmet
+Common - Oracle Database Bascinet
+Common - Nginx Turban
+Common - NativeScript Casque
+Common - Bitbucket Bucket
 
 ### Body
-Legendary - HTML5
-Epic - TypeScript
-Rare - MongoDB
-Uncommon - Sails.js
+Legendary - HTML5 Chainmail
+Epic - TypeScript Plate Armor
+Rare - MongoDB Cuirass
+Uncommon - Sails.js Splint Armor
 Uncommon - GitLab CI/CD
-Common - Firestore
-Common - Bulma
-Common - Ionic
-Common - GitHub Actions
+Common - Firestore Scale Armor
+Common - Bulma Brigandine
+Common - Ionic Coat
+Common - GitHub Actions Full Plate Armor
 
 ### Feet
-Legendary - CSS
-Epic - Redis
-Rare - Microsoft Azure
-Uncommon - Chai
-Uncommon - Parcel
-Common - Travis CI
-Common - FastAPI
-Common - Flutter
-Common - Terraform
+Legendary - CSS Great Boots
+Epic - Redis Greaves
+Rare - Microsoft Azure Sollerets
+Uncommon - Chai Cavalier Boots
+Uncommon - Parcel Sabots
+Common - Travis CI high Boots
+Common - FastAPI Combat Boots
+Common - Flutter Sneakers
+Common - Terraform Moccasins
 
 ### Gloves
-Legendary - React
-Epic - Figma
-Rare - SQLite
-Uncommon - DigitalOcean
-Uncommon - React Native
-Common - Microsoft SQL Server
-Common - pnpm
-Common - Grunt
-Common - Heroku
+Legendary - React Gauntlets
+Epic - Figma Mittens
+Rare - SQLite  Brigandine Gloves
+Uncommon - DigitalOcean Leather Gloves
+Uncommon - React Native Mail Gloves
+Common - Microsoft SQL Server Padded Gloves
+Common - pnpm Finger Gauntlets
+Common - Grunt Chainmail Gauntlets
+Common - Heroku Scale Gauntlets
 
 ### Amulet
-Legendary - VS Code
-Epic - Ruby on Rails
-Rare - Flask
-Uncommon - Materialize
-Uncommon - DynamoDB
-Common - Gulp
-Common - Tauri
-Common - jQuery
-Common - Netlify
+Legendary - VS Code Talisman
+Epic - Ruby on Rails Ruby
+Rare - Flask Lucky Charm
+Uncommon - Materialize Fetish
+Uncommon - DynamoDB Mascot
+Common - Gulp Grigri
+Common - Tauri Totem
+Common - jQuery Idol
+Common - Netlify Ornament
 
 ### Rings
-Legendary - Amazon Web Services
-Epic - Docker
-Rare - Express
-Uncommon - Bootstrap
-Uncommon - Puppeteer
-Common - CouchDB
-Common - Puppet
-Common - Sketch
-Common - JWT
+Legendary - Amazon Web Services Ring
+Epic - Docker Sovereign Ring
+Rare - Express Thumb Ring
+Uncommon - Bootstrap Knuckle Ring
+Uncommon - Puppeteer Loop
+Common - CouchDB Armor Ring
+Common - Puppet Poison Ring
+Common - Sketch Signet
+Common - JWT Military Ring
 
 ### Spells
 Legendary - PostgreSQL

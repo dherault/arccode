@@ -6,11 +6,13 @@ function CharacterProfile() {
   const character = useCharacter()
 
   return (
-    <div className="pt-8 container">
-      <h1 className="font-bold text-3xl">
+    <div className="mt-8 container">
+      <h1 className="font-display font-bold text-4xl text-center">
         {character.name}
       </h1>
-      <CharacterGear />
+      <div className="mt-4 flex items-start">
+        <CharacterGear />
+      </div>
     </div>
   )
 }
