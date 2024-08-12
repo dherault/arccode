@@ -354,14 +354,14 @@ function Authentication() {
       <div className="mt-4 flex justify-between gap-4">
         {mode !== MODES.START && (
           <p
-            className="text-sm font-light text-gray-600 dark:text-gray-400 hover:underline cursor-pointer"
+            className="text-sm font-light text-neutral-600 dark:text-neutral-400 hover:underline cursor-pointer"
             onClick={handleBack}
           >
             Back
           </p>
         )}
         {mode === MODES.LOGIN && providers.includes('password') && (
-          <p className="text-sm font-light text-gray-600 dark:text-gray-400">
+          <p className="text-sm font-light text-neutral-600 dark:text-neutral-400">
             Forgot your password?
             {' '}
             <Link
