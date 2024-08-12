@@ -68,6 +68,8 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
     if (!viewer) return
     if (loading || user) return
 
+    console.log('Create user')
+
     const signInProvider = viewer.providerData[0].providerId as SignInProvider
     const createdUser = createUser({
       email: viewer.email ?? '',

@@ -7,7 +7,7 @@ import KeywordRegistry from './KeywordRegistry'
 import { handleDocumentChange, populateFileRegistry } from './core'
 import { getSession, promptSession } from './session'
 import printProgress from './printProgress'
-import { sync } from './api'
+import { activateExtension, sync } from './api'
 
 let syncInterval: NodeJS.Timeout | undefined
 
@@ -38,7 +38,6 @@ export function activate(context: vscode.ExtensionContext) {
     })
   )
 
-  getSession()
   promptSession()
 
   /* ---
@@ -71,6 +70,16 @@ export function activate(context: vscode.ExtensionContext) {
 
     await sync(keywordRegistry)
   }, 1000)
+
+  /* ---
+    Activate extension
+  ---*/
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand('arccode.activateExtension', async () => {
+      await activateExtension()
+    })
+  )
 
   /* ---
     Print progress

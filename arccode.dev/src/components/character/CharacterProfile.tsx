@@ -6,12 +6,12 @@ function CharacterProfile() {
   const character = useCharacter()
 
   return (
-    <>
-      {character.name}
-      <div className="container">
-        <CharacterGear />
-      </div>
-    </>
+    <div className="pt-8 container">
+      <h1 className="font-bold text-3xl">
+        {character.name}
+      </h1>
+      <CharacterGear />
+    </div>
   )
 }
 

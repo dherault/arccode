@@ -52,6 +52,12 @@
         "icon": "$(sign-in)"
       },
       {
+        "command": "arccode.activateExtension",
+        "title": "Activate extension",
+        "category": "Arccode",
+        "icon": "$(refresh)"
+      },
+      {
         "command": "arccode.sync",
         "title": "Sync now",
         "category": "Arccode",

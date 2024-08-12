@@ -5,15 +5,21 @@ import { ACTIVATE_EXTENSION_API_URL, REGISTER_KEYWORDS_API_URL } from './constan
 import type KeywordRegistry from './KeywordRegistry'
 import { getSession } from './session'
 
-const headers: Record<string, string> = {}
-
-export function setAuthorizationToken(token: string) {
-  headers.Authorization = `Bearer ${token}`
-}
-
 export async function activateExtension() {
   try {
-    await axios.post(ACTIVATE_EXTENSION_API_URL, {}, { headers })
+    const session = await getSession()
+
+    if (!session) return
+
+    await axios.post(
+      ACTIVATE_EXTENSION_API_URL,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      }
+    )
   }
   catch (error: any) {
     vscode.window.showInformationMessage(`Arccode: error activating extension: ${error.message}`)
@@ -32,7 +38,9 @@ export async function sync(keywordRegistry: KeywordRegistry) {
         keywords: keywordRegistry.flush(),
       },
       {
-        headers,
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
       }
     )
   }

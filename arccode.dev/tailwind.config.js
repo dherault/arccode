@@ -39,6 +39,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
+        display: ['Josefin Sans', ...defaultTheme.fontFamily.sans],
       },
       keyframes: {
         'accordion-down': {

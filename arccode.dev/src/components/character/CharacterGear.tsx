@@ -12,7 +12,7 @@ function CharacterGear() {
   if (!avatar) return null
 
   return (
-    <div className="pt-16 relative w-[512px] grid grid-cols-2 gap-y-20">
+    <div className="pt-16 relative w-[448px] grid grid-cols-2 gap-y-16">
       <img
         src={avatar.image}
         alt={avatar.name}
@@ -42,12 +42,12 @@ function CharacterGear() {
         />
       </div>
       <CharacterGearSlot
-        type="off-hand"
+        type="main-hand"
         itemId={null}
       />
       <div className="flex justify-end">
         <CharacterGearSlot
-          type="main-hand"
+          type="off-hand"
           itemId={null}
         />
       </div>
