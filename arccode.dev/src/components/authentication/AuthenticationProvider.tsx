@@ -57,7 +57,7 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
   const handleAuthenticationStateChange = useCallback(async () => {
     await persistancePromise
 
-    onAuthStateChanged(auth, async (viewer: Viewer | null) => {
+    onAuthStateChanged(auth, async viewer => {
       setViewer(viewer)
       setLoadingAuthentication(false)
       logAnalytics(viewer ? 'signin' : 'signout')
