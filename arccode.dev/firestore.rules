@@ -3,14 +3,41 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isNotAffectingUnlockedItems() {
+      return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny(['unlockedItems'])
+    }
+
+    function hasUnlockedItem(type) {
+      return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny([type])
+        || request.resource.data.character[type] == ''
+        || resource.data.character.unlockedItems[request.resource.data.character[type]] > 0
+    }
+
     match /users/{userId} {
       allow list: if false;
       allow read: if true;
-      allow create, update, delete: if request.auth != null && request.auth.uid == userId;
+      allow create, delete: if request.auth != null && request.auth.uid == userId;
+      allow update: if request.auth != null && request.auth.uid == userId
+        && isNotAffectingUnlockedItems()
+        && hasUnlockedItem('avatarItemId')
+        && hasUnlockedItem('mainHandItemId')
+        && hasUnlockedItem('offHandItemId')
+        && hasUnlockedItem('helmItemId')
+        && hasUnlockedItem('armorItemId')
+        && hasUnlockedItem('glovesItemId')
+        && hasUnlockedItem('bootsItemId')
+        && hasUnlockedItem('amuletItemId')
+        && hasUnlockedItem('ringItemId')
+        && hasUnlockedItem('spell1ItemId')
+        && hasUnlockedItem('spell2ItemId')
+        && hasUnlockedItem('spell3ItemId')
+        && hasUnlockedItem('spell4ItemId')
+        && hasUnlockedItem('spell5ItemId')
+        && hasUnlockedItem('spell6ItemId');
     }
 
     match /emails/{emailId} {
-      allow create: if request.auth != null && request.auth.uid != null;
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
       allow read, update, delete: if false;
     }
 

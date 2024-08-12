@@ -10,7 +10,7 @@ function CharacterProfile() {
       <h1 className="font-display font-bold text-4xl text-center">
         {character.name}
       </h1>
-      <div className="mt-4 flex items-start">
+      <div className="mt-4 flex items-start gap-8">
         <CharacterGear />
       </div>
     </div>

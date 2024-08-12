@@ -39,14 +39,12 @@ export type Character = {
   avatarItemId: string
   mainHandItemId: string
   offHandItemId: string
-  bothHandsItemId: string
   helmItemId: string
   armorItemId: string
   glovesItemId: string
   bootsItemId: string
   amuletItemId: string
-  ring1ItemId: string
-  ring2ItemId: string
+  ringItemId: string
   spell1ItemId: string
   spell2ItemId: string
   spell3ItemId: string
