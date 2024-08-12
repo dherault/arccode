@@ -4,8 +4,7 @@ import { INITIAL_CHARACTER } from '~constants'
 
 type CreateUserArg = Omit<
   User,
-  'name'
-  | 'hasSentSignupMessages'
+  'hasSentSignupMessages'
   | 'hasConnectedExtension'
   | 'isAdministrator'
   | 'character'
@@ -19,7 +18,6 @@ function createUser(user: CreateUserArg): User {
 
   return {
     ...user,
-    name: '',
     hasSentSignupMessages: false,
     hasConnectedExtension: false,
     isAdministrator: false,
