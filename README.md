@@ -129,11 +129,11 @@ NativeScript
 
 Main hand - 1 - 100 / 12 - 9
 Off hand - 1 - 100 / 12 - 9
-Head - 1 - 100 / 12 - 9
-Body - 1 - 100 / 12 - 9
-Feet - 1 - 100 / 12 - 9
+Helm - 1 - 100 / 12 - 9
+Armor - 1 - 100 / 12 - 9
+Boots - 1 - 100 / 12 - 9
 Gloves - 1 - 100 / 12 - 9
-Amulet - 1 - 100 / 12 - 9
+Amulets - 1 - 100 / 12 - 9
 Rings - 1 - 100 / 12 - 9
 Spells - 3 - 3 * 100 / 12 - 28
 
@@ -149,123 +149,123 @@ Spells - 3 - 3 * 100 / 12 - 28
 
 Main hand   9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
 Off hand    9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
-Head        9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
-Body        9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
-Feet        9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
+Helm        9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
+Armor        9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
+Boots        9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
 Gloves      9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
-Amulet      9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
+Amulets      9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
 Rings       9: 1 x Legendary, 1 x Epic, 1 x Rare, 2 x Uncommon, 4 x Common
 Spells      28: 2 x Legendary, 3 x Epic, 5 x Rare, 8 x Uncommon, 10 x Common
 
 ## Technologies rarity
 
 ### Legendary
-<!-- HTML5 -->
-<!-- CSS -->
-<!-- JavaScript -->
-<!-- React -->
-<!-- PostgreSQL -->
-<!-- Git -->
-<!-- Amazon Web Services -->
-<!-- REST -->
-<!-- VS Code -->
-<!-- GitHub -->
+HTML5
+CSS
+JavaScript
+React
+PostgreSQL
+Git
+Amazon Web Services
+REST
+VS Code
+GitHub
 
 ## Epic
-<!-- TypeScript -->
-<!-- Angular -->
-<!-- Vue.js -->
-<!-- Tailwind CSS -->
-<!-- Node -->
-<!-- Ruby on Rails -->
-<!-- Google Cloud Platform -->
-<!-- Figma -->
-<!-- GitLab -->
-<!-- Docker -->
-<!-- Redis -->
+TypeScript
+Angular
+Vue.js
+Tailwind CSS
+Node
+Ruby on Rails
+Google Cloud Platform
+Figma
+GitLab
+Docker
+Redis
 
 ## Rare
-<!-- Svelte -->
-<!-- Express -->
-<!-- Django -->
-<!-- MongoDB -->
-<!-- Kubernetes -->
-<!-- GraphQL -->
-<!-- Flask -->
-<!-- ASP.NET Core -->
-<!-- SQLite -->
-<!-- Firebase -->
-<!-- Microsoft Azure -->
-<!-- Vercel -->
-<!-- Jest -->
+Svelte
+Express
+Django
+MongoDB
+Kubernetes
+GraphQL
+Flask
+ASP.NET Core
+SQLite
+Firebase
+Microsoft Azure
+Vercel
+Jest
 
 ## Uncommon and Common
-<!-- Bootstrap -->
-<!-- Foundation -->
-<!-- Materialize -->
-<!-- Bulma -->
-<!-- Laravel -->
-<!-- Phoenix -->
-<!-- Koa.js -->
-<!-- Sails.js -->
-<!-- FastAPI -->
-<!-- NestJS -->
-<!-- MySQL -->
-<!-- Oracle Database -->
-<!-- Microsoft SQL Server -->
-<!-- Cassandra -->
-<!-- Firestore -->
-<!-- CouchDB -->
-<!-- MariaDB -->
-<!-- Elasticsearch -->
-<!-- DynamoDB -->
-<!-- Bitbucket -->
-<!-- Jenkins -->
-<!-- Travis CI -->
-<!-- CircleCI -->
-<!-- GitHub Actions -->
-<!-- GitLab CI/CD -->
-<!-- Terraform -->
-<!-- Ansible -->
-<!-- Chef -->
-<!-- Puppet -->
-<!-- Heroku -->
-<!-- DigitalOcean -->
-<!-- Netlify -->
-<!-- OAuth -->
-<!-- JWT -->
-<!-- Auth0 -->
-<!-- Mocha -->
-<!-- Chai -->
-<!-- Jasmine -->
-<!-- Karma -->
-<!-- Selenium -->
-<!-- Cypress -->
-<!-- Puppeteer -->
-<!-- gRPC -->
-<!-- Apollo -->
-<!-- Swagger -->
-<!-- Tauri -->
-<!-- Webpack -->
-<!-- Gulp -->
-<!-- Grunt -->
-<!-- Parcel -->
-<!-- Rollup -->
-<!-- npm -->
-<!-- Yarn -->
-<!-- pnpm -->
-<!-- pip -->
-<!-- Apache -->
-<!-- Nginx -->
-<!-- Sublime Text -->
-<!-- WebStorm -->
-<!-- Postman -->
-<!-- Sketch -->
-<!-- jQuery -->
-<!-- React Native -->
-<!-- Flutter -->
-<!-- Ionic -->
-<!-- NativeScript -->
+Bootstrap
+Foundation
+Materialize
+Bulma
+Laravel
+Phoenix
+Koa.js
+Sails.js
+FastAPI
+NestJS
+MySQL
+Oracle Database
+Microsoft SQL Server
+Cassandra
+Firestore
+CouchDB
+MariaDB
+Elasticsearch
+DynamoDB
+Bitbucket
+Jenkins
+Travis CI
+CircleCI
+GitHub Actions
+GitLab CI/CD
+Terraform
+Ansible
+Chef
+Puppet
+Heroku
+DigitalOcean
+Netlify
+OAuth
+JWT
+Auth0
+Mocha
+Chai
+Jasmine
+Karma
+Selenium
+Cypress
+Puppeteer
+gRPC
+Apollo
+Swagger
+Tauri
+Webpack
+Gulp
+Grunt
+Parcel
+Rollup
+npm
+Yarn
+pnpm
+pip
+Apache
+Nginx
+Sublime Text
+WebStorm
+Postman
+Sketch
+jQuery
+React Native
+Flutter
+Ionic
+NativeScript
 
 
 ## Items
@@ -292,9 +292,9 @@ Common - Foundation Hoplon
 Common - Koa.js Aspis
 Common - Elasticsearch Riot Shield
 
-### Head
+### Helm
 Legendary - Git Great Helm
-Epic - Google Cloud Platform
+Epic - Google Cloud Platform Cap
 Rare - Svelte Shako
 Uncommon - Rollup Hard Hat
 Uncommon - pip Corinthian Helmet
@@ -303,18 +303,29 @@ Common - Nginx Turban
 Common - NativeScript Casque
 Common - Bitbucket Bucket
 
-### Body
+### Armor
 Legendary - HTML5 Chainmail
 Epic - TypeScript Plate Armor
 Rare - MongoDB Cuirass
 Uncommon - Sails.js Splint Armor
-Uncommon - GitLab CI/CD
+Uncommon - GitLab CI/CD Coat of Plates
 Common - Firestore Scale Armor
 Common - Bulma Brigandine
 Common - Ionic Coat
 Common - GitHub Actions Full Plate Armor
 
-### Feet
+### Gloves
+Legendary - React Gauntlets
+Epic - Figma Mittens
+Rare - SQLite Brigandine Gloves
+Uncommon - DigitalOcean Leather Gloves
+Uncommon - React Native Mail Gloves
+Common - Microsoft SQL Server Padded Gloves
+Common - pnpm Finger Gauntlets
+Common - Grunt Chainmail Gauntlets
+Common - Heroku Scale Gauntlets
+
+### Boots
 Legendary - CSS Great Boots
 Epic - Redis Greaves
 Rare - Microsoft Azure Sollerets
@@ -325,18 +336,7 @@ Common - FastAPI Combat Boots
 Common - Flutter Sneakers
 Common - Terraform Moccasins
 
-### Gloves
-Legendary - React Gauntlets
-Epic - Figma Mittens
-Rare - SQLite  Brigandine Gloves
-Uncommon - DigitalOcean Leather Gloves
-Uncommon - React Native Mail Gloves
-Common - Microsoft SQL Server Padded Gloves
-Common - pnpm Finger Gauntlets
-Common - Grunt Chainmail Gauntlets
-Common - Heroku Scale Gauntlets
-
-### Amulet
+### Amulets
 Legendary - VS Code Talisman
 Epic - Ruby on Rails Ruby
 Rare - Flask Lucky Charm

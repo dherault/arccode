@@ -14,7 +14,7 @@ function CharacterGear() {
   return (
     <div className="pt-16 relative w-[448px] grid grid-cols-2 gap-y-16">
       <img
-        src={avatar.image}
+        src={`/images/avatars/${avatar.image}`}
         alt={avatar.name}
         className="absolute inset-0 z-0"
         style={{

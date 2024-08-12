@@ -5,7 +5,7 @@ const avatars: Record<string, Item> = {
     id: 'avatar-7',
     type: 'avatar',
     name: 'Knight',
-    image: '/images/avatars/7.png',
+    image: '7.png',
     rarity: 'common',
   },
 }
