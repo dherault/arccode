@@ -29,6 +29,8 @@ type Props = {
   setUserId: Dispatch<SetStateAction<string>>
 }
 
+const NONE_VALUE = '(none)'
+
 function UserAssignGearDialog({ userId, setUserId }: Props) {
   const { users } = useUsers()
 
@@ -79,15 +81,22 @@ function UserAssignGearDialog({ userId, setUserId }: Props) {
               >
                 <div className="grow text-sm">
                   {CHARACTER_SLOT_LABELS[slot]}
+                  {' '}
+                  (
+                  {slotItems.length}
+                  )
                 </div>
                 <Select
                   value={finalUser?.character[slot]}
-                  onValueChange={value => handleGear(slot, value)}
+                  onValueChange={value => handleGear(slot, value === NONE_VALUE ? '' : value)}
                 >
                   <SelectTrigger className="w-[256px]">
                     <SelectValue placeholder="Unassigned" />
                   </SelectTrigger>
                   <SelectContent>
+                    <SelectItem value={NONE_VALUE}>
+                      Unassigned
+                    </SelectItem>
                     {slotItems.map(item => (
                       <SelectItem
                         key={item.id}
@@ -96,11 +105,6 @@ function UserAssignGearDialog({ userId, setUserId }: Props) {
                         {item.name}
                       </SelectItem>
                     ))}
-                    {!slotItems.length && (
-                      <div className="p-2 text-sm text-gray-700">
-                        No items
-                      </div>
-                    )}
                   </SelectContent>
                 </Select>
               </div>
