@@ -15,6 +15,10 @@ service cloud.firestore {
       return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny(['unlockedItems'])
     }
 
+    function isNotAffectingKeyword() {
+      return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny(['keywords'])
+    }
+
     function hasUnlockedItem(type) {
       return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny([type])
         || request.resource.data.character[type] == ''
@@ -28,6 +32,7 @@ service cloud.firestore {
       allow update: if isAdministrator() || request.auth != null && request.auth.uid == userId
         && isNotAffectingIsAdministrator()
         && isNotAffectingUnlockedItems()
+        && isNotAffectingKeyword()
         && hasUnlockedItem('avatarItemId')
         && hasUnlockedItem('mainHandItemId')
         && hasUnlockedItem('offHandItemId')

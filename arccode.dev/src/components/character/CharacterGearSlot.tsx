@@ -108,7 +108,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
         ))}
         {!!unlockedItemIds.length && (
           <div
-            className="w-[66px] aspect-square cursor-pointer border text-xs text-neutral-500 flex items-center justify-center"
+            className="w-[66px] aspect-square cursor-pointer border text-xs text-neutral-200 flex items-center justify-center"
             onClick={() => handleEquip('')}
           >
             <CircleSlash2 className="h-4 w-4" />
