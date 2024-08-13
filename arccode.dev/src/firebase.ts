@@ -11,7 +11,7 @@ import {
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
 import { connectStorageEmulator, getStorage } from 'firebase/storage'
 import { getPerformance } from 'firebase/performance'
-// import { ReCaptchaV3Provider, initializeAppCheck } from 'firebase/app-check'
+import { ReCaptchaV3Provider, initializeAppCheck } from 'firebase/app-check'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAHsRDKVNB2Ql83xxoEOa-YajFyvtKtPtY',
@@ -63,7 +63,7 @@ if (import.meta.env.DEV) {
   // connectFunctionsEmulator(functions, '127.0.0.1', 5001)
 }
 
-// initializeAppCheck(app, {
-//   provider: new ReCaptchaV3Provider('6Lc_QhwqAAAAANTpLqX7C9YSeO3REz9zqby_1w9t'),
-//   isTokenAutoRefreshEnabled: true,
-// })
+initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('6LfEHiYqAAAAAE6vV1xuRdG_Q4K28bwbPZHidWdD'),
+  isTokenAutoRefreshEnabled: true,
+})
