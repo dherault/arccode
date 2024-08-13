@@ -26,7 +26,7 @@ function CharacterKeywords() {
 
   const listedKeywords = keywords
     .sort((a, b) => b.count - a.count)
-    .filter((_keyword, i) => i < 27)
+    .filter((_keyword, i) => i < 30)
 
   return (
     <div>
@@ -40,7 +40,7 @@ function CharacterKeywords() {
         {keyword6 && <KeywordCard keyword={keyword6} />}
       </div>
       {!!listedKeywords.length && (
-        <div className="mt-4 py-2 bg-white border rounded grid grid-cols-3 grid-flow-row">
+        <div className="mt-4 bg-white border rounded grid grid-cols-3 grid-flow-row">
           {listedKeywords.map(keyword => (
             <KeywordListItem
               key={keyword.name}

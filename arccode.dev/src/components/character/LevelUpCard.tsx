@@ -1,4 +1,8 @@
+import { useState } from 'react'
+
 import type { KeywordRegistry } from '~types'
+
+import LevelUpContainer from '~components/character/LevelUpContainer'
 
 type Props = {
   keywords: KeywordRegistry
@@ -7,12 +11,23 @@ type Props = {
 function LevelUpCard({ keywords }: Props) {
   if (false) console.log(keywords)
 
+  const [open, setOpen] = useState(false)
+
   return (
-    <div className="p-4 flex items-center justify-center bg-white border border-blue rounded text-blue cursor-pointer">
-      <div className="mt-1 animate-bounce">
-        Level up!
+    <>
+      <div
+        onClick={() => setOpen(true)}
+        className="p-4 flex items-center justify-center bg-white border border-blue rounded text-blue cursor-pointer"
+      >
+        <div className="mt-1 animate-bounce">
+          Level up!
+        </div>
       </div>
-    </div>
+      <LevelUpContainer
+        open={open}
+        setOpen={setOpen}
+      />
+    </>
   )
 }
 
