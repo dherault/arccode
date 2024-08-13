@@ -21,7 +21,7 @@ function CharacterProfile() {
       <div className="container flex items-start gap-16">
         <CharacterGear />
         <div className="grow">
-          <div className="mb-4 flex items-baseline gap-4">
+          <div className="mb-3 flex items-baseline gap-4">
             <h1 className="font-display font-bold text-4xl">
               {characterName}
             </h1>

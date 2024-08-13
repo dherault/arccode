@@ -21,7 +21,7 @@ function KeywordListItem({ keyword }: Props) {
         <div className="font-mono w-32">
           {keyword.name}
         </div>
-        <div className="font-mono w-8 text-right">
+        <div className="font-mono grow text-right">
           {keyword.count}
         </div>
         {/* <div className="grow">
