@@ -8,7 +8,7 @@ export { default as java } from './java'
 
 export { default as c } from './c'
 
-export { default as cplusplus } from './cplusplus'
+export { default as cpp } from './cpp'
 
 export { default as csharp } from './csharp'
 

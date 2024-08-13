@@ -1,5 +1,5 @@
 // https://en.cppreference.com/w/cpp/keyword
-const cplusplusKeywords = [
+const cppKeywords = [
   'alignas',
   'alignof',
   'and',
@@ -99,4 +99,4 @@ const cplusplusKeywords = [
   'xor_eq',
 ] as const
 
-export default cplusplusKeywords
+export default cppKeywords
