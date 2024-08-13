@@ -89,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('arccode.print', async () => {
-      await vscode.window.showInformationMessage(JSON.stringify(keywordRegistry.dailyKeywordData))
+      await vscode.window.showInformationMessage(JSON.stringify(keywordRegistry.dailyKeywordData, null, 2))
     })
   )
 
