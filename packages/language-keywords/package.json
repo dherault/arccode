@@ -1,7 +1,7 @@
 {
   "name": "language-keywords",
   "description": "A list of reserved keyword of various programming languages",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "type": "module",
   "main": "./dist/language-keywords.umd.cjs",
   "module": "./dist/language-keywords.js",

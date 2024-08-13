@@ -1,29 +1,3 @@
-import javascript from './languages/javascript'
-import typescript from './languages/typescript'
-import python from './languages/python'
-import java from './languages/java'
-import c from './languages/c'
-import cpp from './languages/cpp'
-import csharp from './languages/csharp'
-import ruby from './languages/ruby'
-import php from './languages/php'
-import go from './languages/go'
-
-const keywords = {
-  c,
-  cpp,
-  csharp,
-  go,
-  java,
-  javascript,
-  php,
-  python,
-  ruby,
-  typescript,
-}
-
-export default keywords
-
 export { default as javascript } from './languages/javascript'
 
 export { default as typescript } from './languages/typescript'
