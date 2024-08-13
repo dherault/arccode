@@ -70,7 +70,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
             </>
           )}
           {!item && (
-            <div className="w-[88px] aspect-square border-[3px] bg-white cursor-pointer">
+            <div className="w-[88px] aspect-square border bg-white rounded overflow-hidden cursor-pointer">
               <img
                 src={`/images/gear-placeholders/${type}.png`}
                 alt={type}

@@ -10,7 +10,7 @@ type Props = {
 function ItemCard({ item, borderWidth = 1 }: Props) {
   return (
     <div
-      className="w-full h-full border bg-white"
+      className="w-full h-full border bg-white rounded overflow-hidden"
       style={{
         borderWidth,
         borderColor: item ? RARITY_COLORS[item.rarity] : undefined,

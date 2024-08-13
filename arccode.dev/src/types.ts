@@ -87,7 +87,17 @@ export type Item = {
 }
 
 /* ---
-Authentication
+  Keyword
+--- */
+
+export type Keyword = {
+  language: string
+  name: string
+  count: number
+}
+
+/* ---
+  Authentication
 --- */
 
 export type SignInProvider = 'password' | 'google' | 'github'
