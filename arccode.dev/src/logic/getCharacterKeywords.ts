@@ -1,25 +1,40 @@
 import keywordThresholds from 'arccode-keyword-thresholds'
 
-import type { Character, Keyword } from '~types'
+import type { Keyword, KeywordRegistry } from '~types'
 
-function getCharacterKeywords(character: Character): Keyword[] {
-  return Object.entries(character.keywords)
+function getCharacterKeywords(keywords: KeywordRegistry): Keyword[] {
+  return Object.entries(keywords)
     .map(([language, keywords]) => Object.entries(keywords).map(([name, count]) => {
       // @ts-expect-error
       const thresholds = (keywordThresholds[language]?.[name] ?? [1]) as number[]
 
-      let thresholdMax = thresholds.find(x => x > count) ?? Math.ceil(count / thresholds[thresholds.length - 1]) * thresholds[thresholds.length - 1]
+      const lastThreshold = thresholds[thresholds.length - 1]
+      let thresholdMax = thresholds.find(x => x > count) ?? Math.ceil(count / lastThreshold) * lastThreshold
 
       if (count >= thresholdMax) {
-        thresholdMax += thresholds[thresholds.length - 1]
+        thresholdMax += lastThreshold
       }
 
       const thresholdMin = [...thresholds].reverse().find(x => x < thresholdMax) ?? 0
+
+      let levelCount = 0
+      let level = 0
+
+      for (let i = 0; i < thresholds.length; i++) {
+        levelCount += thresholds[i]
+
+        if (count >= thresholds[i]) level++
+      }
+
+      for (let i = levelCount; i < count; i += lastThreshold) {
+        level++
+      }
 
       return {
         language,
         name,
         count,
+        level,
         thresholdMin,
         thresholdMax,
       }

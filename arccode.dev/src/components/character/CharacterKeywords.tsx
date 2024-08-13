@@ -12,7 +12,7 @@ import KeywordListItem from '~components/character/KeywordListItem'
 function CharacterKeywords() {
   const { character } = useCharacter()
 
-  const keywords = useMemo<Keyword[]>(() => getCharacterKeywords(character), [character])
+  const keywords = useMemo<Keyword[]>(() => getCharacterKeywords(character.keywords), [character])
 
   const [
     keyword1,
@@ -22,6 +22,8 @@ function CharacterKeywords() {
     keyword5,
     keyword6,
   ] = keywords.splice(0, 6)
+
+  const listedKeywords = keywords.filter((_keyword, i) => i < 12)
 
   return (
     <div>
@@ -33,16 +35,16 @@ function CharacterKeywords() {
         {keyword5 && <KeywordCard keyword={keyword5} />}
         {keyword6 && <KeywordCard keyword={keyword6} />}
       </div>
-      <div className="mt-4 py-0.5 bg-white border rounded">
-        {keywords
-        .filter((_keyword, i) => i < 12)
-        .map(keyword => (
-          <KeywordListItem
-            key={keyword.name}
-            keyword={keyword}
-          />
-        ))}
-      </div>
+      {!!listedKeywords.length && (
+        <div className="mt-4 py-0.5 bg-white border rounded">
+          {listedKeywords.map(keyword => (
+            <KeywordListItem
+              key={keyword.name}
+              keyword={keyword}
+            />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

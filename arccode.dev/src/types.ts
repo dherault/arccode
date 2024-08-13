@@ -97,6 +97,7 @@ export type Keyword = {
   language: string
   name: string
   count: number
+  level: number
   thresholdMin: number
   thresholdMax: number
 }
