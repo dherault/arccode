@@ -22,6 +22,11 @@ function CharacterProfile() {
         <h1 className="font-display font-bold text-4xl text-center">
           {characterName}
         </h1>
+        <div className="text-center text-sm">
+          Level
+          {' '}
+          {character.level}
+        </div>
         <div className="mt-8 flex items-start gap-16">
           <CharacterGear />
           <div className="grow">

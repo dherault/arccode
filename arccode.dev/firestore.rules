@@ -12,7 +12,7 @@ service cloud.firestore {
     }
 
     function isNotAffectingCharacterProtectedFields() {
-      return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny(['unlockedItems', 'keywords', 'processedKeywords'])
+      return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny(['level', 'unlockedItems', 'keywords', 'processedKeywords'])
     }
 
     function hasUnlockedItem(type) {
