@@ -5,7 +5,7 @@ class KeywordRegistry {
 
   public dailyKeywordData: KeywordData
 
-  private currentKeywordData: KeywordData
+  public currentKeywordData: KeywordData
 
   constructor() {
     this.updatedAt = new Date()
@@ -25,8 +25,6 @@ class KeywordRegistry {
   }
 
   public flush() {
-    const data = this.currentKeywordData
-
     this.currentKeywordData = {}
 
     if (new Date().getDate() !== this.updatedAt.getDate()) {
@@ -34,8 +32,6 @@ class KeywordRegistry {
     }
 
     this.updatedAt = new Date()
-
-    return data
   }
 }
 

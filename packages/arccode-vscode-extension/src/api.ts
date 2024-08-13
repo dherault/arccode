@@ -35,7 +35,7 @@ export async function sync(keywordRegistry: KeywordRegistry) {
     await axios.post(
       REGISTER_KEYWORDS_API_URL,
       {
-        keywords: keywordRegistry.flush(),
+        keywords: keywordRegistry.currentKeywordData,
       },
       {
         headers: {
@@ -43,6 +43,8 @@ export async function sync(keywordRegistry: KeywordRegistry) {
         },
       }
     )
+
+    keywordRegistry.flush()
   }
   catch (error: any) {
     vscode.window.showInformationMessage(`Arccode - error syncing: ${error.message}`)
