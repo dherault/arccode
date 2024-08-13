@@ -32,6 +32,7 @@ class KeywordRegistry {
     this.updatedAt = new Date()
   }
 
+  // Get keywords with positive count
   public getKeywords(): KeywordData {
     return Object.fromEntries(
       Object.entries(this.currentKeywordData).map(([langugage, keywords]) => [
