@@ -1,6 +1,6 @@
 import {
   c,
-  cplusplus,
+  cpp,
   csharp,
   go,
   java,
@@ -14,7 +14,7 @@ import {
 
 export default {
   c,
-  cplusplus,
+  cpp,
   csharp,
   go,
   java,
