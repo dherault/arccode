@@ -36,9 +36,12 @@ export type Email = DatabaseResource<{
   Character
 --- */
 
+export type KeywordRegistry = Record<string, Record<string, number>>
+
 export type Character = {
   name: string
-  keywords: Record<string, Record<string, number>>
+  keywords: KeywordRegistry
+  processedKeywords: KeywordRegistry
   unlockedItems: Record<string, number>
   avatarItemId: string
   mainHandItemId: string

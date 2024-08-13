@@ -11,12 +11,8 @@ service cloud.firestore {
       return !request.resource.data.diff(resource.data).affectedKeys().hasAny(['isAdministrator']);
     }
 
-    function isNotAffectingUnlockedItems() {
-      return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny(['unlockedItems'])
-    }
-
-    function isNotAffectingKeyword() {
-      return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny(['keywords'])
+    function isNotAffectingCharacterProtectedFields() {
+      return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny(['unlockedItems', 'keywords', 'processedKeywords'])
     }
 
     function hasUnlockedItem(type) {
@@ -31,8 +27,7 @@ service cloud.firestore {
       allow delete: if isAdministrator() || request.auth != null && request.auth.uid == userId;
       allow update: if isAdministrator() || request.auth != null && request.auth.uid == userId
         && isNotAffectingIsAdministrator()
-        && isNotAffectingUnlockedItems()
-        && isNotAffectingKeyword()
+        && isNotAffectingCharacterProtectedFields()
         && hasUnlockedItem('avatarItemId')
         && hasUnlockedItem('mainHandItemId')
         && hasUnlockedItem('offHandItemId')
