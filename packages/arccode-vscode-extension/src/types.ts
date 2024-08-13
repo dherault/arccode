@@ -2,6 +2,7 @@ import languageToKeywords from './keywords'
 
 export type UserInfo = {
   accessToken: string
+  refreshToken: string
   userId: string
   userName: string
 }

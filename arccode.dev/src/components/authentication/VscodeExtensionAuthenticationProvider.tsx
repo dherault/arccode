@@ -29,7 +29,7 @@ function VscodeExtensionAuthenticationProvider({ children }: PropsWithChildren) 
     const accessToken = await viewer.getIdToken()
 
     window.location.assign(
-      `${uri}?state=${state}&user_id=${user.id}&user_name=${user.name || user.email}&access_token=${accessToken}`
+      `${uri}?state=${state}&user_id=${user.id}&user_name=${encodeURIComponent(user.name || user.email)}&refresh_token=${viewer.refreshToken}&access_token=${accessToken}`
     )
 
     navigate('/onboarding/install-extension', { replace: true })

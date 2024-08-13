@@ -60,8 +60,6 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
 
    /**
    * Get the existing sessions
-   * @param scopes
-   * @returns
    */
   public async getSessions(): Promise<readonly AuthenticationSession[]> {
     const allSessions = await this.context.secrets.get(SESSIONS_SECRET_KEY)
@@ -75,8 +73,6 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
 
   /**
    * Create a new auth session
-   * @param scopes
-   * @returns
    */
   public async createSession(): Promise<AuthenticationSession> {
     try {
@@ -88,7 +84,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
 
       const session: AuthenticationSession = {
         id: uuid(),
-        accessToken: userInfo.accessToken,
+        accessToken: process.env.DEV ? userInfo.accessToken : userInfo.refreshToken,
         account: {
           id: userInfo.userId,
           label: userInfo.userName,
@@ -107,6 +103,21 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
 
       throw error
     }
+  }
+
+  /**
+   * Remove an existing session
+   * @param sessionId
+   * @param accessToken
+   */
+  public async updateSession(sessionId: string, accessToken: string): Promise<void> {
+    const sessions = await this.getSessions()
+
+    const nextSessions = sessions.map(x => x.id === sessionId ? { ...x, accessToken } : x)
+
+    await this.context.secrets.store(SESSIONS_SECRET_KEY, JSON.stringify(nextSessions))
+
+    this._sessionChangeEmitter.fire({ added: [], removed: [], changed: nextSessions })
   }
 
   /**
@@ -196,12 +207,19 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
   private handleUri: () => PromiseAdapter<Uri, UserInfo> = () => async (uri, resolve, reject) => {
     const query = new URLSearchParams(uri.query)
     const accessToken = query.get('access_token')
+    const refreshToken = query.get('refresh_token')
     const state = query.get('state')
     const userId = query.get('user_id')
     const userName = query.get('user_name')
 
     if (!accessToken) {
-      reject(new Error('No token'))
+      reject(new Error('No access token'))
+
+      return
+    }
+
+    if (!refreshToken) {
+      reject(new Error('No refresh token'))
 
       return
     }
@@ -233,6 +251,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
 
     resolve({
       accessToken,
+      refreshToken,
       userId,
       userName,
     })

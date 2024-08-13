@@ -6,6 +6,10 @@ export const AUTHENTICATION_TYPE = 'arccode'
 
 export const AUTHENTICATION_NAME = 'Arccode'
 
+export const FIREBASE_API_KEY = 'AIzaSyAHsRDKVNB2Ql83xxoEOa-YajFyvtKtPtY'
+
+export const EXCHANGE_TOKENS_API_URL = `https://securetoken.googleapis.com/v1/token?key=${FIREBASE_API_KEY}`
+
 export const ACTIVATE_EXTENSION_API_URL = process.env.DEV
   ? 'http://localhost:5001/arccode-dev/us-central1/activateVscodeExtension'
   : 'https://activatevscodeextension-ynstfmkxyq-uc.a.run.app'
