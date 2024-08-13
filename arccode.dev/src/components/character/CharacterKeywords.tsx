@@ -19,17 +19,26 @@ function CharacterKeywords() {
     character.keywords,
   ])
 
-  const [keyword1, keyword2, keyword3] = keywords.splice(0, 3)
+  const [
+    keyword1,
+    keyword2,
+    keyword3,
+    keyword4,
+    keyword5,
+    keyword6,
+  ] = keywords.splice(0, 6)
 
   return (
     <div>
-      <div className="grid grid-cols-3 gap-8">
-        <KeywordCard keyword={keyword1} />
-        <KeywordCard keyword={keyword2} />
-        <KeywordCard keyword={keyword3} />
+      <div className="grid grid-cols-3 gap-4">
+        {keyword1 && <KeywordCard keyword={keyword1} />}
+        {keyword2 && <KeywordCard keyword={keyword2} />}
+        {keyword3 && <KeywordCard keyword={keyword3} />}
+        {keyword4 && <KeywordCard keyword={keyword4} />}
+        {keyword5 && <KeywordCard keyword={keyword5} />}
+        {keyword6 && <KeywordCard keyword={keyword6} />}
       </div>
-      {/* pb-1 to align with CharacterGear */}
-      <div className="mt-8 pb-1 space-y-2 bg-white border rounded">
+      <div className="mt-4 py-0.5 bg-white border rounded">
         {keywords
         .filter((_keyword, i) => i < 12)
         .map(keyword => (

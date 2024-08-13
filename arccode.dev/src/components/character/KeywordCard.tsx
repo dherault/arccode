@@ -11,11 +11,12 @@ function KeywordCard({ keyword }: Props) {
 
   return (
     <div className="p-4 bg-white border rounded">
-      <div className="flex items-center gap-4">
+      <div className="flex flex-wrap items-center gap-4">
         <img
           src={`/images/languages/${languageData.image}`}
           alt={languageData.name}
-          className="w-4"
+          draggable={false}
+          className="w-4 select-none"
         />
         <div className="font-mono grow">
           {keyword.name}
