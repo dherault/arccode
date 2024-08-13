@@ -61,7 +61,7 @@ export const registerKeywords = onRequest(
         if (!keyword) return
         if (amount !== amount) return
 
-        payload[`keywords.${language}.${keyword}`] = FieldValue.increment(Math.round(amount))
+        payload[`character.keywords.${language}.${keyword}`] = FieldValue.increment(Math.round(amount))
       })
     })
 

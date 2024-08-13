@@ -49,6 +49,7 @@ export const NULL_DOCUMENT_ID = '_null_'
 
 export const INITIAL_CHARACTER: Character = {
   name: '',
+  keywords: {},
   unlockedItems: {
     'avatar-7': 1,
   },

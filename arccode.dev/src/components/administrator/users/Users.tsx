@@ -15,12 +15,14 @@ import {
 import { Button } from '~components/ui/Button'
 import UserUnlockGearDialog from '~components/administrator/users/UserUnlockGearDialog'
 import UserAssignGearDialog from '~components/administrator/users/UserAssignGearDialog'
+import UserKeywordsDialog from '~components/administrator/users/UserKeywordsDialog'
 
-function UsersManagement() {
+function Users() {
   const { users } = useUsers()
 
   const [unlockGearUserId, setUnlockGearUserId] = useState<string>('')
   const [assignGearUserId, setAssignGearUserId] = useState<string>('')
+  const [keywordUserId, setKeywordUserId] = useState<string>('')
 
   return (
     <>
@@ -71,6 +73,12 @@ function UsersManagement() {
                     >
                       Assign gear
                     </Button>
+                    <Button
+                      size="xs"
+                      onClick={() => setKeywordUserId(user.id)}
+                    >
+                      Edit keywords
+                    </Button>
                   </div>
                 </TableCell>
               </TableRow>
@@ -86,8 +94,12 @@ function UsersManagement() {
         userId={assignGearUserId}
         setUserId={setAssignGearUserId}
       />
+      <UserKeywordsDialog
+        userId={keywordUserId}
+        setUserId={setKeywordUserId}
+      />
     </>
   )
 }
 
-export default UsersManagement
+export default Users

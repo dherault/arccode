@@ -1,3 +1,3 @@
-import UsersManagement from '~components/administrator/users/UsersManagement'
+import Users from '~components/administrator/users/Users'
 
-export default UsersManagement
+export default Users
