@@ -5,9 +5,9 @@ import checkHasLeveledUp from '~logic/checkLeveledUps'
 
 import useCharacter from '~hooks/character/useCharacter'
 
+import { Button } from '~components/ui/Button'
 import CharacterGear from '~components/character/CharacterGear'
 import CharacterKeywords from '~components/character/CharacterKeywords'
-import ShimmerButton from '~components/magicui/ShimmerButton'
 
 function CharacterProfile() {
   const { character } = useCharacter()
@@ -25,20 +25,29 @@ function CharacterProfile() {
         </title>
       </Helmet>
       <div className="-mt-10 container">
-        {nLevelUps > 0 && (
-          <div className="flex justify-center">
-            <ShimmerButton>
-              Level up!
-            </ShimmerButton>
-          </div>
-        )}
         <h1 className="font-display font-bold text-4xl text-center">
           {characterName}
         </h1>
+        {nLevelUps > 0 && (
+          <div className="mt-4 mb-4 flex flex-col items-center gap-2">
+            <div className="text-blue">
+              You have
+              {' '}
+              {nLevelUps}
+              {' '}
+              level up
+              {nLevelUps > 1 ? 's' : ''}
+              {' '}
+              available!
+            </div>
+            <Button>
+              Level up!
+            </Button>
+          </div>
+        )}
         <div className="mt-8 flex items-start gap-8">
           <CharacterGear />
           <div className="grow">
-            {nLevelUps}
             <CharacterKeywords />
           </div>
         </div>
