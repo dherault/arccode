@@ -7,13 +7,14 @@ import UserAvatarMenu from '~components/common/UserAvatarMenu'
 function AppLayout({ children }: PropsWithChildren) {
   return (
     <div className="relative grow flex flex-col bg-neutral-background">
-      <nav className="px-6 py-4 absolute top-0 left-0 right-0 flex items-center gap-4 z-50">
+      <div className="absolute top-4 left-6 z-50">
         <Link to="/~">
           <Logotype />
         </Link>
-        <div className="grow" />
+      </div>
+      <div className="absolute top-4 right-6 z-50">
         <UserAvatarMenu />
-      </nav>
+      </div>
       <div className="mt-[72px] grow flex flex-col">
         {children}
       </div>
