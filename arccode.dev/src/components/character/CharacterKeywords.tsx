@@ -2,6 +2,8 @@ import { useMemo } from 'react'
 
 import type { Keyword } from '~types'
 
+import getCharacterKeywords from '~logic/getCharacterKeywords'
+
 import useCharacter from '~hooks/character/useCharacter'
 
 import KeywordCard from '~components/character/KeywordCard'
@@ -10,14 +12,7 @@ import KeywordListItem from '~components/character/KeywordListItem'
 function CharacterKeywords() {
   const { character } = useCharacter()
 
-  const keywords = useMemo<Keyword[]>(() => (
-    Object.entries(character.keywords)
-      .map(([language, keywords]) => Object.entries(keywords).map(([name, count]) => ({ language, name, count })))
-      .flat()
-      .sort((a, b) => b.count - a.count)
-  ), [
-    character.keywords,
-  ])
+  const keywords = useMemo<Keyword[]>(() => getCharacterKeywords(character), [character])
 
   const [
     keyword1,
