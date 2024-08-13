@@ -31,7 +31,7 @@
     "clsx": "^2.1.1",
     "firebase": "^10.12.5",
     "framer-motion": "^11.3.24",
-    "language-keywords": "^1.0.0",
+    "language-keywords": "^1.2.0",
     "logrocket": "^8.1.2",
     "lucide-react": "^0.427.0",
     "luxon": "^3.5.0",

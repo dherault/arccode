@@ -1,0 +1,44 @@
+{
+  "name": "arccode-keyword-thresholds",
+  "description": "A list of keyword thresholds for Arccode",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/arccode-keyword-thresholds.umd.cjs",
+  "module": "./dist/arccode-keyword-thresholds.js",
+  "exports": {
+    ".": {
+      "import": "./dist/arccode-keyword-thresholds.js",
+      "require": "./dist/arccode-keyword-thresholds.umd.cjs"
+    }
+  },
+  "types": "./dist/arccode-keyword-thresholds.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dherault/arccode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dherault/arccode/issues"
+  },
+  "homepage": "https://github.com/dherault/arccode",
+  "keywords": [
+    "arrcode"
+  ],
+  "author": "David Hérault <dherault@gmail.com> (https://github.com/dherault)",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && vite build",
+    "lint": "tsc && eslint src --ext ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0",
+    "vite-plugin-dts": "^4.0.2"
+  },
+  "dependencies": {
+    "language-keywords": "^1.2.0"
+  }
+}
