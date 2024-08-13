@@ -9,7 +9,7 @@ function LevelUpCard({ keywords }: Props) {
 
   return (
     <div className="p-4 flex items-center justify-center bg-white border border-blue rounded text-blue cursor-pointer">
-      <div className="animate-bounce">
+      <div className="mt-1 animate-bounce">
         Level up!
       </div>
     </div>

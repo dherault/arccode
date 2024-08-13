@@ -18,20 +18,20 @@ function CharacterProfile() {
           | Arccode
         </title>
       </Helmet>
-      <div className="-mt-10 container">
-        <h1 className="font-display font-bold text-4xl text-center">
-          {characterName}
-        </h1>
-        <div className="text-center text-sm">
-          Level
-          {' '}
-          {character.level}
-        </div>
-        <div className="mt-8 flex items-start gap-16">
-          <CharacterGear />
-          <div className="grow">
-            <CharacterKeywords />
+      <div className="container flex items-start gap-16">
+        <CharacterGear />
+        <div className="grow">
+          <div className="mb-4 flex items-baseline gap-4">
+            <h1 className="font-display font-bold text-4xl">
+              {characterName}
+            </h1>
+            <div>
+              Level
+              {' '}
+              {character.level}
+            </div>
           </div>
+          <CharacterKeywords />
         </div>
       </div>
     </>
