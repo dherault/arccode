@@ -1,5 +1,7 @@
 import type { Keyword } from '~types'
 
+import KeywordProgress from '~components/character/KeywordProgress'
+
 import languages from '~data/languages'
 
 type Props = {
@@ -11,7 +13,7 @@ function KeywordCard({ keyword }: Props) {
 
   return (
     <div className="p-4 bg-white border rounded">
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="mb-2 flex flex-wrap items-center gap-4">
         <img
           src={`/images/languages/${languageData.image}`}
           alt={languageData.name}
@@ -21,10 +23,11 @@ function KeywordCard({ keyword }: Props) {
         <div className="font-mono grow">
           {keyword.name}
         </div>
-        <div>
+        <div className="font-mono">
           {keyword.count}
         </div>
       </div>
+      <KeywordProgress keyword={keyword} />
     </div>
   )
 }
