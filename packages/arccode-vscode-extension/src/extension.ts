@@ -149,8 +149,6 @@ export function activate(context: vscode.ExtensionContext) {
         }
       )
 
-      vscode.window.showInformationMessage(JSON.stringify(response.data, null, 2))
-
       await authenticationProvider.updateSession(session.id, response.data.refresh_token)
 
       return response.data.id_token as string
