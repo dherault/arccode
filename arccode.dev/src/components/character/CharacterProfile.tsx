@@ -22,7 +22,7 @@ function CharacterProfile() {
         <h1 className="font-display font-bold text-4xl text-center">
           {characterName}
         </h1>
-        <div className="mt-8 flex items-start gap-8">
+        <div className="mt-8 flex items-start gap-16">
           <CharacterGear />
           <div className="grow">
             <CharacterKeywords />

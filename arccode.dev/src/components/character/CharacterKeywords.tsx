@@ -26,7 +26,7 @@ function CharacterKeywords() {
     keyword6,
   ] = keywords.splice(0, levelUpCount > 0 ? 5 : 6)
 
-  const listedKeywords = keywords.filter((_keyword, i) => i < 12)
+  const listedKeywords = keywords.filter((_keyword, i) => i < 11)
 
   return (
     <div>
@@ -40,7 +40,7 @@ function CharacterKeywords() {
         {keyword6 && <KeywordCard keyword={keyword6} />}
       </div>
       {!!listedKeywords.length && (
-        <div className="mt-4 py-0.5 bg-white border rounded">
+        <div className="mt-4 py-px bg-white border rounded">
           {listedKeywords.map(keyword => (
             <KeywordListItem
               key={keyword.name}

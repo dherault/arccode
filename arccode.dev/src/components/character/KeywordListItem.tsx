@@ -11,7 +11,7 @@ function KeywordListItem({ keyword }: Props) {
 
   return (
     <div className="py-2 px-4">
-      <div className="flex flex-wrap items-center gap-2">
+      <div className="flex flex-wrap items-center gap-4">
         <img
           src={`/images/languages/${languageData.image}`}
           alt={languageData.name}
