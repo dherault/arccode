@@ -7,6 +7,7 @@ import useCharacter from '~hooks/character/useCharacter'
 
 import CharacterGear from '~components/character/CharacterGear'
 import CharacterKeywords from '~components/character/CharacterKeywords'
+import ShimmerButton from '~components/magicui/ShimmerButton'
 
 function CharacterProfile() {
   const { character } = useCharacter()
@@ -24,6 +25,13 @@ function CharacterProfile() {
         </title>
       </Helmet>
       <div className="-mt-10 container">
+        {nLevelUps > 0 && (
+          <div className="flex justify-center">
+            <ShimmerButton>
+              Level up!
+            </ShimmerButton>
+          </div>
+        )}
         <h1 className="font-display font-bold text-4xl text-center">
           {characterName}
         </h1>
