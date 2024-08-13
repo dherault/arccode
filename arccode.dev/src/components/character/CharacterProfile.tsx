@@ -17,7 +17,7 @@ function CharacterProfile() {
           {characterName}
         </title>
       </Helmet>
-      <div className="mt-4 container">
+      <div className="-mt-10 container">
         <h1 className="font-display font-bold text-4xl text-center">
           {characterName}
         </h1>

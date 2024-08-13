@@ -17,7 +17,7 @@ function CharacterGear() {
         src={`/images/avatars/${avatar.image}`}
         alt={avatar.name}
         draggable={false}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 select-none"
         style={{
           filter: 'invert(96%) sepia(6%) saturate(96%) hue-rotate(202deg) brightness(89%) contrast(93%)',
         }}

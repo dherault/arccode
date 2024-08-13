@@ -33,7 +33,7 @@ function UsersManagement() {
         <h1 className="font-display font-bold text-4xl">
           Users
         </h1>
-        <Table className="mt-4">
+        <Table className="mt-4 bg-white border">
           <TableHeader>
             <TableRow>
               <TableHead>Email</TableHead>

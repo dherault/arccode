@@ -14,7 +14,7 @@ function AppLayout({ children }: PropsWithChildren) {
         <div className="grow" />
         <UserAvatarMenu />
       </nav>
-      <div className="mt-18 grow flex flex-col">
+      <div className="mt-[72px] grow flex flex-col">
         {children}
       </div>
     </div>

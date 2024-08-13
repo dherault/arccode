@@ -55,7 +55,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
         className="z-10"
         asChild
       >
-        <div className="relative">
+        <div className="relative select-none">
           {item && (
             <>
               <div className="w-[88px] aspect-square cursor-pointer">
