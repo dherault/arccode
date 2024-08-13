@@ -12,7 +12,6 @@ import {
 import ArccodeAuthenticationProvider from './ArccodeAuthenticationProvider'
 import KeywordRegistry from './KeywordRegistry'
 import { handleDocumentChange, populateFileRegistry } from './core'
-import printProgress from './printProgress'
 
 let syncInterval: NodeJS.Timeout | undefined
 
@@ -90,7 +89,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('arccode.print', async () => {
-      await printProgress(keywordRegistry)
+      await vscode.window.showInformationMessage(JSON.stringify(keywordRegistry.dailyKeywordData))
     })
   )
 
