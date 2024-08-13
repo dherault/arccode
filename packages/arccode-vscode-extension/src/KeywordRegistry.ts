@@ -5,23 +5,42 @@ class KeywordRegistry {
 
   public dailyKeywordData: KeywordData
 
-  public currentKeywordData: KeywordData
+  private currentKeywordData: KeywordData
+
+  private languageConversion: Partial<Record<Language, Language>>
 
   constructor() {
     this.updatedAt = new Date()
     this.dailyKeywordData = {}
     this.currentKeywordData = {}
+    this.languageConversion = {
+      javascriptreact: 'javascript',
+      typescriptreact: 'typescript',
+    }
   }
 
   public registerKeyword(language: Language, keyword: string, delta = 1) {
-    if (!this.dailyKeywordData[language]) this.dailyKeywordData[language] = {}
-    if (!this.currentKeywordData[language]) this.currentKeywordData[language] = {}
-    if (!this.dailyKeywordData[language][keyword]) this.dailyKeywordData[language][keyword] = 0
-    if (!this.currentKeywordData[language][keyword]) this.currentKeywordData[language][keyword] = 0
+    const finalLanguage = this.languageConversion[language] ?? language
 
-    this.dailyKeywordData[language][keyword] = Math.max(0, this.dailyKeywordData[language][keyword] + delta)
-    this.currentKeywordData[language][keyword] = Math.max(0, this.currentKeywordData[language][keyword] + delta)
+    if (!this.dailyKeywordData[finalLanguage]) this.dailyKeywordData[finalLanguage] = {}
+    if (!this.currentKeywordData[finalLanguage]) this.currentKeywordData[finalLanguage] = {}
+    if (!this.dailyKeywordData[finalLanguage][keyword]) this.dailyKeywordData[finalLanguage][keyword] = 0
+    if (!this.currentKeywordData[finalLanguage][keyword]) this.currentKeywordData[finalLanguage][keyword] = 0
+
+    this.dailyKeywordData[finalLanguage][keyword] += delta
+    this.currentKeywordData[finalLanguage][keyword] += delta
     this.updatedAt = new Date()
+  }
+
+  public getKeywords(): KeywordData {
+    return Object.fromEntries(
+      Object.entries(this.currentKeywordData).map(([langugage, keywords]) => [
+        langugage,
+        Object.fromEntries(
+          Object.entries(keywords).filter(([, count]) => count > 0)
+        ),
+      ])
+    )
   }
 
   public resetData() {

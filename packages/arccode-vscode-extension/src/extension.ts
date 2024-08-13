@@ -203,7 +203,7 @@ export function activate(context: vscode.ExtensionContext) {
       await axios.post(
         REGISTER_KEYWORDS_API_URL,
         {
-          keywords: keywordRegistry.currentKeywordData,
+          keywords: keywordRegistry.getKeywords(),
         },
         {
           headers: {
