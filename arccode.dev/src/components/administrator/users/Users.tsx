@@ -28,7 +28,7 @@ function Users() {
     <>
       <Helmet>
         <title>
-          Arccode • Users
+          Users | Arccode
         </title>
       </Helmet>
       <div className="container">

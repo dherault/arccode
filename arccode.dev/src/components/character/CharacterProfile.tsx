@@ -12,9 +12,9 @@ function CharacterProfile() {
     <>
       <Helmet>
         <title>
-          Arccode •
-          {' '}
           {characterName}
+          {' '}
+          | Arccode
         </title>
       </Helmet>
       <div className="-mt-10 container">
