@@ -130,6 +130,8 @@ export function activate(context: vscode.ExtensionContext) {
   async function getIdToken() {
     const session = await getSession()
 
+    vscode.window.showInformationMessage('foo')
+
     if (!session) {
       vscode.window.showInformationMessage('Arccode - You must sign in first')
 
@@ -139,6 +141,8 @@ export function activate(context: vscode.ExtensionContext) {
     // On local dev we return the id token behind session.accessToken
     // https://stackoverflow.com/questions/69205747/bad-request-when-fetching-id-token-from-google
     if (process.env.DEV) return session.accessToken
+
+    vscode.window.showInformationMessage(session.accessToken)
 
     try {
       // https://firebase.google.com/docs/reference/rest/auth

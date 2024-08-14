@@ -3,7 +3,7 @@
   "publisher": "arccode",
   "displayName": "Arccode",
   "description": "A role-playing game for developers",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#328bff",
@@ -42,7 +42,7 @@
     "onLanguage:typescript",
     "onLanguage:typescriptreact"
   ],
-  "main": "./dist/extension",
+  "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
