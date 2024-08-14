@@ -130,7 +130,11 @@ export function activate(context: vscode.ExtensionContext) {
   async function getIdToken() {
     const session = await getSession()
 
-    if (!session) return null
+    if (!session) {
+      vscode.window.showInformationMessage('Arccode - You must sign in first')
+
+      return
+    }
 
     // On local dev we return the id token behind session.accessToken
     // https://stackoverflow.com/questions/69205747/bad-request-when-fetching-id-token-from-google
@@ -154,20 +158,15 @@ export function activate(context: vscode.ExtensionContext) {
     }
     catch (error: any) {
       vscode.window.showInformationMessage(`Arccode - error refreshing token: ${error.message}`)
+      vscode.window.showInformationMessage(error.code)
     }
-
-    return null
   }
 
   async function activateExtension(displayMessage = false) {
     try {
       const idToken = await getIdToken()
 
-      if (!idToken) {
-        vscode.window.showInformationMessage('Arccode - You must sign in first')
-
-        return
-      }
+      if (!idToken) return
 
       await axios.post(
         ACTIVATE_EXTENSION_API_URL,
@@ -192,11 +191,7 @@ export function activate(context: vscode.ExtensionContext) {
     try {
       const idToken = await getIdToken()
 
-      if (!idToken) {
-        vscode.window.showInformationMessage('Arccode - You must sign in first')
-
-        return
-      }
+      if (!idToken) return
 
       keywordRegistry.updateTimestamp()
 
