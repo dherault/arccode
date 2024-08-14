@@ -8,8 +8,6 @@ import { NULL_DOCUMENT_ID } from '~constants'
 
 import { db } from '~firebase'
 
-import getLevelUps from '~logic/getLevelUps'
-
 import CharacterContext, { CharacterContextType } from '~contexts/character/CharacterContext'
 
 import useDocument from '~hooks/db/useDocument'
@@ -28,20 +26,6 @@ function CharacterProvider({ children }: PropsWithChildren) {
   const character = useMemo(() => finalUser?.character ?? {} as Character, [finalUser])
   const isEditable = currentUser?.id === finalUser?.id
 
-  const { count: levelUps, keywords: levelUpsKeywords } = useMemo(() => {
-    if (!finalUser) {
-      return {
-        count: 0,
-        keywords: {},
-      }
-    }
-
-    return getLevelUps(character)
-  }, [
-    finalUser,
-    character,
-  ])
-
   const updateCharacter = useCallback(async (payload: Record<string, any>) => {
     if (!finalUser?.id || currentUser?.id !== finalUser.id) return
 
@@ -57,14 +41,10 @@ function CharacterProvider({ children }: PropsWithChildren) {
   const characterContextValue = useMemo<CharacterContextType>(() => ({
     character,
     isEditable,
-    levelUps,
-    levelUpsKeywords,
     updateCharacter,
   }), [
     character,
     isEditable,
-    levelUps,
-    levelUpsKeywords,
     updateCharacter,
   ])
 

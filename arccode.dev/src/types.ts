@@ -41,7 +41,10 @@ export type KeywordRegistry = Record<string, Record<string, number>>
 export type Character = {
   name: string
   level: number
+  levelUps: number
+  levelUpsKeywords: KeywordRegistry
   keywords: KeywordRegistry
+  viewedKeywords: KeywordRegistry
   processedKeywords: KeywordRegistry
   unlockedItems: Record<string, number>
   avatarItemId: string

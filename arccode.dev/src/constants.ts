@@ -50,7 +50,10 @@ export const NULL_DOCUMENT_ID = '_null_'
 export const INITIAL_CHARACTER: Character = {
   name: '',
   level: 1,
+  levelUps: 0,
+  levelUpsKeywords: {},
   keywords: {},
+  viewedKeywords: {},
   processedKeywords: {},
   unlockedItems: {
     'avatar-7': 1,

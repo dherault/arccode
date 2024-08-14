@@ -8,17 +8,17 @@ type Props = {
 }
 
 function LevelUp({ onClose }: Props) {
-  const { levelUps } = useCharacter()
+  const { character } = useCharacter()
 
   return (
     <div className="flex flex-col items-center">
       <div>
         You have
         {' '}
-        {levelUps}
+        {character.levelUps}
         {' '}
         level up
-        {levelUps > 1 ? 's' : ''}
+        {character.levelUps > 1 ? 's' : ''}
         {' '}
         available.
       </div>

@@ -9,7 +9,7 @@ import LevelUpCard from '~components/character/LevelUpCard'
 import CharacterEmpty from '~components/character/CharacterEmpty'
 
 function CharacterKeywords() {
-  const { character, isEditable, levelUps } = useCharacter()
+  const { character, isEditable } = useCharacter()
 
   const keywords = getCharacterKeywords(character.keywords)
 
@@ -20,7 +20,7 @@ function CharacterKeywords() {
     keyword4,
     keyword5,
     keyword6,
-  ] = keywords.splice(0, isEditable && levelUps > 0 ? 5 : 6)
+  ] = keywords.splice(0, isEditable && character.levelUps > 0 ? 5 : 6)
 
   const listedKeywords = keywords
     .sort((a, b) => b.count - a.count)
@@ -29,7 +29,7 @@ function CharacterKeywords() {
   return (
     <>
       <div className="grid grid-cols-3 gap-4">
-        {isEditable && levelUps > 0 && <LevelUpCard />}
+        {isEditable && character.levelUps > 0 && <LevelUpCard />}
         {keyword1 && <KeywordCard keyword={keyword1} />}
         {keyword2 && <KeywordCard keyword={keyword2} />}
         {keyword3 && <KeywordCard keyword={keyword3} />}

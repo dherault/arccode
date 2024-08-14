@@ -2,22 +2,22 @@ import type { Character, KeywordRegistry } from '~types'
 
 import getCharacterKeywords from '~logic/getCharacterKeywords'
 
-function getLevelUps(character: Character) {
-  let nLevelUps = 0
+function getLevelUps(character: Character, nextKeywords: KeywordRegistry | null) {
+  let { levelUps } = character
   const beforeKeywords = getCharacterKeywords(character.processedKeywords)
-  const keywords = getCharacterKeywords(character.keywords)
-  const affectedKeywords: KeywordRegistry = {}
+  const keywords = getCharacterKeywords(nextKeywords ?? character.keywords)
+  const levelUpsKeywords = { ...character.levelUpsKeywords }
 
   keywords.forEach(keyword => {
     const beforeKeyword = beforeKeywords.find(beforeKeyword => beforeKeyword.language === keyword.language && beforeKeyword.name === keyword.name)
 
     if (!beforeKeyword) {
-      nLevelUps += keyword.level
+      levelUps += keyword.level
 
-      if (!affectedKeywords[keyword.language]) affectedKeywords[keyword.language] = {}
-      if (!affectedKeywords[keyword.language][keyword.name]) affectedKeywords[keyword.language][keyword.name] = 0
+      if (!levelUpsKeywords[keyword.language]) levelUpsKeywords[keyword.language] = {}
+      if (!levelUpsKeywords[keyword.language][keyword.name]) levelUpsKeywords[keyword.language][keyword.name] = 0
 
-      affectedKeywords[keyword.language][keyword.name] += keyword.level
+      levelUpsKeywords[keyword.language][keyword.name] += keyword.level
 
       return
     }
@@ -26,18 +26,18 @@ function getLevelUps(character: Character) {
 
     const diff = keyword.level - beforeKeyword.level
 
-    nLevelUps += diff
+    levelUps += diff
 
-    if (!affectedKeywords[keyword.language]) affectedKeywords[keyword.language] = {}
-    if (!affectedKeywords[keyword.language][keyword.name]) affectedKeywords[keyword.language][keyword.name] = 0
+    if (!levelUpsKeywords[keyword.language]) levelUpsKeywords[keyword.language] = {}
+    if (!levelUpsKeywords[keyword.language][keyword.name]) levelUpsKeywords[keyword.language][keyword.name] = 0
 
-    affectedKeywords[keyword.language][keyword.name] += diff
+    levelUpsKeywords[keyword.language][keyword.name] += diff
 
   })
 
   return {
-    count: nLevelUps,
-    keywords: affectedKeywords,
+    levelUps,
+    levelUpsKeywords,
   }
 }
 

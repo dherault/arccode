@@ -1,6 +1,10 @@
 {
   "name": "functions",
   "private": true,
+  "engines": {
+    "node": "18"
+  },
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
@@ -10,10 +14,6 @@
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log"
   },
-  "engines": {
-    "node": "18"
-  },
-  "main": "lib/index.js",
   "dependencies": {
     "firebase-admin": "^12.3.1",
     "firebase-functions": "^5.0.1",

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { useCallback, useMemo, useState } from 'react'
 
-import useCharacter from '~hooks/character/useCharacter'
 import usePreloadImage from '~hooks/common/usePreloadImage'
 
 import treasureChests from '~data/treasure-chests'
@@ -12,18 +11,14 @@ const SHAKE_DURATION = 500
 const SHRINK_DURATION = 150
 
 function LevelUpChest() {
-  const { levelUps } = useCharacter()
-
+  const [treasureChestIndex, setTreasureChestIndex] = useState(Math.round(Math.random() * treasureChests.length))
   const [animation, setAnimation] = useState('shake')
   const [open, setOpen] = useState(false)
   const [timesClicked, setTimesClicked] = useState(0)
 
-  const treasureChest = useMemo(() => (
-    treasureChests[Math.round(Math.random() * treasureChests.length)]
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  ), [
-    levelUps,
-  ])
+  if (false) console.log(setTreasureChestIndex)
+
+  const treasureChest = useMemo(() => treasureChests[treasureChestIndex], [treasureChestIndex])
 
   usePreloadImage(`/images/treasure-chests/${treasureChest.open}`)
 

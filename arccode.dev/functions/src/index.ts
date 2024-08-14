@@ -2,9 +2,13 @@
 import { logger } from 'firebase-functions'
 import { onRequest } from 'firebase-functions/v2/https'
 import { initializeApp } from 'firebase-admin/app'
-import { FieldValue, getFirestore } from 'firebase-admin/firestore'
+import { type DocumentReference, FieldValue, getFirestore } from 'firebase-admin/firestore'
 import { getAuth } from 'firebase-admin/auth'
 import { z } from 'zod'
+
+import type { User } from '~types'
+
+import getLevelUps from '~logic/getLevelUps'
 
 const app = initializeApp()
 
@@ -22,12 +26,14 @@ export const registerKeywords = onRequest(
       return
     }
 
-    let userId: string
+    let userDocument: DocumentReference
+    let user: User | null = null
 
     try {
       const decodedIdToken = await getAuth(app).verifyIdToken(idToken)
 
-      userId = decodedIdToken.uid
+      userDocument = getFirestore(app).collection('users').doc(decodedIdToken.uid)
+      user = (await userDocument.get()).data() as User
     }
     catch (error) {
       logger.error('Invalid token', error)
@@ -37,10 +43,16 @@ export const registerKeywords = onRequest(
       return
     }
 
-    let keywords: Record<string, Record<string, number>>
+    if (!user) {
+      res.status(401).send('Unauthorized')
+
+      return
+    }
+
+    let keywordsPayload: Record<string, Record<string, number>>
 
     try {
-      keywords = keywordRegistrySchema.parse(req.body.keywords)
+      keywordsPayload = keywordRegistrySchema.parse(req.body.keywords)
     }
     catch (error) {
       logger.error('Invalid keywords', req.body.keywords, error)
@@ -50,25 +62,38 @@ export const registerKeywords = onRequest(
       return
     }
 
-    const payload: Record<string, any> = {
-      updatedAt: FieldValue.serverTimestamp(),
-    }
+    const keywords = { ...user.character.keywords }
+    const userPayload: Record<string, any> = {}
 
-    Object.entries(keywords).forEach(([language, keywordMap]) => {
+    Object.entries(keywordsPayload).forEach(([language, keywordMap]) => {
       if (!language) return
 
       Object.entries(keywordMap).forEach(([keyword, amount]) => {
         if (!keyword) return
         if (amount !== amount) return
 
-        payload[`character.keywords.${language}.${keyword}`] = FieldValue.increment(Math.round(amount))
+        const finalAmount = Math.round(amount)
+
+        if (!finalAmount) return
+
+        userPayload[`character.keywords.${language}.${keyword}`] = FieldValue.increment(finalAmount)
+
+        if (!keywords[language]) keywords[language] = {}
+        if (!keywords[language][keyword]) keywords[language][keyword] = 0
+
+        keywords[language][keyword] += finalAmount
       })
     })
 
-    await getFirestore(app)
-    .collection('users')
-    .doc(userId)
-    .update(payload)
+    if (!Object.keys(userPayload).length) return
+
+    const { levelUps, levelUpsKeywords } = getLevelUps(user.character, keywords)
+
+    userPayload.levelUps = levelUps
+    userPayload.levelUpsKeywords = levelUpsKeywords
+    userPayload.updatedAt = FieldValue.serverTimestamp()
+
+    await userDocument.update(userPayload)
 
     res.status(200).send()
   }
