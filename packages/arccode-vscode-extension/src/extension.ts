@@ -20,6 +20,8 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.window.showInformationMessage('Arccode dev mode loaded')
   }
 
+  vscode.window.showInformationMessage('Arccode started')
+
   /* ---
     Authentication
   --- */
@@ -71,6 +73,8 @@ export function activate(context: vscode.ExtensionContext) {
     if (Date.now() - keywordRegistry.updatedAt.valueOf() < SYNC_PERIOD) return
 
     await sync(keywordRegistry)
+
+    vscode.window.showInformationMessage('Arccode synced!')
   }, 1000 * 60 / 2)
 
   /* ---

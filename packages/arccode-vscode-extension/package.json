@@ -3,7 +3,7 @@
   "publisher": "arccode",
   "displayName": "Arccode",
   "description": "A role-playing game for developers",
-  "version": "0.0.10",
+  "version": "0.0.9",
   "icon": "images/icon.png",
   "galleryBanner": {
     "color": "#328bff",
