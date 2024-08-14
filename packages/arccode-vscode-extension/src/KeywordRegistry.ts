@@ -69,7 +69,7 @@ class KeywordRegistry {
   }
 
   public get shouldSync() {
-    return Date.now() - this.updatedAt.valueOf() < SYNC_PERIOD
+    return Date.now() - this.updatedAt.valueOf() >= SYNC_PERIOD
   }
 }
 
