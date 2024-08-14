@@ -18,7 +18,7 @@ export const REGISTER_KEYWORDS_API_URL = process.env.DEV
   ? 'http://localhost:5001/arccode-dev/us-central1/registerKeywords'
   : 'https://registerkeywords-ynstfmkxyq-uc.a.run.app'
 
-export const SYNC_PERIOD = 1000 * 60 * 10
+export const SYNC_PERIOD = 1000 * 60 * 15
 
 export const SESSIONS_SECRET_KEY = `${AUTHENTICATION_TYPE}.sessions`
 

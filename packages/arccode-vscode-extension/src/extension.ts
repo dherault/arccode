@@ -7,13 +7,10 @@ import {
   AUTHENTICATION_TYPE,
   EXCHANGE_TOKENS_API_URL,
   REGISTER_KEYWORDS_API_URL,
-  SYNC_PERIOD,
 } from './constants'
 import ArccodeAuthenticationProvider from './ArccodeAuthenticationProvider'
 import KeywordRegistry from './KeywordRegistry'
 import { handleDocumentChange, populateFileRegistry } from './core'
-
-let syncInterval: NodeJS.Timeout | undefined
 
 export function activate(context: vscode.ExtensionContext) {
   if (process.env.DEV) {
@@ -55,7 +52,15 @@ export function activate(context: vscode.ExtensionContext) {
 
   vscode.workspace.textDocuments.forEach(document => populateFileRegistry(document, fileRegistry))
   vscode.workspace.onDidOpenTextDocument(document => populateFileRegistry(document, fileRegistry))
-  vscode.workspace.onDidChangeTextDocument(event => handleDocumentChange(event.document, fileRegistry, keywordRegistry))
+  vscode.workspace.onDidChangeTextDocument(async event => {
+    handleDocumentChange(event.document, fileRegistry, keywordRegistry)
+
+    if (!keywordRegistry.shouldSync) return
+
+    await sync(keywordRegistry)
+
+    vscode.window.showInformationMessage('Arccode synced!')
+  })
 
   /* ---
     Sync
@@ -66,16 +71,6 @@ export function activate(context: vscode.ExtensionContext) {
       await sync(keywordRegistry, true)
     })
   )
-
-  if (syncInterval) clearInterval(syncInterval)
-
-  syncInterval = setInterval(async () => {
-    if (Date.now() - keywordRegistry.updatedAt.valueOf() < SYNC_PERIOD) return
-
-    await sync(keywordRegistry)
-
-    vscode.window.showInformationMessage('Arccode synced!')
-  }, 1000 * 60 / 2)
 
   /* ---
     Activate extension
@@ -93,7 +88,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('arccode.print', async () => {
-      await vscode.window.showInformationMessage(JSON.stringify(keywordRegistry.dailyKeywordData, null, 2))
+      await vscode.window.showInformationMessage(JSON.stringify(keywordRegistry.filteredDailyKeywords, null, 2))
     })
   )
 
@@ -206,7 +201,7 @@ export function activate(context: vscode.ExtensionContext) {
       await axios.post(
         REGISTER_KEYWORDS_API_URL,
         {
-          keywords: keywordRegistry.getKeywords(),
+          keywords: keywordRegistry.filteredCurrentKeywords,
         },
         {
           headers: {
@@ -215,7 +210,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
       )
 
-      keywordRegistry.resetData()
+      keywordRegistry.reset()
 
       if (displayMessage) {
         vscode.window.showInformationMessage('Arccode sync complete!')
