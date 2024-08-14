@@ -113,7 +113,7 @@ function OnboardingName() {
         <img
           src={boatSrc}
           alt="Boat at sea"
-          className="absolute inset-0 h-full object-cover z-0"
+          className="mx-auto absolute inset-0 h-full object-cover z-0"
         />
         <div className="flex flex-col items-center space-y-4 text-4xl font-display text-white font-black [text-shadow:0px_0px_8px_black] z-10">
           <motion.div
@@ -166,7 +166,7 @@ function OnboardingName() {
         />
         <form onSubmit={handleSubmit}>
           <div className="text-4xl font-bold font-display">
-            This hero's name is:
+            This hero's name is
           </div>
           <Input
             value={name}

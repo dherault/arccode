@@ -28,9 +28,11 @@ function OnboardingExtension() {
   ])
 
   return (
-    <>
-      Waiting on extension
-    </>
+    <div className="pt-8 flex flex-col items-center">
+      <h1 className="text-4xl font-bold">
+        Arccode works with VSCode
+      </h1>
+    </div>
   )
 }
 

@@ -129,8 +129,6 @@ export function activate(context: vscode.ExtensionContext) {
   async function getIdToken() {
     const session = await getSession()
 
-    vscode.window.showInformationMessage('foo')
-
     if (!session) {
       vscode.window.showInformationMessage('Arccode - You must sign in first')
 
@@ -160,8 +158,7 @@ export function activate(context: vscode.ExtensionContext) {
       return response.data.id_token as string
     }
     catch (error: any) {
-      vscode.window.showInformationMessage(`Arccode - error refreshing token: ${error.message}`)
-      vscode.window.showInformationMessage(error.code)
+      vscode.window.showInformationMessage(`Arccode - error refreshing token: ${error.code}`)
     }
   }
 
@@ -194,12 +191,12 @@ export function activate(context: vscode.ExtensionContext) {
     try {
       const keywords = keywordRegistry.filteredCurrentKeywords
 
+      keywordRegistry.updateTimestamp()
+
       if (Object.keys(keywords).length) {
         const idToken = await getIdToken()
 
         if (!idToken) return
-
-        keywordRegistry.updateTimestamp()
 
         await axios.post(
           REGISTER_KEYWORDS_API_URL,
