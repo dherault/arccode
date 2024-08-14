@@ -36,12 +36,15 @@ class KeywordRegistry {
   // Filter keywords with negative or zero count
   private filterKeywords(keywords: KeywordData): KeywordData {
     return Object.fromEntries(
-      Object.entries(keywords).map(([langugage, keywords]) => [
-        langugage,
+      Object.entries(keywords)
+      .map(([language, keywords]) => [
+        language,
         Object.fromEntries(
-          Object.entries(keywords).filter(([, count]) => count > 0)
+          Object.entries(keywords)
+          .filter(([, count]) => count > 0)
         ),
       ])
+      .filter(([, keywords]) => Object.keys(keywords).length)
     )
   }
 

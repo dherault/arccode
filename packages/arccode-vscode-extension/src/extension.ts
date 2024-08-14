@@ -192,25 +192,29 @@ export function activate(context: vscode.ExtensionContext) {
 
   async function sync(keywordRegistry: KeywordRegistry, displayMessage = false) {
     try {
-      const idToken = await getIdToken()
+      const keywords = keywordRegistry.filteredCurrentKeywords
 
-      if (!idToken) return
+      if (Object.keys(keywords).length) {
+        const idToken = await getIdToken()
 
-      keywordRegistry.updateTimestamp()
+        if (!idToken) return
 
-      await axios.post(
-        REGISTER_KEYWORDS_API_URL,
-        {
-          keywords: keywordRegistry.filteredCurrentKeywords,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${idToken}`,
+        keywordRegistry.updateTimestamp()
+
+        await axios.post(
+          REGISTER_KEYWORDS_API_URL,
+          {
+            keywords,
           },
-        }
-      )
+          {
+            headers: {
+              Authorization: `Bearer ${idToken}`,
+            },
+          }
+        )
 
-      keywordRegistry.reset()
+        keywordRegistry.reset()
+      }
 
       if (displayMessage) {
         vscode.window.showInformationMessage('Arccode sync complete!')
