@@ -169,7 +169,7 @@ const gears: Record<string, Item> = {
     type: 'helm',
     rarity: 'uncommon',
     name: 'pip Corinthian Helmet',
-    image: 'pip.png',
+    image: 'python.png',
   },
   oracledatabase: {
     id: 'oracledatabase',

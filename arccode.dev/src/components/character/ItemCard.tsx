@@ -17,7 +17,7 @@ function ItemCard({ item, borderWidth = 1 }: Props) {
       }}
     >
       <img
-        src={`/images/gears/${item.id}.png`}
+        src={`/images/gears/${item.image}`}
         alt={item.name}
         draggable={false}
         className="w-full h-full"
