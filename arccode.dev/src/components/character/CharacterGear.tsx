@@ -22,11 +22,13 @@ function CharacterGear() {
           filter: 'invert(96%) sepia(6%) saturate(96%) hue-rotate(202deg) brightness(89%) contrast(93%)',
         }}
       />
-      <CharacterGearSlot
-        type="helm"
-        slotId="helmItemId"
-        itemId={character.helmItemId}
-      />
+      <div className="flex">
+        <CharacterGearSlot
+          type="helm"
+          slotId="helmItemId"
+          itemId={character.helmItemId}
+        />
+      </div>
       <div className="flex justify-end">
         <CharacterGearSlot
           type="amulet"
@@ -34,11 +36,13 @@ function CharacterGear() {
           itemId={character.amuletItemId}
         />
       </div>
-      <CharacterGearSlot
-        type="armor"
-        slotId="armorItemId"
-        itemId={character.armorItemId}
-      />
+      <div className="flex">
+        <CharacterGearSlot
+          type="armor"
+          slotId="armorItemId"
+          itemId={character.armorItemId}
+        />
+      </div>
       <div className="flex justify-end">
         <CharacterGearSlot
           type="ring"
@@ -46,11 +50,13 @@ function CharacterGear() {
           itemId={character.ringItemId}
         />
       </div>
-      <CharacterGearSlot
-        type="main-hand"
-        slotId="mainHandItemId"
-        itemId={character.mainHandItemId}
-      />
+      <div className="flex">
+        <CharacterGearSlot
+          type="main-hand"
+          slotId="mainHandItemId"
+          itemId={character.mainHandItemId}
+        />
+      </div>
       <div className="flex justify-end">
         <CharacterGearSlot
           type="off-hand"
@@ -58,11 +64,13 @@ function CharacterGear() {
           itemId={character.offHandItemId}
         />
       </div>
-      <CharacterGearSlot
-        type="gloves"
-        slotId="glovesItemId"
-        itemId={character.glovesItemId}
-      />
+      <div className="flex">
+        <CharacterGearSlot
+          type="gloves"
+          slotId="glovesItemId"
+          itemId={character.glovesItemId}
+        />
+      </div>
       <div className="flex justify-end">
         <CharacterGearSlot
           type="boots"

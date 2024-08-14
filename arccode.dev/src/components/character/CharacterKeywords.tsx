@@ -47,7 +47,7 @@ function CharacterKeywords() {
           ))}
         </div>
       )}
-      {!keyword1 && (
+      {!keyword1 && isEditable && (
         <CharacterEmpty />
       )}
     </>
