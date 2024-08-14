@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useHotkeys } from 'react-hotkeys-hook'
 import Balancer from 'react-wrap-balancer'
 
@@ -84,6 +84,17 @@ function OnboardingExtension() {
       <div className="mt-12 text-neutral-700">
         Status: Waiting on extension connection
         <ThreeDots />
+      </div>
+      <div className="text-neutral-700">
+        Issue? Contact
+        {' '}
+        <Link
+          to="/support"
+          className="underline"
+        >
+          support
+        </Link>
+        .
       </div>
     </div>
   )

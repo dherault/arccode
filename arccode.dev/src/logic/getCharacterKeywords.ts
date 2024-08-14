@@ -40,6 +40,7 @@ function getCharacterKeywords(keywords: KeywordRegistry): Keyword[] {
       }
     }))
     .flat()
+    .filter(x => x.count > 0)
     .sort((a, b) => a.thresholdMax - a.count - b.thresholdMax + b.count)
 }
 

@@ -6,6 +6,7 @@ import useCharacter from '~hooks/character/useCharacter'
 import KeywordCard from '~components/character/KeywordCard'
 import KeywordListItem from '~components/character/KeywordListItem'
 import LevelUpCard from '~components/character/LevelUpCard'
+import CharacterEmpty from '~components/character/CharacterEmpty'
 
 function CharacterKeywords() {
   const { character, isEditable, levelUps } = useCharacter()
@@ -26,7 +27,7 @@ function CharacterKeywords() {
     .filter((_keyword, i) => i < 30)
 
   return (
-    <div>
+    <>
       <div className="grid grid-cols-3 gap-4">
         {isEditable && levelUps > 0 && <LevelUpCard />}
         {keyword1 && <KeywordCard keyword={keyword1} />}
@@ -46,7 +47,10 @@ function CharacterKeywords() {
           ))}
         </div>
       )}
-    </div>
+      {!keyword1 && (
+        <CharacterEmpty />
+      )}
+    </>
   )
 }
 
