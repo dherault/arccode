@@ -1,7 +1,5 @@
-import { useMemo } from 'react'
 
 import getCharacterKeywords from '~logic/getCharacterKeywords'
-import getLevelUps from '~logic/getLevelUps'
 
 import useCharacter from '~hooks/character/useCharacter'
 
@@ -10,10 +8,9 @@ import KeywordListItem from '~components/character/KeywordListItem'
 import LevelUpCard from '~components/character/LevelUpCard'
 
 function CharacterKeywords() {
-  const { character, isEditable } = useCharacter()
+  const { character, isEditable, levelUps } = useCharacter()
 
   const keywords = getCharacterKeywords(character.keywords)
-  const { count: levelUpCount, keywords: LevelUpKeywords } = useMemo(() => getLevelUps(character), [character])
 
   const [
     keyword1,
@@ -22,7 +19,7 @@ function CharacterKeywords() {
     keyword4,
     keyword5,
     keyword6,
-  ] = keywords.splice(0, isEditable && levelUpCount > 0 ? 5 : 6)
+  ] = keywords.splice(0, isEditable && levelUps > 0 ? 5 : 6)
 
   const listedKeywords = keywords
     .sort((a, b) => b.count - a.count)
@@ -31,7 +28,7 @@ function CharacterKeywords() {
   return (
     <div>
       <div className="grid grid-cols-3 gap-4">
-        {isEditable && levelUpCount > 0 && <LevelUpCard keywords={LevelUpKeywords} />}
+        {isEditable && levelUps > 0 && <LevelUpCard />}
         {keyword1 && <KeywordCard keyword={keyword1} />}
         {keyword2 && <KeywordCard keyword={keyword2} />}
         {keyword3 && <KeywordCard keyword={keyword3} />}

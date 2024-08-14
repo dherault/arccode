@@ -1,16 +1,8 @@
 import { useState } from 'react'
 
-import type { KeywordRegistry } from '~types'
-
 import LevelUpContainer from '~components/character/LevelUpContainer'
 
-type Props = {
-  keywords: KeywordRegistry
-}
-
-function LevelUpCard({ keywords }: Props) {
-  if (false) console.log(keywords)
-
+function LevelUpCard() {
   const [open, setOpen] = useState(false)
 
   return (

@@ -1,7 +1,7 @@
 import languageToKeywords from './keywords'
 
 export type UserInfo = {
-  accessToken: string
+  idToken: string
   refreshToken: string
   userId: string
   userName: string

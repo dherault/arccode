@@ -84,7 +84,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
 
       const session: AuthenticationSession = {
         id: uuid(),
-        accessToken: process.env.DEV ? userInfo.accessToken : userInfo.refreshToken,
+        accessToken: process.env.DEV ? userInfo.idToken : userInfo.refreshToken,
         account: {
           id: userInfo.userId,
           label: userInfo.userName,
@@ -206,14 +206,14 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
    */
   private handleUri: () => PromiseAdapter<Uri, UserInfo> = () => async (uri, resolve, reject) => {
     const query = new URLSearchParams(uri.query)
-    const accessToken = query.get('access_token')
+    const idToken = query.get('id_token')
     const refreshToken = query.get('refresh_token')
     const state = query.get('state')
     const userId = query.get('user_id')
     const userName = query.get('user_name')
 
-    if (!accessToken) {
-      reject(new Error('No access token'))
+    if (!idToken) {
+      reject(new Error('No id token'))
 
       return
     }
@@ -250,7 +250,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
     }
 
     resolve({
-      accessToken,
+      idToken,
       refreshToken,
       userId,
       userName,
