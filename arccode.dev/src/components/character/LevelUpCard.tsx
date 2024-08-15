@@ -19,11 +19,11 @@ function LevelUpCard() {
     .map(([keyword, count]) => (
       <div
         key={language + keyword}
-        className="shrink-0 text-neutral-500 text-xs flex items-center gap-1.5"
+        className="shrink-0 text-neutral-400 text-xs flex items-center gap-1.5"
       >
         <LanguageImage
           language={language}
-          className="w-3"
+          className="w-3 opacity-75"
         />
         <div className="font-mono">
           {keyword}
