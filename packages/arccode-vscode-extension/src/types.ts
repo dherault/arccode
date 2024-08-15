@@ -1,4 +1,4 @@
-import languageToKeywords from './keywords'
+import languageToKeywords from './languageToKeywords'
 
 export type UserInfo = {
   idToken: string
@@ -8,8 +8,6 @@ export type UserInfo = {
 }
 
 export type Language = keyof typeof languageToKeywords
-
-export type FileData = Record<string, string[][]> // File uri -> file line number -> seen lines
 
 export type KeywordData = Partial<Record<Language, Record<string, number>>> // Language -> keyword -> count
 

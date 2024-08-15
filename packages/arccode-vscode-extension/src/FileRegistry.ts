@@ -1,8 +1,7 @@
-import type { FileData } from './types'
 import { MAX_LINES } from './constants'
 
 class FileRegistry {
-  private data: FileData
+  private data: Record<string, string>
 
   constructor() {
     this.data = {}
@@ -13,30 +12,11 @@ class FileRegistry {
 
     if (lines.length > MAX_LINES) return
 
-    this.data[fileId] = this.mergeData(this.data[fileId] ?? [], lines.map(line => [line]))
+    this.data[fileId] = content
   }
 
-  public getAllLines(fileId: string) {
-    return this.data[fileId] ?? []
-  }
-
-  public getLatestLines(fileId: string) {
-    return this.data[fileId]?.map(x => x[x.length - 1]) ?? []
-  }
-
-  private mergeData(dataA: string[][], dataB: string[][]) {
-    const mergedData = dataA.map(lineData => [...lineData])
-
-    dataB.forEach((lineData, index) => {
-      if (!mergedData[index]) mergedData[index] = []
-      if (mergedData[index].some(line => lineData.includes(line))) return
-
-      lineData.forEach(line => {
-        mergedData[index].push(line)
-      })
-    })
-
-    return mergedData
+  public getLines(fileId: string) {
+    return this.data[fileId]?.split('\n') ?? []
   }
 }
 

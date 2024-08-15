@@ -36,7 +36,9 @@ class KeywordRegistry {
     }
   }
 
-  public registerKeyword(language: Language, keyword: string, delta = 1) {
+  public registerKeyword(language: Language, keyword: string, delta: number) {
+    if (!keyword) return
+
     const finalLanguage = LANGUAGE_CONVERSION[language] ?? language
 
     if (!this.dailyKeywords[finalLanguage]) this.dailyKeywords[finalLanguage] = {}
@@ -53,13 +55,13 @@ class KeywordRegistry {
   }
 
   // Filter keywords with negative or zero count
-  private filterKeywords(keywords: KeywordData): KeywordData {
+  private filterKeywords(keywordsData: KeywordData): KeywordData {
     return Object.fromEntries(
-      Object.entries(keywords)
+      Object.entries(keywordsData)
       .map(([language, keywords]) => [
         language,
         Object.fromEntries(
-          Object.entries(keywords)
+          Object.entries(keywords!)
           .filter(([, count]) => count > 0)
         ),
       ])
