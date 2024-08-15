@@ -1,10 +1,9 @@
 import { type DocumentReference, FieldValue } from 'firebase-admin/firestore'
 import { logger } from 'firebase-functions'
 import { z } from 'zod'
+import { getLevelUps } from 'arccode-core'
 
 import type { KeywordRegistry, User } from '~types'
-
-import getLevelUps from '~logic/getLevelUps'
 
 const keywordRegistrySchema = z.object({}).catchall(z.object({}).catchall(z.number().nonnegative().finite()))
 

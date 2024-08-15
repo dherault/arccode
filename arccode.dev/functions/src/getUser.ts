@@ -1,10 +1,9 @@
 import { logger } from 'firebase-functions'
-import { getAuth } from 'firebase-admin/auth'
 import type { Request } from 'firebase-functions'
 
 import type { User } from '~types'
 
-import app, { firestore } from './firebase'
+import { auth, firestore } from './firebase'
 
 const nullValue = {
   user: null,
@@ -17,9 +16,8 @@ async function getUser(request: Request) {
   if (!idToken) return nullValue
 
   try {
-    const decodedIdToken = await getAuth(app).verifyIdToken(idToken)
+    const decodedIdToken = await auth.verifyIdToken(idToken)
     const userDocument = firestore.collection('users').doc(decodedIdToken.uid)
-
     const user = (await userDocument.get()).data() as User
 
     return {

@@ -6,7 +6,7 @@
   },
   "main": "lib/functions/src/index.js",
   "scripts": {
-    "build": "tsc && tsc-alias",
+    "build": "rimraf lib/* && tsc && tsc-alias",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
@@ -14,12 +14,14 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
+    "arccode-core": "^0.0.1",
     "firebase-admin": "^12.3.1",
     "firebase-functions": "^5.0.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "firebase-functions-test": "^3.3.0",
+    "rimraf": "^6.0.1",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.5.4"
   }

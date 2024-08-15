@@ -1,5 +1,6 @@
 import { onRequest } from 'firebase-functions/v2/https'
 import { FieldValue } from 'firebase-admin/firestore'
+import { logger } from 'firebase-functions/v1'
 
 import type { User } from '~types'
 
@@ -45,13 +46,18 @@ export const registerKeywordsAdministrator = onRequest(
       return
     }
 
-    const { userId } = request.body
+    const { keywords, userId } = request.body.data
 
     if (!userId) {
+      logger.log('Missing userId')
+
       response.status(400).send()
 
       return
     }
+
+    logger.log('keywords')
+    logger.log(keywords)
 
     const userDocument = firestore.collection('users').doc(userId)
     const user = (await userDocument.get()).data() as User
@@ -59,7 +65,7 @@ export const registerKeywordsAdministrator = onRequest(
     const success = await updateKeywords(
       user,
       userDocument,
-      request.body.keywords,
+      keywords,
     )
 
     response.status(success ? 200 : 400).send()
