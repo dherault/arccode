@@ -1,4 +1,4 @@
-import { type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
+import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 type Props = {
@@ -10,8 +10,6 @@ type Props = {
 function SlidingBanner({ gap = 16, duration = 10, children }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
   const [dimension, setDimension] = useState(0)
-
-  const extenedChildren = [...children, ...children]
 
   const handleResize = useCallback(() => {
     if (!rootRef.current) return
@@ -56,15 +54,26 @@ function SlidingBanner({ gap = 16, duration = 10, children }: Props) {
         className="flex"
         style={{ gap }}
       >
-        {extenedChildren.map((child, index) => (
-          <div
-            key={index}
-            className="flex items-center min-w-full"
-            style={{ gap }}
-          >
-            {child}
-          </div>
-        ))}
+        <div
+          className="flex items-center justify-center min-w-full"
+          style={{ gap }}
+        >
+          {children.map((child, index) => (
+            <Fragment key={index}>
+              {child}
+            </Fragment>
+          ))}
+        </div>
+        <div
+          className="flex items-center justify-center min-w-full"
+          style={{ gap }}
+        >
+          {children.map((child, index) => (
+            <Fragment key={index}>
+              {child}
+            </Fragment>
+          ))}
+        </div>
       </motion.div>
     </div>
   )
