@@ -139,8 +139,6 @@ export function activate(context: vscode.ExtensionContext) {
     // https://stackoverflow.com/questions/69205747/bad-request-when-fetching-id-token-from-google
     if (process.env.DEV) return session.accessToken
 
-    vscode.window.showInformationMessage(session.accessToken)
-
     try {
       // https://firebase.google.com/docs/reference/rest/auth
       const response = await axios.post(
