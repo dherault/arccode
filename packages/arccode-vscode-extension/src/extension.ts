@@ -14,10 +14,8 @@ import { handleDocumentChange, populateFileRegistry } from './core'
 
 export function activate(context: vscode.ExtensionContext) {
   if (process.env.DEV) {
-    vscode.window.showInformationMessage('Arccode dev mode loaded')
+    vscode.window.showInformationMessage('Arccode loaded - dev mode')
   }
-
-  vscode.window.showInformationMessage('Arccode started')
 
   /* ---
     Authentication
@@ -58,8 +56,6 @@ export function activate(context: vscode.ExtensionContext) {
     if (!keywordRegistry.shouldSync) return
 
     await sync(keywordRegistry)
-
-    vscode.window.showInformationMessage('Arccode synced!')
   })
 
   /* ---
@@ -88,7 +84,21 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('arccode.print', async () => {
-      await vscode.window.showInformationMessage(JSON.stringify(keywordRegistry.filteredDailyKeywords, null, 2))
+      let message = ''
+
+      Object.entries(keywordRegistry.filteredDailyKeywords).forEach(([language, keywords]) => {
+        message += `${language}:\n`
+
+        Object.entries(keywords).forEach(([keyword, count]) => {
+          if (count <= 0) return
+
+          message += `${keyword}: ${count}\n`
+        })
+
+        message += '\n'
+      })
+
+      vscode.window.showInformationMessage(message)
     })
   )
 
