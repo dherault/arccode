@@ -229,6 +229,7 @@ const gears: Record<string, Item> = {
     rarity: 'legendary',
     name: 'HTML5 Chainmail',
     image: 'html5.png',
+    imagePadding: true,
   },
   typescript: {
     id: 'typescript',
@@ -243,6 +244,7 @@ const gears: Record<string, Item> = {
     rarity: 'rare',
     name: 'MongoDB Cuirass',
     image: 'mongodb.png',
+    imagePadding: true,
   },
   sailsjs: {
     id: 'sailsjs',
@@ -250,20 +252,22 @@ const gears: Record<string, Item> = {
     rarity: 'uncommon',
     name: 'Sails.js Splint Armor',
     image: 'sailsjs.png',
+    imagePadding: true,
   },
   gitlabcicd: {
     id: 'gitlabcicd',
     type: 'armor',
     rarity: 'uncommon',
     name: 'GitLab CI/CD Coat of Plates',
-    image: 'gitlabcicd.png',
+    image: 'gitlab.png',
   },
   firestore: {
     id: 'firestore',
     type: 'armor',
     rarity: 'common',
     name: 'Firestore Scale Armor',
-    image: 'firestore.png',
+    image: 'firebase.png',
+    imagePadding: true,
   },
   bulma: {
     id: 'bulma',
@@ -271,6 +275,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'Bulma Brigandine',
     image: 'bulma.png',
+    imagePadding: true,
   },
   ionic: {
     id: 'ionic',
@@ -278,13 +283,15 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'Ionic Coat',
     image: 'ionic.png',
+    imagePadding: true,
   },
   githubactions: {
     id: 'githubactions',
     type: 'armor',
     rarity: 'common',
     name: 'GitHub Actions Full Plate Armor',
-    image: 'githubactions.png',
+    image: 'github.png',
+    imagePadding: true,
   },
   /* ---
     Glove
