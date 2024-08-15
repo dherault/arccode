@@ -1,5 +1,4 @@
 {
-  "extends": "..",
   "compilerOptions": {
     "module": "commonjs",
     "noImplicitReturns": true,
@@ -7,7 +6,24 @@
     "outDir": "lib",
     "sourceMap": true,
     "strict": true,
-    "target": "es2017"
+    "target": "es2017",
+    /* Custom */
+    "baseUrl": "./src",
+    "paths": {
+      "~types": ["../../src/types.ts"],
+      "~constants": ["../../src/constants.ts"],
+      "~firebase": ["../../src/firebase.ts"],
+      "~vendor/*": ["../../src/../public/vendor/*"],
+      "~logic/*": ["../../src/logic/*"],
+      "~contexts/*": ["../../src/contexts/*"],
+      "~hooks/*": ["../../src/hooks/*"],
+      "~utils/*": ["../../src/utils/*"],
+      "~app/*": ["../../src/app/*"],
+      "~components/*": ["../../src/components/*"],
+      "~emails/*": ["../../src/emails/*"],
+      "~data/*": ["../../src/data/*"],
+      "~router/*": ["../../src/router/*"]
+    },
   },
   "compileOnSave": true,
   "include": [

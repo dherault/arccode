@@ -4,10 +4,9 @@
   "engines": {
     "node": "18"
   },
-  "main": "lib/index.js",
+  "main": "lib/functions/src/index.js",
   "scripts": {
-    "build": "tsc",
-    "build:watch": "tsc --watch",
+    "build": "tsc && tsc-alias",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
@@ -21,6 +20,7 @@
   },
   "devDependencies": {
     "firebase-functions-test": "^3.3.0",
+    "tsc-alias": "^1.8.10",
     "typescript": "^5.5.4"
   }
 }
