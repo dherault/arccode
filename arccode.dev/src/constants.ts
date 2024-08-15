@@ -22,30 +22,21 @@ export const AUTHENTICATION_ERRORS = {
 }
 
 /* ---
-  Legal
---- */
-
-export const LEGAL_COMPANY_NAME = 'Microentreprise David Hérault'
-
-export const LEGAL_DATE = '1 October 2024'
-
-export const LEGAL_LAST_UPDATED_DATE = '1 October 2024'
-
-/* ---
-  Legal
---- */
-
-export const SUPPORT_EMAIL = 'dherault@gmail.com'
-
-/* ---
-  Other
---- */
-
-export const NULL_DOCUMENT_ID = '_null_'
-
-/* ---
   Character
 --- */
+
+export const WIN_PROBABILITIES = {
+  avatars: [0, 0],
+  gears: [0, 1],
+} as const
+
+export const RARITY_PROBABILITIES: Record<ItemRarity, [number, number]> = {
+  legendary: [0, 0.015], // 0.015
+  epic: [0.015, 0.075], // 0.06
+  rare: [0.075, 0.225], // 0.15
+  uncommon: [0.225, 0.525], // 0.30
+  common: [0.525, 1], // 0.475
+}
 
 export const INITIAL_CHARACTER: Character = {
   name: '',
@@ -149,3 +140,25 @@ export const RARITY_ORDERS: Record<ItemRarity, number> = {
   uncommon: 3,
   common: 4,
 }
+
+/* ---
+  Legal
+--- */
+
+export const LEGAL_COMPANY_NAME = 'Microentreprise David Hérault'
+
+export const LEGAL_DATE = '1 October 2024'
+
+export const LEGAL_LAST_UPDATED_DATE = '1 October 2024'
+
+/* ---
+  Support
+--- */
+
+export const SUPPORT_EMAIL = 'dherault@gmail.com'
+
+/* ---
+  Other
+--- */
+
+export const NULL_DOCUMENT_ID = '_null_'

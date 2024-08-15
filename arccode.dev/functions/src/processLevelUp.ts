@@ -2,16 +2,18 @@ import { FieldValue } from 'firebase-admin/firestore'
 
 import type { User } from '~types'
 
-import getKeywordPayload from './getKeywordPayload'
+import parseKeywords from './parseKeywords'
+import pickReward from './pickReward'
 
 function processLevelUp(user: User, levelUpsKeywords: unknown) {
-  const keywordsPayload = getKeywordPayload(levelUpsKeywords)
+  const levelUpsKeywordsPayload = parseKeywords(levelUpsKeywords)
 
-  if (!keywordsPayload) return null
+  if (!levelUpsKeywordsPayload) return null
 
   const userPayload: Record<string, any> = {}
+  const unlockedItems: Record<string, number> = {}
 
-  Object.entries(keywordsPayload).forEach(([language, keywordMap]) => {
+  Object.entries(levelUpsKeywordsPayload).forEach(([language, keywordMap]) => {
     if (!language) return
 
     Object.entries(keywordMap).forEach(([keyword, amount]) => {
@@ -20,17 +22,26 @@ function processLevelUp(user: User, levelUpsKeywords: unknown) {
 
       const finalAmount = Math.round(amount)
 
-      if (!finalAmount) return
+      if (finalAmount <= 0) return
+      if ((user.character.levelUpsKeywords[language]?.[keyword] ?? 0) < finalAmount) return
 
-      console.log('finalAmount', finalAmount)
-      // userPayload[`character.keywords.${language}.${keyword}`] = FieldValue.increment(finalAmount)
+      userPayload[`character.levelUpsKeywords.${language}.${keyword}`] = FieldValue.increment(-finalAmount)
 
-      // if (!keywords[language]) keywords[language] = {}
-      // if (!keywords[language][keyword]) keywords[language][keyword] = 0
+      for (let i = 0; i < finalAmount; i++) {
+        const rewardItem = pickReward()
 
-      // keywords[language][keyword] += finalAmount
+        if (!unlockedItems[rewardItem.id]) unlockedItems[rewardItem.id] = 0
+
+        unlockedItems[rewardItem.id]++
+      }
     })
   })
+
+  Object.entries(unlockedItems).forEach(([itemId, amount]) => {
+    userPayload[`character.unlockedItems.${itemId}`] = FieldValue.increment(amount)
+  })
+
+  if (!Object.keys(userPayload).length) return null
 
   userPayload.updatedAt = FieldValue.serverTimestamp()
 

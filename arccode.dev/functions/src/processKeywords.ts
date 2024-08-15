@@ -3,10 +3,10 @@ import { getLevelUps } from 'arccode-core'
 
 import type { User } from '~types'
 
-import getKeywordPayload from './getKeywordPayload'
+import parseKeywords from './parseKeywords'
 
 function processKeywords(user: User, keywordsBody: unknown) {
-  const keywordsPayload = getKeywordPayload(keywordsBody)
+  const keywordsPayload = parseKeywords(keywordsBody)
 
   if (!keywordsPayload) return null
 
