@@ -1,0 +1,41 @@
+{
+  "name": "arccode-core",
+  "description": "Core domain logic for Arccode.dev",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/arccode-core.umd.cjs",
+  "module": "./dist/arccode-core.js",
+  "exports": {
+    ".": {
+      "import": "./dist/arccode-core.js",
+      "require": "./dist/arccode-core.umd.cjs"
+    }
+  },
+  "types": "./dist/arccode-core.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dherault/arccode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dherault/arccode/issues"
+  },
+  "homepage": "https://github.com/dherault/arccode",
+  "author": "David Hérault <dherault@gmail.com> (https://github.com/dherault)",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && vite build",
+    "lint": "tsc && eslint src --ext ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0",
+    "vite-plugin-dts": "^4.0.2"
+  },
+  "dependencies": {
+    "arccode-keyword-thresholds": "^0.0.0"
+  }
+}
