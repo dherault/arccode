@@ -10,6 +10,7 @@ import {
 } from 'firebase/auth'
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
 import { connectStorageEmulator, getStorage } from 'firebase/storage'
+import { connectFunctionsEmulator, getFunctions } from 'firebase/functions'
 import { getPerformance } from 'firebase/performance'
 import { ReCaptchaV3Provider, initializeAppCheck } from 'firebase/app-check'
 
@@ -32,6 +33,8 @@ export const auth = getAuth(app)
 export const db = getFirestore(app)
 
 export const storage = getStorage(app)
+
+export const functions = getFunctions(app)
 
 try {
   getPerformance(app)
@@ -60,7 +63,7 @@ if (import.meta.env.DEV) {
   connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true })
   connectFirestoreEmulator(db, 'localhost', 8080)
   connectStorageEmulator(storage, 'localhost', 9199)
-  // connectFunctionsEmulator(functions, '127.0.0.1', 5001)
+  connectFunctionsEmulator(functions, '127.0.0.1', 5001)
 }
 
 initializeAppCheck(app, {

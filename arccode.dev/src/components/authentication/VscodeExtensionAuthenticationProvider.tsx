@@ -8,8 +8,6 @@ function VscodeExtensionAuthenticationProvider({ children }: PropsWithChildren) 
   const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
 
-  console.log(viewer?.refreshToken)
-
   const handleRedirect = useCallback(async () => {
     if (!(user && viewer)) return
 

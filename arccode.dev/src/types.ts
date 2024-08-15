@@ -1,8 +1,16 @@
+import type { Character, Keyword, KeywordRegistry } from 'arccode-core'
+
 /* ---
   Database resources
 --- */
 
 import type { CHARACTER_SLOTS } from '~constants'
+
+export type {
+  Character,
+  Keyword,
+  KeywordRegistry,
+}
 
 export type DatabaseResource<T = unknown> = T & {
   id: string
@@ -36,32 +44,6 @@ export type Email = DatabaseResource<{
   Character
 --- */
 
-export type KeywordRegistry = Record<string, Record<string, number>>
-
-export type Character = {
-  name: string
-  level: number
-  levelUps: number
-  levelUpsKeywords: KeywordRegistry
-  keywords: KeywordRegistry
-  viewedKeywords: KeywordRegistry
-  processedKeywords: KeywordRegistry
-  unlockedItems: Record<string, number>
-  avatarItemId: string
-  mainHandItemId: string
-  offHandItemId: string
-  helmItemId: string
-  armorItemId: string
-  glovesItemId: string
-  bootsItemId: string
-  amuletItemId: string
-  ringItemId: string
-  spell1ItemId: string
-  spell2ItemId: string
-  spell3ItemId: string
-  spell4ItemId: string
-}
-
 export type CharacterSlot = typeof CHARACTER_SLOTS[number]
 
 /* ---
@@ -92,19 +74,6 @@ export type Item = {
   imagePadding?: boolean
   type: ItemType
   rarity: ItemRarity
-}
-
-/* ---
-  Keyword
---- */
-
-export type Keyword = {
-  language: string
-  name: string
-  count: number
-  level: number
-  thresholdMin: number
-  thresholdMax: number
 }
 
 /* ---

@@ -1,7 +1,9 @@
-import { type Dispatch, type SetStateAction, useCallback } from 'react'
-import { doc, updateDoc } from 'firebase/firestore'
+import { type Dispatch, type SetStateAction, useCallback, useEffect, useState } from 'react'
+import { httpsCallable } from 'firebase/functions'
 
-import { db } from '~firebase'
+import type { KeywordRegistry } from '~types'
+
+import { functions } from '~firebase'
 
 import useDebounce from '~hooks/common/useDebounce'
 import useUsers from '~hooks/administrator/useUsers'
@@ -9,9 +11,11 @@ import useUsers from '~hooks/administrator/useUsers'
 import {
   Dialog,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '~components/ui/Dialog'
+import { Button } from '~components/ui/Button'
 
 import languages from '~data/languages'
 
@@ -27,6 +31,8 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
   const debouncedUser = useDebounce(user, 300)
   const finalUser = user ?? debouncedUser
 
+  const [keywords, setKeywords] = useState<KeywordRegistry>({})
+
   const handleClose = useCallback(() => {
     setUserId('')
   }, [
@@ -34,13 +40,37 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
   ])
 
   const handleKeyword = useCallback((language: string, keyword: string, delta: number) => {
-    if (!user) return
+    setKeywords(x => {
+      const nextKeywords = { ...x }
 
-    updateDoc(doc(db, 'users', user.id), {
-      [`character.keywords.${language}.${keyword}`]: Math.max(0, (user?.character.keywords[language]?.[keyword] ?? 0) + delta),
+      if (!nextKeywords[language]) nextKeywords[language] = {}
+      if (!nextKeywords[language][keyword]) nextKeywords[language][keyword] = 0
+
+      nextKeywords[language][keyword] = Math.max(0, nextKeywords[language][keyword] + delta)
+
+      return nextKeywords
     })
+  }, [])
+
+  const handleSubmit = useCallback(async () => {
+    const registerKeywordsAdministrator = httpsCallable(functions, 'registerKeywordsAdministrator')
+
+    await registerKeywordsAdministrator({
+      userId: finalUser?.id,
+      keywords,
+    })
+
+    handleClose()
   }, [
-    user,
+    finalUser?.id,
+    keywords,
+    handleClose,
+  ])
+
+  useEffect(() => {
+    setKeywords({})
+  }, [
+    finalUser,
   ])
 
   return (
@@ -72,7 +102,7 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
                     {keyword}
                   </div>
                   <div>
-                    {finalUser?.character.keywords[languageKey]?.[keyword] ?? 0}
+                    {(finalUser?.character.keywords[languageKey]?.[keyword] ?? 0) + (keywords[languageKey]?.[keyword] ?? 0)}
                   </div>
                   <div className="flex gap-2">
                     <div
@@ -117,6 +147,11 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
             </div>
           ))}
         </div>
+        <DialogFooter>
+          <Button onClick={handleSubmit}>
+            Save
+          </Button>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   )

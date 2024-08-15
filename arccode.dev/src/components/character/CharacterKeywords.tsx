@@ -1,5 +1,5 @@
 
-import getCharacterKeywords from '~logic/getCharacterKeywords'
+import { getCharacterKeywords } from 'arccode-core'
 
 import useCharacter from '~hooks/character/useCharacter'
 
