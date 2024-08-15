@@ -1,10 +1,10 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { CircleSlash2 } from 'lucide-react'
 import _ from 'clsx'
 
 import type { CharacterSlot, ItemType } from '~types'
 
-import { ITEM_TYPE_LABELS } from '~constants'
+import { ITEM_TYPE_LABELS, RARITY_ORDERS } from '~constants'
 
 import useCharacter from '~hooks/character/useCharacter'
 
@@ -29,11 +29,17 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
   const [open, setOpen] = useState(false)
 
   const item = items[itemId] ?? null
-  const unlockedItemIds = Object.entries(character.unlockedItems)
-    .filter(([, value]) => value > 0)
-    .map(([key]) => items[key])
-    .filter(item => item.type === type)
-    .map(item => item.id)
+  const unlockedItemIds = useMemo(() => (
+    Object.entries(character.unlockedItems)
+      .filter(([, value]) => value > 0)
+      .map(([key]) => items[key])
+      .filter(item => item.type === type)
+      .sort((a, b) => RARITY_ORDERS[a.rarity] - RARITY_ORDERS[b.rarity])
+      .map(item => item.id)
+  ), [
+    type,
+    character.unlockedItems,
+  ])
 
   const handleEquip = useCallback(async (itemId: string) => {
     await updateCharacter({

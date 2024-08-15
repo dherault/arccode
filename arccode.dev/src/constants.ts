@@ -141,3 +141,11 @@ export const RARITY_COLORS: Record<ItemRarity, string> = {
   epic: '#FF49BF',
   legendary: '#FFBE3D',
 }
+
+export const RARITY_ORDERS: Record<ItemRarity, number> = {
+  legendary: 0,
+  epic: 1,
+  rare: 2,
+  uncommon: 3,
+  common: 4,
+}
