@@ -21,6 +21,7 @@ function ItemCard({ item, borderWidth = 1 }: Props) {
         alt={item.name}
         draggable={false}
         className="w-full h-full"
+        style={{ padding: item.imagePadding ? '10%' : undefined }}
       />
     </div>
   )

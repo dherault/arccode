@@ -17,6 +17,7 @@ const gears: Record<string, Item> = {
     rarity: 'epic',
     name: 'Node.js Greatsword',
     image: 'nodejs.png',
+    imagePadding: true,
   },
   vercel: {
     id: 'vercel',
@@ -24,6 +25,7 @@ const gears: Record<string, Item> = {
     rarity: 'rare',
     name: 'Vercel Rapier',
     image: 'vercel.png',
+    imagePadding: true,
   },
   oauth: {
     id: 'oauth',
@@ -45,6 +47,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'Phoenix Scimitar',
     image: 'phoenix.png',
+    imagePadding: true,
   },
   cassandra: {
     id: 'cassandra',
@@ -52,6 +55,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'Cassandra Dagger',
     image: 'cassandra.png',
+    imagePadding: true,
   },
   webstorm: {
     id: 'webstorm',
@@ -59,6 +63,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'WebStorm Mace',
     image: 'webstorm.png',
+    imagePadding: true,
   },
   mysql: {
     id: 'mysql',
@@ -66,6 +71,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'MySQL Axe',
     image: 'mysql.png',
+    imagePadding: true,
   },
   /* ---
     Off hand
@@ -76,6 +82,7 @@ const gears: Record<string, Item> = {
     rarity: 'legendary',
     name: 'GitHub Buckler',
     image: 'github.png',
+    imagePadding: true,
   },
   angular: {
     id: 'angular',
@@ -90,6 +97,7 @@ const gears: Record<string, Item> = {
     rarity: 'rare',
     name: 'Kubernetes Round Shield',
     image: 'kubernetes.png',
+    imagePadding: true,
   },
   yarn: {
     id: 'yarn',
@@ -97,6 +105,7 @@ const gears: Record<string, Item> = {
     rarity: 'uncommon',
     name: 'Yarn Heater Shield',
     image: 'yarn.png',
+    imagePadding: true,
   },
   apollo: {
     id: 'apollo',
@@ -104,6 +113,7 @@ const gears: Record<string, Item> = {
     rarity: 'uncommon',
     name: 'Apollo Pavise',
     image: 'apollo.png',
+    imagePadding: true,
   },
   auth0: {
     id: 'auth0',
@@ -111,6 +121,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'Auth0 Targe',
     image: 'auth0.png',
+    imagePadding: true,
   },
   foundation: {
     id: 'foundation',
@@ -118,6 +129,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'Foundation Hoplon',
     image: 'foundation.png',
+    imagePadding: true,
   },
   koa: {
     id: 'koa',
@@ -125,6 +137,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'Koa.js Aspis',
     image: 'koa.png',
+    imagePadding: true,
   },
   elasticsearch: {
     id: 'elasticsearch',
@@ -132,6 +145,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'Elasticsearch Riot Shield',
     image: 'elasticsearch.png',
+    imagePadding: true,
   },
   /* ---
     Helm
@@ -142,6 +156,7 @@ const gears: Record<string, Item> = {
     rarity: 'legendary',
     name: 'Git Great Helm',
     image: 'git.png',
+    imagePadding: true,
   },
   googlecloudplatform: {
     id: 'googlecloudplatform',
@@ -149,6 +164,7 @@ const gears: Record<string, Item> = {
     rarity: 'epic',
     name: 'Google Cloud Platform Cap',
     image: 'googlecloudplatform.png',
+    imagePadding: true,
   },
   svelte: {
     id: 'svelte',
@@ -156,6 +172,7 @@ const gears: Record<string, Item> = {
     rarity: 'rare',
     name: 'Svelte Shako',
     image: 'svelte.png',
+    imagePadding: true,
   },
   rollup: {
     id: 'rollup',
@@ -163,6 +180,7 @@ const gears: Record<string, Item> = {
     rarity: 'uncommon',
     name: 'Rollup Hard Hat',
     image: 'rollup.png',
+    imagePadding: true,
   },
   pip: {
     id: 'pip',
@@ -170,6 +188,7 @@ const gears: Record<string, Item> = {
     rarity: 'uncommon',
     name: 'pip Corinthian Helmet',
     image: 'python.png',
+    imagePadding: true,
   },
   oracledatabase: {
     id: 'oracledatabase',
@@ -191,6 +210,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'NativeScript Casque',
     image: 'nativescript.png',
+    imagePadding: true,
   },
   bitbucket: {
     id: 'bitbucket',
@@ -198,6 +218,7 @@ const gears: Record<string, Item> = {
     rarity: 'common',
     name: 'Bitbucket Bucket',
     image: 'bitbucket.png',
+    imagePadding: true,
   },
   /* ---
     Armor

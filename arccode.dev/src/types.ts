@@ -89,6 +89,7 @@ export type Item = {
   id: string
   name: string
   image: string
+  imagePadding?: boolean
   type: ItemType
   rarity: ItemRarity
 }
