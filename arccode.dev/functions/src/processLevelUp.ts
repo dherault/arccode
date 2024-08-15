@@ -20,7 +20,7 @@ function processLevelUp(user: User, levelUpsKeywords: unknown) {
       if (!keyword) return
       if (amount !== amount) return
 
-      const finalAmount = Math.round(amount)
+      const finalAmount = Math.floor(amount)
 
       if (finalAmount <= 0) return
       if ((user.character.levelUpsKeywords[language]?.[keyword] ?? 0) < finalAmount) return

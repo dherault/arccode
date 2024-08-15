@@ -20,7 +20,7 @@ function processKeywords(user: User, keywordsBody: unknown) {
       if (!keyword) return
       if (amount !== amount) return
 
-      const finalAmount = Math.round(amount)
+      const finalAmount = Math.floor(amount)
 
       if (!finalAmount) return
 
