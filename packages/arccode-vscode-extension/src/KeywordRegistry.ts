@@ -1,7 +1,12 @@
 import * as vscode from 'vscode'
 
-import { CURRENT_KEYWORDS_STORAGE_KEY, DAILY_KEYWORDS_STORAGE_KEY, SYNC_PERIOD } from './constants'
 import type { KeywordData, Language } from './types'
+import {
+  CURRENT_KEYWORDS_STORAGE_KEY,
+  DAILY_KEYWORDS_STORAGE_KEY,
+  LANGUAGE_CONVERSION,
+  SYNC_PERIOD,
+} from './constants'
 
 class KeywordRegistry {
   private context: vscode.ExtensionContext
@@ -12,18 +17,12 @@ class KeywordRegistry {
 
   private currentKeywords: KeywordData
 
-  private languageConversion: Partial<Record<Language, Language>>
-
   constructor(context: vscode.ExtensionContext) {
     this.context = context
 
     this.updatedAt = new Date()
     this.dailyKeywords = {}
     this.currentKeywords = {}
-    this.languageConversion = {
-      javascriptreact: 'javascript',
-      typescriptreact: 'typescript',
-    }
 
     try {
       const dailyKeywordsJson = context.globalState.get(DAILY_KEYWORDS_STORAGE_KEY)
@@ -38,7 +37,7 @@ class KeywordRegistry {
   }
 
   public registerKeyword(language: Language, keyword: string, delta = 1) {
-    const finalLanguage = this.languageConversion[language] ?? language
+    const finalLanguage = LANGUAGE_CONVERSION[language] ?? language
 
     if (!this.dailyKeywords[finalLanguage]) this.dailyKeywords[finalLanguage] = {}
     if (!this.currentKeywords[finalLanguage]) this.currentKeywords[finalLanguage] = {}

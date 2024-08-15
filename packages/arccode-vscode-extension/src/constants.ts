@@ -1,3 +1,5 @@
+import type { Language } from './types'
+
 export const AUTHENTICATION_URL = process.env.DEV
   ? 'http://localhost:5173/authentication'
   : 'https://arccode.dev/authentication'
@@ -29,3 +31,8 @@ export const MAX_LINES = 5000
 export const DAILY_KEYWORDS_STORAGE_KEY = 'arccode.dailyKeywords'
 
 export const CURRENT_KEYWORDS_STORAGE_KEY = 'arccode.currentKeywords'
+
+export const LANGUAGE_CONVERSION: Partial<Record<Language, Language>> = {
+  javascriptreact: 'javascript',
+  typescriptreact: 'typescript',
+}
