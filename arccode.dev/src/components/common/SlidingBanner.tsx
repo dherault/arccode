@@ -1,6 +1,8 @@
 import { Fragment, type ReactNode, useCallback, useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
+import useRefresh from '~hooks/common/useRefresh'
+
 type Props = {
   gap?: number
   duration?: number
@@ -9,13 +11,16 @@ type Props = {
 
 function SlidingBanner({ gap = 16, duration = 10, children }: Props) {
   const rootRef = useRef<HTMLDivElement>(null)
+  const motionRef = useRef<HTMLDivElement>(null)
   const [dimension, setDimension] = useState(0)
 
+  useRefresh()
+
   const handleResize = useCallback(() => {
-    if (!rootRef.current) return
+    if (!motionRef.current) return
 
     let sum = 0
-    const nodes = rootRef.current.children
+    const nodes = motionRef.current.children
 
     for (let i = 0; i < nodes.length; i++) {
       sum += (nodes[i] as HTMLElement).offsetWidth + gap
@@ -38,12 +43,17 @@ function SlidingBanner({ gap = 16, duration = 10, children }: Props) {
     handleResize,
   ])
 
+  const rootWidth = rootRef.current?.clientWidth ?? 'auto'
+
   return (
-    <div className="overflow-hidden w-full">
+    <div
+      ref={rootRef}
+      className="overflow-hidden w-full"
+    >
       <motion.div
-        ref={rootRef}
+        ref={motionRef}
         animate={{
-          x: ['0%', -dimension],
+          x: ['0%', -(rootWidth === 'auto' ? dimension : Math.max(rootWidth + gap, dimension))],
           transition: {
             repeat: Infinity,
             repeatType: 'loop',
@@ -51,12 +61,15 @@ function SlidingBanner({ gap = 16, duration = 10, children }: Props) {
             ease: 'linear',
           },
         }}
-        className="flex"
+        className="flex w-fit"
         style={{ gap }}
       >
         <div
-          className="flex items-center justify-center min-w-full"
-          style={{ gap }}
+          className="flex items-center justify-center w-max"
+          style={{
+            gap,
+            minWidth: rootWidth,
+          }}
         >
           {children.map((child, index) => (
             <Fragment key={index}>
@@ -65,8 +78,11 @@ function SlidingBanner({ gap = 16, duration = 10, children }: Props) {
           ))}
         </div>
         <div
-          className="flex items-center justify-center min-w-full"
-          style={{ gap }}
+          className="flex items-center justify-center w-max"
+          style={{
+            gap,
+            minWidth: rootWidth,
+          }}
         >
           {children.map((child, index) => (
             <Fragment key={index}>

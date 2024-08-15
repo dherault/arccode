@@ -11,8 +11,6 @@ function LevelUpCard() {
 
   const [open, setOpen] = useState(false)
 
-  console.log('character', character)
-
   const keywordNodes = Object.entries(character.levelUpsKeywords).map(([language, keywords]) => (
     Object.entries(keywords)
     .filter(([, count]) => count > 0)
@@ -49,7 +47,7 @@ function LevelUpCard() {
         </div>
         <div className="grow" />
         <SlidingBanner
-          duration={Math.max(10, keywordNodes.length * 2)}
+          duration={Math.max(8, keywordNodes.length * 2)}
           gap={12}
         >
           {keywordNodes}

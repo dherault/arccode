@@ -28,7 +28,7 @@ function UsersProvider({ children }: PropsWithChildren) {
   }, [])
 
   const usersContextValue = useMemo<UsersContextType>(() => ({
-    users,
+    users: [...users].sort((a, b) => b.createdAt.localeCompare(a.createdAt)),
     page: cursor / PAGINATION_SIZE + 1,
     hasNextPage: users.length >= PAGINATION_SIZE,
     goToPreviousPage: handlePreviousPage,
