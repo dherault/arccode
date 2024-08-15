@@ -9,7 +9,7 @@ export type UserInfo = {
 
 export type Language = keyof typeof languageToKeywords
 
-export type FileRegistry = Record<string, string> // File uri -> file content
+export type FileData = Record<string, string[][]> // File uri -> file line number -> seen lines
 
 export type KeywordData = Partial<Record<Language, Record<string, number>>> // Language -> keyword -> count
 

@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import axios from 'axios'
 
-import type { FileRegistry } from './types'
 import {
   ACTIVATE_EXTENSION_API_URL,
   AUTHENTICATION_TYPE,
@@ -9,12 +8,13 @@ import {
   REGISTER_KEYWORDS_API_URL,
 } from './constants'
 import ArccodeAuthenticationProvider from './ArccodeAuthenticationProvider'
+import FileRegistry from './FileRegistry'
 import KeywordRegistry from './KeywordRegistry'
 import { handleDocumentChange, populateFileRegistry } from './core'
 
 export function activate(context: vscode.ExtensionContext) {
   if (process.env.DEV) {
-    vscode.window.showInformationMessage('Arccode loaded - dev mode')
+    vscode.window.showInformationMessage('Arccode loaded - dev mode!')
   }
 
   /* ---
@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
     Keywords
   --- */
 
-  const fileRegistry: FileRegistry = {}
+  const fileRegistry = new FileRegistry()
   const keywordRegistry = new KeywordRegistry(context)
 
   vscode.workspace.textDocuments.forEach(document => populateFileRegistry(document, fileRegistry))

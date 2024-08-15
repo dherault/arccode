@@ -5,21 +5,6 @@
 {
 	"version": "0.2.0",
 	"configurations": [
-		// {
-		// 	"name": "Run Extension",
-		// 	"type": "extensionHost",
-		// 	"request": "launch",
-		// 	"args": [
-		// 		"--extensionDevelopmentPath=${workspaceFolder}"
-		// 	],
-		// 	"outFiles": [
-		// 		"${workspaceFolder}/out/**/*.js"
-		// 	],
-		// 	"preLaunchTask": "${defaultBuildTask}",
-		// 	"env": {
-		// 		"DEVx": "true"
-		// 	}
-		// },
 		{
 			"name": "Launch Extension",
 			"type": "extensionHost",
@@ -31,7 +16,10 @@
 			"outFiles": [
 					"${workspaceFolder}/dist/**/*.js"
 			],
-			"preLaunchTask": "npm: compile"
+			"preLaunchTask": "npm: compile",
+			"env": {
+				"DEV": "true"
+			}
 		}
 	]
 }
