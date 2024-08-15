@@ -15,7 +15,7 @@
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "prepare": "husky",
-    "lint": "(cd arccode.dev && npm run lint) && (cd packages/arccode-vscode-extension && npm run lint) && (cd packages/language-keywords && npm run lint) && (cd packages/arccode-keyword-thresholds && npm run lint)"
+    "lint": "(cd arccode.dev && npm run lint) && (cd packages/arccode-vscode-extension && npm run lint) && (cd packages/arccode-core && npm run lint) && (cd packages/language-keywords && npm run lint) && (cd packages/arccode-keyword-thresholds && npm run lint)"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
