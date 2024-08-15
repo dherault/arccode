@@ -25,3 +25,7 @@ export const SESSIONS_SECRET_KEY = `${AUTHENTICATION_TYPE}.sessions`
 export const CODE_EXCHANGE_PROMISE_KEY = 'CODE_EXCHANGE_PROMISE'
 
 export const MAX_LINES = 5000
+
+export const DAILY_KEYWORDS_STORAGE_KEY = 'arccode.dailyKeywords'
+
+export const CURRENT_KEYWORDS_STORAGE_KEY = 'arccode.currentKeywords'

@@ -46,7 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
   --- */
 
   const fileRegistry: FileRegistry = {}
-  const keywordRegistry = new KeywordRegistry()
+  const keywordRegistry = new KeywordRegistry(context)
 
   vscode.workspace.textDocuments.forEach(document => populateFileRegistry(document, fileRegistry))
   vscode.workspace.onDidOpenTextDocument(document => populateFileRegistry(document, fileRegistry))
@@ -84,21 +84,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('arccode.print', async () => {
-      let message = ''
-
-      Object.entries(keywordRegistry.filteredDailyKeywords).forEach(([language, keywords]) => {
-        message += `${language}:\n`
-
-        Object.entries(keywords).forEach(([keyword, count]) => {
-          if (count <= 0) return
-
-          message += `${keyword}: ${count}\n`
-        })
-
-        message += '\n'
-      })
-
-      vscode.window.showInformationMessage(message)
+      vscode.window.showInformationMessage(JSON.stringify(keywordRegistry.filteredDailyKeywords, null, 2))
     })
   )
 

@@ -1,7 +1,11 @@
-import { SYNC_PERIOD } from './constants'
+import * as vscode from 'vscode'
+
+import { CURRENT_KEYWORDS_STORAGE_KEY, DAILY_KEYWORDS_STORAGE_KEY, SYNC_PERIOD } from './constants'
 import type { KeywordData, Language } from './types'
 
 class KeywordRegistry {
+  private context: vscode.ExtensionContext
+
   private updatedAt: Date
 
   private dailyKeywords: KeywordData
@@ -10,13 +14,26 @@ class KeywordRegistry {
 
   private languageConversion: Partial<Record<Language, Language>>
 
-  constructor() {
+  constructor(context: vscode.ExtensionContext) {
+    this.context = context
+
     this.updatedAt = new Date()
     this.dailyKeywords = {}
     this.currentKeywords = {}
     this.languageConversion = {
       javascriptreact: 'javascript',
       typescriptreact: 'typescript',
+    }
+
+    try {
+      const dailyKeywordsJson = context.globalState.get(DAILY_KEYWORDS_STORAGE_KEY)
+      const currentKeywordsJson = context.globalState.get(CURRENT_KEYWORDS_STORAGE_KEY)
+
+      if (dailyKeywordsJson) this.dailyKeywords = JSON.parse(dailyKeywordsJson as string)
+      if (currentKeywordsJson) this.currentKeywords = JSON.parse(currentKeywordsJson as string)
+    }
+    catch (error) {
+      //
     }
   }
 
@@ -31,6 +48,9 @@ class KeywordRegistry {
     this.dailyKeywords[finalLanguage][keyword] += delta
     this.currentKeywords[finalLanguage][keyword] += delta
     this.updatedAt = new Date()
+
+    this.context.globalState.update(DAILY_KEYWORDS_STORAGE_KEY, JSON.stringify(this.dailyKeywords))
+    this.context.globalState.update(CURRENT_KEYWORDS_STORAGE_KEY, JSON.stringify(this.currentKeywords))
   }
 
   // Filter keywords with negative or zero count
@@ -50,9 +70,11 @@ class KeywordRegistry {
 
   public reset() {
     this.currentKeywords = {}
+    this.context.globalState.update(CURRENT_KEYWORDS_STORAGE_KEY, JSON.stringify(this.currentKeywords))
 
     if (new Date().getDate() !== this.updatedAt.getDate()) {
       this.dailyKeywords = {}
+      this.context.globalState.update(DAILY_KEYWORDS_STORAGE_KEY, JSON.stringify(this.dailyKeywords))
     }
   }
 
