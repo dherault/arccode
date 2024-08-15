@@ -1,105 +1,101 @@
-import { onRequest } from 'firebase-functions/v2/https'
+import { HttpsError, onCall, onRequest } from 'firebase-functions/v2/https'
 import { FieldValue } from 'firebase-admin/firestore'
 import { logger } from 'firebase-functions/v1'
 
 import type { User } from '~types'
 
-import updateKeywords from './updateKeywords'
-import getUser from './getUser'
 import { firestore } from './firebase'
+import { getUserFromCallableRequest, getUserFromRequest } from './getUser'
+import processKeywords from './processKeywords'
+import processLevelUp from './processLevelUp'
 
-export const registerKeywords = onRequest(
-  { cors: true },
-  async (request, response) => {
-    const { user, userDocument } = await getUser(request)
+const COSR = { cors: true }
 
-    if (!(user && userDocument)) {
-      response.status(401).send()
+export const registerKeywords = onRequest(COSR, async (request, response) => {
+  const { user, userDocument } = await getUserFromRequest(request)
 
-      return
-    }
+  if (!(user && userDocument)) {
+    response.status(401).send()
 
-    const success = await updateKeywords(
-      user,
-      userDocument,
-      request.body.keywords,
-    )
-
-    if (!success) {
-      response.status(400).send()
-
-      return
-    }
-
-    response.status(200).send()
+    return
   }
-)
 
-export const registerKeywordsAdministrator = onRequest(
-  { cors: true },
-  async (request, response) => {
-    const { user: administratorUser } = await getUser(request)
+  logger.log(`Updating keywords for ${user.id}`)
 
-    if (!administratorUser) {
-      response.status(401).send()
+  const userPayload = processKeywords(user, request.body.keywords)
 
-      return
-    }
+  if (!userPayload) {
+    response.status(400).send()
 
-    if (!administratorUser.isAdministrator) {
-      response.status(403).send()
-
-      return
-    }
-
-    const { keywords, userId } = request.body.data
-
-    if (!userId) {
-      logger.log('Missing userId')
-
-      response.status(400).send()
-
-      return
-    }
-
-    logger.log('keywords')
-    logger.log(keywords)
-
-    const userDocument = firestore.collection('users').doc(userId)
-    const user = (await userDocument.get()).data() as User
-
-    const success = await updateKeywords(
-      user,
-      userDocument,
-      keywords,
-    )
-
-    response.status(success ? 200 : 400).send({
-      data: {
-        message: 'ok',
-      },
-    })
+    return
   }
-)
 
-export const activateVscodeExtension = onRequest(
-  { cors: true },
-  async (request, response) => {
-    const { user, userDocument } = await getUser(request)
+  await userDocument.update(userPayload)
 
-    if (!(user && userDocument)) {
-      response.status(401).send('Unauthorized')
+  response.status(200).send()
+})
 
-      return
-    }
+export const registerKeywordsAdministrator = onCall(async request => {
+  const { user: administratorUser } = await getUserFromCallableRequest(request)
 
-    const payload: Record<string, any> = {
-      hasConnectedExtension: true,
-      updatedAt: FieldValue.serverTimestamp(),
-    }
+  if (!administratorUser) throw new HttpsError('permission-denied', 'You are not authenticated')
+  if (!administratorUser.isAdministrator) throw new HttpsError('permission-denied', 'You are not an administrator')
 
-    await userDocument.update(payload)
+  const { keywords, userId } = request.data
 
-    response.status(200).send()
+  if (!userId) {
+    logger.log('Missing userId')
+
+    throw new HttpsError('invalid-argument', 'You must provide a value "userId" field')
   }
-)
+
+  logger.log(`Updating keywords from ${administratorUser.id} for ${userId}`)
+
+  const userDocument = firestore.collection('users').doc(userId)
+  const user = (await userDocument.get()).data() as User
+
+  const userPayload = await processKeywords(user, keywords)
+
+  if (!userPayload) throw new HttpsError('invalid-argument', 'You must provide a valid "keywords" field')
+
+  await userDocument.update(userPayload)
+
+  return {
+    message: 'ok',
+  }
+})
+
+export const levelUp = onCall(async request => {
+  const { user, userDocument } = await getUserFromCallableRequest(request)
+
+  if (!(user && userDocument)) throw new HttpsError('permission-denied', 'You are not authenticated')
+
+  const userPayload = processLevelUp(user, request.data.levelUpsKeywords)
+
+  if (!userPayload) throw new HttpsError('invalid-argument', 'You must provide a valid "levelUpsKeywords" field')
+
+  await userDocument.update(userPayload)
+
+  return {
+    message: 'ok',
+  }
+})
+
+export const activateVscodeExtension = onRequest(COSR, async (request, response) => {
+  const { user, userDocument } = await getUserFromRequest(request)
+
+  if (!(user && userDocument)) {
+    response.status(401).send()
+
+    return
+  }
+
+  const payload: Record<string, any> = {
+    hasConnectedExtension: true,
+    updatedAt: FieldValue.serverTimestamp(),
+  }
+
+  await userDocument.update(payload)
+
+  response.status(200).send()
+})

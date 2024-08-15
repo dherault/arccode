@@ -1,27 +1,14 @@
-import { type DocumentReference, FieldValue } from 'firebase-admin/firestore'
-import { logger } from 'firebase-functions'
-import { z } from 'zod'
+import { FieldValue } from 'firebase-admin/firestore'
 import { getLevelUps } from 'arccode-core'
 
-import type { KeywordRegistry, User } from '~types'
+import type { User } from '~types'
 
-const keywordRegistrySchema = z.object({}).catchall(z.object({}).catchall(z.number().nonnegative().finite()))
+import getKeywordPayload from './getKeywordPayload'
 
-async function updateKeywords(
-  user: User,
-  userDocument: DocumentReference,
-  keywordsBody: any,
-) {
-  let keywordsPayload: KeywordRegistry
+function processKeywords(user: User, keywordsBody: unknown) {
+  const keywordsPayload = getKeywordPayload(keywordsBody)
 
-  try {
-    keywordsPayload = keywordRegistrySchema.parse(keywordsBody)
-  }
-  catch (error) {
-    logger.error('Invalid keywords', keywordsBody, error)
-
-    return false
-  }
+  if (!keywordsPayload) return null
 
   const keywords = { ...user.character.keywords }
   const userPayload: Record<string, any> = {}
@@ -46,7 +33,7 @@ async function updateKeywords(
     })
   })
 
-  if (!Object.keys(userPayload).length) return
+  if (!Object.keys(userPayload).length) return null
 
   const { levelUps, levelUpsKeywords } = getLevelUps(user.character, keywords)
 
@@ -54,9 +41,7 @@ async function updateKeywords(
   userPayload['character.levelUpsKeywords'] = levelUpsKeywords
   userPayload.updatedAt = FieldValue.serverTimestamp()
 
-  await userDocument.update(userPayload)
-
-  return true
+  return userPayload
 }
 
-export default updateKeywords
+export default processKeywords
