@@ -7,6 +7,7 @@ import { functions } from '~firebase'
 
 import useDebounce from '~hooks/common/useDebounce'
 import useUsers from '~hooks/administrator/useUsers'
+import { useToast } from '~hooks/ui/useToast'
 
 import {
   Dialog,
@@ -26,15 +27,19 @@ type Props = {
 
 function UserKeywordsDialog({ userId, setUserId }: Props) {
   const { users } = useUsers()
+  const { toast } = useToast()
 
   const user = users.find(user => user.id === userId) ?? null
   const debouncedUser = useDebounce(user, 300)
   const finalUser = user ?? debouncedUser
 
   const [keywords, setKeywords] = useState<KeywordRegistry>({})
+  const [loading, setLoading] = useState(false)
 
   const handleClose = useCallback(() => {
     setUserId('')
+    setLoading(false)
+    setKeywords({})
   }, [
     setUserId,
   ])
@@ -53,18 +58,39 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
   }, [])
 
   const handleSubmit = useCallback(async () => {
+    if (loading) return
+
+    setLoading(true)
+
+    if (!Object.keys(keywords).length) {
+      handleClose()
+
+      return
+    }
+
     const registerKeywordsAdministrator = httpsCallable(functions, 'registerKeywordsAdministrator')
 
-    await registerKeywordsAdministrator({
-      userId: finalUser?.id,
-      keywords,
-    })
+    try {
+      await registerKeywordsAdministrator({
+        userId: finalUser?.id,
+        keywords,
+      })
+    }
+    catch (error: any) {
+      toast({
+        variant: 'destructive',
+        title: 'Error updating keywords',
+        description: error.message,
+      })
+    }
 
     handleClose()
   }, [
     finalUser?.id,
+    loading,
     keywords,
     handleClose,
+    toast,
   ])
 
   useEffect(() => {
@@ -148,7 +174,10 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
           ))}
         </div>
         <DialogFooter>
-          <Button onClick={handleSubmit}>
+          <Button
+            onClick={handleSubmit}
+            loading={loading}
+          >
             Save
           </Button>
         </DialogFooter>

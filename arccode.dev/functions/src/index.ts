@@ -25,7 +25,13 @@ export const registerKeywords = onRequest(
       request.body.keywords,
     )
 
-    response.status(success ? 200 : 400).send()
+    if (!success) {
+      response.status(400).send()
+
+      return
+    }
+
+    response.status(200).send()
   }
 )
 
@@ -68,7 +74,11 @@ export const registerKeywordsAdministrator = onRequest(
       keywords,
     )
 
-    response.status(success ? 200 : 400).send()
+    response.status(success ? 200 : 400).send({
+      data: {
+        message: 'ok',
+      },
+    })
   }
 )
 

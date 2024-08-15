@@ -50,8 +50,8 @@ async function updateKeywords(
 
   const { levelUps, levelUpsKeywords } = getLevelUps(user.character, keywords)
 
-  userPayload.levelUps = levelUps
-  userPayload.levelUpsKeywords = levelUpsKeywords
+  userPayload['character.levelUps'] = levelUps
+  userPayload['character.levelUpsKeywords'] = levelUpsKeywords
   userPayload.updatedAt = FieldValue.serverTimestamp()
 
   await userDocument.update(userPayload)
