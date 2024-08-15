@@ -1,24 +1,20 @@
 import type { Keyword } from '~types'
 
 import KeywordProgress from '~components/character/KeywordProgress'
-
-import languages from '~data/languages'
+import LanguageImage from '~components/character/LanguageImage'
 
 type Props = {
   keyword: Keyword
 }
 
 function KeywordCard({ keyword }: Props) {
-  const languageData = languages[keyword.language]
 
   return (
-    <div className="p-4 bg-white border rounded">
+    <div className="py-3 px-4 bg-white border rounded">
       <div className="mb-2 flex flex-wrap items-center gap-4">
-        <img
-          src={`/images/languages/${languageData.image}`}
-          alt={languageData.name}
-          draggable={false}
-          className="w-4 select-none"
+        <LanguageImage
+          language={keyword.language}
+          className="w-4"
         />
         <div className="font-mono grow">
           {keyword.name}
