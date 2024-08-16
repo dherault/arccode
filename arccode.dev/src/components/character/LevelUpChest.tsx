@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import countKeywordRegistry from '~logic/countKeywordRegistry'
-
 import usePreloadImage from '~hooks/common/usePreloadImage'
 import useCharacter from '~hooks/character/useCharacter'
 
@@ -14,13 +12,10 @@ const SHAKE_DURATION = 500
 const SHRINK_DURATION = 150
 
 function LevelUpChest() {
-  const { levelUpsKeywords, levelUpsCount, openChest } = useCharacter()
+  const { levelUpsCount, levelUpsCursor, openChest } = useCharacter()
 
-  const nLevelUps = countKeywordRegistry(levelUpsKeywords)
-
-  console.log('nLevelUps', nLevelUps)
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const treasureChestIndex = useMemo(() => Math.round(Math.random() * treasureChests.length), [levelUpsCount])
+  const treasureChestIndex = useMemo(() => Math.round(Math.random() * treasureChests.length), [levelUpsCursor])
   const [animation, setAnimation] = useState('shake')
   const [open, setOpen] = useState(false)
   const [timesClicked, setTimesClicked] = useState(0)
@@ -64,7 +59,7 @@ function LevelUpChest() {
     setOpen(false)
     setTimesClicked(0)
   }, [
-    levelUpsCount,
+    levelUpsCursor,
   ])
 
   return (
@@ -119,9 +114,9 @@ function LevelUpChest() {
           className="absolute -inset-24 min-w-[calc(100%+2*96px)]"
         />
       </motion.div>
-      {nLevelUps > 1 && (
+      {levelUpsCount > 1 && (
         <div className="absolute top-24 right-24 h-8 w-8 bg-blue text-white rounded-full flex items-center justify-center">
-          {nLevelUps}
+          {levelUpsCount}
         </div>
       )}
     </div>

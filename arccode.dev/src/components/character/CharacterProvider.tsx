@@ -10,13 +10,13 @@ import { LEVEL_UP_SEARCH_PARAMETERS_KEY, NULL_DOCUMENT_ID } from '~constants'
 
 import { db, functions } from '~firebase'
 
+import countKeywordRegistry from '~logic/countKeywordRegistry'
+
 import CharacterContext, { CharacterContextType } from '~contexts/character/CharacterContext'
 
 import useDocument from '~hooks/db/useDocument'
 import useUser from '~hooks/user/useUser'
 import { useToast } from '~hooks/ui/useToast'
-
-import wait from '~utils/common/wait'
 
 import NotFound from '~components/common/NotFound'
 import SpinnerCentered from '~components/common/CenteredSpinner'
@@ -28,13 +28,14 @@ function CharacterProvider({ children }: PropsWithChildren) {
   const [searchParams, setSearchParams] = useSearchParams()
 
   const [levelUpsKeywords, setLevelUpsKeywords] = useState<KeywordRegistry>({})
-  const [levelUpsCount, setLevelUpsCount] = useState(0)
+  const [levelUpsCursor, setLevelUpsCursor] = useState(0)
 
   const d = useMemo(() => doc(db, 'users', userId ?? NULL_DOCUMENT_ID), [userId])
   const { data: user, loading, error } = useDocument<User>(d, !!userId)
   const finalUser = userId && userId !== currentUser?.id ? user : currentUser
   const character = useMemo(() => finalUser?.character ?? {} as Character, [finalUser])
   const isEditable = currentUser?.id === finalUser?.id
+  const levelUpsCount = countKeywordRegistry(levelUpsKeywords)
 
   const updateCharacter = useCallback(async (payload: Record<string, any>) => {
     if (!finalUser?.id || currentUser?.id !== finalUser.id) return
@@ -111,10 +112,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
   ])
 
   const handleCloseChest = useCallback(async () => {
-    setLevelUpsCount(x => x + 1)
-
-    // May be unnecessary
-    await wait(2)
+    setLevelUpsCursor(x => x + 1)
   }, [])
 
   const characterContextValue = useMemo<CharacterContextType>(() => ({
@@ -125,6 +123,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
     toggleLevelUp: handleToggleLevelUp,
     levelUpsKeywords,
     updateLevelUpsKeywords,
+    levelUpsCursor,
     levelUpsCount,
     openChest: handleOpenChest,
     closeChest: handleCloseChest,
@@ -133,6 +132,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
     isEditable,
     searchParams,
     levelUpsKeywords,
+    levelUpsCursor,
     levelUpsCount,
     updateCharacter,
     handleToggleLevelUp,

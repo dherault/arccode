@@ -10,6 +10,7 @@ export type CharacterContextType = {
   toggleLevelUp: () => void
   levelUpsKeywords: KeywordRegistry
   updateLevelUpsKeywords: (n: number) => void
+  levelUpsCursor: number
   levelUpsCount: number
   openChest: () => Promise<void>
   closeChest: () => Promise<void>
@@ -23,6 +24,7 @@ export default createContext<CharacterContextType>({
   toggleLevelUp: () => {},
   levelUpsKeywords: {},
   updateLevelUpsKeywords: () => {},
+  levelUpsCursor: 0,
   levelUpsCount: 0,
   openChest: async () => {},
   closeChest: async () => {},
