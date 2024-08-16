@@ -1,12 +1,11 @@
 import type { Character } from './types'
-import getLevelUps from './getLevelUps'
+import getLevelUpsKeywords from './getLevelUpsKeywords'
 
-describe('getLevelUps', () => {
-  test('gets levelUps', () => {
+describe('getLevelUpsKeywords', () => {
+  test('gets levelUpsKeywords', () => {
     const input: Character = {
       name: '',
       level: 1,
-      levelUps: 0,
       levelUpsKeywords: {
         javascript: {
           break: 1,
@@ -44,16 +43,13 @@ describe('getLevelUps', () => {
       spell4ItemId: '',
     }
     const output = {
-      levelUps: 2,
-      levelUpsKeywords: {
-        javascript: {
-          const: 1,
-          function: 1,
-          break: 1,
-        },
+      javascript: {
+        const: 1,
+        function: 1,
+        break: 1,
       },
     }
 
-    expect(getLevelUps(input)).toEqual(output)
+    expect(getLevelUpsKeywords(input)).toEqual(output)
   })
 })

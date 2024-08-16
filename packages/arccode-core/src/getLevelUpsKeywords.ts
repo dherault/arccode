@@ -1,8 +1,7 @@
 import type { Character, KeywordRegistry } from './types'
 import getCharacterKeywords from './getCharacterKeywords'
 
-function getLevelUps(character: Character, nextKeywords?: KeywordRegistry) {
-  let { levelUps = 0 } = character
+function getLevelUpsKeywords(character: Character, nextKeywords?: KeywordRegistry) {
   const beforeKeywords = getCharacterKeywords(character.processedKeywords ?? {})
   const keywords = getCharacterKeywords(nextKeywords ?? character.keywords ?? {})
   const levelUpsKeywords = { ...(character.levelUpsKeywords ?? {}) }
@@ -17,7 +16,6 @@ function getLevelUps(character: Character, nextKeywords?: KeywordRegistry) {
       const diff = keyword.level - levelUpsKeywords[keyword.language][keyword.name]
 
       levelUpsKeywords[keyword.language][keyword.name] += diff
-      levelUps += diff
 
       return
     }
@@ -29,13 +27,9 @@ function getLevelUps(character: Character, nextKeywords?: KeywordRegistry) {
     const diff = keyword.level - beforeKeyword.level - levelUpsKeywords[keyword.language][keyword.name]
 
     levelUpsKeywords[keyword.language][keyword.name] += diff
-    levelUps += diff
   })
 
-  return {
-    levelUps,
-    levelUpsKeywords,
-  }
+  return levelUpsKeywords
 }
 
-export default getLevelUps
+export default getLevelUpsKeywords

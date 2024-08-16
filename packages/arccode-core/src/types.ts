@@ -1,7 +1,6 @@
 export type Character = {
   name: string
   level: number
-  levelUps: number
   levelUpsKeywords: KeywordRegistry
   keywords: KeywordRegistry
   viewedKeywords: KeywordRegistry
