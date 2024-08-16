@@ -37,8 +37,8 @@
     "jest": "^29.7.0",
     "ts-jest": "^29.2.4",
     "typescript": "^5.5.4",
-    "vite": "^5.4.0",
-    "vite-plugin-dts": "^4.0.2"
+    "vite": "^5.4.1",
+    "vite-plugin-dts": "^4.0.3"
   },
   "dependencies": {
     "arccode-keyword-thresholds": "^0.0.0",
