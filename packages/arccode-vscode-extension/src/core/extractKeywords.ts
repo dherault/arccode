@@ -9,8 +9,11 @@ function extractKeywords(language: Language, line: string) {
 
   if (!keywords) return []
 
-  return line
-    .split(' ')
+  const words = line.split(' ')
+
+  words.pop() // Eg: prevent registering `char` if typing `character`
+
+  return words
     .map(word => word.replace(formatWordRegex, ''))
     .filter(word => keywords.includes(word))
 }

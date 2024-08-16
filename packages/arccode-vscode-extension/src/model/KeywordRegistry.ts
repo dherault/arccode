@@ -77,9 +77,7 @@ class KeywordRegistry {
       this.dailyKeywords = {}
       this.context.globalState.update(DAILY_KEYWORDS_STORAGE_KEY, JSON.stringify(this.dailyKeywords))
     }
-  }
 
-  public updateTimestamp() {
     this.updatedAt = new Date()
   }
 

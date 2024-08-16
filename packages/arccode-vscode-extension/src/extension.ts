@@ -186,8 +186,6 @@ export function activate(context: vscode.ExtensionContext) {
     try {
       const keywords = keywordRegistry.filteredCurrentKeywords
 
-      keywordRegistry.updateTimestamp()
-
       if (Object.keys(keywords).length) {
         const idToken = await getIdToken()
 
