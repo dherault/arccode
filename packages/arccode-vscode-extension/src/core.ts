@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import diffArray from 'array-differences'
+import { diffArray } from 'array-differences'
 
 import type { Language } from './types'
 import { MAX_LINES } from './constants'
@@ -35,6 +35,8 @@ export function handleDocumentChange(document: vscode.TextDocument, fileRegistry
       extractKeywords(language, latestLines[lineIndex] ?? '').forEach(keyword => {
         keywordRegistry.registerKeyword(language, keyword, -1)
       })
+
+      return
     }
 
     // Ignore duplicated lines
@@ -48,6 +50,8 @@ export function handleDocumentChange(document: vscode.TextDocument, fileRegistry
       extractKeywords(lineValue, language).forEach(keyword => {
         keywordRegistry.registerKeyword(language, keyword, 1)
       })
+
+      return
     }
 
     // Here operation === 'modified'
