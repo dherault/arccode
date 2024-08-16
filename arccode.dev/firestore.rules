@@ -14,10 +14,8 @@ service cloud.firestore {
     function isNotAffectingCharacterProtectedFields() {
       return !request.resource.data.character.diff(resource.data.character).affectedKeys().hasAny([
         'level',
-        'levelUps',
         'levelUpKeywords',
         'keywords',
-        'processedKeywords',
         'unlockedItems',
       ])
     }

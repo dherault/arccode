@@ -60,6 +60,7 @@ function LevelUpChest() {
     setTimesClicked(0)
   }, [
     levelUpsCursor,
+    levelUpsCount,
   ])
 
   return (

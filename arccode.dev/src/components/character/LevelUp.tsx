@@ -7,8 +7,8 @@ import LevelUpChest from '~components/character/LevelUpChest'
 
 function LevelUp() {
   const {
-    character,
     levelUpsCount,
+    levelUpsMax,
     isLevelUpOpen,
     toggleLevelUp,
     updateLevelUpsKeywords,
@@ -26,10 +26,10 @@ function LevelUp() {
       <div>
         You have
         {' '}
-        {character.levelUps}
+        {levelUpsMax}
         {' '}
         level up
-        {character.levelUps > 1 ? 's' : ''}
+        {levelUpsMax > 1 ? 's' : ''}
         {' '}
         available.
       </div>
@@ -55,9 +55,9 @@ function LevelUp() {
       <div className="mt-16 flex justify-center">
         <Button
           variant="ghost"
-          onClick={() => levelUpsCount === 1 ? updateLevelUpsKeywords(character.levelUps) : updateLevelUpsKeywords(1)}
+          onClick={() => levelUpsCount === 1 ? updateLevelUpsKeywords(levelUpsMax) : updateLevelUpsKeywords(1)}
         >
-          {levelUpsCount === 1 ? `Open ${character.levelUps} at once` : 'Open only one'}
+          {levelUpsCount === 1 ? `Open ${levelUpsMax} at once` : 'Open only one'}
         </Button>
         <Button
           variant="ghost"

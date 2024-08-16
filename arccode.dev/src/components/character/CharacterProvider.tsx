@@ -1,5 +1,5 @@
 import { doc } from 'firebase/firestore'
-import { type PropsWithChildren, useCallback, useMemo, useState } from 'react'
+import { type PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import cloneDeep from 'lodash.clonedeep'
 import { httpsCallable } from 'firebase/functions'
@@ -17,6 +17,7 @@ import CharacterContext, { CharacterContextType } from '~contexts/character/Char
 import useDocument from '~hooks/db/useDocument'
 import useUser from '~hooks/user/useUser'
 import { useToast } from '~hooks/ui/useToast'
+import usePrevious from '~hooks/common/usePrevious'
 
 import NotFound from '~components/common/NotFound'
 import SpinnerCentered from '~components/common/CenteredSpinner'
@@ -29,13 +30,16 @@ function CharacterProvider({ children }: PropsWithChildren) {
 
   const [levelUpsKeywords, setLevelUpsKeywords] = useState<KeywordRegistry>({})
   const [levelUpsCursor, setLevelUpsCursor] = useState(0)
+  const [levelUpsUnlockedItems, setLevelUpsUnlockedItems] = useState<Record<string, number>>({})
 
   const d = useMemo(() => doc(db, 'users', userId ?? NULL_DOCUMENT_ID), [userId])
   const { data: user, loading, error } = useDocument<User>(d, !!userId)
   const finalUser = userId && userId !== currentUser?.id ? user : currentUser
   const character = useMemo(() => finalUser?.character ?? {} as Character, [finalUser])
   const isEditable = currentUser?.id === finalUser?.id
-  const levelUpsCount = countKeywordRegistry(levelUpsKeywords)
+  const levelUpsCount = useMemo(() => countKeywordRegistry(levelUpsKeywords), [levelUpsKeywords])
+  const levelUpsMax = useMemo(() => countKeywordRegistry(character.levelUpsKeywords), [character.levelUpsKeywords])
+  const previousUnlockedItems = usePrevious(character.unlockedItems)
 
   const updateCharacter = useCallback(async (payload: Record<string, any>) => {
     if (!finalUser?.id || currentUser?.id !== finalUser.id) return
@@ -115,6 +119,23 @@ function CharacterProvider({ children }: PropsWithChildren) {
     setLevelUpsCursor(x => x + 1)
   }, [])
 
+  useEffect(() => {
+    const diffUnlockedItems: Record<string, number> = {}
+
+    Object.entries(character.unlockedItems).forEach(([itemId, count]) => {
+      const diffCount = count - (previousUnlockedItems[itemId] ?? 0)
+
+      if (diffCount <= 0) return
+
+      diffUnlockedItems[itemId] = diffCount
+    })
+
+    setLevelUpsUnlockedItems(diffUnlockedItems)
+  }, [
+    character.unlockedItems,
+    previousUnlockedItems,
+  ])
+
   const characterContextValue = useMemo<CharacterContextType>(() => ({
     character,
     isEditable,
@@ -125,6 +146,8 @@ function CharacterProvider({ children }: PropsWithChildren) {
     updateLevelUpsKeywords,
     levelUpsCursor,
     levelUpsCount,
+    levelUpsMax,
+    levelUpsUnlockedItems,
     openChest: handleOpenChest,
     closeChest: handleCloseChest,
   }), [
@@ -134,6 +157,8 @@ function CharacterProvider({ children }: PropsWithChildren) {
     levelUpsKeywords,
     levelUpsCursor,
     levelUpsCount,
+    levelUpsMax,
+    levelUpsUnlockedItems,
     updateCharacter,
     handleToggleLevelUp,
     updateLevelUpsKeywords,

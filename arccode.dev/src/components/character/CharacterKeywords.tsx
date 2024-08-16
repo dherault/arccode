@@ -1,5 +1,5 @@
 
-import { getCharacterKeywords } from 'arccode-core'
+import { getKeywords } from 'arccode-core'
 
 import useCharacter from '~hooks/character/useCharacter'
 
@@ -9,9 +9,9 @@ import LevelUpCard from '~components/character/LevelUpCard'
 import CharacterEmpty from '~components/character/CharacterEmpty'
 
 function CharacterKeywords() {
-  const { character, isEditable } = useCharacter()
+  const { character, isEditable, levelUpsCount } = useCharacter()
 
-  const keywords = getCharacterKeywords(character.keywords)
+  const keywords = getKeywords(character.keywords)
 
   const [
     keyword1,
@@ -20,7 +20,7 @@ function CharacterKeywords() {
     keyword4,
     keyword5,
     keyword6,
-  ] = keywords.splice(0, isEditable && character.levelUps > 0 ? 5 : 6)
+  ] = keywords.splice(0, isEditable && levelUpsCount > 0 ? 5 : 6)
 
   const listedKeywords = keywords
     .sort((a, b) => b.count - a.count)
@@ -29,7 +29,7 @@ function CharacterKeywords() {
   return (
     <>
       <div className="grid grid-cols-3 gap-4">
-        {isEditable && character.levelUps > 0 && <LevelUpCard />}
+        {isEditable && levelUpsCount > 0 && <LevelUpCard />}
         {keyword1 && <KeywordCard keyword={keyword1} />}
         {keyword2 && <KeywordCard keyword={keyword2} />}
         {keyword3 && <KeywordCard keyword={keyword3} />}
