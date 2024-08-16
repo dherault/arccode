@@ -37,7 +37,7 @@
     "language-keywords": "^1.2.0",
     "lodash.clonedeep": "^4.5.0",
     "logrocket": "^8.1.2",
-    "lucide-react": "^0.427.0",
+    "lucide-react": "^0.428.0",
     "luxon": "^3.5.0",
     "markdown-to-jsx": "^7.4.7",
     "nanoid": "^5.0.7",

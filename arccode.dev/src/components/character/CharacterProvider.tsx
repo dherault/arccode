@@ -1,15 +1,15 @@
-import { doc } from 'firebase/firestore'
-import { type PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
+import { type PropsWithChildren, useCallback, useMemo, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
-import cloneDeep from 'lodash.clonedeep'
+import { doc } from 'firebase/firestore'
 import { httpsCallable } from 'firebase/functions'
 
-import { type Character, type KeywordRegistry, User } from '~types'
+import { type Character, User } from '~types'
 
 import { LEVEL_UP_SEARCH_PARAMETERS_KEY, NULL_DOCUMENT_ID } from '~constants'
 
 import { db, functions } from '~firebase'
 
+import pickLevelUpsKeywords from '~logic/pickLevelUpsKeywords'
 import countKeywordRegistry from '~logic/countKeywordRegistry'
 
 import CharacterContext, { CharacterContextType } from '~contexts/character/CharacterContext'
@@ -21,6 +21,7 @@ import usePrevious from '~hooks/common/usePrevious'
 
 import NotFound from '~components/common/NotFound'
 import SpinnerCentered from '~components/common/CenteredSpinner'
+import ErrorOccured from '~components/common/ErrorOccured'
 
 function CharacterProvider({ children }: PropsWithChildren) {
   const { user: currentUser, updateUser } = useUser()
@@ -28,18 +29,15 @@ function CharacterProvider({ children }: PropsWithChildren) {
   const { userId } = useParams()
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const [levelUpsKeywords, setLevelUpsKeywords] = useState<KeywordRegistry>({})
-  const [levelUpsCursor, setLevelUpsCursor] = useState(0)
-  const [levelUpsUnlockedItems, setLevelUpsUnlockedItems] = useState<Record<string, number>>({})
+  /* ---
+    Character
+  --- */
 
   const d = useMemo(() => doc(db, 'users', userId ?? NULL_DOCUMENT_ID), [userId])
   const { data: user, loading, error } = useDocument<User>(d, !!userId)
   const finalUser = userId && userId !== currentUser?.id ? user : currentUser
   const character = useMemo(() => finalUser?.character ?? {} as Character, [finalUser])
   const isEditable = currentUser?.id === finalUser?.id
-  const levelUpsCount = useMemo(() => countKeywordRegistry(levelUpsKeywords), [levelUpsKeywords])
-  const levelUpsMax = useMemo(() => countKeywordRegistry(character.levelUpsKeywords), [character.levelUpsKeywords])
-  const previousUnlockedItems = usePrevious(character.unlockedItems)
 
   const updateCharacter = useCallback(async (payload: Record<string, any>) => {
     if (!finalUser?.id || currentUser?.id !== finalUser.id) return
@@ -53,37 +51,31 @@ function CharacterProvider({ children }: PropsWithChildren) {
     updateUser,
   ])
 
-  const updateLevelUpsKeywords = useCallback((n: number) => {
-    const nextLevelUpsKeywords: KeywordRegistry = {}
-    const currentLevelUpsKeywords = cloneDeep(character.levelUpsKeywords)
+  /* ---
+    Level up
+  --- */
 
-    for (let i = 0; i < n; i++) {
-      const firstLanguage = Object.keys(currentLevelUpsKeywords)[0]
+  const [levelUpsToOpen, setLevelUpsToOpen] = useState(1)
+  const [levelUpsCursor, setLevelUpsCursor] = useState(0)
+  const levelUpsKeywords = useMemo(() => pickLevelUpsKeywords(character, levelUpsToOpen), [character, levelUpsToOpen])
+  const levelUpsCount = useMemo(() => countKeywordRegistry(levelUpsKeywords), [levelUpsKeywords])
+  const levelUpsMax = useMemo(() => countKeywordRegistry(character.levelUpsKeywords), [character.levelUpsKeywords])
+  const previousUnlockedItems = usePrevious(character.unlockedItems)
+  const levelUpsUnlockedItems = useMemo(() => {
+    const levelUpsUnlockedItems: Record<string, number> = {}
 
-      if (!firstLanguage) break
+    Object.entries(character.unlockedItems).forEach(([itemId, count]) => {
+      const diffCount = count - (previousUnlockedItems[itemId] ?? 0)
 
-      const firstKeyword = Object.keys(currentLevelUpsKeywords[firstLanguage])[0]
+      if (diffCount <= 0) return
 
-      if (!firstKeyword) {
-        delete currentLevelUpsKeywords[firstLanguage]
-        i--
+      levelUpsUnlockedItems[itemId] = diffCount
+    })
 
-        continue
-      }
-
-      currentLevelUpsKeywords[firstLanguage][firstKeyword]--
-
-      if (currentLevelUpsKeywords[firstLanguage][firstKeyword] <= 0) delete currentLevelUpsKeywords[firstLanguage][firstKeyword]
-      if (!nextLevelUpsKeywords[firstLanguage]) nextLevelUpsKeywords[firstLanguage] = {}
-      if (!nextLevelUpsKeywords[firstLanguage][firstKeyword]) nextLevelUpsKeywords[firstLanguage][firstKeyword] = 0
-
-      nextLevelUpsKeywords[firstLanguage][firstKeyword]++
-    }
-
-    setLevelUpsKeywords(nextLevelUpsKeywords)
+    return levelUpsUnlockedItems
   }, [
-    character.levelUpsKeywords,
-    setLevelUpsKeywords,
+    character.unlockedItems,
+    previousUnlockedItems,
   ])
 
   const handleToggleLevelUp = useCallback(() => {
@@ -119,22 +111,9 @@ function CharacterProvider({ children }: PropsWithChildren) {
     setLevelUpsCursor(x => x + 1)
   }, [])
 
-  useEffect(() => {
-    const diffUnlockedItems: Record<string, number> = {}
-
-    Object.entries(character.unlockedItems).forEach(([itemId, count]) => {
-      const diffCount = count - (previousUnlockedItems[itemId] ?? 0)
-
-      if (diffCount <= 0) return
-
-      diffUnlockedItems[itemId] = diffCount
-    })
-
-    setLevelUpsUnlockedItems(diffUnlockedItems)
-  }, [
-    character.unlockedItems,
-    previousUnlockedItems,
-  ])
+  /* ---
+    Context value
+  --- */
 
   const characterContextValue = useMemo<CharacterContextType>(() => ({
     character,
@@ -143,7 +122,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
     isLevelUpOpen: searchParams.has(LEVEL_UP_SEARCH_PARAMETERS_KEY),
     toggleLevelUp: handleToggleLevelUp,
     levelUpsKeywords,
-    updateLevelUpsKeywords,
+    updateLevelUpsKeywords: setLevelUpsToOpen,
     levelUpsCursor,
     levelUpsCount,
     levelUpsMax,
@@ -161,7 +140,6 @@ function CharacterProvider({ children }: PropsWithChildren) {
     levelUpsUnlockedItems,
     updateCharacter,
     handleToggleLevelUp,
-    updateLevelUpsKeywords,
     handleOpenChest,
     handleCloseChest,
   ])
@@ -174,9 +152,10 @@ function CharacterProvider({ children }: PropsWithChildren) {
 
   if (error) {
     return (
-      <div>
-        An error occurred
-      </div>
+      <ErrorOccured
+        source="CharacterProvider"
+        message={error.message}
+      />
     )
   }
 

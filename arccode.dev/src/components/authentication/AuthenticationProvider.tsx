@@ -37,6 +37,8 @@ import useLiveDocument from '~hooks/db/useLiveDocument'
 
 import createUser from '~utils/db/createUser'
 
+import ErrorOccured from '~components/common/ErrorOccured'
+
 function AuthenticationProvider({ children }: PropsWithChildren) {
   const [viewer, setViewer] = useState<Viewer | null>(null)
 
@@ -208,9 +210,10 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
 
   if (error) {
     return (
-      <div className="grow flex flex-col items-center justify-center">
-        An error occured
-      </div>
+      <ErrorOccured
+        source="AuthenticationProvider"
+        message={error.message}
+      />
     )
   }
 
