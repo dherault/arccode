@@ -10,7 +10,8 @@ import {
 import ArccodeAuthenticationProvider from './authentication/ArccodeAuthenticationProvider'
 import FileRegistry from './model/FileRegistry'
 import KeywordRegistry from './model/KeywordRegistry'
-import populateFileRegistry from './core/populateFileRegistry'
+import handleDocumentOpen from './core/handleDocumentOpen'
+import handleDocumentClose from './core/handleDocumentClose'
 import handleDocumentChange from './core/handleDocumentChange'
 
 export function activate(context: vscode.ExtensionContext) {
@@ -49,8 +50,9 @@ export function activate(context: vscode.ExtensionContext) {
   const fileRegistry = new FileRegistry()
   const keywordRegistry = new KeywordRegistry(context)
 
-  vscode.workspace.textDocuments.forEach(document => populateFileRegistry(document, fileRegistry))
-  vscode.workspace.onDidOpenTextDocument(document => populateFileRegistry(document, fileRegistry))
+  vscode.workspace.textDocuments.forEach(document => handleDocumentOpen(document, fileRegistry))
+  vscode.workspace.onDidOpenTextDocument(document => handleDocumentOpen(document, fileRegistry))
+  vscode.workspace.onDidCloseTextDocument(document => handleDocumentClose(document, fileRegistry))
   vscode.workspace.onDidChangeTextDocument(async event => {
     handleDocumentChange(event.document, fileRegistry, keywordRegistry)
 

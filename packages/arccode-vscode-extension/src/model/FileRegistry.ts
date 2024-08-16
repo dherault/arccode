@@ -15,6 +15,10 @@ class FileRegistry {
     this.data[fileId] = content
   }
 
+  public unregisterFile(fileId: string) {
+    delete this.data[fileId]
+  }
+
   public getLines(fileId: string) {
     return this.data[fileId]?.split('\n') ?? []
   }
