@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+
+import countKeywordRegistry from '~logic/countKeywordRegistry'
 
 import usePreloadImage from '~hooks/common/usePreloadImage'
+import useCharacter from '~hooks/character/useCharacter'
 
 import treasureChests from '~data/treasure-chests'
 
@@ -11,12 +14,16 @@ const SHAKE_DURATION = 500
 const SHRINK_DURATION = 150
 
 function LevelUpChest() {
-  const [treasureChestIndex, setTreasureChestIndex] = useState(Math.round(Math.random() * treasureChests.length))
+  const { levelUpsKeywords, levelUpsCount, openChest } = useCharacter()
+
+  const nLevelUps = countKeywordRegistry(levelUpsKeywords)
+
+  console.log('nLevelUps', nLevelUps)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const treasureChestIndex = useMemo(() => Math.round(Math.random() * treasureChests.length), [levelUpsCount])
   const [animation, setAnimation] = useState('shake')
   const [open, setOpen] = useState(false)
   const [timesClicked, setTimesClicked] = useState(0)
-
-  if (false) console.log(setTreasureChestIndex)
 
   const treasureChest = useMemo(() => treasureChests[treasureChestIndex], [treasureChestIndex])
 
@@ -32,6 +39,7 @@ function LevelUpChest() {
         animationTimeoutId = setTimeout(() => {
           setOpen(true)
           setAnimation('grow')
+          openChest()
         }, SHRINK_DURATION)
       }
       else {
@@ -47,11 +55,21 @@ function LevelUpChest() {
   }, [
     animation,
     timesClicked,
+    openChest,
+  ])
+
+  // Reset chest
+  useEffect(() => {
+    setAnimation('shake')
+    setOpen(false)
+    setTimesClicked(0)
+  }, [
+    levelUpsCount,
   ])
 
   return (
     <div
-      className="h-[384px] w-[384px] cursor-pointer rounded-full overflow-hidden"
+      className="h-[384px] w-[384px] cursor-pointer rounded-full overflow-hidden relative"
       onClick={handleClick}
     >
       <motion.div
@@ -101,6 +119,11 @@ function LevelUpChest() {
           className="absolute -inset-24 min-w-[calc(100%+2*96px)]"
         />
       </motion.div>
+      {nLevelUps > 1 && (
+        <div className="absolute top-24 right-24 h-8 w-8 bg-blue text-white rounded-full flex items-center justify-center">
+          {nLevelUps}
+        </div>
+      )}
     </div>
   )
 }

@@ -1,10 +1,25 @@
+import { useEffect } from 'react'
+
+import countKeywordRegistry from '~logic/countKeywordRegistry'
+
 import useCharacter from '~hooks/character/useCharacter'
+// import usePrevious from '~hooks/common/usePrevious'
 
 import { Button } from '~components/ui/Button'
 import LevelUpChest from '~components/character/LevelUpChest'
 
 function LevelUp() {
-  const { character, toggleLevelUp } = useCharacter()
+  const { character, isLevelUpOpen, toggleLevelUp, levelUpsKeywords, updateLevelUpsKeywords } = useCharacter()
+
+  // const previousUnlockedItems = usePrevious(character.unlockedItems)
+  const nLevelUps = countKeywordRegistry(levelUpsKeywords)
+
+  useEffect(() => {
+    updateLevelUpsKeywords(1)
+  }, [
+    isLevelUpOpen,
+    updateLevelUpsKeywords,
+  ])
 
   return (
     <div className="flex flex-col items-center">
@@ -37,7 +52,13 @@ function LevelUp() {
           }}
         />
       </div>
-      <div className="mt-16">
+      <div className="mt-16 flex justify-center">
+        <Button
+          variant="ghost"
+          onClick={() => nLevelUps === 1 ? updateLevelUpsKeywords(character.levelUps) : updateLevelUpsKeywords(1)}
+        >
+          {nLevelUps === 1 ? `Open ${character.levelUps} at once` : 'Open only one'}
+        </Button>
         <Button
           variant="ghost"
           onClick={toggleLevelUp}

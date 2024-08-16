@@ -35,6 +35,7 @@
     "firebase": "^10.12.5",
     "framer-motion": "^11.3.28",
     "language-keywords": "^1.2.0",
+    "lodash.clonedeep": "^4.5.0",
     "logrocket": "^8.1.2",
     "lucide-react": "^0.427.0",
     "luxon": "^3.5.0",
@@ -56,6 +57,7 @@
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.12",
+    "@types/lodash.clonedeep": "^4.5.9",
     "@types/luxon": "^3.4.2",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

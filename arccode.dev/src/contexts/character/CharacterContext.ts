@@ -1,19 +1,29 @@
 import { createContext } from 'react'
 
-import type { Character } from '~types'
+import type { Character, KeywordRegistry } from '~types'
 
 export type CharacterContextType = {
   character: Character
   isEditable: boolean
+  updateCharacter: (payload: Record<string, any>) => Promise<void>
   isLevelUpOpen: boolean
   toggleLevelUp: () => void
-  updateCharacter: (payload: Record<string, any>) => Promise<void>
+  levelUpsKeywords: KeywordRegistry
+  updateLevelUpsKeywords: (n: number) => void
+  levelUpsCount: number
+  openChest: () => Promise<void>
+  closeChest: () => Promise<void>
 }
 
 export default createContext<CharacterContextType>({
   character: {} as Character,
   isEditable: false,
+  updateCharacter: async () => {},
   isLevelUpOpen: false,
   toggleLevelUp: () => {},
-  updateCharacter: async () => {},
+  levelUpsKeywords: {},
+  updateLevelUpsKeywords: () => {},
+  levelUpsCount: 0,
+  openChest: async () => {},
+  closeChest: async () => {},
 })
