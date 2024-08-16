@@ -10,7 +10,7 @@ const typescriptKeywords = [
   'boolean',
   'byte',
   'char',
-  'constructor',
+  // 'constructor', // Causes bugs
   'declare',
   'double',
   'enum',
