@@ -1,28 +1,26 @@
-import type { Dispatch, SetStateAction } from 'react'
 import { motion } from 'framer-motion'
+
+import useCharacter from '~hooks/character/useCharacter'
 
 import LevelUp from '~components/character/LevelUp'
 
-type Props = {
-  open: boolean
-  setOpen: Dispatch<SetStateAction<boolean>>
-}
+function LevelUpContainer() {
+  const { isLevelUpOpen } = useCharacter()
 
-function LevelUpContainer({ open, setOpen }: Props) {
   return (
     <>
       <motion.div
         initial={{ display: 'none', opacity: 0 }}
-        animate={open ? { display: 'block', opacity: 1 } : { display: 'none', opacity: 0 }}
+        animate={isLevelUpOpen ? { display: 'block', opacity: 1 } : { display: 'none', opacity: 0 }}
         className="fixed inset-0 bg-white z-10"
       />
       <motion.div
         initial={{ display: 'none', opacity: 0 }}
-        animate={open ? { display: 'block', opacity: 1 } : { display: 'none', opacity: 0 }}
-        transition={open ? { delay: 0.3 } : {}}
+        animate={isLevelUpOpen ? { display: 'block', opacity: 1 } : { display: 'none', opacity: 0 }}
+        transition={isLevelUpOpen ? { delay: 0.3 } : {}}
         className="pt-[72px] pb-8 fixed inset-0 bg-white z-20 overflow-y-auto"
       >
-        <LevelUp onClose={() => setOpen(false)} />
+        <LevelUp />
       </motion.div>
     </>
   )

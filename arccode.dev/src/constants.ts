@@ -141,6 +141,8 @@ export const RARITY_ORDERS: Record<ItemRarity, number> = {
   common: 4,
 }
 
+export const LEVEL_UP_SEARCH_PARAMETERS_KEY = 'level-up'
+
 /* ---
   Legal
 --- */

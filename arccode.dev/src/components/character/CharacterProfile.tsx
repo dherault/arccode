@@ -4,9 +4,10 @@ import useCharacter from '~hooks/character/useCharacter'
 
 import CharacterGear from '~components/character/CharacterGear'
 import CharacterKeywords from '~components/character/CharacterKeywords'
+import LevelUpContainer from '~components/character/LevelUpContainer'
 
 function CharacterProfile() {
-  const { character } = useCharacter()
+  const { character, isEditable } = useCharacter()
   const characterName = character.name || '(An unnamed character)'
 
   return (
@@ -34,6 +35,7 @@ function CharacterProfile() {
           <CharacterKeywords />
         </div>
       </div>
+      {isEditable && <LevelUpContainer />}
     </>
   )
 }

@@ -76,7 +76,7 @@ function Users() {
                 Email
               </TableHead>
               <TableHead>
-                n Updates
+                Updates
               </TableHead>
               <TableHead>
                 Character name

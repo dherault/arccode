@@ -23,14 +23,14 @@ const allRewards = {
   avatars,
 }
 
-function pickReward() {
+function pickRewardId() {
   const typeChance = Math.random()
   const pickedType = Object.entries(WIN_PROBABILITIES).find(([, value]) => typeChance >= value[0] && typeChance < value[1])?.[0] ?? 'gear'
   const itemChance = Math.random()
   const rarity = (Object.entries(RARITY_PROBABILITIES).find(([, value]) => itemChance >= value[0] && itemChance < value[1])?.[0] ?? 'common') as ItemRarity
   const rewards = (allRewards[pickedType as keyof typeof allRewards] ?? allRewards.gears).filter(item => item.rarity === rarity)
 
-  return rewards[Math.floor(Math.random() * rewards.length)]
+  return rewards[Math.floor(Math.random() * rewards.length)].id
 }
 
-export default pickReward
+export default pickRewardId

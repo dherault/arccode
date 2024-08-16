@@ -1,10 +1,10 @@
 import { doc } from 'firebase/firestore'
 import { type PropsWithChildren, useCallback, useMemo } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 
 import { type Character, User } from '~types'
 
-import { NULL_DOCUMENT_ID } from '~constants'
+import { LEVEL_UP_SEARCH_PARAMETERS_KEY, NULL_DOCUMENT_ID } from '~constants'
 
 import { db } from '~firebase'
 
@@ -19,12 +19,24 @@ import SpinnerCentered from '~components/common/CenteredSpinner'
 function CharacterProvider({ children }: PropsWithChildren) {
   const { user: currentUser, updateUser } = useUser()
   const { userId } = useParams()
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const d = useMemo(() => doc(db, 'users', userId ?? NULL_DOCUMENT_ID), [userId])
   const { data: user, loading, error } = useDocument<User>(d, !!userId)
   const finalUser = userId && userId !== currentUser?.id ? user : currentUser
   const character = useMemo(() => finalUser?.character ?? {} as Character, [finalUser])
   const isEditable = currentUser?.id === finalUser?.id
+
+  const handleToggleLevelUp = useCallback(() => {
+    setSearchParams(x => {
+      if (x.has(LEVEL_UP_SEARCH_PARAMETERS_KEY)) x.delete(LEVEL_UP_SEARCH_PARAMETERS_KEY)
+      else x.set(LEVEL_UP_SEARCH_PARAMETERS_KEY, '1')
+
+      return x
+    })
+  }, [
+    setSearchParams,
+  ])
 
   const updateCharacter = useCallback(async (payload: Record<string, any>) => {
     if (!finalUser?.id || currentUser?.id !== finalUser.id) return
@@ -41,10 +53,14 @@ function CharacterProvider({ children }: PropsWithChildren) {
   const characterContextValue = useMemo<CharacterContextType>(() => ({
     character,
     isEditable,
+    isLevelUpOpen: searchParams.has(LEVEL_UP_SEARCH_PARAMETERS_KEY),
+    toggleLevelUp: handleToggleLevelUp,
     updateCharacter,
   }), [
     character,
     isEditable,
+    searchParams,
+    handleToggleLevelUp,
     updateCharacter,
   ])
 

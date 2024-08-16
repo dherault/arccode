@@ -1,15 +1,10 @@
-import { useState } from 'react'
-
 import useCharacter from '~hooks/character/useCharacter'
 
-import LevelUpContainer from '~components/character/LevelUpContainer'
 import SlidingBanner from '~components/common/SlidingBanner'
 import LanguageImage from '~components/character/LanguageImage'
 
 function LevelUpCard() {
-  const { character } = useCharacter()
-
-  const [open, setOpen] = useState(false)
+  const { character, toggleLevelUp } = useCharacter()
 
   const keywordNodes = Object.entries(character.levelUpsKeywords).map(([language, keywords]) => (
     Object.entries(keywords)
@@ -37,27 +32,21 @@ function LevelUpCard() {
   )).flat()
 
   return (
-    <>
-      <div
-        onClick={() => setOpen(true)}
-        className="py-3 flex flex-col items-center justify-center bg-white border border-blue rounded cursor-pointer"
-      >
-        <div className="mt-1 text-blue animate-bounce">
-          Level up!
-        </div>
-        <div className="grow" />
-        <SlidingBanner
-          duration={Math.max(12, keywordNodes.length * 1.666)}
-          gap={12}
-        >
-          {keywordNodes}
-        </SlidingBanner>
+    <div
+      onClick={toggleLevelUp}
+      className="py-3 flex flex-col items-center justify-center bg-white border border-blue rounded cursor-pointer"
+    >
+      <div className="mt-1 text-blue animate-bounce">
+        Level up!
       </div>
-      <LevelUpContainer
-        open={open}
-        setOpen={setOpen}
-      />
-    </>
+      <div className="grow" />
+      <SlidingBanner
+        duration={Math.max(12, keywordNodes.length * 1.666)}
+        gap={12}
+      >
+        {keywordNodes}
+      </SlidingBanner>
+    </div>
   )
 }
 

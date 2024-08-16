@@ -3,12 +3,8 @@ import useCharacter from '~hooks/character/useCharacter'
 import { Button } from '~components/ui/Button'
 import LevelUpChest from '~components/character/LevelUpChest'
 
-type Props = {
-  onClose: () => void
-}
-
-function LevelUp({ onClose }: Props) {
-  const { character } = useCharacter()
+function LevelUp() {
+  const { character, toggleLevelUp } = useCharacter()
 
   return (
     <div className="flex flex-col items-center">
@@ -44,7 +40,7 @@ function LevelUp({ onClose }: Props) {
       <div className="mt-16">
         <Button
           variant="ghost"
-          onClick={onClose}
+          onClick={toggleLevelUp}
         >
           Close
         </Button>

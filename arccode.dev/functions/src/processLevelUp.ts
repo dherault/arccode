@@ -3,7 +3,7 @@ import { FieldValue } from 'firebase-admin/firestore'
 import type { User } from '~types'
 
 import parseKeywords from './parseKeywords'
-import pickReward from './pickReward'
+import pickRewardId from './pickRewardId'
 
 function processLevelUp(user: User, levelUpsKeywords: unknown) {
   const levelUpsKeywordsPayload = parseKeywords(levelUpsKeywords)
@@ -19,23 +19,22 @@ function processLevelUp(user: User, levelUpsKeywords: unknown) {
 
     Object.entries(keywordMap).forEach(([keyword, amount]) => {
       if (!keyword) return
-      if (amount !== amount) return
 
       const finalAmount = Math.floor(amount)
 
+      if (finalAmount !== finalAmount) return
       if (finalAmount <= 0) return
       if ((user.character.levelUpsKeywords[language]?.[keyword] ?? 0) < finalAmount) return
 
       userPayload[`character.levelUpsKeywords.${language}.${keyword}`] = FieldValue.increment(-finalAmount)
-
       levelUps += finalAmount
 
       for (let i = 0; i < finalAmount; i++) {
-        const rewardItem = pickReward()
+        const rewardItemId = pickRewardId()
 
-        if (!unlockedItems[rewardItem.id]) unlockedItems[rewardItem.id] = 0
+        if (!unlockedItems[rewardItemId]) unlockedItems[rewardItemId] = 0
 
-        unlockedItems[rewardItem.id]++
+        unlockedItems[rewardItemId]++
       }
     })
   })
