@@ -3,8 +3,7 @@ export type Character = {
   level: number
   levelUpsKeywords: KeywordRegistry
   keywords: KeywordRegistry
-  viewedKeywords: KeywordRegistry
-  processedKeywords: KeywordRegistry
+  displayKeywords: KeywordRegistry
   unlockedItems: Record<string, number>
   avatarItemId: string
   mainHandItemId: string

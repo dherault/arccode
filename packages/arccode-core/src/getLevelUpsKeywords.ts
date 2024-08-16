@@ -1,12 +1,13 @@
+import cloneDeep from 'lodash.clonedeep'
+
 import type { Character, KeywordRegistry } from './types'
-import getCharacterKeywords from './getCharacterKeywords'
+import getKeywords from './getKeywords'
 
-function getLevelUpsKeywords(character: Character, nextKeywords?: KeywordRegistry) {
-  const beforeKeywords = getCharacterKeywords(character.processedKeywords ?? {})
-  const keywords = getCharacterKeywords(nextKeywords ?? character.keywords ?? {})
-  const levelUpsKeywords = { ...(character.levelUpsKeywords ?? {}) }
+function getLevelUpsKeywords(character: Character, inputKeywords: KeywordRegistry) {
+  const levelUpsKeywords = cloneDeep(character.levelUpsKeywords)
+  const beforeKeywords = getKeywords(character.keywords)
 
-  keywords.forEach(keyword => {
+  getKeywords(inputKeywords).forEach(keyword => {
     const beforeKeyword = beforeKeywords.find(beforeKeyword => beforeKeyword.language === keyword.language && beforeKeyword.name === keyword.name)
 
     if (!beforeKeyword) {

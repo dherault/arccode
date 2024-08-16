@@ -1,7 +1,7 @@
 import type { Keyword, KeywordRegistry } from './types'
-import getCharacterKeywords from './getCharacterKeywords'
+import getKeywords from './getKeywords'
 
-describe('getCharacterKeywords', () => {
+describe('getKeywords', () => {
   test('gets keywords', () => {
     const input: KeywordRegistry = {
       javascript: {
@@ -28,6 +28,6 @@ describe('getCharacterKeywords', () => {
       },
     ]
 
-    expect(getCharacterKeywords(input)).toEqual(output)
+    expect(getKeywords(input)).toEqual(output)
   })
 })

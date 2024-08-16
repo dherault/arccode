@@ -2,7 +2,7 @@ import keywordThresholds from 'arccode-keyword-thresholds'
 
 import type { Keyword, KeywordRegistry } from './types'
 
-function getCharacterKeywords(keywords: KeywordRegistry): Keyword[] {
+function getKeywords(keywords: KeywordRegistry): Keyword[] {
   return Object.entries(keywords)
     .map(([language, keywords]) => Object.entries(keywords).map(([name, count]) => {
       // @ts-expect-error
@@ -44,4 +44,4 @@ function getCharacterKeywords(keywords: KeywordRegistry): Keyword[] {
     .sort((a, b) => a.thresholdMax - a.count - (b.thresholdMax - b.count))
 }
 
-export default getCharacterKeywords
+export default getKeywords

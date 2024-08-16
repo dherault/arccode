@@ -3,7 +3,7 @@ import getLevelUpsKeywords from './getLevelUpsKeywords'
 
 describe('getLevelUpsKeywords', () => {
   test('gets levelUpsKeywords', () => {
-    const input: Character = {
+    const inputCharacter: Character = {
       name: '',
       level: 1,
       levelUpsKeywords: {
@@ -13,20 +13,13 @@ describe('getLevelUpsKeywords', () => {
       },
       keywords: {
         javascript: {
-          const: 3,
-          function: 3,
           break: 3,
         },
         c: {
           break: 10,
         },
       },
-      viewedKeywords: {},
-      processedKeywords: {
-        c: {
-          break: 10,
-        },
-      },
+      displayKeywords: {},
       unlockedItems: {},
       avatarItemId: '',
       mainHandItemId: '',
@@ -42,14 +35,21 @@ describe('getLevelUpsKeywords', () => {
       spell3ItemId: '',
       spell4ItemId: '',
     }
-    const output = {
+    const inputKeywordRegistry = {
       javascript: {
-        const: 1,
-        function: 1,
-        break: 1,
+        const: 12,
+        function: 3,
       },
     }
 
-    expect(getLevelUpsKeywords(input)).toEqual(output)
+    const output = {
+      javascript: {
+        break: 1,
+        const: 2,
+        function: 1,
+      },
+    }
+
+    expect(getLevelUpsKeywords(inputCharacter, inputKeywordRegistry)).toEqual(output)
   })
 })
