@@ -5,10 +5,11 @@ import { logger } from 'firebase-functions/v1'
 import type { User } from '~types'
 
 import { firestore } from './firebase'
-import { getUserFromCallableRequest, getUserFromRequest } from './getUser'
-import processKeywords from './processKeywords'
-import processLevelUp from './processLevelUp'
+import { getUserFromCallableRequest, getUserFromRequest } from './authentication/getUser'
+import processKeywords from './logic/processKeywords'
+import processLevelUp from './logic/processLevelUp'
 
+// Routes with onRequest andn cors are called from the extension
 const COSR = { cors: true }
 
 export const registerKeywords = onRequest(COSR, async (request, response) => {
@@ -70,6 +71,8 @@ export const levelUp = onCall(async request => {
 
   if (!(user && userDocument)) throw new HttpsError('permission-denied', 'You are not authenticated')
 
+  logger.log(`Level up for ${user.id}`)
+
   const userPayload = processLevelUp(user, request.data.levelUpsKeywords)
 
   if (!userPayload) throw new HttpsError('invalid-argument', 'You must provide a valid "levelUpsKeywords" field')
@@ -89,6 +92,8 @@ export const activateVscodeExtension = onRequest(COSR, async (request, response)
 
     return
   }
+
+  logger.log(`Activating extension for ${user.id}`)
 
   const payload: Record<string, any> = {
     hasConnectedExtension: true,

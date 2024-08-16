@@ -4,7 +4,7 @@ import type { CallableRequest } from 'firebase-functions/v2/https'
 
 import type { User } from '~types'
 
-import { auth, firestore } from './firebase'
+import { auth, firestore } from '../firebase'
 
 const nullValue = {
   user: null,
