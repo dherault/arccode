@@ -1,5 +1,5 @@
 import { FieldValue } from 'firebase-admin/firestore'
-import { getLevelUps } from 'arccode-core'
+import { getLevelUpsKeywords } from 'arccode-core'
 
 import type { User } from '~types'
 
@@ -35,9 +35,8 @@ function processKeywords(user: User, keywordsBody: unknown) {
 
   if (!Object.keys(userPayload).length) return null
 
-  const { levelUps, levelUpsKeywords } = getLevelUps(user.character, keywords)
+  const levelUpsKeywords = getLevelUpsKeywords(user.character, keywords)
 
-  userPayload['character.levelUps'] = levelUps
   userPayload['character.levelUpsKeywords'] = levelUpsKeywords
   userPayload.updatedAt = FieldValue.serverTimestamp()
   userPayload.nUpdates = FieldValue.increment(1)
