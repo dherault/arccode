@@ -8,6 +8,8 @@ type CreateUserArg = Omit<
   | 'hasConnectedExtension'
   | 'isAdministrator'
   | 'character'
+  | 'nUpdates'
+  | 'metadata'
   | 'createdAt'
   | 'updatedAt'
   | 'deletedAt'
@@ -22,6 +24,8 @@ function createUser(user: CreateUserArg): User {
     hasConnectedExtension: false,
     isAdministrator: false,
     character: INITIAL_CHARACTER,
+    metadata: {},
+    nUpdates: 0,
     createdAt: now,
     updatedAt: now,
     deletedAt: '',

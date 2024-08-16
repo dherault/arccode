@@ -29,6 +29,8 @@ export type User = DatabaseResource<{
   hasConnectedExtension: boolean
   isAdministrator: boolean
   character: Character
+  nUpdates: number
+  metadata: Record<string, any>
 }>
 
 export type Email = DatabaseResource<{

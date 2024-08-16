@@ -12,13 +12,20 @@ import {
   TableHeader,
   TableRow,
 } from '~components/ui/Table'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '~components/ui/Select'
 import { Button } from '~components/ui/Button'
 import UserUnlockGearDialog from '~components/administrator/users/UserUnlockGearDialog'
 import UserAssignGearDialog from '~components/administrator/users/UserAssignGearDialog'
 import UserKeywordsDialog from '~components/administrator/users/UserKeywordsDialog'
 
 function Users() {
-  const { users } = useUsers()
+  const { users, sortKey, setSortKey } = useUsers()
 
   const [unlockGearUserId, setUnlockGearUserId] = useState<string>('')
   const [assignGearUserId, setAssignGearUserId] = useState<string>('')
@@ -32,14 +39,51 @@ function Users() {
         </title>
       </Helmet>
       <div className="container">
-        <h1 className="font-display font-bold text-4xl">
-          Users
-        </h1>
+        <div className="flex items-center justify-between gap-4">
+          <h1 className="font-display font-bold text-4xl">
+            Users
+          </h1>
+          <Select
+            value={sortKey}
+            onValueChange={setSortKey}
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Sort key" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="createdAt">
+                createdAt
+              </SelectItem>
+              <SelectItem value="updatedAt">
+                updatedAt
+              </SelectItem>
+              <SelectItem value="nUpdates">
+                nUpdates
+              </SelectItem>
+              <SelectItem value="character.name">
+                character.name
+              </SelectItem>
+              <SelectItem value="character.level">
+                character.level
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
         <Table className="mt-4 bg-white border">
           <TableHeader>
             <TableRow>
-              <TableHead>Email</TableHead>
-              <TableHead>Character name</TableHead>
+              <TableHead>
+                Email
+              </TableHead>
+              <TableHead>
+                n Updates
+              </TableHead>
+              <TableHead>
+                Character name
+              </TableHead>
+              <TableHead>
+                Level
+              </TableHead>
               <TableHead className="text-right">
                 Actions
               </TableHead>
@@ -52,7 +96,13 @@ function Users() {
                   {user.email}
                 </TableCell>
                 <TableCell>
+                  {user.nUpdates}
+                </TableCell>
+                <TableCell>
                   {user.character.name}
+                </TableCell>
+                <TableCell>
+                  {user.character.level}
                 </TableCell>
                 <TableCell>
                   <div className="flex justify-end gap-2">

@@ -93,6 +93,7 @@ export const activateVscodeExtension = onRequest(COSR, async (request, response)
   const payload: Record<string, any> = {
     hasConnectedExtension: true,
     updatedAt: FieldValue.serverTimestamp(),
+    nUpdates: FieldValue.increment(1),
   }
 
   await userDocument.update(payload)

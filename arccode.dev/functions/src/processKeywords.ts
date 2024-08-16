@@ -40,6 +40,7 @@ function processKeywords(user: User, keywordsBody: unknown) {
   userPayload['character.levelUps'] = levelUps
   userPayload['character.levelUpsKeywords'] = levelUpsKeywords
   userPayload.updatedAt = FieldValue.serverTimestamp()
+  userPayload.nUpdates = FieldValue.increment(1)
 
   return userPayload
 }

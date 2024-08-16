@@ -41,6 +41,7 @@ function UserUnlockGearDialog({ userId, setUserId }: Props) {
 
     updateDoc(doc(db, 'users', user.id), {
       [`character.unlockedItems.${itemId}`]: nextValue,
+      updatedAt: new Date().toISOString(),
     })
   }, [
     user,

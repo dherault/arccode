@@ -15,8 +15,18 @@ const PAGINATION_SIZE = 100
 
 function UsersProvider({ children }: PropsWithChildren) {
   const [cursor, setCursor] = useState(0)
+  const [sortKey, setSortKey] = useState('createdAt')
 
-  const q = useMemo(() => query(collection(db, 'users'), orderBy('createdAt'), startAt(cursor), limit(PAGINATION_SIZE)), [cursor])
+  const q = useMemo(() => query(
+    collection(db, 'users'),
+    orderBy(sortKey),
+    startAt(cursor),
+    limit(PAGINATION_SIZE)
+  ), [
+    sortKey,
+    cursor,
+  ])
+
   const { data: users, loading, error } = useLiveDocuments<User>(q)
 
   const handlePreviousPage = useCallback(() => {
@@ -28,14 +38,18 @@ function UsersProvider({ children }: PropsWithChildren) {
   }, [])
 
   const usersContextValue = useMemo<UsersContextType>(() => ({
-    users: [...users].sort((a, b) => b.createdAt.localeCompare(a.createdAt)),
+    users,
     page: cursor / PAGINATION_SIZE + 1,
     hasNextPage: users.length >= PAGINATION_SIZE,
+    sortKey,
+    setSortKey,
     goToPreviousPage: handlePreviousPage,
     goToNextPage: handleNextPage,
   }), [
     users,
     cursor,
+    sortKey,
+    setSortKey,
     handlePreviousPage,
     handleNextPage,
   ])

@@ -49,6 +49,7 @@ function UserAssignGearDialog({ userId, setUserId }: Props) {
 
     updateDoc(doc(db, 'users', user.id), {
       [`character.${slot}`]: itemId,
+      updatedAt: new Date().toISOString(),
     })
   }, [
     user,

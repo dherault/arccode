@@ -10,6 +10,7 @@ function processLevelUp(user: User, levelUpsKeywords: unknown) {
 
   if (!levelUpsKeywordsPayload) return null
 
+  let levelUps = 0
   const userPayload: Record<string, any> = {}
   const unlockedItems: Record<string, number> = {}
 
@@ -27,6 +28,8 @@ function processLevelUp(user: User, levelUpsKeywords: unknown) {
 
       userPayload[`character.levelUpsKeywords.${language}.${keyword}`] = FieldValue.increment(-finalAmount)
 
+      levelUps += finalAmount
+
       for (let i = 0; i < finalAmount; i++) {
         const rewardItem = pickReward()
 
@@ -37,6 +40,10 @@ function processLevelUp(user: User, levelUpsKeywords: unknown) {
     })
   })
 
+  if (levelUps > 0) {
+    userPayload['character.levelUps'] = FieldValue.increment(levelUps)
+  }
+
   Object.entries(unlockedItems).forEach(([itemId, amount]) => {
     userPayload[`character.unlockedItems.${itemId}`] = FieldValue.increment(amount)
   })
@@ -44,6 +51,7 @@ function processLevelUp(user: User, levelUpsKeywords: unknown) {
   if (!Object.keys(userPayload).length) return null
 
   userPayload.updatedAt = FieldValue.serverTimestamp()
+  userPayload.nUpdates = FieldValue.increment(1)
 
   return userPayload
 }

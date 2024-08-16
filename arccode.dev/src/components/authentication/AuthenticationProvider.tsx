@@ -1,14 +1,35 @@
-import { type PropsWithChildren, useCallback, useEffect, useMemo, useState } from 'react'
+import {
+  type PropsWithChildren,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { type User as Viewer, onAuthStateChanged, sendEmailVerification, signOut } from 'firebase/auth'
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore'
+import {
+  type User as Viewer,
+  onAuthStateChanged,
+  sendEmailVerification,
+  signOut,
+} from 'firebase/auth'
+import {
+  doc,
+  getDoc,
+  increment,
+  setDoc,
+  updateDoc } from 'firebase/firestore'
 import LogRocket from 'logrocket'
 
 import type { SignInProvider, User } from '~types'
 
 import { NULL_DOCUMENT_ID } from '~constants'
 
-import { auth, db, logAnalytics, persistancePromise } from '~firebase'
+import {
+  auth,
+  db,
+  logAnalytics,
+  persistancePromise,
+} from '~firebase'
 
 import UserContext, { type UserContextType } from '~contexts/authentication/UserContext'
 
@@ -38,6 +59,7 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
     await updateDoc(userDocument, {
       ...payload,
       updatedAt: new Date().toISOString(),
+      nUpdates: increment(1),
     })
   }, [
     userId,
