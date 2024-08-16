@@ -67,7 +67,14 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('arccode.sync', async () => {
-      await sync(keywordRegistry, true)
+      await vscode.window.withProgress(
+        {
+          location: vscode.ProgressLocation.Notification,
+          title: 'Syncing to Arccode...',
+          cancellable: false,
+        },
+        () => sync(keywordRegistry, true)
+      )
     })
   )
 

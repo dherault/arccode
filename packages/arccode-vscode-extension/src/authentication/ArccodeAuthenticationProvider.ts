@@ -1,18 +1,5 @@
 // https://github.com/estruyf/vscode-auth-sample/blob/main/src/auth0AuthenticationProvider.ts
-
-import {
-  AuthenticationProvider,
-  AuthenticationProviderAuthenticationSessionsChangeEvent,
-  AuthenticationSession,
-  Disposable,
-  EventEmitter,
-  ExtensionContext,
-  ProgressLocation,
-  Uri,
-  authentication,
-  env,
-  window,
-} from 'vscode'
+import * as vscode from 'vscode'
 import { v4 as uuid } from 'uuid'
 
 import type {
@@ -30,21 +17,21 @@ import {
 import UriEventHandler from './UriEventHandler'
 import { promiseFromEvent } from './utils'
 
-class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposable {
-  private _sessionChangeEmitter = new EventEmitter<AuthenticationProviderAuthenticationSessionsChangeEvent>()
+class ArccodeAuthenticationProvider implements vscode.AuthenticationProvider, vscode.Disposable {
+  private _sessionChangeEmitter = new vscode.EventEmitter<vscode.AuthenticationProviderAuthenticationSessionsChangeEvent>()
 
-  private _disposable: Disposable
+  private _disposable: vscode.Disposable
 
   private _pendingStates: string[] = []
 
-  private _codeExchangePromises = new Map<string, { promise: Promise<UserInfo>; cancel: EventEmitter<void> }>()
+  private _codeExchangePromises = new Map<string, { promise: Promise<UserInfo>; cancel: vscode.EventEmitter<void> }>()
 
   private _uriHandler = new UriEventHandler()
 
-  constructor(private readonly context: ExtensionContext) {
-    this._disposable = Disposable.from(
-      authentication.registerAuthenticationProvider(AUTHENTICATION_TYPE, AUTHENTICATION_NAME, this, { supportsMultipleAccounts: false }),
-      window.registerUriHandler(this._uriHandler)
+  constructor(private readonly context: vscode.ExtensionContext) {
+    this._disposable = vscode.Disposable.from(
+      vscode.authentication.registerAuthenticationProvider(AUTHENTICATION_TYPE, AUTHENTICATION_NAME, this, { supportsMultipleAccounts: false }),
+      vscode.window.registerUriHandler(this._uriHandler)
     )
   }
 
@@ -56,17 +43,17 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
     const { publisher } = this.context.extension.packageJSON
     const { name } = this.context.extension.packageJSON
 
-    return `${env.uriScheme}://${publisher}.${name}`
+    return `${vscode.env.uriScheme}://${publisher}.${name}`
   }
 
    /**
    * Get the existing sessions
    */
-  public async getSessions(): Promise<readonly AuthenticationSession[]> {
+  public async getSessions(): Promise<readonly vscode.AuthenticationSession[]> {
     const allSessions = await this.context.secrets.get(SESSIONS_SECRET_KEY)
 
     if (allSessions) {
-      return JSON.parse(allSessions) as AuthenticationSession[]
+      return JSON.parse(allSessions) as vscode.AuthenticationSession[]
     }
 
     return []
@@ -75,7 +62,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
   /**
    * Create a new auth session
    */
-  public async createSession(): Promise<AuthenticationSession> {
+  public async createSession(): Promise<vscode.AuthenticationSession> {
     try {
       const userInfo = await this.login()
 
@@ -83,7 +70,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
         throw new Error('Arccode login failure')
       }
 
-      const session: AuthenticationSession = {
+      const session: vscode.AuthenticationSession = {
         id: uuid(),
         accessToken: process.env.DEV ? userInfo.idToken : userInfo.refreshToken,
         account: {
@@ -100,7 +87,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
       return session
     }
     catch (error) {
-      window.showErrorMessage(`Sign in failed: ${error}`)
+      vscode.window.showErrorMessage(`Sign in failed: ${error}`)
 
       throw error
     }
@@ -130,7 +117,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
 
     if (!allSessions) return
 
-    const sessions = JSON.parse(allSessions) as AuthenticationSession[]
+    const sessions = JSON.parse(allSessions) as vscode.AuthenticationSession[]
     const sessionIdx = sessions.findIndex(s => s.id === sessionId)
     const session = sessions[sessionIdx]
     sessions.splice(sessionIdx, 1)
@@ -153,8 +140,8 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
    * Log in to the frontend
    */
   private async login() {
-    return window.withProgress<UserInfo>({
-      location: ProgressLocation.Notification,
+    return vscode.window.withProgress<UserInfo>({
+      location: vscode.ProgressLocation.Notification,
       title: 'Signing in to Arccode...',
       cancellable: true,
     }, async (_, token) => {
@@ -167,9 +154,9 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
         ['state', stateId],
       ])
 
-      const uri = Uri.parse(`${AUTHENTICATION_URL}?${searchParams.toString()}`)
+      const uri = vscode.Uri.parse(`${AUTHENTICATION_URL}?${searchParams.toString()}`)
 
-      await env.openExternal(uri)
+      await vscode.env.openExternal(uri)
 
       let codeExchangePromise = this._codeExchangePromises.get(CODE_EXCHANGE_PROMISE_KEY)
 
@@ -205,7 +192,7 @@ class ArccodeAuthenticationProvider implements AuthenticationProvider, Disposabl
    * @param scopes
    * @returns
    */
-  private handleUri: () => PromiseAdapter<Uri, UserInfo> = () => async (uri, resolve, reject) => {
+  private handleUri: () => PromiseAdapter<vscode.Uri, UserInfo> = () => async (uri, resolve, reject) => {
     const query = new URLSearchParams(uri.query)
     const idToken = query.get('id_token')
     const refreshToken = query.get('refresh_token')

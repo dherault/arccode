@@ -1,4 +1,4 @@
-import { Disposable, Event, EventEmitter } from 'vscode'
+import * as vscode from 'vscode'
 
 import type { PromiseAdapter } from '../types'
 
@@ -19,14 +19,14 @@ const passthrough = (value: any, resolve: (value?: any) => void) => resolve(valu
  * @returns a promise that resolves or rejects as specified by the adapter
  */
 export function promiseFromEvent<T, U>(
-  event: Event<T>,
+  event: vscode.Event<T>,
   adapter: PromiseAdapter<T, U> = passthrough
 ): {
   promise: Promise<U>
-  cancel: EventEmitter<void>
+  cancel: vscode.EventEmitter<void>
 } {
-  let subscription: Disposable
-  const cancel = new EventEmitter<void>()
+  let subscription: vscode.Disposable
+  const cancel = new vscode.EventEmitter<void>()
 
   return {
     promise: new Promise<U>((resolve, reject) => {

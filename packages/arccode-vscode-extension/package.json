@@ -3,7 +3,7 @@
   "publisher": "arccode",
   "displayName": "Arccode",
   "description": "A role-playing game for developers",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "main": "./dist/extension.js",
   "icon": "images/icon.png",
   "galleryBanner": {
