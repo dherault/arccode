@@ -1,5 +1,6 @@
 import { FieldValue } from 'firebase-admin/firestore'
 import { getLevelUpsKeywords } from 'arccode-core'
+import cloneDeep = require('lodash.clonedeep')
 
 import type { User } from '~types'
 
@@ -10,7 +11,7 @@ function processKeywords(user: User, keywordsBody: unknown) {
 
   if (!keywordsPayload) return null
 
-  const keywords = { ...user.character.keywords }
+  const keywords = cloneDeep(user.character.keywords)
   const userPayload: Record<string, any> = {}
 
   Object.entries(keywordsPayload).forEach(([language, keywordMap]) => {
