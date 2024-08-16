@@ -33,7 +33,7 @@ function LevelUp() {
         {' '}
         available.
       </div>
-      <div className="mt-16 flex items-center gap-8">
+      <div className="mt-16 flex items-center gap-8 select-none">
         <img
           src="/images/onboarding/laurel-left.png"
           alt="Laurel left"
