@@ -12,7 +12,7 @@ import {
 // @ts-expect-error
 } from 'language-keywords'
 
-const languageToKeywords: Record<string, string[]> = {
+export const languageToKeywords: Record<string, string[]> = {
   c,
   cpp,
   csharp,
@@ -27,4 +27,4 @@ const languageToKeywords: Record<string, string[]> = {
   typescriptreact: typescript,
 }
 
-export default languageToKeywords
+export const supportedLanguageIds = Object.keys(languageToKeywords)

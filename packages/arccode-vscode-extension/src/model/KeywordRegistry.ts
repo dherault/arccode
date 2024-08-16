@@ -1,12 +1,12 @@
 import * as vscode from 'vscode'
 
-import type { KeywordData, Language } from './types'
+import type { KeywordData, Language } from '../types'
 import {
   CURRENT_KEYWORDS_STORAGE_KEY,
   DAILY_KEYWORDS_STORAGE_KEY,
   LANGUAGE_CONVERSION,
   SYNC_PERIOD,
-} from './constants'
+} from '../constants'
 
 class KeywordRegistry {
   private context: vscode.ExtensionContext

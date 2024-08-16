@@ -1,4 +1,4 @@
-import { MAX_LINES } from './constants'
+import { MAX_LINES } from '../constants'
 
 class FileRegistry {
   private data: Record<string, string>

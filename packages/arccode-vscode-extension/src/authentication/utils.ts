@@ -1,6 +1,6 @@
 import { Disposable, Event, EventEmitter } from 'vscode'
 
-import type { PromiseAdapter } from './types'
+import type { PromiseAdapter } from '../types'
 
 const passthrough = (value: any, resolve: (value?: any) => void) => resolve(value)
 

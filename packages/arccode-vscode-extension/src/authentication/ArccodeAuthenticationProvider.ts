@@ -18,14 +18,15 @@ import { v4 as uuid } from 'uuid'
 import type {
   PromiseAdapter,
   UserInfo,
-} from './types'
+} from '../types'
 import {
   AUTHENTICATION_NAME,
   AUTHENTICATION_TYPE,
   AUTHENTICATION_URL,
   CODE_EXCHANGE_PROMISE_KEY,
   SESSIONS_SECRET_KEY,
-} from './constants'
+} from '../constants'
+
 import UriEventHandler from './UriEventHandler'
 import { promiseFromEvent } from './utils'
 

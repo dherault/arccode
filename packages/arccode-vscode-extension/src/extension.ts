@@ -7,10 +7,11 @@ import {
   EXCHANGE_TOKENS_API_URL,
   REGISTER_KEYWORDS_API_URL,
 } from './constants'
-import ArccodeAuthenticationProvider from './ArccodeAuthenticationProvider'
-import FileRegistry from './FileRegistry'
-import KeywordRegistry from './KeywordRegistry'
-import { handleDocumentChange, populateFileRegistry } from './core'
+import ArccodeAuthenticationProvider from './authentication/ArccodeAuthenticationProvider'
+import FileRegistry from './model/FileRegistry'
+import KeywordRegistry from './model/KeywordRegistry'
+import populateFileRegistry from './core/populateFileRegistry'
+import handleDocumentChange from './core/handleDocumentChange'
 
 export function activate(context: vscode.ExtensionContext) {
   if (process.env.DEV) {
