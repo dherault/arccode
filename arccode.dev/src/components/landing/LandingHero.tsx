@@ -36,6 +36,13 @@ function LandingHero() {
           </Button>
         </Link>
       </div>
+      <div className="mt-16 p-4 bg-neutral-100 border rounded-xl">
+        <img
+          src="/images/landing/hero.png"
+          alt="App screenshot"
+          className="border rounded-lg"
+        />
+      </div>
     </section>
   )
 }
