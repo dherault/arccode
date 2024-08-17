@@ -3,7 +3,7 @@ import Balancer from 'react-wrap-balancer'
 
 function LandingProduct() {
   return (
-    <section className="pt-16 md:pt-32 container flex flex-col items-center">
+    <section className="pt-16 md:pt-36 container flex flex-col items-center">
       <div
         id="product"
         className="text-blue font-semibold text-center"

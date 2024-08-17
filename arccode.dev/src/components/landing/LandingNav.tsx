@@ -8,7 +8,7 @@ function LandingNav() {
   return (
     <nav className="py-6 px-8 flex items-center gap-12">
       <div className="flex-1 flex items-center gap-4 text-blue">
-        <Logo className="h-11 md:h-8 shrink-0" />
+        <Logo className="h-11 md:h-10 shrink-0" />
         <div className="text-sm leading-[1.1] md:text-xl font-semibold">
           Arccode
         </div>
