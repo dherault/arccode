@@ -6,15 +6,15 @@ import Logo from '~components/common/logos/Logo'
 
 function LandingFooter() {
   return (
-    <footer className="pt-16 pb-32 md:pt-32 md:px-8 flex flex-col items-center md:grid grid-cols-[1fr,2fr] md:items-start">
+    <footer className="pt-16 pb-32 md:pt-32 md:px-8 flex flex-col items-center md:grid grid-cols-[2fr,3fr] md:items-start">
       <div className="flex items-center gap-4 text-blue ">
         <Logo className="h-11 md:h-8 shrink-0" />
         <div className="text-sm leading-[1.1] md:text-xl font-semibold max-w-[72px] md:max-w-max">
           Arccode
         </div>
       </div>
-      <div className="md:mt-1.5 md:grid grid-cols-6 gap-12 text-center md:text-left">
-        <div className="mt-6 md:mt-0 flex flex-col gap-2 md:gap-4">
+      <div className="md:mt-1.5 md:grid grid-cols-4 gap-12 text-center md:text-left">
+        {/* <div className="mt-6 md:mt-0 flex flex-col gap-2 md:gap-4">
           <div className="md:mb-2 text-sm font-semibold">
             Navigation
           </div>
@@ -24,17 +24,17 @@ function LandingFooter() {
           >
             Game
           </a>
-        </div>
+        </div> */}
         <div className="mt-6 md:mt-0 flex flex-col gap-2 md:gap-4">
           <div className="md:mb-2 text-sm font-semibold">
             Company
           </div>
-          <a
-            href="#"
+          <Link
+            to="/support"
             className="text-sm text-neutral-700"
           >
-            About
-          </a>
+            Support
+          </Link>
           <Link
             to="/legal"
             className="text-sm text-neutral-700"

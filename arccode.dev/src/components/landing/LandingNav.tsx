@@ -13,7 +13,7 @@ function LandingNav() {
           Arccode
         </div>
       </div>
-      <div className="hidden md:flex justify-center gap-12">
+      {/* <div className="hidden md:flex justify-center gap-12">
         <a
           href="#product"
           className="font-semibold text-sm"
@@ -26,7 +26,7 @@ function LandingNav() {
         >
           Pricing
         </a>
-      </div>
+      </div> */}
       <div className="flex-1 flex justify-end">
         <Link to="/~">
           <Button variant="ghost">

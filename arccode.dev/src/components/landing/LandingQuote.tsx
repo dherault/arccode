@@ -16,7 +16,7 @@ function LandingQuote() {
           style={{ filter: 'hue-rotate(333deg)' }}
         />
         <div className="absolute inset-0 flex items-center">
-          <div className="-mt-4 px-16 text-white">
+          <div className="-mt-6 px-16 text-white">
             <Logo className="h-12" />
             <div className="mt-6 text-xl w-2/3 font-semibold">
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rhoncus sed justo eget feugiat. Aliquam pellentesque metus vel tellus porttitor tempus."

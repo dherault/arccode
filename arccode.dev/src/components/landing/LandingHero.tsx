@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-// import Balancer from 'react-wrap-balancer'
 
 import { Button } from '~components/ui/Button'
 
