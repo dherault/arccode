@@ -10,7 +10,7 @@ function LandingPickup() {
     >
       <div className="text-4xl font-bold text-center">
         <Balancer>
-          Start your adventure
+          Adventure awaits
         </Balancer>
       </div>
       <div className="mt-4 text-lg text-neutral-700 text-center max-w-4xl">
@@ -24,13 +24,13 @@ function LandingPickup() {
             size="lg"
             className="flex md:hidden"
           >
-            Get started
+            Start game
           </Button>
           <Button
             size="xl"
             className="hidden md:flex"
           >
-            Get started
+            Start game
           </Button>
         </Link>
       </div>
