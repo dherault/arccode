@@ -16,7 +16,7 @@ function LandingFaq() {
         className="mt-4"
       >
         <AccordionItem value="what">
-          <AccordionTrigger>
+          <AccordionTrigger className="text-left">
             What is Arccode?
           </AccordionTrigger>
           <AccordionContent>
@@ -46,7 +46,7 @@ function LandingFaq() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="extension">
-          <AccordionTrigger>
+          <AccordionTrigger className="text-left">
             Do I need to install the Arccode VSCode extension to play?
           </AccordionTrigger>
           <AccordionContent>
@@ -54,7 +54,7 @@ function LandingFaq() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="languages">
-          <AccordionTrigger>
+          <AccordionTrigger className="text-left">
             What programming languages are compatible with Arccode?
           </AccordionTrigger>
           <AccordionContent>
@@ -73,7 +73,7 @@ function LandingFaq() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="github">
-          <AccordionTrigger>
+          <AccordionTrigger className="text-left">
             Is Arccode open-source?
           </AccordionTrigger>
           <AccordionContent>

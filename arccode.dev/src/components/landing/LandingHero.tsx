@@ -15,7 +15,7 @@ function LandingHero() {
       </h1>
       <div className="mt-4 md:mt-6 md:text-lg font-light text-center max-w-xl">
         <Balancer>
-          XP, level ups and guilds. All at your fingertips.
+          XP, level ups and guilds. All while you work.
         </Balancer>
       </div>
       <div className="mt-8">
