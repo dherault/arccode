@@ -4,7 +4,7 @@ import { doc } from 'firebase/firestore'
 import { httpsCallable } from 'firebase/functions'
 import { countKeywordRegistry, pickLevelUpsKeywords } from 'arccode-core'
 
-import { type Character, User } from '~types'
+import { User } from '~types'
 
 import { LEVEL_UP_SEARCH_PARAMETERS_KEY, NULL_DOCUMENT_ID } from '~constants'
 
@@ -34,7 +34,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
   const d = useMemo(() => doc(db, 'users', userId ?? NULL_DOCUMENT_ID), [userId])
   const { data: user, loading, error } = useDocument<User>(d, !!userId)
   const finalUser = userId && userId !== currentUser?.id ? user : currentUser
-  const character = useMemo(() => finalUser?.character ?? {} as Character, [finalUser])
+  const character = useMemo(() => finalUser?.character ?? null, [finalUser])
   const isEditable = currentUser?.id === finalUser?.id
 
   const updateCharacter = useCallback(async (payload: Record<string, any>) => {
@@ -55,14 +55,14 @@ function CharacterProvider({ children }: PropsWithChildren) {
 
   const [levelUpsToOpen, setLevelUpsToOpen] = useState(1)
   const [levelUpsCursor, setLevelUpsCursor] = useState(0)
-  const levelUpsKeywords = useMemo(() => pickLevelUpsKeywords(character, levelUpsToOpen), [character, levelUpsToOpen])
+  const levelUpsKeywords = useMemo(() => character ? pickLevelUpsKeywords(character, levelUpsToOpen) : {}, [character, levelUpsToOpen])
   const levelUpsCount = useMemo(() => countKeywordRegistry(levelUpsKeywords), [levelUpsKeywords])
-  const levelUpsMax = useMemo(() => countKeywordRegistry(character.levelUpsKeywords), [character.levelUpsKeywords])
-  const previousUnlockedItems = usePrevious(character.unlockedItems)
+  const levelUpsMax = useMemo(() => character ? countKeywordRegistry(character.levelUpsKeywords) : 0, [character])
+  const previousUnlockedItems = usePrevious(character?.unlockedItems ?? {})
   const levelUpsUnlockedItems = useMemo(() => {
     const levelUpsUnlockedItems: Record<string, number> = {}
 
-    Object.entries(character.unlockedItems).forEach(([itemId, count]) => {
+    Object.entries(character?.unlockedItems ?? {}).forEach(([itemId, count]) => {
       const diffCount = count - (previousUnlockedItems[itemId] ?? 0)
 
       if (diffCount <= 0) return
@@ -72,7 +72,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
 
     return levelUpsUnlockedItems
   }, [
-    character.unlockedItems,
+    character?.unlockedItems,
     previousUnlockedItems,
   ])
 
@@ -107,14 +107,19 @@ function CharacterProvider({ children }: PropsWithChildren) {
 
   const handleCloseChest = useCallback(async () => {
     setLevelUpsCursor(x => x + 1)
-  }, [])
+
+    if (!levelUpsCount) handleToggleLevelUp()
+  }, [
+    levelUpsCount,
+    handleToggleLevelUp,
+  ])
 
   /* ---
     Context value
   --- */
 
   const characterContextValue = useMemo<CharacterContextType>(() => ({
-    character,
+    character: character!,
     isEditable,
     updateCharacter,
     isLevelUpOpen: searchParams.has(LEVEL_UP_SEARCH_PARAMETERS_KEY),
@@ -157,7 +162,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
     )
   }
 
-  if (!finalUser) {
+  if (!character) {
     return (
       <NotFound />
     )

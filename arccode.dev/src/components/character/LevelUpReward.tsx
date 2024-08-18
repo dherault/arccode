@@ -15,7 +15,7 @@ function LevelUpReward() {
   if (!levelUpsUnlockedItemsEntries.length) return null
 
   return (
-    <div className="p-4 bg-white border rounded select-none max-h-[320px] overflow-auto">
+    <div className="p-4 bg-white border rounded select-none max-h-[320px] overflow-auto shadow-lg">
       <div className="text-center">
         You unlocked:
       </div>

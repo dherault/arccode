@@ -68,12 +68,11 @@ function LevelUpChest() {
     setRewardDisplayed(false)
   }, [
     levelUpsCursor,
-    levelUpsCount,
   ])
 
   return (
     <div
-      className="h-fit w-fit cursor-pointer rounded-full"
+      className="h-fit w-fit cursor-pointer rounded-full relative"
       onClick={handleClick}
     >
       <div className="h-[384px] w-[384px] overflow-hidden relative">
@@ -145,6 +144,7 @@ function LevelUpChest() {
               y: [0, -42, 0],
               transition: {
                 type: 'tween',
+                delay: 0.1,
                 duration: POP_DURATION / 1000,
               },
             },
