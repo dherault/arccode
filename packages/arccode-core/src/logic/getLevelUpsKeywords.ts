@@ -1,6 +1,7 @@
 import cloneDeep from 'lodash.clonedeep'
 
-import type { Character, KeywordRegistry } from './types'
+import type { Character, KeywordRegistry } from '../types'
+
 import getKeywords from './getKeywords'
 
 function getLevelUpsKeywords(character: Character, inputKeywords: KeywordRegistry) {

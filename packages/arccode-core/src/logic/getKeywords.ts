@@ -1,6 +1,6 @@
 import keywordThresholds from 'arccode-keyword-thresholds'
 
-import type { Keyword, KeywordRegistry } from './types'
+import type { Keyword, KeywordRegistry } from '../types'
 
 function getKeywords(keywords: KeywordRegistry): Keyword[] {
   return Object.entries(keywords)

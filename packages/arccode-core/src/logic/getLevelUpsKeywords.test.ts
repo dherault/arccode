@@ -1,4 +1,5 @@
-import type { Character } from './types'
+import type { Character } from '../types'
+
 import getLevelUpsKeywords from './getLevelUpsKeywords'
 
 describe('getLevelUpsKeywords', () => {

@@ -1,4 +1,5 @@
-import type { Keyword, KeywordRegistry } from './types'
+import type { Keyword, KeywordRegistry } from '../types'
+
 import getKeywords from './getKeywords'
 
 describe('getKeywords', () => {
