@@ -29,7 +29,7 @@
     "reserved"
   ],
   "author": "David Hérault <dherault@gmail.com> (https://github.com/dherault)",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "scripts": {
     "test": "jest",
     "build": "tsc && vite build",
