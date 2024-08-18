@@ -4,7 +4,7 @@ import Logo from '~components/common/logos/Logo'
 
 function LandingQuote() {
   return (
-    <section className="pt-16 md:pt-36 container flex flex-col items-center">
+    <section className="hidden pt-16 md:pt-36 container md:flex flex-col items-center">
       <div className="relative rounded-lg overflow-hidden">
         <img
           src="/images/landing/developer.png"

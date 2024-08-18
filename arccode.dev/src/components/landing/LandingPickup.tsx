@@ -18,7 +18,7 @@ function LandingPickup() {
           Play now
         </Balancer>
       </div>
-      <div className="mt-10">
+      <div className="mt-6 md:mt-10">
         <Link to="/~">
           <Button
             size="lg"

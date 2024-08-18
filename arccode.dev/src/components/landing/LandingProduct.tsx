@@ -20,7 +20,7 @@ function LandingProduct() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </Balancer>
       </div>
-      <div className="mt-8 md:mt-16 grid md:grid-cols-2 gap-y-8 md:gap-y-24 md:gap-x-12">
+      <div className="mt-8 md:mt-16 grid md:grid-cols-2 gap-y-8 md:gap-y-24 md:gap-x-12 w-full md:w-auto">
         <div className="aspect-[1.618/1] border rounded-lg bg-white" />
         <div className="-mt-4 md:mt-0">
           <div className="p-2 w-fit bg-blue flex items-center justify-center rounded-md">
@@ -29,7 +29,7 @@ function LandingProduct() {
           <div className="mt-3 font-semibold">
             Install the VSCode extension
           </div>
-          <div className="mt-3 text-neutral-700 leading-relaxed max-w-xl">
+          <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-xl">
             <Balancer>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </Balancer>
@@ -43,7 +43,7 @@ function LandingProduct() {
           <div className="mt-3 font-semibold">
             Start coding
           </div>
-          <div className="mt-3 text-neutral-700 leading-relaxed max-w-xl">
+          <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-xl">
             <Balancer>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </Balancer>
@@ -58,7 +58,7 @@ function LandingProduct() {
           <div className="mt-3 font-semibold">
             Earns xp
           </div>
-          <div className="mt-3 text-neutral-700 leading-relaxed max-w-xl">
+          <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-xl">
             <Balancer>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </Balancer>
