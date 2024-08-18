@@ -36,9 +36,7 @@ function processKeywords(user: User, keywordsBody: unknown) {
 
   if (!Object.keys(userPayload).length) return null
 
-  const levelUpsKeywords = getLevelUpsKeywords(user.character, keywords)
-
-  userPayload['character.levelUpsKeywords'] = levelUpsKeywords
+  userPayload['character.levelUpsKeywords'] = getLevelUpsKeywords(user.character, keywords)
   userPayload.updatedAt = FieldValue.serverTimestamp()
   userPayload.nUpdates = FieldValue.increment(1)
 

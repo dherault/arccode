@@ -2,15 +2,13 @@ import { type PropsWithChildren, useCallback, useMemo, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { doc } from 'firebase/firestore'
 import { httpsCallable } from 'firebase/functions'
+import { countKeywordRegistry, pickLevelUpsKeywords } from 'arccode-core'
 
 import { type Character, User } from '~types'
 
 import { LEVEL_UP_SEARCH_PARAMETERS_KEY, NULL_DOCUMENT_ID } from '~constants'
 
 import { db, functions } from '~firebase'
-
-import pickLevelUpsKeywords from '~logic/pickLevelUpsKeywords'
-import countKeywordRegistry from '~logic/countKeywordRegistry'
 
 import CharacterContext, { CharacterContextType } from '~contexts/character/CharacterContext'
 
