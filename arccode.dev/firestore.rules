@@ -48,10 +48,5 @@ service cloud.firestore {
         && hasUnlockedItem('spell4ItemId');
     }
 
-    match /emails/{emailId} {
-      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
-      allow read, update, delete: if false;
-    }
-
   }
 }
