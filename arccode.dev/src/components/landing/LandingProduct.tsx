@@ -26,7 +26,7 @@ function LandingProduct() {
           <div className="p-2 w-fit bg-blue flex items-center justify-center rounded-md">
             <VenetianMask className="w-6 h-6 text-white" />
           </div>
-          <div className="mt-3 font-semibold">
+          <div className="mt-4 font-semibold">
             Create a character
           </div>
           <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-lg">
@@ -40,7 +40,7 @@ function LandingProduct() {
           <div className="p-2 w-fit bg-blue flex items-center justify-center rounded-md">
             <Blocks className="w-6 h-6 text-white" />
           </div>
-          <div className="mt-3 font-semibold">
+          <div className="mt-4 font-semibold">
             Install the VSCode extension
           </div>
           <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-lg">
@@ -82,7 +82,7 @@ function LandingProduct() {
           <div className="p-2 w-fit bg-blue flex items-center justify-center rounded-md">
             <CodeXml className="w-6 h-6 text-white" />
           </div>
-          <div className="mt-3 font-semibold">
+          <div className="mt-4 font-semibold">
             Start coding and earns xp
           </div>
           <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-lg">

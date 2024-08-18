@@ -9,12 +9,12 @@ function LandingQuote() {
         <img
           src="/images/landing/developer.png"
           alt="Maker"
-          className="scale-x-[-1]"
+          className="w-[1024px] scale-x-[-1]"
         />
         <img
           src="images/landing/blur-purple.png"
           alt="Blur"
-          className="absolute inset-0 opacity-85"
+          className="absolute inset-0 w-[1024px] opacity-85"
           style={{ filter: 'hue-rotate(333deg)' }}
         />
         <div className="absolute inset-0 flex items-center">

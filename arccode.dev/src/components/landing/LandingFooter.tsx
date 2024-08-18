@@ -47,6 +47,18 @@ function LandingFooter() {
             Social
           </div>
           <a
+            href="https://github.com/dherault/arccode"
+            target="_blank"
+            rel="noreferrer"
+            className="text-sm text-neutral-700 flex items-center justify-center md:justify-start gap-2"
+          >
+            <img
+              src="https://cdn.simpleicons.org/github?viewbox=auto"
+              className="mb-0.5 h-4 w-4"
+            />
+            GitHub
+          </a>
+          <a
             href="#"
             className="text-sm text-neutral-700 flex items-center justify-center md:justify-start gap-2"
           >

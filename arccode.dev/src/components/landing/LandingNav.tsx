@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
+import GithubButton from '~components/common/GithubButton'
 import Logo from '~components/common/logos/Logo'
 import { Button } from '~components/ui/Button'
 
@@ -13,7 +14,10 @@ function LandingNav() {
           Arccode
         </div>
       </div>
-      <div className="flex-1 flex justify-end">
+      <div className="flex-1 flex justify-end gap-2">
+        <div className="mt-1.5">
+          <GithubButton />
+        </div>
         <Link to="/~">
           <Button variant="ghost">
             Log in
