@@ -7,7 +7,7 @@ const rubyKeywords = [
   'case',
   'class',
   'def',
-  'defined?',
+  // 'defined?',
   'do',
   'else',
   'elsif',

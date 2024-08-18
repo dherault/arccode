@@ -1,12 +1,12 @@
 import * as keywords from './index'
 
-const keyordRegex = /[a-z]/
+const keywordRegex = /^[a-zA-Z][a-zA-Z0-9-_]*$/
 
 describe('language-keywords', () => {
   test('are valid keywords', () => {
     Object.entries(keywords).forEach(([language, keywords]) => {
       keywords.forEach(keyword => {
-        const isValid = keyordRegex.test(keyword)
+        const isValid = keywordRegex.test(keyword)
 
         if (!isValid) console.log(language, keyword)
 
