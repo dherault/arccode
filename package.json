@@ -12,7 +12,7 @@
     "url": "https://github.com/dherault/arccode/issues"
   },
   "homepage": "https://github.com/dherault/arccode",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "GPL-3.0-only",
   "scripts": {
     "prepare": "husky",
     "lint": "(cd arccode.dev && npm run lint) && (cd packages/arccode-vscode-extension && npm run lint) && (cd packages/arccode-core && npm run lint) && (cd packages/language-keywords && npm run lint) && (cd packages/arccode-keyword-thresholds && npm run lint)"

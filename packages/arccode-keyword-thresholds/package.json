@@ -27,7 +27,7 @@
     "arrcode"
   ],
   "author": "David Hérault <dherault@gmail.com> (https://github.com/dherault)",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "scripts": {
     "build": "tsc && vite build",
     "lint": "tsc && eslint src --ext ts",
