@@ -1,4 +1,4 @@
-import { Component, Replace, Shapes } from 'lucide-react'
+import { Blocks, CodeXml, VenetianMask } from 'lucide-react'
 import Balancer from 'react-wrap-balancer'
 
 function LandingProduct() {
@@ -12,7 +12,7 @@ function LandingProduct() {
       </div>
       <h2 className="mt-3 text-3xl md:text-4xl font-bold text-center">
         <Balancer>
-          Create a character
+          Code is xp
         </Balancer>
       </h2>
       <div className="mt-4 md:text-lg text-neutral-700 text-center max-w-4xl">
@@ -24,43 +24,70 @@ function LandingProduct() {
         <div className="aspect-[1.618/1] border rounded-lg bg-white" />
         <div className="-mt-4 md:mt-0">
           <div className="p-2 w-fit bg-blue flex items-center justify-center rounded-md">
-            <Shapes className="w-6 h-6 text-white" />
+            <VenetianMask className="w-6 h-6 text-white" />
           </div>
           <div className="mt-3 font-semibold">
-            Install the VSCode extension
+            Create a character
           </div>
-          <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-xl">
+          <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-lg">
             <Balancer>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Click play, pick a pseudo and start a new adventure.
             </Balancer>
           </div>
         </div>
         <div className="block md:hidden aspect-[1.618/1] border rounded-lg bg-white" />
         <div className="-mt-4 md:mt-0">
           <div className="p-2 w-fit bg-blue flex items-center justify-center rounded-md">
-            <Replace className="w-6 h-6 text-white" />
+            <Blocks className="w-6 h-6 text-white" />
           </div>
           <div className="mt-3 font-semibold">
-            Start coding
+            Install the VSCode extension
           </div>
-          <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-xl">
+          <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-lg">
             <Balancer>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Connect VSCode to Arccode and resume your coding session. The extension reads your code and counts your keywords such a
+              {' '}
+              <code className="py-0.5 px-1 bg-neutral-100 rounded-full border font-mono text-sm text-neutral-700">
+                function
+              </code>
+              {' '}
+              or
+              {' '}
+              <code className="py-0.5 px-1 bg-neutral-100 rounded-full border font-mono text-sm text-neutral-700">
+                true
+              </code>
+              .
             </Balancer>
+            <div className="py-2 px-3 mt-2 w-fit border bg-neutral-50 rounded text-neutral-500 text-xs">
+              <Balancer>
+                Arccode never uploads your code to a remote server.
+                Everything is processed locally and only metadata is sent to the database.
+                You can learn more by
+                {' '}
+                <a
+                  href="https://github.com/dherault/arccode"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-blue hover:underline"
+                >
+                  reading the code on GitHub
+                </a>
+              </Balancer>
+            </div>
           </div>
         </div>
         <div className="hidden md:block aspect-[1.618/1] border rounded-lg bg-white" />
         <div className="aspect-[1.618/1] border rounded-lg bg-white" />
         <div className="-mt-4 md:mt-0">
           <div className="p-2 w-fit bg-blue flex items-center justify-center rounded-md">
-            <Component className="w-6 h-6 text-white" />
+            <CodeXml className="w-6 h-6 text-white" />
           </div>
           <div className="mt-3 font-semibold">
-            Earns xp
+            Start coding and earns xp
           </div>
-          <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-xl">
+          <div className="mt-1 md:mt-3 text-neutral-700 leading-relaxed max-w-lg">
             <Balancer>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Turn the keywords your type into experience points and eventually level ups! Earn legendary gear to equip your character and join a guild to share your progress with others.
             </Balancer>
           </div>
         </div>
