@@ -1,6 +1,6 @@
 // https://www.w3schools.com/java/java_ref_keywords.asp
 const javaKeywords = [
-  '_',
+  // '_',
   'abstract',
   'assert',
   'boolean',
