@@ -17,7 +17,7 @@ function LandingProduct() {
       </h2>
       <div className="mt-4 md:text-lg text-neutral-700 text-center max-w-4xl">
         <Balancer>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Xp is levels, levels are loot. And so on.
         </Balancer>
       </div>
       <div className="mt-8 md:mt-16 grid md:grid-cols-2 gap-y-8 md:gap-y-24 md:gap-x-12 w-full md:w-auto">

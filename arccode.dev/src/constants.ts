@@ -147,9 +147,9 @@ export const LEVEL_UP_SEARCH_PARAMETERS_KEY = 'level-up'
 
 export const LEGAL_COMPANY_NAME = 'Microentreprise David Hérault'
 
-export const LEGAL_DATE = '1 October 2024'
+export const LEGAL_DATE = '1 August 2024'
 
-export const LEGAL_LAST_UPDATED_DATE = '1 October 2024'
+export const LEGAL_LAST_UPDATED_DATE = '1 August 2024'
 
 /* ---
   Support

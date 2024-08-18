@@ -5,7 +5,7 @@ import { Button } from '~components/ui/Button'
 
 function LandingPickup() {
   return (
-    <section className="pt-16 md:pt-32 pb-8 md:pb-16 container flex flex-col items-center">
+    <section className="pt-16 pb-8 md:pb-16 container flex flex-col items-center">
       <div className="text-4xl font-bold text-center">
         <Balancer>
           Adventure awaits
@@ -16,7 +16,7 @@ function LandingPickup() {
           Play now
         </Balancer>
       </div>
-      <div className="mt-6 md:mt-10">
+      <div className="mt-6">
         <Link to="/~">
           <Button
             size="lg"
