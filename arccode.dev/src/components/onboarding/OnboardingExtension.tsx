@@ -39,14 +39,14 @@ function OnboardingExtension() {
   ])
 
   return (
-    <div className="py-12 container grow flex flex-col items-center bg-neutral-background">
+    <div className="py-8 md:py-12 px-4 md:px-8 md:container grow flex flex-col items-center bg-neutral-background text-center">
       <h1 className="text-4xl font-bold">
         Arccode works with VSCode
       </h1>
       <div className="mt-2 text-lg text-neutral-700">
         Connect the extension to continue
       </div>
-      <div className="mt-12 text-xl font-semibold text-blue">
+      <div className="mt-8 md:mt-12 text-xl font-semibold text-blue">
         1. Install the extension
       </div>
       <img
@@ -58,7 +58,7 @@ function OnboardingExtension() {
           Look for "Arccode" in the VSCode marketplace and install the extension.
         </Balancer>
       </div>
-      <div className="mt-12 text-xl font-semibold text-blue">
+      <div className="mt-8 md:mt-12 text-xl font-semibold text-blue">
         2. Run the sign in command
       </div>
       <img
@@ -81,7 +81,7 @@ function OnboardingExtension() {
           command.
         </Balancer>
       </div>
-      <div className="mt-12 text-neutral-700">
+      <div className="mt-8 md:mt-12 text-neutral-700">
         Status: Waiting on extension connection
         <ThreeDots />
       </div>

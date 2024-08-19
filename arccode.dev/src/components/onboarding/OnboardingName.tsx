@@ -37,7 +37,11 @@ function OnboardingName() {
 
     const docs = await getDocs(q)
 
-    if (!docs.empty) return
+    if (!docs.empty) {
+      setLoading(false)
+
+      return
+    }
 
     await updateUser({
       'character.name': finalName,
@@ -115,7 +119,7 @@ function OnboardingName() {
           alt="Boat at sea"
           className="mx-auto absolute inset-0 h-full object-cover z-0"
         />
-        <div className="flex flex-col items-center space-y-4 text-4xl font-display text-white font-black [text-shadow:0px_0px_8px_black] z-10">
+        <div className="px-2 flex flex-col items-center space-y-4 text-2xl md:text-4xl text-center font-display text-white font-black [text-shadow:0px_0px_8px_black] z-10">
           <motion.div
             initial={{ opacity: 0, top: -4 }}
             animate={{ opacity: 1, top: 0 }}
@@ -159,13 +163,13 @@ function OnboardingName() {
         <img
           src="/images/onboarding/laurel-left.png"
           alt="Laurel left"
-          className="h-44"
+          className="hidden md:block h-44"
           style={{
             filter: 'invert(53%) sepia(54%) saturate(4980%) hue-rotate(198deg) brightness(102%) contrast(101%)',
           }}
         />
         <form onSubmit={handleSubmit}>
-          <div className="text-4xl font-bold font-display">
+          <div className="text-2xl md:text-4xl font-bold font-display">
             This hero's name is
           </div>
           <Input
@@ -196,7 +200,7 @@ function OnboardingName() {
         <img
           src="/images/onboarding/laurel-right.png"
           alt="Laurel right"
-          className="h-44"
+          className="hidden md:block h-44"
           style={{
             filter: 'invert(53%) sepia(54%) saturate(4980%) hue-rotate(198deg) brightness(102%) contrast(101%)',
           }}
