@@ -18,10 +18,10 @@ const breakpointToKeywordsCount = {
 }
 
 function CharacterKeywords() {
-  const { character, isEditable, levelUpsCount } = useCharacter()
+  const { character, isEditable, levelUpCount: levelUpsCount } = useCharacter()
   const breakpoint = useBreakpoint()
 
-  const keywords = getKeywords(character.keywords)
+  const keywords = getKeywords(character.keywordRegistry)
   const maxKeywords = breakpointToKeywordsCount[breakpoint] ?? breakpointToKeywordsCount.lg
 
   const [

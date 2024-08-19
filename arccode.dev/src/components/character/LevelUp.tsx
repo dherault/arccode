@@ -7,11 +7,11 @@ import LevelUpChest from '~components/character/LevelUpChest'
 
 function LevelUp() {
   const {
-    levelUpsCount,
-    levelUpsMax,
+    levelUpCount: levelUpsCount,
+    levelUpMax: levelUpsMax,
     isLevelUpOpen,
     toggleLevelUp,
-    updateLevelUpsKeywords,
+    updateLevelUpKeywordRegistry: updateLevelUpsKeywords,
   } = useCharacter()
 
   useEffect(() => {

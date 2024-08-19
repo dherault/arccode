@@ -37,7 +37,8 @@ export function Recap({
         {' '}
         {period}
         {' '}
-        recap
+        recap. You leveled up
+        {levelUps > 1 ? ` ${levelUps} times!` : '!'}
       </Preview>
       <Tailwind>
         <Body className="font-sans">

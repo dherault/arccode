@@ -41,9 +41,10 @@ export const RARITY_PROBABILITIES: Record<ItemRarity, [number, number]> = {
 export const INITIAL_CHARACTER: Character = {
   name: '',
   level: 1,
-  levelUpsKeywords: {},
-  keywords: {},
-  displayKeywords: {},
+  keywordRegistry: {},
+  levelUpKeywordRegistry: {},
+  displayKeywordRegistry: {},
+  lastDailyRecapKeywordRegistry: {},
   unlockedItems: {
     'avatar-7': 1,
   },

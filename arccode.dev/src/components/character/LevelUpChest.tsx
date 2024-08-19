@@ -15,7 +15,7 @@ const SHRINK_DURATION = 150
 const POP_DURATION = 300
 
 function LevelUpChest() {
-  const { levelUpsCount, levelUpsCursor, openChest } = useCharacter()
+  const { levelUpCount: levelUpsCount, levelUpCursor: levelUpsCursor, openChest } = useCharacter()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const treasureChestIndex = useMemo(() => Math.round(Math.random() * treasureChests.length), [levelUpsCursor])

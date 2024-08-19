@@ -6,7 +6,7 @@ import LanguageImage from '~components/character/LanguageImage'
 function LevelUpCard() {
   const { character, toggleLevelUp } = useCharacter()
 
-  const keywordNodes = Object.entries(character.levelUpsKeywords).map(([language, keywords]) => (
+  const keywordNodes = Object.entries(character.levelUpKeywordRegistry).map(([language, keywords]) => (
     Object.entries(keywords)
     .filter(([, count]) => count > 0)
     .map(([keyword, count]) => (

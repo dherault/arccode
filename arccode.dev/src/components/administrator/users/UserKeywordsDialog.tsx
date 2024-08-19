@@ -25,6 +25,8 @@ type Props = {
   setUserId: Dispatch<SetStateAction<string>>
 }
 
+const registerKeywordsAdministrator = httpsCallable(functions, 'registerKeywordsAdministrator')
+
 function UserKeywordsDialog({ userId, setUserId }: Props) {
   const { users } = useUsers()
   const { toast } = useToast()
@@ -33,19 +35,19 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
   const debouncedUser = useDebounce(user, 300)
   const finalUser = user ?? debouncedUser
 
-  const [keywords, setKeywords] = useState<KeywordRegistry>({})
+  const [keywordRegistry, setKeywordRegistry] = useState<KeywordRegistry>({})
   const [loading, setLoading] = useState(false)
 
   const handleClose = useCallback(() => {
     setUserId('')
     setLoading(false)
-    setKeywords({})
+    setKeywordRegistry({})
   }, [
     setUserId,
   ])
 
   const handleKeyword = useCallback((language: string, keyword: string, delta: number) => {
-    setKeywords(x => {
+    setKeywordRegistry(x => {
       const nextKeywords = { ...x }
 
       if (!nextKeywords[language]) nextKeywords[language] = {}
@@ -62,18 +64,16 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
 
     setLoading(true)
 
-    if (!Object.keys(keywords).length) {
+    if (!Object.keys(keywordRegistry).length) {
       handleClose()
 
       return
     }
 
-    const registerKeywordsAdministrator = httpsCallable(functions, 'registerKeywordsAdministrator')
-
     try {
       await registerKeywordsAdministrator({
         userId: finalUser?.id,
-        keywords,
+        keywordRegistry,
       })
     }
     catch (error: any) {
@@ -88,13 +88,13 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
   }, [
     finalUser?.id,
     loading,
-    keywords,
+    keywordRegistry,
     handleClose,
     toast,
   ])
 
   useEffect(() => {
-    setKeywords({})
+    setKeywordRegistry({})
   }, [
     finalUser,
   ])
@@ -128,7 +128,7 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
                     {keyword}
                   </div>
                   <div>
-                    {(finalUser?.character.keywords[languageKey]?.[keyword] ?? 0) + (keywords[languageKey]?.[keyword] ?? 0)}
+                    {(finalUser?.character.keywordRegistry[languageKey]?.[keyword] ?? 0) + (keywordRegistry[languageKey]?.[keyword] ?? 0)}
                   </div>
                   <div className="flex gap-2">
                     <div

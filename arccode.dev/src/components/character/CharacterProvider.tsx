@@ -2,7 +2,7 @@ import { type PropsWithChildren, useCallback, useMemo, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { doc } from 'firebase/firestore'
 import { httpsCallable } from 'firebase/functions'
-import { countKeywordRegistry, pickLevelUpsKeywords } from 'arccode-core'
+import { pickLevelUpKeywordRegistry, sumKeywordRegistry } from 'arccode-core'
 
 import { User } from '~types'
 
@@ -20,6 +20,8 @@ import usePrevious from '~hooks/common/usePrevious'
 import NotFound from '~components/common/NotFound'
 import SpinnerCentered from '~components/common/CenteredSpinner'
 import ErrorOccured from '~components/common/ErrorOccured'
+
+const levelUp = httpsCallable(functions, 'levelUp')
 
 function CharacterProvider({ children }: PropsWithChildren) {
   const { user: currentUser, updateUser } = useUser()
@@ -53,13 +55,13 @@ function CharacterProvider({ children }: PropsWithChildren) {
     Level up
   --- */
 
-  const [levelUpsToOpen, setLevelUpsToOpen] = useState(1)
-  const [levelUpsCursor, setLevelUpsCursor] = useState(0)
-  const levelUpsKeywords = useMemo(() => character ? pickLevelUpsKeywords(character, levelUpsToOpen) : {}, [character, levelUpsToOpen])
-  const levelUpsCount = useMemo(() => countKeywordRegistry(levelUpsKeywords), [levelUpsKeywords])
-  const levelUpsMax = useMemo(() => character ? countKeywordRegistry(character.levelUpsKeywords) : 0, [character])
+  const [nLevelUpToOpen, setNLevelUpToOpen] = useState(1)
+  const [levelUpCursor, setLevelUpCursor] = useState(0)
+  const levelUpKeywordRegistry = useMemo(() => character ? pickLevelUpKeywordRegistry(character, nLevelUpToOpen) : {}, [character, nLevelUpToOpen])
+  const levelUpCount = useMemo(() => sumKeywordRegistry(levelUpKeywordRegistry), [levelUpKeywordRegistry])
+  const levelUpMax = useMemo(() => character ? sumKeywordRegistry(character.levelUpKeywordRegistry) : 0, [character])
   const previousUnlockedItems = usePrevious(character?.unlockedItems ?? {})
-  const levelUpsUnlockedItems = useMemo(() => {
+  const levelUpUnlockedItems = useMemo(() => {
     const levelUpsUnlockedItems: Record<string, number> = {}
 
     Object.entries(character?.unlockedItems ?? {}).forEach(([itemId, count]) => {
@@ -91,9 +93,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
 
   const handleOpenChest = useCallback(async () => {
     try {
-      const levelUp = httpsCallable(functions, 'levelUp')
-
-      await levelUp({ levelUpsKeywords })
+      await levelUp({ levelUpKeywordRegistry })
     }
     catch (error: any) {
       toast({
@@ -103,17 +103,17 @@ function CharacterProvider({ children }: PropsWithChildren) {
       })
     }
   }, [
-    levelUpsKeywords,
+    levelUpKeywordRegistry,
     toast,
   ])
 
   const handleCloseChest = useCallback(async () => {
-    setLevelUpsCursor(x => x + 1)
+    setLevelUpCursor(x => x + 1)
 
-    if (levelUpsCount >= levelUpsMax) handleToggleLevelUp()
+    if (levelUpCount >= levelUpMax) handleToggleLevelUp()
   }, [
-    levelUpsCount,
-    levelUpsMax,
+    levelUpCount,
+    levelUpMax,
     handleToggleLevelUp,
   ])
 
@@ -127,23 +127,23 @@ function CharacterProvider({ children }: PropsWithChildren) {
     updateCharacter,
     isLevelUpOpen: searchParams.has(LEVEL_UP_SEARCH_PARAMETERS_KEY),
     toggleLevelUp: handleToggleLevelUp,
-    levelUpsKeywords,
-    updateLevelUpsKeywords: setLevelUpsToOpen,
-    levelUpsCursor,
-    levelUpsCount,
-    levelUpsMax,
-    levelUpsUnlockedItems,
+    levelUpKeywordRegistry,
+    updateLevelUpKeywordRegistry: setNLevelUpToOpen,
+    levelUpCursor,
+    levelUpCount,
+    levelUpMax,
+    levelUpUnlockedItems,
     openChest: handleOpenChest,
     closeChest: handleCloseChest,
   }), [
     character,
     isEditable,
     searchParams,
-    levelUpsKeywords,
-    levelUpsCursor,
-    levelUpsCount,
-    levelUpsMax,
-    levelUpsUnlockedItems,
+    levelUpKeywordRegistry,
+    levelUpCursor,
+    levelUpCount,
+    levelUpMax,
+    levelUpUnlockedItems,
     updateCharacter,
     handleToggleLevelUp,
     handleOpenChest,

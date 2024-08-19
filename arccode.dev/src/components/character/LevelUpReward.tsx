@@ -8,7 +8,7 @@ import ItemCard from '~components/character/ItemCard'
 import items from '~data/items'
 
 function LevelUpReward() {
-  const { levelUpsUnlockedItems, levelUpsCount, closeChest } = useCharacter()
+  const { levelUpUnlockedItems: levelUpsUnlockedItems, levelUpCount: levelUpsCount, closeChest } = useCharacter()
 
   const levelUpsUnlockedItemsEntries = Object.entries(levelUpsUnlockedItems)
 

@@ -30,7 +30,8 @@ export type User = DatabaseResource<{
   isAdministrator: boolean
   character: Character
   nUpdates: number
-  metadata: Record<string, any>
+  sentDailyRecapEmailAt: string
+  timezone: string
 }>
 
 export type Email = DatabaseResource<{

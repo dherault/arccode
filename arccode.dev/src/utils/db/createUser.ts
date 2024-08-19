@@ -9,7 +9,8 @@ type CreateUserArg = Omit<
   | 'isAdministrator'
   | 'character'
   | 'nUpdates'
-  | 'metadata'
+  | 'sentDailyRecapEmailAt'
+  | 'timezone'
   | 'createdAt'
   | 'updatedAt'
   | 'deletedAt'
@@ -24,8 +25,9 @@ function createUser(user: CreateUserArg): User {
     hasConnectedExtension: false,
     isAdministrator: false,
     character: INITIAL_CHARACTER,
-    metadata: {},
     nUpdates: 0,
+    sentDailyRecapEmailAt: new Date(0).toISOString(),
+    timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     createdAt: now,
     updatedAt: now,
     deletedAt: '',
