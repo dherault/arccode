@@ -15,7 +15,13 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "prepare": "husky",
-    "lint": "(cd arccode.dev && npm run lint) && (cd packages/arccode-vscode-extension && npm run lint) && (cd packages/arccode-core && npm run lint) && (cd packages/language-keywords && npm run lint) && (cd packages/arccode-keyword-thresholds && npm run lint)"
+    "lint": "npm run lint:app && npm run lint:functions && npm run lint:arccode-core && npm run lint:arccode-keyword-thresholds && npm run lint:arccode-vscode-extension && npm run lint:language-keywords",
+    "lint:app": "cd arccode.dev && npm run lint",
+    "lint:functions": "cd arccode.dev/functions && npm run lint",
+    "lint:arccode-core": "cd packages/arccode-core && npm run lint",
+    "lint:arccode-keyword-thresholds": "cd packages/arccode-keyword-thresholds && npm run lint",
+    "lint:arccode-vscode-extension": "cd packages/arccode-vscode-extension && npm run lint",
+    "lint:language-keywords": "cd packages/language-keywords && npm run lint"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
