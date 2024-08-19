@@ -2,16 +2,27 @@
 import { getKeywords } from 'arccode-core'
 
 import useCharacter from '~hooks/character/useCharacter'
+import useBreakpoint from '~hooks/common/useBreakpoint'
 
 import KeywordCard from '~components/character/KeywordCard'
 import KeywordListItem from '~components/character/KeywordListItem'
 import LevelUpCard from '~components/character/LevelUpCard'
 import CharacterEmpty from '~components/character/CharacterEmpty'
 
+const breakpointToKeywordsCount = {
+  sm: 6,
+  md: 12,
+  lg: 14,
+  xl: 14,
+  '2xl': 30,
+}
+
 function CharacterKeywords() {
   const { character, isEditable, levelUpsCount } = useCharacter()
+  const breakpoint = useBreakpoint()
 
   const keywords = getKeywords(character.keywords)
+  const maxKeywords = breakpointToKeywordsCount[breakpoint] ?? breakpointToKeywordsCount.lg
 
   const [
     keyword1,
@@ -24,7 +35,7 @@ function CharacterKeywords() {
 
   const listedKeywords = keywords
     .sort((a, b) => b.count - a.count)
-    .filter((_keyword, i) => i < 30)
+    .filter((_keyword, i) => i < maxKeywords)
 
   return (
     <>
