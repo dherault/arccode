@@ -55,6 +55,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
   --- */
 
   const [nLevelUpToOpen, setNLevelUpToOpen] = useState(1)
+  const [levelUpId, setLevelUpId] = useState(Math.random())
   const [levelUpCursor, setLevelUpCursor] = useState(0)
   const [levelUpLoading, setLevelUpLoading] = useState(false)
   const [previousUnlockedItems, setPreviousUnlockedItems] = useState(character?.unlockedItems ?? {})
@@ -92,6 +93,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
   ])
 
   const handleOpenLevelUp = useCallback(() => {
+    setLevelUpId(Math.random())
     handleToggleLevelUp(true)
   }, [
     handleToggleLevelUp,
@@ -160,7 +162,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
     updateCharacter,
     isLevelUpOpen: searchParams.has(LEVEL_UP_SEARCH_PARAMETERS_KEY),
     levelUpKeywordRegistry,
-    levelUpCursor,
+    levelUpCursor: levelUpId + levelUpCursor,
     levelUpCount,
     levelUpMax,
     levelUpUnlockedItems,
@@ -175,6 +177,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
     isEditable,
     searchParams,
     levelUpKeywordRegistry,
+    levelUpId,
     levelUpCursor,
     levelUpCount,
     levelUpMax,
