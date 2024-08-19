@@ -10,14 +10,14 @@ function LandingProduct() {
       >
         How it works
       </div>
-      <h2 className="mt-3 text-3xl md:text-4xl font-bold text-center">
+      <h2 className="mt-4 text-3xl md:text-4xl font-bold text-center">
         <Balancer>
-          Code is xp
+          Your code is xp
         </Balancer>
       </h2>
-      <div className="mt-4 md:text-lg text-neutral-700 text-center max-w-4xl">
+      <div className="mt-2 md:text-lg text-neutral-700 text-center max-w-4xl">
         <Balancer>
-          Your code decides your path.
+          It decides your path.
         </Balancer>
       </div>
       <div className="mt-8 md:mt-16 grid md:grid-cols-2 gap-y-8 md:gap-y-24 md:gap-x-12 w-full md:w-auto">
