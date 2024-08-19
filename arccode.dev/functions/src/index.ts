@@ -5,3 +5,5 @@ export { default as levelUp } from './routes/levelUp'
 export { default as registerKeywords } from './routes/registerKeywords'
 
 export { default as registerKeywordsAdministrator } from './routes/registerKeywordsAdministrator'
+
+export { sendRecapEmailsCron, sendRecapEmailsRequest } from './routes/sendRecapEmails'

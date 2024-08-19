@@ -1,6 +1,6 @@
 import { onRequest } from 'firebase-functions/v2/https'
 import { FieldValue } from 'firebase-admin/firestore'
-import { logger } from 'firebase-functions/v1'
+import { logger } from 'firebase-functions/v2'
 
 import { getUserFromRequest } from '../authentication/getUser'
 
@@ -18,7 +18,7 @@ const activateVscodeExtension = onRequest({ cors: true }, async (request, respon
 
   const payload: Record<string, any> = {
     hasConnectedExtension: true,
-    updatedAt: FieldValue.serverTimestamp(),
+    updatedAt: new Date().toISOString(),
     nUpdates: FieldValue.increment(1),
   }
 

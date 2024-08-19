@@ -1,5 +1,5 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
-import { logger } from 'firebase-functions/v1'
+import { logger } from 'firebase-functions/v2'
 
 import { getUserFromCallableRequest } from '../authentication/getUser'
 import processLevelUp from '../logic/processLevelUp'
@@ -11,9 +11,9 @@ const levelUp = onCall(async request => {
 
   logger.log(`Level up for ${user.id}`)
 
-  const userPayload = processLevelUp(user, request.data.levelUpsKeywords)
+  const userPayload = processLevelUp(user, request.data.levelUpKeywordRegistry)
 
-  if (!userPayload) throw new HttpsError('invalid-argument', 'You must provide a valid "levelUpsKeywords" field')
+  if (!userPayload) throw new HttpsError('invalid-argument', 'You must provide a valid "levelUpKeywordRegistry" field')
 
   await userDocument.update(userPayload)
 

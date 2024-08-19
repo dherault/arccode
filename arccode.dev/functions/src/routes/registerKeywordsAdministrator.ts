@@ -1,11 +1,11 @@
 import { HttpsError, onCall } from 'firebase-functions/v2/https'
-import { logger } from 'firebase-functions/v1'
+import { logger } from 'firebase-functions/v2'
 
 import type { User } from '~types'
 
 import { firestore } from '../firebase'
 import { getUserFromCallableRequest } from '../authentication/getUser'
-import processKeywords from '../logic/processKeywords'
+import processKeywordRegistry from '../logic/processKeywordRegistry'
 
 const registerKeywordsAdministrator = onCall(async request => {
   const { user: administratorUser } = await getUserFromCallableRequest(request)
@@ -13,7 +13,7 @@ const registerKeywordsAdministrator = onCall(async request => {
   if (!administratorUser) throw new HttpsError('permission-denied', 'You are not authenticated')
   if (!administratorUser.isAdministrator) throw new HttpsError('permission-denied', 'You are not an administrator')
 
-  const { keywords, userId } = request.data
+  const { keywordRegistry, userId } = request.data
 
   if (!userId) {
     logger.log('Missing userId')
@@ -26,7 +26,7 @@ const registerKeywordsAdministrator = onCall(async request => {
   const userDocument = firestore.collection('users').doc(userId)
   const user = (await userDocument.get()).data() as User
 
-  const userPayload = processKeywords(user, keywords)
+  const userPayload = processKeywordRegistry(user, keywordRegistry)
 
   if (!userPayload) throw new HttpsError('invalid-argument', 'You must provide a valid "keywords" field')
 

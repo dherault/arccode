@@ -1,8 +1,8 @@
 import { onRequest } from 'firebase-functions/v2/https'
-import { logger } from 'firebase-functions/v1'
+import { logger } from 'firebase-functions/v2'
 
 import { getUserFromRequest } from '../authentication/getUser'
-import processKeywords from '../logic/processKeywords'
+import processKeywordRegistry from '../logic/processKeywordRegistry'
 
 // Routes with onRequest and cors are called from the extension
 const registerKeywords = onRequest({ cors: true }, async (request, response) => {
@@ -16,7 +16,7 @@ const registerKeywords = onRequest({ cors: true }, async (request, response) => 
 
   logger.log(`Updating keywords for ${user.id}`)
 
-  const userPayload = processKeywords(user, request.body.keywords)
+  const userPayload = processKeywordRegistry(user, request.body.keywordRegistry)
 
   if (!userPayload) {
     response.status(400).send()

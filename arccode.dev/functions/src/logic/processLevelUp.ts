@@ -2,19 +2,19 @@ import { FieldValue } from 'firebase-admin/firestore'
 
 import type { User } from '~types'
 
-import parseKeywords from './parseKeywords'
+import parseKeywordRegistry from './parseKeywordRegistry'
 import pickRewardId from './pickRewardId'
 
-function processLevelUp(user: User, levelUpsKeywords: unknown) {
-  const levelUpsKeywordsPayload = parseKeywords(levelUpsKeywords)
+function processLevelUp(user: User, levelUpKeywordRegistryInput: unknown) {
+  const levelUpKeywordRegistry = parseKeywordRegistry(levelUpKeywordRegistryInput)
 
-  if (!levelUpsKeywordsPayload) return null
+  if (!levelUpKeywordRegistry) return null
 
   let level = 0
   const userPayload: Record<string, any> = {}
   const unlockedItems: Record<string, number> = {}
 
-  Object.entries(levelUpsKeywordsPayload).forEach(([language, keywordMap]) => {
+  Object.entries(levelUpKeywordRegistry).forEach(([language, keywordMap]) => {
     if (!language) return
 
     Object.entries(keywordMap).forEach(([keyword, amount]) => {
@@ -25,12 +25,12 @@ function processLevelUp(user: User, levelUpsKeywords: unknown) {
       if (finalAmount !== finalAmount) return
       if (finalAmount <= 0) return
 
-      const currentAmount = user.character.levelUpsKeywords[language]?.[keyword] ?? 0
+      const currentAmount = user.character.levelUpKeywordRegistry[language]?.[keyword] ?? 0
 
       if (currentAmount < finalAmount) return
 
       level += finalAmount
-      userPayload[`character.levelUpsKeywords.${language}.${keyword}`] = currentAmount === finalAmount
+      userPayload[`character.levelUpKeywordRegistry.${language}.${keyword}`] = currentAmount === finalAmount
         ? FieldValue.delete()
         : FieldValue.increment(-finalAmount)
 
@@ -54,7 +54,7 @@ function processLevelUp(user: User, levelUpsKeywords: unknown) {
 
   if (!Object.keys(userPayload).length) return null
 
-  userPayload.updatedAt = FieldValue.serverTimestamp()
+  userPayload.updatedAt = new Date().toISOString()
   userPayload.nUpdates = FieldValue.increment(1)
 
   return userPayload

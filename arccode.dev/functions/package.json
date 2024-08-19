@@ -6,7 +6,9 @@
   },
   "main": "lib/functions/src/index.js",
   "scripts": {
+    "lint": "tsc --noEmit && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "build": "tsc && tsc-alias",
+    "watch": "nodemon --exec 'npm run build' --watch src --ext ts",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
@@ -14,13 +16,15 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
-    "arccode-core": "^2.0.0",
+    "arccode-core": "^4.0.0",
     "firebase-admin": "^12.3.1",
     "firebase-functions": "^5.0.1",
+    "luxon": "^3.5.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "firebase-functions-test": "^3.3.0",
+    "nodemon": "^3.1.4",
     "tsc-alias": "^1.8.10",
     "typescript": "^5.5.4"
   }
