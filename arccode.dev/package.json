@@ -7,7 +7,10 @@
     "test": "jest",
     "dev": "vite",
     "dev:test": "nodemon --exec 'npm run test' --watch src --ext ts --ignore dist",
-    "build": "tsc -b && vite build",
+    "email": "email dev",
+    "build": "npm run build:app",
+    "build:app": "tsc -b && vite build",
+    "build:email": "email build",
     "preview": "vite preview",
     "lint": "tsc -b && eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "router": "bun src/router/logic/index.ts && bunx eslint ./src/router --fix",
@@ -29,6 +32,7 @@
     "@radix-ui/react-switch": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@radix-ui/react-tooltip": "^1.1.2",
+    "@react-email/components": "0.0.22",
     "arccode-core": "^2.1.0",
     "arccode-keyword-thresholds": "^0.0.0",
     "class-variance-authority": "^0.7.0",
@@ -39,10 +43,11 @@
     "logrocket": "^8.1.2",
     "lucide-react": "^0.428.0",
     "luxon": "^3.5.0",
-    "markdown-to-jsx": "^7.4.7",
+    "markdown-to-jsx": "^7.5.0",
     "nanoid": "^5.0.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-email": "2.1.6",
     "react-github-btn": "^1.4.0",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.52.2",
@@ -72,5 +77,13 @@
     "typescript": "^5.5.4",
     "vite": "^5.4.1",
     "vite-tsconfig-paths": "^5.0.1"
+  },
+  "overrides": {
+    "eslint-config-prettier": {
+      "eslint": "^8.57.0"
+    },
+    "eslint-plugin-turbo": {
+      "eslint": "^8.57.0"
+    }
   }
 }
