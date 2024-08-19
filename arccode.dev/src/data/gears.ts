@@ -329,7 +329,7 @@ const gears: Record<string, Item> = {
     type: 'gloves',
     rarity: 'uncommon',
     name: 'React Native Mail Gloves',
-    image: 'reactnative.png',
+    image: 'react.png',
   },
   microsoftsqlserver: {
     id: 'microsoftsqlserver',
