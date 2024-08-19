@@ -170,7 +170,7 @@ function Authentication() {
             {emailForm.getValues().email}
             !
           </Label>
-          <Label className="mt-2 -mb-4 block text-center">
+          <Label className="mt-2 mb-4 block text-center">
             Use your Google account to continue
           </Label>
         </>
@@ -192,7 +192,7 @@ function Authentication() {
         <SocialButton
           firebaseAuthProvider={googleProvider}
           logoSrc="/images/google-logo.png"
-          className="mt-8"
+          className="mt-2"
         >
           Continue with Google
         </SocialButton>

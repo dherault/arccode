@@ -12,7 +12,7 @@ function AuthenticationLayout({ children }: PropsWithChildren) {
 
   return (
     <AuthenticationRedirect>
-      <div className="py-16 px-4 flex flex-col items-center">
+      <div className="py-8 md:py-16 px-4 flex flex-col items-center">
         <Link to="/">
           <div className="flex items-center justify-center text-blue">
             <Logo className="w-12" />
@@ -36,7 +36,9 @@ function AuthenticationLayout({ children }: PropsWithChildren) {
               </AlertDescription>
             </Alert>
           )}
-          {children}
+          <div className="mt-8">
+            {children}
+          </div>
         </div>
       </div>
     </AuthenticationRedirect>
