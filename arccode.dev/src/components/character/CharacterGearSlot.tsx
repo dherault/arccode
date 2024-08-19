@@ -65,10 +65,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
           {item && (
             <>
               <div className="w-[72px] md:w-[88px] aspect-square cursor-pointer">
-                <ItemCard
-                  item={item}
-                  borderWidth={3}
-                />
+                <ItemCard item={item} />
               </div>
               <div className="mt-1 absolute top-full w-[72px] md:w-[88px] text-xs text-neutral-700 text-center leading-none">
                 {item.name}
@@ -88,6 +85,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
         </div>
       </PopoverTrigger>
       <PopoverContent
+        onOpenAutoFocus={event => event.preventDefault()}
         collisionPadding={16}
         className={_('w-fit grid gap-4', {
           'grid-cols-2': unlockedItemIds.length === 1,
@@ -115,7 +113,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
         ))}
         {!!unlockedItemIds.length && (
           <div
-            className="w-[52px] md:w-[66px] aspect-square cursor-pointer border text-xs text-neutral-200 flex items-center justify-center"
+            className="w-[52px] md:w-[66px] aspect-square rounded cursor-pointer border text-xs text-neutral-200 flex items-center justify-center"
             onClick={() => handleEquip('')}
           >
             <CircleSlash2 className="h-4 w-4" />
