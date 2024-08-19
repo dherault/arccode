@@ -2,7 +2,7 @@ export type Character = {
   name: string
   level: number
   keywordRegistry: KeywordRegistry
-  levelUpsKeywordRegistry: KeywordRegistry
+  levelUpKeywordRegistry: KeywordRegistry
   displayKeywordRegistry: KeywordRegistry
   lastDailyRecapKeywordRegistry: KeywordRegistry
   unlockedItems: Record<string, number>

@@ -1,13 +1,13 @@
 import type { Character } from '../types'
 
-import pickLevelUpsKeywords from './pickLevelUpsKeywordRegistry'
+import pickLevelUpKeywords from './pickLevelUpKeywordRegistry'
 
 describe('pickLevelUpsKeywords', () => {
   test('picks level up keywords', () => {
     const inputCharacter: Character = {
       name: '',
       level: 1,
-      levelUpsKeywordRegistry: {
+      levelUpKeywordRegistry: {
         javascript: {
           break: 1,
           const: 3,
@@ -38,6 +38,6 @@ describe('pickLevelUpsKeywords', () => {
       },
     }
 
-    expect(pickLevelUpsKeywords(inputCharacter, 3)).toEqual(output)
+    expect(pickLevelUpKeywords(inputCharacter, 3)).toEqual(output)
   })
 })

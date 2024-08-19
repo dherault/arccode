@@ -1,14 +1,15 @@
 {
   "name": "arccode-core",
   "description": "Core domain logic for Arccode.dev",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "type": "module",
   "main": "./dist/arccode-core.umd.cjs",
   "module": "./dist/arccode-core.js",
   "exports": {
     ".": {
       "import": "./dist/arccode-core.js",
-      "require": "./dist/arccode-core.umd.cjs"
+      "require": "./dist/arccode-core.umd.cjs",
+      "types": "./dist/arccode-core.d.ts"
     }
   },
   "types": "./dist/arccode-core.d.ts",
