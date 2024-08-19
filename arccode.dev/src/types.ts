@@ -82,7 +82,7 @@ export type Item = {
   Authentication
 --- */
 
-export type SignInProvider = 'password' | 'google' | 'github'
+export type SignInProvider = 'password' | 'google.com' | 'github.com'
 
 export type VscodeExtensionRedirectionState = {
   uri: string

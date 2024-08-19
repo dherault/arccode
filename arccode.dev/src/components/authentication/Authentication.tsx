@@ -69,6 +69,7 @@ function Authentication() {
   const [mode, setMode] = useState(MODES.START)
   const [providers, setProviders] = useState<SignInProvider[]>([])
 
+  console.log('providers', providers)
   const error = AUTHENTICATION_ERRORS[errorCode as keyof typeof AUTHENTICATION_ERRORS] ?? (errorCode ? AUTHENTICATION_ERRORS.default : null)
 
   const emailForm = useForm<z.infer<typeof emailFormSchema>>({
@@ -161,7 +162,7 @@ function Authentication() {
 
   return (
     <>
-      {mode === MODES.LOGIN && providers.includes('google') && (
+      {mode === MODES.LOGIN && providers.includes('google.com') && (
         <>
           <Label className="mt-8 block text-center">
             Hi
@@ -174,28 +175,41 @@ function Authentication() {
           </Label>
         </>
       )}
-      {(mode === MODES.START || providers.includes('google')) && (
+      {mode === MODES.LOGIN && providers.includes('github.com') && (
         <>
-          <SocialButton
-            firebaseAuthProvider={googleProvider}
-            logoSrc="/images/google-logo.png"
-            className="mt-8"
-          >
-            Continue with Google
-          </SocialButton>
-          <SocialButton
-            firebaseAuthProvider={githubProvider}
-            logoSrc="/images/github-logo.svg"
-            className="mt-2"
-          >
-            Continue with GitHub
-          </SocialButton>
-          {(mode === MODES.START || providers.includes('password')) && (
-            <Divider className="mt-8">
-              or
-            </Divider>
-          )}
+          <Label className="mt-8 block text-center">
+            Hi
+            {' '}
+            {emailForm.getValues().email}
+            !
+          </Label>
+          <Label className="mt-2 mb-4 block text-center">
+            Use your GitHub account to continue
+          </Label>
         </>
+      )}
+      {(mode === MODES.START || providers.includes('google.com')) && (
+        <SocialButton
+          firebaseAuthProvider={googleProvider}
+          logoSrc="/images/google-logo.png"
+          className="mt-8"
+        >
+          Continue with Google
+        </SocialButton>
+      )}
+      {(mode === MODES.START || providers.includes('github.com')) && (
+        <SocialButton
+          firebaseAuthProvider={githubProvider}
+          logoSrc="/images/github-logo.svg"
+          className="mt-2"
+        >
+          Continue with GitHub
+        </SocialButton>
+      )}
+      {(mode === MODES.START || providers.includes('password')) && (
+        <Divider className="mt-8">
+          or
+        </Divider>
       )}
       {mode === MODES.START && (
         <Form {...emailForm}>
