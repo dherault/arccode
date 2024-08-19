@@ -4,6 +4,7 @@ import AuthenticationBouncer from '~components/authentication/AuthenticationBoun
 import OnboardingBouncer from '~components/onboarding/OnboardingBouncer'
 import CharacterProvider from '~components/character/CharacterProvider'
 import AppLayout from '~components/common/AppLayout'
+import CharacterLayout from '~components/character/CharacterLayout'
 
 function Layout({ children }: PropsWithChildren) {
   return (
@@ -11,7 +12,9 @@ function Layout({ children }: PropsWithChildren) {
       <OnboardingBouncer>
         <CharacterProvider>
           <AppLayout>
-            {children}
+            <CharacterLayout>
+              {children}
+            </CharacterLayout>
           </AppLayout>
         </CharacterProvider>
       </OnboardingBouncer>

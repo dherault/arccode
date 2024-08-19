@@ -1,42 +1,22 @@
-import { Helmet } from 'react-helmet'
-
-import useCharacter from '~hooks/character/useCharacter'
 
 import CharacterGear from '~components/character/CharacterGear'
 import CharacterKeywords from '~components/character/CharacterKeywords'
-import LevelUpContainer from '~components/character/LevelUpContainer'
+import CharacterHeader from '~components/character/CharacterHeader'
 
 function CharacterProfile() {
-  const { character, isEditable } = useCharacter()
-  const characterName = character.name || '(An unnamed character)'
-
   return (
-    <>
-      <Helmet>
-        <title>
-          {characterName}
-          {' '}
-          | Arccode
-        </title>
-      </Helmet>
-      <div className="container flex items-start gap-16">
-        <CharacterGear />
-        <div className="grow">
-          <div className="mb-3 flex items-baseline gap-4">
-            <h1 className="font-display font-bold text-4xl">
-              {characterName}
-            </h1>
-            <div>
-              Level
-              {' '}
-              {character.level}
-            </div>
-          </div>
-          <CharacterKeywords />
-        </div>
+    <div className="px-4 md:px-8 container flex flex-col md:flex-row items-start gap-x-16">
+      <div className="block md:hidden">
+        <CharacterHeader />
       </div>
-      {isEditable && <LevelUpContainer />}
-    </>
+      <CharacterGear />
+      <div className="mt-16 md:mt-0 grow">
+        <div className="hidden md:block">
+          <CharacterHeader />
+        </div>
+        <CharacterKeywords />
+      </div>
+    </div>
   )
 }
 

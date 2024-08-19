@@ -64,19 +64,19 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
         <div className="relative select-none">
           {item && (
             <>
-              <div className="w-[88px] aspect-square cursor-pointer">
+              <div className="w-[72px] md:w-[88px] aspect-square cursor-pointer">
                 <ItemCard
                   item={item}
                   borderWidth={3}
                 />
               </div>
-              <div className="mt-1 absolute top-full w-[88px] text-xs text-neutral-700 text-center leading-none">
+              <div className="mt-1 absolute top-full w-[72px] md:w-[88px] text-xs text-neutral-700 text-center leading-none">
                 {item.name}
               </div>
             </>
           )}
           {!item && (
-            <div className="w-[88px] aspect-square border bg-white rounded overflow-hidden cursor-pointer">
+            <div className="w-[72px] md:w-[88px] aspect-square border bg-white rounded overflow-hidden cursor-pointer">
               <img
                 src={`/images/gear-placeholders/${type}.png`}
                 alt={type}
@@ -88,6 +88,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
         </div>
       </PopoverTrigger>
       <PopoverContent
+        collisionPadding={16}
         className={_('w-fit grid gap-4', {
           'grid-cols-2': unlockedItemIds.length === 1,
           'grid-cols-3': unlockedItemIds.length === 2,
@@ -106,7 +107,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
         {unlockedItemIds.map(itemId => (
           <div
             key={itemId}
-            className="w-[66px] aspect-square cursor-pointer"
+            className="w-[52px] md:w-[66px] aspect-square cursor-pointer"
             onClick={() => handleEquip(itemId)}
           >
             <ItemCard item={items[itemId]} />
@@ -114,7 +115,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
         ))}
         {!!unlockedItemIds.length && (
           <div
-            className="w-[66px] aspect-square cursor-pointer border text-xs text-neutral-200 flex items-center justify-center"
+            className="w-[52px] md:w-[66px] aspect-square cursor-pointer border text-xs text-neutral-200 flex items-center justify-center"
             onClick={() => handleEquip('')}
           >
             <CircleSlash2 className="h-4 w-4" />
