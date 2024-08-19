@@ -24,10 +24,15 @@ function processLevelUp(user: User, levelUpsKeywords: unknown) {
 
       if (finalAmount !== finalAmount) return
       if (finalAmount <= 0) return
-      if ((user.character.levelUpsKeywords[language]?.[keyword] ?? 0) < finalAmount) return
 
-      userPayload[`character.levelUpsKeywords.${language}.${keyword}`] = FieldValue.increment(-finalAmount)
+      const currentAmount = user.character.levelUpsKeywords[language]?.[keyword] ?? 0
+
+      if (currentAmount < finalAmount) return
+
       level += finalAmount
+      userPayload[`character.levelUpsKeywords.${language}.${keyword}`] = currentAmount === finalAmount
+        ? FieldValue.delete()
+        : FieldValue.increment(-finalAmount)
 
       for (let i = 0; i < finalAmount; i++) {
         const rewardItemId = pickRewardId()
