@@ -67,11 +67,11 @@ class KeywordRegistry {
     this.updatedAt = new Date()
   }
 
-  public get filteredCurrentKeywords() {
+  public get filteredCurrentKeywordRegistry() {
     return filterKeywordRegistry(this.currentKeywordRegistry)
   }
 
-  public get filteredDailyKeywords() {
+  public get filteredDailyKeywordRegistry() {
     return filterKeywordRegistry(this.dailyKeywordRegistry)
   }
 

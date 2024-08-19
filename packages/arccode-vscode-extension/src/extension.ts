@@ -94,7 +94,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('arccode.print', async () => {
-      vscode.window.showInformationMessage(JSON.stringify(keywordRegistry.filteredDailyKeywords, null, 2))
+      vscode.window.showInformationMessage(JSON.stringify(keywordRegistry.filteredDailyKeywordRegistry, null, 2))
     })
   )
 
@@ -193,9 +193,9 @@ export function activate(context: vscode.ExtensionContext) {
 
   async function sync(keywordRegistry: KeywordRegistry, displayMessage = false) {
     try {
-      const keywords = keywordRegistry.filteredCurrentKeywords
+      const keywordRegistryPayload = keywordRegistry.filteredCurrentKeywordRegistry
 
-      if (Object.keys(keywords).length) {
+      if (Object.keys(keywordRegistryPayload).length) {
         const idToken = await getIdToken()
 
         if (!idToken) return
@@ -203,7 +203,7 @@ export function activate(context: vscode.ExtensionContext) {
         await axios.post(
           REGISTER_KEYWORDS_API_URL,
           {
-            keywords,
+            keywordRegistry: keywordRegistryPayload,
           },
           {
             headers: {
