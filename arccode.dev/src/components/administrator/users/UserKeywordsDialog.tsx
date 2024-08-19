@@ -115,7 +115,7 @@ function UserKeywordsDialog({ userId, setUserId }: Props) {
         </DialogHeader>
         <div className="flex flex-col gap-2 text-sm space-y-2">
           {Object.entries(languages).map(([languageKey, language]) => (
-            <div key={language.name}>
+            <div key={languageKey}>
               <div className="font-semibold">
                 {language.name}
               </div>

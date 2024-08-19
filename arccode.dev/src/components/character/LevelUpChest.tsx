@@ -75,7 +75,7 @@ function LevelUpChest() {
       className="h-fit w-fit cursor-pointer rounded-full relative"
       onClick={handleClick}
     >
-      <div className="h-[384px] w-[384px] overflow-hidden relative">
+      <div className="h-[256px] md:h-[384px] w-[256px] md:w-[384px] overflow-hidden relative">
         <motion.div
           animate={animation}
           initial={{
@@ -124,7 +124,7 @@ function LevelUpChest() {
           />
         </motion.div>
         {levelUpsCount > 1 && (
-          <div className="absolute top-24 right-24 h-8 w-8 bg-blue text-white rounded-full flex items-center justify-center">
+          <div className="absolute top-12 md:top-24 right-12 md:right-24 h-8 w-8 bg-blue text-white rounded-full flex items-center justify-center">
             {levelUpsCount}
           </div>
         )}

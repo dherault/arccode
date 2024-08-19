@@ -33,11 +33,11 @@ function LevelUp() {
         {' '}
         available.
       </div>
-      <div className="mt-16 flex items-center gap-8 select-none">
+      <div className="mt-8 md:mt-16 flex items-center gap-8 select-none">
         <img
           src="/images/onboarding/laurel-left.png"
           alt="Laurel left"
-          className="h-44"
+          className="hidden md:block h-44"
           style={{
             filter: 'invert(53%) sepia(54%) saturate(4980%) hue-rotate(198deg) brightness(102%) contrast(101%)',
           }}
@@ -46,13 +46,13 @@ function LevelUp() {
         <img
           src="/images/onboarding/laurel-right.png"
           alt="Laurel right"
-          className="h-44"
+          className="hidden md:block h-44"
           style={{
             filter: 'invert(53%) sepia(54%) saturate(4980%) hue-rotate(198deg) brightness(102%) contrast(101%)',
           }}
         />
       </div>
-      <div className="mt-16 flex justify-center">
+      <div className="mt-8 md:mt-16 flex justify-center">
         <Button
           variant="ghost"
           onClick={() => levelUpsCount === 1 ? updateLevelUpsKeywords(levelUpsMax) : updateLevelUpsKeywords(1)}

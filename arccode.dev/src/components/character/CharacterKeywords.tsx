@@ -41,7 +41,7 @@ function CharacterKeywords() {
         <div className="my-4 bg-white border rounded grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-flow-row">
           {listedKeywords.map(keyword => (
             <KeywordListItem
-              key={keyword.name}
+              key={keyword.language + keyword.name}
               keyword={keyword}
             />
           ))}

@@ -82,6 +82,8 @@ function CharacterProvider({ children }: PropsWithChildren) {
       else x.set(LEVEL_UP_SEARCH_PARAMETERS_KEY, '1')
 
       return x
+    }, {
+      replace: true,
     })
   }, [
     setSearchParams,
@@ -108,9 +110,10 @@ function CharacterProvider({ children }: PropsWithChildren) {
   const handleCloseChest = useCallback(async () => {
     setLevelUpsCursor(x => x + 1)
 
-    if (!levelUpsCount) handleToggleLevelUp()
+    if (levelUpsCount >= levelUpsMax) handleToggleLevelUp()
   }, [
     levelUpsCount,
+    levelUpsMax,
     handleToggleLevelUp,
   ])
 

@@ -69,7 +69,6 @@ function Authentication() {
   const [mode, setMode] = useState(MODES.START)
   const [providers, setProviders] = useState<SignInProvider[]>([])
 
-  console.log('providers', providers)
   const error = AUTHENTICATION_ERRORS[errorCode as keyof typeof AUTHENTICATION_ERRORS] ?? (errorCode ? AUTHENTICATION_ERRORS.default : null)
 
   const emailForm = useForm<z.infer<typeof emailFormSchema>>({
