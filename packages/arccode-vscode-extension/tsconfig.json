@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
-		"module": "Node16",
+		"module": "ES2015",
+    "moduleResolution": "Bundler",
 		"target": "ES2022",
 		"outDir": "out",
 		"lib": [

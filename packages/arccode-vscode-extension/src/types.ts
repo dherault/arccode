@@ -9,8 +9,6 @@ export type UserInfo = {
 
 export type Language = keyof typeof languageToKeywords
 
-export type KeywordData = Partial<Record<Language, Record<string, number>>> // Language -> keyword -> count
-
 export interface PromiseAdapter<T, U> {
   (
     value: T,

@@ -9,10 +9,9 @@ import {
   python,
   ruby,
   typescript,
-// @ts-expect-error
 } from 'language-keywords'
 
-export const languageToKeywords: Record<string, string[]> = {
+export const languageToKeywords: Record<string, readonly string[]> = {
   c,
   cpp,
   csharp,
