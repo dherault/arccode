@@ -7,15 +7,17 @@ export type CharacterContextType = {
   isEditable: boolean
   updateCharacter: (payload: Record<string, any>) => Promise<void>
   isLevelUpOpen: boolean
-  toggleLevelUp: () => void
   levelUpKeywordRegistry: KeywordRegistry
-  updateLevelUpKeywordRegistry: (n: number) => void
   levelUpCursor: number
   levelUpCount: number
   levelUpMax: number
   levelUpUnlockedItems: Record<string, number>
+  levelUpLoading: boolean
+  openLevelUp: () => void
+  closeLevelUp: () => void
   openChest: () => Promise<void>
   closeChest: () => Promise<void>
+  updateLevelUpCount: (n: number) => void
 }
 
 export default createContext<CharacterContextType>({
@@ -23,13 +25,15 @@ export default createContext<CharacterContextType>({
   isEditable: false,
   updateCharacter: async () => {},
   isLevelUpOpen: false,
-  toggleLevelUp: () => {},
   levelUpKeywordRegistry: {},
-  updateLevelUpKeywordRegistry: () => {},
   levelUpCursor: 0,
   levelUpCount: 0,
   levelUpMax: 0,
   levelUpUnlockedItems: {},
+  levelUpLoading: false,
+  openLevelUp: () => {},
+  closeLevelUp: () => {},
   openChest: async () => {},
   closeChest: async () => {},
+  updateLevelUpCount: () => {},
 })

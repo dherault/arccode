@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import useCharacter from '~hooks/character/useCharacter'
 
 import { Button } from '~components/ui/Button'
@@ -9,17 +7,9 @@ function LevelUp() {
   const {
     levelUpCount: levelUpsCount,
     levelUpMax: levelUpsMax,
-    isLevelUpOpen,
-    toggleLevelUp,
-    updateLevelUpKeywordRegistry: updateLevelUpsKeywords,
+    closeLevelUp,
+    updateLevelUpCount,
   } = useCharacter()
-
-  useEffect(() => {
-    updateLevelUpsKeywords(1)
-  }, [
-    isLevelUpOpen,
-    updateLevelUpsKeywords,
-  ])
 
   return (
     <div className="flex flex-col items-center">
@@ -55,13 +45,13 @@ function LevelUp() {
       <div className="mt-8 md:mt-16 flex justify-center">
         <Button
           variant="ghost"
-          onClick={() => levelUpsCount === 1 ? updateLevelUpsKeywords(levelUpsMax) : updateLevelUpsKeywords(1)}
+          onClick={() => levelUpsCount === 1 ? updateLevelUpCount(levelUpsMax) : updateLevelUpCount(1)}
         >
           {levelUpsCount === 1 ? `Open ${levelUpsMax} at once` : 'Open only one'}
         </Button>
         <Button
           variant="ghost"
-          onClick={toggleLevelUp}
+          onClick={closeLevelUp}
         >
           Close
         </Button>

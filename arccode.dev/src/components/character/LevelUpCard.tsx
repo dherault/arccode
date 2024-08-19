@@ -4,7 +4,7 @@ import SlidingBanner from '~components/common/SlidingBanner'
 import LanguageImage from '~components/character/LanguageImage'
 
 function LevelUpCard() {
-  const { character, toggleLevelUp } = useCharacter()
+  const { character, openLevelUp } = useCharacter()
 
   const keywordNodes = Object.entries(character.levelUpKeywordRegistry).map(([language, keywords]) => (
     Object.entries(keywords)
@@ -33,7 +33,7 @@ function LevelUpCard() {
 
   return (
     <div
-      onClick={toggleLevelUp}
+      onClick={openLevelUp}
       className="py-3 flex flex-col items-center justify-center bg-white border border-blue rounded cursor-pointer"
     >
       <div className="mt-1 text-blue animate-bounce">

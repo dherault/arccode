@@ -15,7 +15,6 @@ import CharacterContext, { CharacterContextType } from '~contexts/character/Char
 import useDocument from '~hooks/db/useDocument'
 import useUser from '~hooks/user/useUser'
 import { useToast } from '~hooks/ui/useToast'
-import usePrevious from '~hooks/common/usePrevious'
 
 import NotFound from '~components/common/NotFound'
 import SpinnerCentered from '~components/common/CenteredSpinner'
@@ -57,10 +56,11 @@ function CharacterProvider({ children }: PropsWithChildren) {
 
   const [nLevelUpToOpen, setNLevelUpToOpen] = useState(1)
   const [levelUpCursor, setLevelUpCursor] = useState(0)
+  const [levelUpLoading, setLevelUpLoading] = useState(false)
+  const [previousUnlockedItems, setPreviousUnlockedItems] = useState(character?.unlockedItems ?? {})
   const levelUpKeywordRegistry = useMemo(() => character ? pickLevelUpKeywordRegistry(character, nLevelUpToOpen) : {}, [character, nLevelUpToOpen])
   const levelUpCount = useMemo(() => sumKeywordRegistry(levelUpKeywordRegistry), [levelUpKeywordRegistry])
   const levelUpMax = useMemo(() => character ? sumKeywordRegistry(character.levelUpKeywordRegistry) : 0, [character])
-  const previousUnlockedItems = usePrevious(character?.unlockedItems ?? {})
   const levelUpUnlockedItems = useMemo(() => {
     const levelUpsUnlockedItems: Record<string, number> = {}
 
@@ -78,10 +78,10 @@ function CharacterProvider({ children }: PropsWithChildren) {
     previousUnlockedItems,
   ])
 
-  const handleToggleLevelUp = useCallback(() => {
+  const handleToggleLevelUp = useCallback((open: boolean) => {
     setSearchParams(x => {
-      if (x.has(LEVEL_UP_SEARCH_PARAMETERS_KEY)) x.delete(LEVEL_UP_SEARCH_PARAMETERS_KEY)
-      else x.set(LEVEL_UP_SEARCH_PARAMETERS_KEY, '1')
+      if (open) x.set(LEVEL_UP_SEARCH_PARAMETERS_KEY, '1')
+      else x.delete(LEVEL_UP_SEARCH_PARAMETERS_KEY)
 
       return x
     }, {
@@ -91,7 +91,31 @@ function CharacterProvider({ children }: PropsWithChildren) {
     setSearchParams,
   ])
 
+  const handleOpenLevelUp = useCallback(() => {
+    handleToggleLevelUp(true)
+  }, [
+    handleToggleLevelUp,
+  ])
+
+  const handleCloseLevelUp = useCallback(() => {
+    handleToggleLevelUp(false)
+
+    setTimeout(() => {
+      setNLevelUpToOpen(1)
+      setLevelUpCursor(0)
+      setLevelUpLoading(false)
+      setPreviousUnlockedItems(character?.unlockedItems ?? {})
+    }, 300)
+  }, [
+    character?.unlockedItems,
+    handleToggleLevelUp,
+  ])
+
   const handleOpenChest = useCallback(async () => {
+    if (levelUpLoading) return
+
+    setLevelUpLoading(true)
+
     try {
       await levelUp({ levelUpKeywordRegistry })
     }
@@ -102,19 +126,28 @@ function CharacterProvider({ children }: PropsWithChildren) {
         description: error.message,
       })
     }
+
+    setLevelUpLoading(false)
   }, [
+    levelUpLoading,
     levelUpKeywordRegistry,
     toast,
   ])
 
   const handleCloseChest = useCallback(async () => {
-    setLevelUpCursor(x => x + 1)
+    if (levelUpCount >= levelUpMax) {
+      handleCloseLevelUp()
 
-    if (levelUpCount >= levelUpMax) handleToggleLevelUp()
+      return
+    }
+
+    setLevelUpCursor(x => x + 1)
+    setPreviousUnlockedItems(character?.unlockedItems ?? {})
   }, [
+    character?.unlockedItems,
     levelUpCount,
     levelUpMax,
-    handleToggleLevelUp,
+    handleCloseLevelUp,
   ])
 
   /* ---
@@ -126,15 +159,17 @@ function CharacterProvider({ children }: PropsWithChildren) {
     isEditable,
     updateCharacter,
     isLevelUpOpen: searchParams.has(LEVEL_UP_SEARCH_PARAMETERS_KEY),
-    toggleLevelUp: handleToggleLevelUp,
     levelUpKeywordRegistry,
-    updateLevelUpKeywordRegistry: setNLevelUpToOpen,
     levelUpCursor,
     levelUpCount,
     levelUpMax,
     levelUpUnlockedItems,
+    levelUpLoading,
     openChest: handleOpenChest,
     closeChest: handleCloseChest,
+    openLevelUp: handleOpenLevelUp,
+    closeLevelUp: handleCloseLevelUp,
+    updateLevelUpCount: setNLevelUpToOpen,
   }), [
     character,
     isEditable,
@@ -144,8 +179,10 @@ function CharacterProvider({ children }: PropsWithChildren) {
     levelUpCount,
     levelUpMax,
     levelUpUnlockedItems,
+    levelUpLoading,
     updateCharacter,
-    handleToggleLevelUp,
+    handleOpenLevelUp,
+    handleCloseLevelUp,
     handleOpenChest,
     handleCloseChest,
   ])

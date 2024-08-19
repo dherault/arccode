@@ -15,10 +15,10 @@ const SHRINK_DURATION = 150
 const POP_DURATION = 300
 
 function LevelUpChest() {
-  const { levelUpCount: levelUpsCount, levelUpCursor: levelUpsCursor, openChest } = useCharacter()
+  const { levelUpCount, levelUpCursor, openChest } = useCharacter()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const treasureChestIndex = useMemo(() => Math.round(Math.random() * treasureChests.length), [levelUpsCursor])
+  const treasureChestIndex = useMemo(() => Math.round(Math.random() * treasureChests.length), [levelUpCursor])
   const [animation, setAnimation] = useState('shake')
   const [open, setOpen] = useState(false)
   const [rewardDisplayed, setRewardDisplayed] = useState(false)
@@ -67,7 +67,7 @@ function LevelUpChest() {
     setTimesClicked(0)
     setRewardDisplayed(false)
   }, [
-    levelUpsCursor,
+    levelUpCursor,
   ])
 
   return (
@@ -123,9 +123,9 @@ function LevelUpChest() {
             className="absolute -inset-24 min-w-[calc(100%+2*96px)]"
           />
         </motion.div>
-        {levelUpsCount > 1 && (
+        {levelUpCount > 1 && (
           <div className="absolute top-12 md:top-24 right-12 md:right-24 h-8 w-8 bg-blue text-white rounded-full flex items-center justify-center">
-            {levelUpsCount}
+            {levelUpCount}
           </div>
         )}
       </div>

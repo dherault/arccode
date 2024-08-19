@@ -4,18 +4,27 @@ import useCharacter from '~hooks/character/useCharacter'
 
 import { Button } from '~components/ui/Button'
 import ItemCard from '~components/character/ItemCard'
+import Spinner from '~components/common/Spinner'
 
 import items from '~data/items'
 
 function LevelUpReward() {
-  const { levelUpUnlockedItems: levelUpsUnlockedItems, levelUpCount: levelUpsCount, closeChest } = useCharacter()
+  const { levelUpUnlockedItems, levelUpCount, levelUpLoading, closeChest } = useCharacter()
 
-  const levelUpsUnlockedItemsEntries = Object.entries(levelUpsUnlockedItems)
+  const levelUpsUnlockedItemsEntries = Object.entries(levelUpUnlockedItems)
+
+  if (levelUpLoading) {
+    return (
+      <div className="p-4 bg-white border rounded overflow-auto shadow-lg select-none">
+        <Spinner className="w-6" />
+      </div>
+    )
+  }
 
   if (!levelUpsUnlockedItemsEntries.length) return null
 
   return (
-    <div className="p-4 bg-white border rounded select-none max-h-[320px] overflow-auto shadow-lg">
+    <div className="p-4 bg-white border rounded max-h-[320px] overflow-auto shadow-lg select-none">
       <div className="text-center">
         You unlocked:
       </div>
@@ -46,7 +55,7 @@ function LevelUpReward() {
       </div>
       <div className="mt-4 flex justify-center">
         <Button onClick={closeChest}>
-          {levelUpsCount > 0 ? 'Open next box' : 'Close'}
+          {levelUpCount > 0 ? 'Open next box' : 'Close'}
         </Button>
       </div>
     </div>
