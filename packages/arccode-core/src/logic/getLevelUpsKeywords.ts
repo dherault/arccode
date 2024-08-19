@@ -4,34 +4,34 @@ import type { Character, KeywordRegistry } from '../types'
 
 import getKeywords from './getKeywords'
 
-function getLevelUpsKeywords(character: Character, inputKeywords: KeywordRegistry) {
-  const levelUpsKeywords = cloneDeep(character.levelUpsKeywords)
-  const beforeKeywords = getKeywords(character.keywords)
+function getLevelUpsKeywords(character: Character, inputKeywordRegistry: KeywordRegistry) {
+  const levelUpsKeywordRegistry = cloneDeep(character.levelUpsKeywordRegistry)
+  const previousKeywords = getKeywords(character.keywordRegistry)
 
-  getKeywords(inputKeywords).forEach(keyword => {
-    const beforeKeyword = beforeKeywords.find(beforeKeyword => beforeKeyword.language === keyword.language && beforeKeyword.name === keyword.name)
+  getKeywords(inputKeywordRegistry).forEach(keyword => {
+    const previousKeyword = previousKeywords.find(beforeKeyword => beforeKeyword.language === keyword.language && beforeKeyword.name === keyword.name)
 
-    if (!beforeKeyword) {
-      if (!levelUpsKeywords[keyword.language]) levelUpsKeywords[keyword.language] = {}
-      if (!levelUpsKeywords[keyword.language][keyword.name]) levelUpsKeywords[keyword.language][keyword.name] = 0
+    if (!previousKeyword) {
+      if (!levelUpsKeywordRegistry[keyword.language]) levelUpsKeywordRegistry[keyword.language] = {}
+      if (!levelUpsKeywordRegistry[keyword.language][keyword.name]) levelUpsKeywordRegistry[keyword.language][keyword.name] = 0
 
-      const diff = keyword.level - levelUpsKeywords[keyword.language][keyword.name]
+      const diff = keyword.level - levelUpsKeywordRegistry[keyword.language][keyword.name]
 
-      levelUpsKeywords[keyword.language][keyword.name] += diff
+      levelUpsKeywordRegistry[keyword.language][keyword.name] += diff
 
       return
     }
 
-    if (keyword.level <= beforeKeyword.level) return
-    if (!levelUpsKeywords[keyword.language]) levelUpsKeywords[keyword.language] = {}
-    if (!levelUpsKeywords[keyword.language][keyword.name]) levelUpsKeywords[keyword.language][keyword.name] = 0
+    if (keyword.level <= previousKeyword.level) return
+    if (!levelUpsKeywordRegistry[keyword.language]) levelUpsKeywordRegistry[keyword.language] = {}
+    if (!levelUpsKeywordRegistry[keyword.language][keyword.name]) levelUpsKeywordRegistry[keyword.language][keyword.name] = 0
 
-    const diff = keyword.level - beforeKeyword.level - levelUpsKeywords[keyword.language][keyword.name]
+    const diff = keyword.level - previousKeyword.level - levelUpsKeywordRegistry[keyword.language][keyword.name]
 
-    levelUpsKeywords[keyword.language][keyword.name] += diff
+    levelUpsKeywordRegistry[keyword.language][keyword.name] += diff
   })
 
-  return levelUpsKeywords
+  return levelUpsKeywordRegistry
 }
 
 export default getLevelUpsKeywords

@@ -1,20 +1,21 @@
 import type { Character } from '../types'
 
-import pickLevelUpsKeywords from './pickLevelUpsKeywords'
+import pickLevelUpsKeywords from './pickLevelUpsKeywordRegistry'
 
 describe('pickLevelUpsKeywords', () => {
   test('picks level up keywords', () => {
     const inputCharacter: Character = {
       name: '',
       level: 1,
-      levelUpsKeywords: {
+      levelUpsKeywordRegistry: {
         javascript: {
           break: 1,
           const: 3,
         },
       },
-      keywords: {},
-      displayKeywords: {},
+      keywordRegistry: {},
+      displayKeywordRegistry: {},
+      lastDailyRecapKeywordRegistry: {},
       unlockedItems: {},
       avatarItemId: '',
       mainHandItemId: '',

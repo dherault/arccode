@@ -7,12 +7,12 @@ describe('getLevelUpsKeywords', () => {
     const inputCharacter: Character = {
       name: '',
       level: 1,
-      levelUpsKeywords: {
+      levelUpsKeywordRegistry: {
         javascript: {
           break: 1,
         },
       },
-      keywords: {
+      keywordRegistry: {
         javascript: {
           break: 3,
         },
@@ -20,7 +20,8 @@ describe('getLevelUpsKeywords', () => {
           break: 10,
         },
       },
-      displayKeywords: {},
+      displayKeywordRegistry: {},
+      lastDailyRecapKeywordRegistry: {},
       unlockedItems: {},
       avatarItemId: '',
       mainHandItemId: '',

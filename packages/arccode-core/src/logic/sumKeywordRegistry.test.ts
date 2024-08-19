@@ -1,8 +1,8 @@
 import type { KeywordRegistry } from '../types'
 
-import countKeywordRegistry from './countKeywordRegistry'
+import sumKeywordRegistry from './sumKeywordRegistry'
 
-describe('countKeywordRegistry', () => {
+describe('sumKeywordRegistry', () => {
   test('counts keyword registry', () => {
     const input: KeywordRegistry = {
       javascript: {
@@ -11,6 +11,6 @@ describe('countKeywordRegistry', () => {
       },
     }
 
-    expect(countKeywordRegistry(input)).toEqual(4)
+    expect(sumKeywordRegistry(input)).toEqual(4)
   })
 })

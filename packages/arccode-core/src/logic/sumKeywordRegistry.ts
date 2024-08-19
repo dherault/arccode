@@ -1,15 +1,15 @@
 import type { KeywordRegistry } from '../types'
 
-function countKeywordRegistry(keywordRegistry: KeywordRegistry) {
-  let count = 0
+function sumKeywordRegistry(keywordRegistry: KeywordRegistry) {
+  let sum = 0
 
   Object.values(keywordRegistry).forEach(keywords => {
     Object.values(keywords).forEach(amount => {
-      count += amount
+      sum += amount
     })
   })
 
-  return count
+  return sum
 }
 
-export default countKeywordRegistry
+export default sumKeywordRegistry

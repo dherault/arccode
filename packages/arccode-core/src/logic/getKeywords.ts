@@ -2,8 +2,8 @@ import keywordThresholds from 'arccode-keyword-thresholds'
 
 import type { Keyword, KeywordRegistry } from '../types'
 
-function getKeywords(keywords: KeywordRegistry): Keyword[] {
-  return Object.entries(keywords)
+function getKeywords(keywordRegistry: KeywordRegistry): Keyword[] {
+  return Object.entries(keywordRegistry)
     .map(([language, keywords]) => Object.entries(keywords).map(([name, count]) => {
       // @ts-expect-error
       const thresholds = (keywordThresholds[language]?.[name] ?? [1]) as number[]
