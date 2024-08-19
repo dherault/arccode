@@ -28,7 +28,7 @@ function CharacterKeywords() {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {isEditable && levelUpsCount > 0 && <LevelUpCard />}
         {keyword1 && <KeywordCard keyword={keyword1} />}
         {keyword2 && <KeywordCard keyword={keyword2} />}
@@ -38,7 +38,7 @@ function CharacterKeywords() {
         {keyword6 && <KeywordCard keyword={keyword6} />}
       </div>
       {!!listedKeywords.length && (
-        <div className="mt-4 bg-white border rounded grid grid-cols-3 grid-flow-row">
+        <div className="my-4 bg-white border rounded grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-flow-row">
           {listedKeywords.map(keyword => (
             <KeywordListItem
               key={keyword.name}

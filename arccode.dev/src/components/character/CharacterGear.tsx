@@ -12,7 +12,7 @@ function CharacterGear() {
   if (!avatar) return null
 
   return (
-    <div className="relative w-full md:w-auto md:min-w-[448px] grid grid-cols-2 gap-y-10 md:gap-y-14">
+    <div className="mx-auto relative w-full max-w-[448px] lg:w-auto lg:min-w-[448px] lg:max-w-auto grid grid-cols-2 gap-y-14">
       <img
         src={`/images/avatars/${avatar.image}`}
         alt={avatar.name}

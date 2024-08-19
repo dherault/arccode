@@ -6,7 +6,7 @@ function CharacterHeader() {
 
   return (
     <div className="mb-3 flex flex-wrap items-baseline gap-x-4">
-      <h1 className="font-display font-bold text-3xl md:text-4xl text-nowrap">
+      <h1 className="font-display font-bold text-3xl lg:text-4xl text-nowrap">
         {characterName}
       </h1>
       <div>
