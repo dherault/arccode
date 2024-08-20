@@ -32,7 +32,9 @@ function LevelUpReward() {
         className="mt-4 mx-auto w-fit grid gap-y-2 gap-x-4"
         style={{ gridTemplateColumns: `repeat(${Math.min(4, levelUpsUnlockedItemsEntries.length)}, 1fr)` }}
       >
-        {levelUpsUnlockedItemsEntries.map(([itemId, amount]) => (
+        {levelUpsUnlockedItemsEntries
+        .filter(([itemId]) => items[itemId])
+        .map(([itemId, amount]) => (
           <div
             key={itemId}
             className="relative w-[88px] aspect-square flex flex-col items-center text-center"

@@ -57,7 +57,7 @@ function SlidingBanner({ gap = 16, duration = 10, children }: Props) {
           transition: {
             repeat: Infinity,
             repeatType: 'loop',
-            duration,
+            duration: duration / 4,
             ease: 'linear',
           },
         }}
@@ -65,7 +65,7 @@ function SlidingBanner({ gap = 16, duration = 10, children }: Props) {
         style={{ gap }}
       >
         <div
-          className="flex items-center justify-center w-max"
+          className="flex items-center justify-center w-max border border-green-500"
           style={{
             gap,
             minWidth: rootWidth,
@@ -78,7 +78,7 @@ function SlidingBanner({ gap = 16, duration = 10, children }: Props) {
           ))}
         </div>
         <div
-          className="flex items-center justify-center w-max"
+          className="flex items-center justify-center w-max border border-red-500"
           style={{
             gap,
             minWidth: rootWidth,
