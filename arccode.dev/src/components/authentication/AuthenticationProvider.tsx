@@ -36,6 +36,7 @@ import UserContext, { type UserContextType } from '~contexts/authentication/User
 import useLiveDocument from '~hooks/db/useLiveDocument'
 
 import createUser from '~utils/db/createUser'
+import getTimezone from '~utils/common/getTimezone'
 
 import ErrorOccured from '~components/common/ErrorOccured'
 
@@ -123,10 +124,12 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
 
     const updatedUser: Record<string, any> = {}
     const signInProviders = viewer.providerData.map(x => x.providerId as SignInProvider).sort()
+    const timezone = getTimezone()
 
     if (viewer.email !== user.email) updatedUser.email = viewer.email
     if (viewer.photoURL && viewer.photoURL !== user.imageUrl) updatedUser.imageUrl = viewer.photoURL
     if (user.signInProviders.length !== signInProviders.length || user.signInProviders.some((x, i) => x !== signInProviders[i])) updatedUser.signInProvider = signInProviders
+    if (user.timezone !== timezone) updatedUser.timezone = timezone
 
     if (!Object.entries(updatedUser).length) return
 
@@ -169,7 +172,7 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
     handleCreateUser,
   ])
 
-  // Update sign in providers
+  // Update sign in providers and other user data
   useEffect(() => {
     handleUpdateUserData()
   }, [
