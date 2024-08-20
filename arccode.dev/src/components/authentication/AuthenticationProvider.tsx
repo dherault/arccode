@@ -36,7 +36,6 @@ import UserContext, { type UserContextType } from '~contexts/authentication/User
 import useLiveDocument from '~hooks/db/useLiveDocument'
 
 import createUser from '~utils/db/createUser'
-import getTimezone from '~utils/common/getTimezone'
 
 import ErrorOccured from '~components/common/ErrorOccured'
 
@@ -122,14 +121,14 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
   const handleUpdateUserData = useCallback(async () => {
     if (!(viewer && user)) return
 
-    const updatedUser: Record<string, any> = {}
+    const updatedUser: Partial<Record<keyof User, any>> = {}
     const signInProviders = viewer.providerData.map(x => x.providerId as SignInProvider).sort()
-    const timezone = getTimezone()
+    const timezoneOffset = new Date().getTimezoneOffset()
 
     if (viewer.email !== user.email) updatedUser.email = viewer.email
     if (viewer.photoURL && viewer.photoURL !== user.imageUrl) updatedUser.imageUrl = viewer.photoURL
-    if (user.signInProviders.length !== signInProviders.length || user.signInProviders.some((x, i) => x !== signInProviders[i])) updatedUser.signInProvider = signInProviders
-    if (user.timezone !== timezone) updatedUser.timezone = timezone
+    if (user.signInProviders.length !== signInProviders.length || user.signInProviders.some((x, i) => x !== signInProviders[i])) updatedUser.signInProviders = signInProviders
+    if (user.timezoneOffset !== timezoneOffset) updatedUser.timezoneOffset = timezoneOffset
 
     if (!Object.entries(updatedUser).length) return
 

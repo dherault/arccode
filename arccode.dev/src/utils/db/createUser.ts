@@ -2,8 +2,6 @@ import { User } from '~types'
 
 import { INITIAL_CHARACTER } from '~constants'
 
-import getTimezone from '~utils/common/getTimezone'
-
 type CreateUserArg = Omit<
   User,
   'hasSentSignupMessages'
@@ -12,7 +10,7 @@ type CreateUserArg = Omit<
   | 'character'
   | 'nUpdates'
   | 'sentDailyRecapEmailAt'
-  | 'timezone'
+  | 'timezoneOffset'
   | 'createdAt'
   | 'updatedAt'
   | 'deletedAt'
@@ -29,7 +27,7 @@ function createUser(user: CreateUserArg): User {
     character: INITIAL_CHARACTER,
     nUpdates: 0,
     sentDailyRecapEmailAt: new Date(0).toISOString(),
-    timezone: getTimezone(),
+    timezoneOffset: new Date().getTimezoneOffset(),
     createdAt: now,
     updatedAt: now,
     deletedAt: '',

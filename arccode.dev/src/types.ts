@@ -31,7 +31,7 @@ export type User = DatabaseResource<{
   character: Character
   nUpdates: number
   sentDailyRecapEmailAt: string
-  timezone: string
+  timezoneOffset: number
 }>
 
 export type Email = DatabaseResource<{

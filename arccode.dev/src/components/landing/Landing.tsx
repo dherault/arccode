@@ -1,3 +1,5 @@
+import { Helmet } from 'react-helmet'
+
 import AnimatedBackground from '~components/common/AnimatedBackground'
 import LandingNav from '~components/landing/LandingNav'
 import LandingHero from '~components/landing/LandingHero'
@@ -9,16 +11,23 @@ import LandingFooter from '~components/landing/LandingFooter'
 
 function Landing() {
   return (
-    <AnimatedBackground>
-      <LandingNav />
-      <LandingHero />
-      <LandingProduct />
-      <LandingQuote />
-      <LandingFaq />
-      <LandingPickup />
-      <div className="grow" />
-      <LandingFooter />
-    </AnimatedBackground>
+    <>
+      <Helmet>
+        <title>
+          Arccode
+        </title>
+      </Helmet>
+      <AnimatedBackground>
+        <LandingNav />
+        <LandingHero />
+        <LandingProduct />
+        <LandingQuote />
+        <LandingFaq />
+        <LandingPickup />
+        <div className="grow" />
+        <LandingFooter />
+      </AnimatedBackground>
+    </>
   )
 }
 

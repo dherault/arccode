@@ -1,17 +1,18 @@
+import { logger } from 'firebase-functions/v2'
 import { FieldValue } from 'firebase-admin/firestore'
 import { DateTime } from 'luxon'
-import sendRecapEmail from 'emails/recap'
-import { diffKeywordRegistries, sumKeywordRegistry } from 'arccode-core'
+import { diffKeywordRegistries, filterKeywordRegistry, sumKeywordRegistry } from 'arccode-core'
 
 import type { User } from '~types'
 
 import { firestore } from '../firebase'
+import sendRecapEmail from '../emails/recap'
 
 import getTimezoneOffsetAtHour from './getTimezoneOffsetAtHour'
 
 const IS_DEV = process.env.IS_FIREBASE_CLI === 'true'
 const RECAP_HOUR = IS_DEV
-  ? 8 // HACK to set the recap hour to current hour in development. Modify this
+  ? 9 // HACK to set the recap hour to current hour in development. Modify this
   : 18
 
 async function sendRecapEmails() {
@@ -31,12 +32,14 @@ async function sendRecapEmails() {
 
   let count = 0
 
+  // console.log(users.docs.length, 'users')
+
   for (const userDoc of users.docs) {
     const user = userDoc.data() as User
 
     if (!user.email) continue
 
-    const keywordRegistry = diffKeywordRegistries(user.character.keywordRegistry, user.character.lastDailyRecapKeywordRegistry)
+    const keywordRegistry = filterKeywordRegistry(diffKeywordRegistries(user.character.keywordRegistry, user.character.lastDailyRecapKeywordRegistry))
 
     if (!Object.keys(keywordRegistry).length) continue
     if (!Object.keys(user.character.levelUpKeywordRegistry).length) continue
@@ -45,24 +48,30 @@ async function sendRecapEmails() {
 
     if (!levelUpCount) continue
 
-    await sendRecapEmail({
-      email: IS_DEV ? 'delivered@resend.dev' : user.email,
-      name: user.character.name,
-      levelUpCount,
-      keywordRegistry,
-      levelUpKeywordRegistry: user.character.levelUpKeywordRegistry,
-      period: 'daily',
-    })
+    try {
+      await sendRecapEmail({
+        email: IS_DEV ? 'delivered@resend.dev' : user.email,
+        name: user.character.name,
+        levelUpCount,
+        keywordRegistry,
+        levelUpKeywordRegistry: user.character.levelUpKeywordRegistry,
+        period: 'daily',
+      })
 
-    count++
+      count++
+    }
+    catch (error) {
+      logger.error('Failed to send recap email', error)
+    }
 
     // Do not update user if in development to test again and again
-    if (IS_DEV) continue
+    // if (IS_DEV) continue
 
-    const userUpdatePayload: Partial<Record<keyof User, any>> = {
+    const userUpdatePayload: Record<string, any> = {
+      'character.lastDailyRecapKeywordRegistry': user.character.keywordRegistry,
+      sentDailyRecapEmailAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       nUpdates: FieldValue.increment(1),
-      sentDailyRecapEmailAt: new Date().toISOString(),
     }
 
     await userDoc.ref.update(userUpdatePayload)

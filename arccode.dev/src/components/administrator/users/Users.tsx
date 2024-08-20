@@ -35,7 +35,7 @@ function Users() {
     <>
       <Helmet>
         <title>
-          Users | Arccode
+          Administrator | Arccode
         </title>
       </Helmet>
       <div className="container">

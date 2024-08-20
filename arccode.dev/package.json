@@ -61,6 +61,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "@types/html-to-text": "^9.0.4",
     "@types/jest": "^29.5.12",
     "@types/lodash.clonedeep": "^4.5.9",
     "@types/luxon": "^3.4.2",
