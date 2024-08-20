@@ -6,7 +6,7 @@ import { Button } from '~components/ui/Button'
 function LandingPickup() {
   return (
     <section className="pt-16 pb-8 md:pb-16 container flex flex-col items-center">
-      <div className="text-4xl font-bold text-center">
+      <div className="text-4xl font-bold text-center tracking-tight">
         <Balancer>
           Adventure awaits
         </Balancer>

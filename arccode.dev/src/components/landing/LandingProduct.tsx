@@ -98,7 +98,13 @@ function LandingProduct() {
             className="w-full"
           />
         </div>
-        <div className="max-w-[460px] aspect-[1.618/1] border rounded-lg bg-white overflow-hidden" />
+        <div className="max-w-[460px] aspect-[1.618/1] border rounded-lg bg-white overflow-hidden">
+          <img
+            src="/images/landing/loot.png"
+            alt="Loot"
+            className="w-full"
+          />
+        </div>
         <div className="-mt-4 md:mt-0">
           <div className="p-2 w-fit bg-blue flex items-center justify-center rounded-md">
             <CodeXml className="w-6 h-6 text-white" />
