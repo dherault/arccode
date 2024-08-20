@@ -15,7 +15,8 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "prepare": "husky",
-    "install:all": "npm run install:app && npm run install:functions && npm run install:arccode-core && npm run install:arccode-keyword-thresholds && npm run install:arccode-vscode-extension && npm run install:language-keywords",
+    "install:all": "npm run install:monorepo && npm run install:app && npm run install:functions && npm run install:arccode-core && npm run install:arccode-keyword-thresholds && npm run install:arccode-vscode-extension && npm run install:language-keywords",
+    "install:monorepo": "npm install",
     "install:app": "cd arccode.dev && npm install",
     "install:functions": "cd arccode.dev/functions && npm install",
     "install:arccode-core": "cd packages/arccode-core && npm install",
