@@ -15,6 +15,9 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "prepare": "husky",
+    "test": "npm run test:arccode-core && npm run test:language-keywords",
+    "test:arccode-core": "cd packages/arccode-core && npm run test",
+    "test:language-keywords": "cd packages/language-keywords && npm run test",
     "lint": "npm run lint:app && npm run lint:functions && npm run lint:arccode-core && npm run lint:arccode-keyword-thresholds && npm run lint:arccode-vscode-extension && npm run lint:language-keywords",
     "lint:app": "cd arccode.dev && npm run lint",
     "lint:functions": "cd arccode.dev/functions && npm run lint",
