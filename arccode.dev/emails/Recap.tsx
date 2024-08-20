@@ -49,7 +49,7 @@ export function Recap({
           <Container className="mx-auto py-4">
             <Link href="https://arccode.dev">
               <Row>
-                <Column className="w-10">
+                <Column className="w-0">
                   <Img
                     src="https://arccode.dev/images/logo-blue.png"
                     alt="Arccode logo"
@@ -57,7 +57,7 @@ export function Recap({
                   />
                 </Column>
                 <Column>
-                  <div className="text-lg font-semibold text-blue-500">
+                  <div className="ml-2 text-lg font-semibold text-blue-500">
                     Arccode
                   </div>
                 </Column>
