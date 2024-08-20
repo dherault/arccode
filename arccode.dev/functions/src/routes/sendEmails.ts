@@ -6,7 +6,7 @@ import { getUserFromCallableRequest } from '../authentication/getUser'
 import sendRecapEmails from '../logic/sendRecapEmail'
 
 export const sendRecapEmailsCron = onSchedule(
-  { secrets: ['RESEND_API_KEY'], schedule: 'every 1 hours' },
+  { secrets: ['RESEND_API_KEY'], schedule: '0 * * * *' }, // Every hour at minute 0
   async () => {
     const count = await sendRecapEmails()
 
