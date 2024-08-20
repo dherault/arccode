@@ -51,9 +51,9 @@ export function Recap({
               <Row>
                 <Column className="w-10">
                   <Img
-                    src="https://arccode.dev/images/logo-blue-square.png"
+                    src="https://arccode.dev/images/logo-blue.png"
                     alt="Arccode logo"
-                    width={32}
+                    height={32}
                   />
                 </Column>
                 <Column>
