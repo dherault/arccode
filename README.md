@@ -27,22 +27,16 @@ Here is an example of such data:
 
 As you can see, the original code is not stored, only the keywords and their counts.
 
+## Installation
+
+To install the dependencies run:
+```bash
+npm run install:all
+```
+
 ## App development
 
-First install the dependencies:
-
-For the monorepo (lint and commit hook):
-```bash
-npm i
-```
-
-For the web app:
-```bash
-cd arccode.dev && npm i && cd functions && npm i
-```
-
-Then you can start the development server for the web app:
-
+You can start the development server for the web app:
 ```bash
 cd arccode.dev
 ```
@@ -53,7 +47,6 @@ npm run emulators
 ```
 
 In another run:
-
 ```bash
 npm run dev
 ```
@@ -61,11 +54,6 @@ npm run dev
 ## Extension development
 
 To develop on the extension open the `packages/arccode-vscode-extension` directory in a separate VSCode window (it's important).
-
-Install the dependencies:
-```bash
-npm i
-```
 
 Watch for changes:
 ```bash
@@ -76,7 +64,7 @@ Then open `src/extension.ts` and press F5 to launch another VSCode window with t
 
 ## Package development
 
-Additionally, you can edit any package under `packages/` by running `npm i` and `npm test` to run the tests.
+Additionally, you can edit any package under `packages/` and run `npm test` to test it.
 
 ## Contributing
 
