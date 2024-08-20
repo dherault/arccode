@@ -87,7 +87,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
       <PopoverContent
         onOpenAutoFocus={event => event.preventDefault()}
         collisionPadding={16}
-        className={_('w-fit grid gap-4', {
+        className={_('max-h-[300px] w-fit grid gap-4 overflow-y-auto', {
           'grid-cols-2': unlockedItemIds.length === 1,
           'grid-cols-3': unlockedItemIds.length === 2,
           'grid-cols-4': unlockedItemIds.length > 2,
