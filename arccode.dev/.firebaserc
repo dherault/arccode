@@ -1,5 +1,12 @@
 {
   "projects": {
     "default": "arccode-dev"
-  }
+  },
+  "targets": {},
+  "etags": {
+    "arccode-dev": {
+      "extensionInstances": {}
+    }
+  },
+  "dataconnectEmulatorConfig": {}
 }
