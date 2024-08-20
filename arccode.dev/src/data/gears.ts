@@ -494,6 +494,7 @@ const gears: Record<string, Item> = {
     rarity: 'rare',
     name: 'Express Thumb Ring',
     image: 'express.png',
+    imagePadding: false,
   },
   bootstrap: {
     id: 'bootstrap',
@@ -516,12 +517,12 @@ const gears: Record<string, Item> = {
     name: 'CouchDB Armor Ring',
     image: 'couchdb.png',
   },
-  puppet: {
-    id: 'puppet',
+  nextjs: {
+    id: 'nextjs',
     type: 'ring',
     rarity: 'common',
-    name: 'Puppet Poison Ring',
-    image: 'puppet.png',
+    name: 'Next.js Poison Ring',
+    image: 'nextjs.png',
   },
   sketch: {
     id: 'sketch',

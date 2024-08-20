@@ -11,7 +11,7 @@ const spells: Record<string, Item> = {
   rest: {
     id: 'rest',
     type: 'spell',
-    name: 'REST Fireball',
+    name: 'REST Blades of the Fallen',
     rarity: 'legendary',
     image: 'rest.png',
   },
@@ -39,7 +39,7 @@ const spells: Record<string, Item> = {
   firebase: {
     id: 'firebase',
     type: 'spell',
-    name: 'Firebase Blades of the Fallen',
+    name: 'Firebase Fireball',
     rarity: 'rare',
     image: 'firebase.png',
   },
@@ -64,12 +64,12 @@ const spells: Record<string, Item> = {
     rarity: 'rare',
     image: 'graphql.png',
   },
-  aspnetcode: {
-    id: 'aspnetcode',
+  aspnetcore: {
+    id: 'aspnetcore',
     type: 'spell',
     name: 'ASP.NET Core Shattered Reality',
     rarity: 'rare',
-    image: 'aspnetcode.png',
+    image: 'aspnetcore.png',
   },
   cypress: {
     id: 'cypress',
@@ -84,6 +84,7 @@ const spells: Record<string, Item> = {
     name: 'Mocha Mirror\'s Edge',
     rarity: 'uncommon',
     image: 'mocha.png',
+    imagePadding: false,
   },
   ansible: {
     id: 'ansible',
@@ -91,6 +92,7 @@ const spells: Record<string, Item> = {
     name: 'Ansible Soul Syphon',
     rarity: 'uncommon',
     image: 'ansible.png',
+    imagePadding: false,
   },
   circleci: {
     id: 'circleci',
@@ -106,12 +108,13 @@ const spells: Record<string, Item> = {
     rarity: 'uncommon',
     image: 'laravel.png',
   },
-  sublime: {
-    id: 'sublime',
+  sublimetext: {
+    id: 'sublimetext',
     type: 'spell',
     name: 'Sublime Text Stormbinder\'s Wrath',
     rarity: 'uncommon',
-    image: 'sublime.png',
+    image: 'sublimetext.png',
+    imagePadding: false,
   },
   apache: {
     id: 'apache',
@@ -189,6 +192,7 @@ const spells: Record<string, Item> = {
     name: 'Selenium Serpent\'s Bite',
     rarity: 'common',
     image: 'selenium.png',
+    imagePadding: false,
   },
   jasmine: {
     id: 'jasmine',

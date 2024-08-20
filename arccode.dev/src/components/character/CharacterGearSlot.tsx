@@ -33,7 +33,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
     Object.entries(character.unlockedItems)
       .filter(([, value]) => value > 0)
       .map(([key]) => items[key])
-      .filter(item => item.type === type)
+      .filter(item => item?.type === type)
       .sort((a, b) => RARITY_ORDERS[a.rarity] - RARITY_ORDERS[b.rarity])
       .map(item => item.id)
   ), [

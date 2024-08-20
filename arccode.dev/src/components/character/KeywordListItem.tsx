@@ -15,7 +15,7 @@ function KeywordListItem({ keyword }: Props) {
           language={keyword.language}
           className="w-4"
         />
-        <div className="font-mono w-32">
+        <div className="font-mono">
           {keyword.name}
         </div>
         <div className="font-mono grow text-right">
