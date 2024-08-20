@@ -82,6 +82,11 @@ Additionally, you can edit any package under `packages/` by running `npm i` and 
 
 PRs, issues and feedback are welcome!
 
+### Adding a reward
+
+You can add an unlockable reward to the game by submitting a PR.
+It must include a 256x256 PNG image under `/arccode.dev/public/images/gears` and a new entry in the array in `/arccode.dev/src/data/gears.ts`.
+
 ## License
 
 [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html)
