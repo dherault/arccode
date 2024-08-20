@@ -83,21 +83,41 @@ function CharacterGear() {
           type="spell"
           slotId="spell1ItemId"
           itemId={character.spell1ItemId}
+          filteredItemIds={[
+            character.spell2ItemId,
+            character.spell3ItemId,
+            character.spell4ItemId,
+          ]}
         />
         <CharacterGearSlot
           type="spell"
           slotId="spell2ItemId"
           itemId={character.spell2ItemId}
+          filteredItemIds={[
+            character.spell1ItemId,
+            character.spell3ItemId,
+            character.spell4ItemId,
+          ]}
         />
         <CharacterGearSlot
           type="spell"
           slotId="spell3ItemId"
           itemId={character.spell3ItemId}
+          filteredItemIds={[
+            character.spell1ItemId,
+            character.spell2ItemId,
+            character.spell4ItemId,
+          ]}
         />
         <CharacterGearSlot
           type="spell"
           slotId="spell4ItemId"
           itemId={character.spell4ItemId}
+          filteredItemIds={[
+            character.spell1ItemId,
+            character.spell2ItemId,
+            character.spell3ItemId,
+          ]}
         />
       </div>
     </div>

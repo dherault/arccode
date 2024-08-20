@@ -21,9 +21,10 @@ type Props = {
   type: ItemType
   slotId: CharacterSlot
   itemId: string
+  filteredItemIds?: string[]
 }
 
-function CharacterGearSlot({ type, slotId, itemId }: Props) {
+function CharacterGearSlot({ type, slotId, itemId, filteredItemIds = [] }: Props) {
   const { character, isEditable, updateCharacter } = useCharacter()
 
   const [open, setOpen] = useState(false)
@@ -31,6 +32,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
   const item = items[itemId] ?? null
   const unlockedItemIds = useMemo(() => (
     Object.entries(character.unlockedItems)
+      .filter(([itemId]) => !filteredItemIds.includes(itemId))
       .filter(([, value]) => value > 0)
       .map(([key]) => items[key])
       .filter(item => item?.type === type)
@@ -38,6 +40,7 @@ function CharacterGearSlot({ type, slotId, itemId }: Props) {
       .map(item => item.id)
   ), [
     type,
+    filteredItemIds,
     character.unlockedItems,
   ])
 
