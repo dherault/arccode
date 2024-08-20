@@ -45,11 +45,11 @@ function CharacterGearSlot({ type, slotId, itemId, filteredItemIds = [] }: Props
   ])
 
   const handleEquip = useCallback(async (itemId: string) => {
+    setOpen(false)
+
     await updateCharacter({
       [slotId]: itemId,
     })
-
-    setOpen(false)
   }, [
     slotId,
     updateCharacter,
