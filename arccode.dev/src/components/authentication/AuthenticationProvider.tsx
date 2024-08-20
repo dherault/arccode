@@ -108,7 +108,7 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
 
     await setDoc(userDocument, createdUser)
 
-    logAnalytics('sign_up', {
+    logAnalytics('signup', {
       method: signInProvider,
     })
   }, [

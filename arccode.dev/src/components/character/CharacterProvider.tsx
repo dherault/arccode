@@ -58,6 +58,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
   const [levelUpId, setLevelUpId] = useState(Math.random())
   const [levelUpCursor, setLevelUpCursor] = useState(0)
   const [levelUpLoading, setLevelUpLoading] = useState(false)
+  const [isChestOpen, setIsChestOpen] = useState(false)
   const [previousUnlockedItems, setPreviousUnlockedItems] = useState(character?.unlockedItems ?? {})
   const levelUpKeywordRegistry = useMemo(() => character ? pickLevelUpKeywordRegistry(character, nLevelUpToOpen) : {}, [character, nLevelUpToOpen])
   const levelUpCount = useMemo(() => sumKeywordRegistry(levelUpKeywordRegistry), [levelUpKeywordRegistry])
@@ -106,6 +107,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
       setNLevelUpToOpen(1)
       setLevelUpCursor(0)
       setLevelUpLoading(false)
+      setIsChestOpen(false)
       setPreviousUnlockedItems(character?.unlockedItems ?? {})
     }, 300)
   }, [
@@ -117,6 +119,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
     if (levelUpLoading) return
 
     setLevelUpLoading(true)
+    setIsChestOpen(true)
 
     try {
       await levelUp({ levelUpKeywordRegistry })
@@ -145,6 +148,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
 
     setLevelUpCursor(x => x + 1)
     setPreviousUnlockedItems(character?.unlockedItems ?? {})
+    setIsChestOpen(false)
   }, [
     character?.unlockedItems,
     levelUpCount,
@@ -161,6 +165,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
     isEditable,
     updateCharacter,
     isLevelUpOpen: searchParams.has(LEVEL_UP_SEARCH_PARAMETERS_KEY),
+    isChestOpen,
     levelUpKeywordRegistry,
     levelUpCursor: levelUpId + levelUpCursor,
     levelUpCount,
@@ -176,6 +181,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
     character,
     isEditable,
     searchParams,
+    isChestOpen,
     levelUpKeywordRegistry,
     levelUpId,
     levelUpCursor,

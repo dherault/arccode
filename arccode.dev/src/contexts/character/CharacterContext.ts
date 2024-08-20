@@ -7,6 +7,7 @@ export type CharacterContextType = {
   isEditable: boolean
   updateCharacter: (payload: Record<string, any>) => Promise<void>
   isLevelUpOpen: boolean
+  isChestOpen: boolean
   levelUpKeywordRegistry: KeywordRegistry
   levelUpCursor: number
   levelUpCount: number
@@ -25,6 +26,7 @@ export default createContext<CharacterContextType>({
   isEditable: false,
   updateCharacter: async () => {},
   isLevelUpOpen: false,
+  isChestOpen: false,
   levelUpKeywordRegistry: {},
   levelUpCursor: 0,
   levelUpCount: 0,
