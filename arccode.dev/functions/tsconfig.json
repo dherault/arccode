@@ -26,6 +26,8 @@
       "~data/*": ["../../src/data/*"],
       "~router/*": ["../../src/router/*"]
     },
+    "jsx": "react",
+    "esModuleInterop": true
   },
   "compileOnSave": true,
   "include": [
