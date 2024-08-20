@@ -1,6 +1,12 @@
 import type { Language } from './types'
 
 /* ---
+  Configuration
+--- */
+
+export const CONFIGURATION_KEY = 'arccode'
+
+/* ---
   Authentication
 --- */
 

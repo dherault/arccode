@@ -3,6 +3,7 @@ import { type KeywordRegistry as KeywordRegistryType, filterKeywordRegistry } fr
 
 import type { Language } from '../types'
 import {
+  CONFIGURATION_KEY,
   CURRENT_KEYWORDS_STORAGE_KEY,
   DAILY_KEYWORDS_STORAGE_KEY,
   LANGUAGE_CONVERSION,
@@ -53,6 +54,12 @@ class KeywordRegistry {
 
     this.context.globalState.update(DAILY_KEYWORDS_STORAGE_KEY, JSON.stringify(this.dailyKeywordRegistry))
     this.context.globalState.update(CURRENT_KEYWORDS_STORAGE_KEY, JSON.stringify(this.currentKeywordRegistry))
+
+    const configuration = vscode.workspace.getConfiguration(CONFIGURATION_KEY)
+
+    if (configuration.get('debug')) {
+      vscode.window.showInformationMessage(`${keyword}: ${delta}`)
+    }
   }
 
   public reset() {
