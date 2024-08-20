@@ -41,7 +41,13 @@ function getKeywords(keywordRegistry: KeywordRegistry): Keyword[] {
     }))
     .flat()
     .filter(x => x.count > 0)
-    .sort((a, b) => a.thresholdMax - a.count - (b.thresholdMax - b.count))
+    .sort((a, b) => {
+      const diff = a.thresholdMax - a.count - (b.thresholdMax - b.count)
+
+      if (diff) return diff
+
+      return a.name.localeCompare(b.name)
+    })
 }
 
 export default getKeywords
