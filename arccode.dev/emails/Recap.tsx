@@ -1,7 +1,6 @@
 import * as React from 'react'
 import {
   Body,
-  Button,
   Column,
   Container,
   Head,
@@ -103,16 +102,17 @@ export function Recap({
                 </Row>
               </div>
             ))}
-            <div className="text-center">
-              <Link href="https://arccode.dev/~">
-                <Button className="mt-4 py-2 px-4 bg-blue-500 text-white text-sm rounded cursor-pointer">
-                  Open my loot box
-                  {levelUpCount > 1 ? 'es' : ''}
-                  !
-                </Button>
+            <div className="pt-[26px] text-center">
+              <Link
+                href="https://arccode.dev/~"
+                className="py-3 px-4 bg-blue-500 text-white text-sm rounded cursor-pointer"
+              >
+                Open my loot box
+                {levelUpCount > 1 ? 'es' : ''}
+                !
               </Link>
             </div>
-            <div className="mt-16 text-center text-xs text-neutral-500">
+            <div className="mt-12 text-center text-xs text-neutral-500">
               Arccode is open source!
               {' '}
               <Link href="https://github.com/dherault/arccode">
