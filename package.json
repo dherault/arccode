@@ -1,7 +1,7 @@
 {
   "name": "arccode",
   "version": "0.0.0",
-  "description": "A game for developers",
+  "description": "A role-playing game for developers",
   "main": "index.js",
   "author": "David Hérault <dherault@gmail.com> (https://github.com/dherault)",
   "repository": {
