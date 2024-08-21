@@ -7,7 +7,7 @@ describe('getKeywords', () => {
     const input: KeywordRegistry = {
       javascript: {
         const: 1,
-        function: 3,
+        function: 5,
       },
     }
     const output: Keyword[] = [
@@ -16,16 +16,16 @@ describe('getKeywords', () => {
         language: 'javascript',
         count: 1,
         level: 0,
-        thresholdMax: 3,
+        thresholdMax: 4,
         thresholdMin: 0,
       },
       {
         name: 'function',
         language: 'javascript',
-        count: 3,
+        count: 5,
         level: 1,
-        thresholdMax: 12,
-        thresholdMin: 3,
+        thresholdMax: 16,
+        thresholdMin: 4,
       },
     ]
 

@@ -39,8 +39,8 @@ describe('getNextLevelUpKeywordRegistry', () => {
     }
     const inputKeywordRegistry = {
       javascript: {
-        const: 12,
-        function: 3,
+        const: 17,
+        function: 4,
       },
     }
 
