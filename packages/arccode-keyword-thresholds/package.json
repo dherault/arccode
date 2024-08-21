@@ -1,7 +1,7 @@
 {
   "name": "arccode-keyword-thresholds",
   "description": "A list of keyword thresholds for Arccode",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "main": "./dist/arccode-keyword-thresholds.umd.cjs",
   "module": "./dist/arccode-keyword-thresholds.js",

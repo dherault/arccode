@@ -4,7 +4,7 @@ function createBaseThresholds<T extends string>(keywords: readonly T[], threshol
   return {
     ...keywords.reduce((acc, keyword) => ({
       ...acc,
-      [keyword]: [3, 12, 24],
+      [keyword]: [4, 16, 32],
     }), {}),
     ...thresholds,
   }
