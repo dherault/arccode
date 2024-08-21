@@ -47,7 +47,7 @@ function LevelUpReward() {
               {items[itemId].name}
             </div>
             {amount > 1 && (
-              <div className="absolute top-2 -right-3 h-6 w-6 bg-neutral-50 border rounded-full text-xs text-neutral-500 flex items-center justify-center">
+              <div className="absolute top-2 -left-3 h-6 w-6 bg-neutral-50 border rounded-full text-xs text-neutral-500 flex items-center justify-center z-30">
                 x
                 {amount}
               </div>
