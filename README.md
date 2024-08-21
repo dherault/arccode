@@ -36,7 +36,7 @@ npm run install:all
 
 ## App development
 
-You can start the development server for the web app:
+To start the development server for the web app:
 ```bash
 cd arccode.dev
 ```
@@ -60,7 +60,7 @@ Watch for changes:
 npm run watch
 ```
 
-Then open `src/extension.ts` and press F5 to launch another VSCode window with the development mode extension loaded.
+Then open `src/extension.ts` and press F5 to launch another VSCode window with the extension loaded in development mode.
 
 ## Package development
 
@@ -68,7 +68,7 @@ Additionally, you can edit any package under `packages/` and run `npm test` to t
 
 ## Contributing
 
-PRs, issues and feedback are welcome!
+Pull requests, issues and feedback are welcome!
 
 ### Adding a reward
 
