@@ -11,6 +11,8 @@ import useUser from '~hooks/user/useUser'
 import { Button } from '~components/ui/Button'
 import Spinner from '~components/common/Spinner'
 
+const emojies = ['🎉', '🎈', '🎁', '🎊', '🎂', '🎃', '🎄', '🎅', '🎆', '🎇', '🧨', '🎗️', '🏵️', '🎖️', '🏆', '🥇', '🥈', '🥉', '🏅', '🎮', '🕹️', '🎲', '🧩', '🎨', '🎤', '🎧', '🎼', '🎹', '🥁', '🎷', '🎺', '🎸', '🪕', '🎻', '🎬', '🎥', '📷', '📸', '📹', '🎞️', '📽️', '🎦', '🏟️', '🎪', '🎭', '🩰', '🎨', '🎪', '🎤', '🎹', '🎻', '🎺', '🎷', '🥁', '🎬', '🎭', '🎨', '🎯', '🎳', '🎮', '🎰', '🎱', '🎲', '🎴', '🀄', '🃏', '🎸', '🪕', '🎤', '🎧', '🎼', '🎶', '🎵', '🎚️', '🎛️', '🎙️', '🎤', '🎧', '🎼', '🎵', '🎶', '🎹']
+
 function Guilds() {
   const { user } = useUser()
 
@@ -33,9 +35,9 @@ function Guilds() {
       const createdAt = new Date(now + i).toISOString()
       const guild: Guild = {
         id: nanoid(),
-        emoji: '🎉',
         name: data[i].title,
         description: data[i].content,
+        emoji: emojies[Math.floor(Math.random() * emojies.length)],
         isPrivate,
         administratorIds: [user.id],
         moderatorIds: [user.id],

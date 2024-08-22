@@ -37,8 +37,8 @@ export type User = DatabaseResource<{
 
 export type Guild = DatabaseResource<{
   name: string
-  emoji: string
   description: string
+  emoji: string
   isPrivate: boolean
   administratorIds: string[]
   moderatorIds: string[]

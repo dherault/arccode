@@ -1,20 +1,24 @@
 import GuildsProvider from '~components/guild/GuildsProvider'
+import GuildProvider from '~components/guild/GuildProvider'
 import GuildsList from '~components/guild/GuildsList'
+import Guild from '~components/guild/Guild'
 
 function Guilds() {
   return (
     <GuildsProvider>
-      <div className="text-3xl font-bold font-display">
-        Guilds
-      </div>
-      <div className="mt-2 flex items-start gap-16">
-        <div className="max-w-[448px] lg:w-auto lg:min-w-[448px]">
-          <GuildsList />
+      <GuildProvider>
+        <div className="text-3xl font-bold font-display">
+          Guilds
         </div>
-        <div className="grow">
-          Guild
+        <div className="mt-4 flex flex-col lg:flex-row lg:items-start gap-4">
+          <div className="lg:min-w-[320px]">
+            <GuildsList />
+          </div>
+          <div className="grow">
+            <Guild />
+          </div>
         </div>
-      </div>
+      </GuildProvider>
     </GuildsProvider>
   )
 }

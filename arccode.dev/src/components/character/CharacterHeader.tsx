@@ -5,7 +5,7 @@ function CharacterHeader() {
   const characterName = character.name || '(An unnamed character)'
 
   return (
-    <div className="mb-3 flex flex-wrap items-baseline gap-x-4">
+    <div className="mb-4 flex flex-wrap items-baseline gap-x-4">
       <h1 className="font-display font-bold text-3xl lg:text-4xl text-nowrap">
         {characterName}
       </h1>
