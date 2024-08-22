@@ -18,7 +18,7 @@ function OnboardingName() {
   const { src: boatSrc, status: boatStatus } = useImageLoading('/images/onboarding/boat.png')
   const navigate = useNavigate()
 
-  const [name, setName] = useState(user?.name ?? '')
+  const [name, setName] = useState('')
   const [valid, setValid] = useState(true)
   const [loading, setLoading] = useState(false)
 
