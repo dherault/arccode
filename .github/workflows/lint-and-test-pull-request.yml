@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: pm run install:all && npm run lint && npm run test
+      - run: npm run install:all && npm run lint && npm run test
