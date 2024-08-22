@@ -7,5 +7,5 @@ export const routeNameReplacements = {
 }
 
 export const noSitemapPrefixes = [
-  // '~',
+  'administrator',
 ]
