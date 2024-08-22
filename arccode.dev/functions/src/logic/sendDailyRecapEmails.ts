@@ -15,7 +15,7 @@ const RECAP_HOUR = IS_DEV
   ? 9 // HACK to set the recap hour to current hour in development. Modify this
   : 18
 
-async function sendRecapEmails() {
+async function sendDailyRecapEmails() {
   const timezoneOffset = getTimezoneOffsetAtHour(RECAP_HOUR)
 
   if (timezoneOffset === null) return 0
@@ -59,25 +59,25 @@ async function sendRecapEmails() {
       })
 
       count++
+
+      // Do not update user if in development to test again and again
+      // if (IS_DEV) continue
+
+      const userUpdatePayload: Record<string, any> = {
+        'character.lastDailyRecapKeywordRegistry': user.character.keywordRegistry,
+        sentDailyRecapEmailAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+        nUpdates: FieldValue.increment(1),
+      }
+
+      await userDoc.ref.update(userUpdatePayload)
     }
     catch (error) {
       logger.error('Failed to send recap email', error)
     }
-
-    // Do not update user if in development to test again and again
-    // if (IS_DEV) continue
-
-    const userUpdatePayload: Record<string, any> = {
-      'character.lastDailyRecapKeywordRegistry': user.character.keywordRegistry,
-      sentDailyRecapEmailAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      nUpdates: FieldValue.increment(1),
-    }
-
-    await userDoc.ref.update(userUpdatePayload)
   }
 
   return count
 }
 
-export default sendRecapEmails
+export default sendDailyRecapEmails
