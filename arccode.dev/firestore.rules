@@ -27,6 +27,14 @@ service cloud.firestore {
         || resource.data.character.unlockedItems[request.resource.data.character[type]] > 0
     }
 
+    function isGuildPublicOrHasMember() {
+      return !resource.data.isPrivate || (request.auth != null && request.auth.uid in resource.data.members);
+    }
+
+    function isGuildAdministrator() {
+      return request.auth != null && request.auth.uid in resource.data.administratorIds;
+    }
+
     match /users/{userId} {
       allow read: if true;
       allow create: if request.auth != null && request.auth.uid == userId && !request.resource.data.isAdministrator;
@@ -47,6 +55,12 @@ service cloud.firestore {
         && hasUnlockedItem('spell2ItemId')
         && hasUnlockedItem('spell3ItemId')
         && hasUnlockedItem('spell4ItemId');
+    }
+
+    match /guilds/{huildId} {
+      allow read: if request.auth != null && isGuildPublicOrHasMember();
+      allow create: if request.auth != null && isAdministrator();
+      allow update, delete: if request.auth != null && (isAdministrator() || isGuildAdministrator());
     }
 
   }

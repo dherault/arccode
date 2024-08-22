@@ -11,6 +11,7 @@ type CreateUserArg = Omit<
   | 'nUpdates'
   | 'sentDailyRecapEmailAt'
   | 'timezoneOffset'
+  | 'guildIds'
   | 'createdAt'
   | 'updatedAt'
   | 'deletedAt'
@@ -28,6 +29,7 @@ function createUser(user: CreateUserArg): User {
     nUpdates: 0,
     sentDailyRecapEmailAt: new Date(0).toISOString(),
     timezoneOffset: new Date().getTimezoneOffset(),
+    guildIds: [],
     createdAt: now,
     updatedAt: now,
     deletedAt: '',
