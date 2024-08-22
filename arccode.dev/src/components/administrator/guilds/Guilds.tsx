@@ -43,6 +43,7 @@ function Guilds() {
         moderatorIds: [user.id],
         memberIds: includeMemberIds ? [user.id] : [],
         userId: user.id,
+        lastMessageAt: createdAt,
         createdAt,
         updatedAt: createdAt,
         deletedAt: '',

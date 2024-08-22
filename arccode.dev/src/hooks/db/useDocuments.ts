@@ -23,7 +23,9 @@ function useDocuments<T extends DatabaseResource>(query: Query, enabled = true) 
       console.error(error)
       setError(error as Error)
     }
-  }, [query])
+  }, [
+    query,
+  ])
 
   const fetch = useCallback(async () => {
     if (!enabled) {

@@ -1,5 +1,5 @@
 import { type PropsWithChildren, useCallback, useMemo } from 'react'
-import { collection, limit, or, orderBy, query, where } from 'firebase/firestore'
+import { collection, or, orderBy, query, where } from 'firebase/firestore'
 
 import type { Guild } from '~types'
 
@@ -10,12 +10,8 @@ import { db } from '~firebase'
 import type { GuildsContextType } from '~contexts/guild/GuildsContext'
 import GuildsContext from '~contexts/guild/GuildsContext'
 
-import useDocuments from '~hooks/db/useDocuments'
 import useUser from '~hooks/user/useUser'
-
-import SpinnerCentered from '~components/common/CenteredSpinner'
-
-const PAGINATION_LIMIT = 100
+import usePaginatedDocuments from '~hooks/db/usePaginatedDocuments'
 
 function GuildsProvider({ children }: PropsWithChildren) {
   const { user } = useUser()
@@ -25,30 +21,29 @@ function GuildsProvider({ children }: PropsWithChildren) {
       where('isPrivate', '==', false),
       where('memberIds', 'array-contains', user?.id ?? NULL_DOCUMENT_ID),
     ),
-    orderBy('createdAt', 'desc'),
-    limit(PAGINATION_LIMIT),
+    orderBy('lastMessageAt', 'desc'),
   ), [
     user?.id,
   ])
-  const { data: guilds, loading, error } = useDocuments<Guild>(q)
+  const { data: guilds, loading, error, hasMore, fetchMore } = usePaginatedDocuments<Guild>(q, 25)
 
   const createGuild = useCallback(async (name: string) => {
     console.log('name', name)
   }, [])
 
   const guildsContextValue = useMemo<GuildsContextType>(() => ({
-    guilds: guilds ?? [],
+    guilds,
+    loadingGuilds: loading,
+    hasMoreGuilds: hasMore,
     createGuild,
+    fetchMoreGuilds: fetchMore,
   }), [
     guilds,
+    loading,
+    hasMore,
     createGuild,
+    fetchMore,
   ])
-
-  if (loading) {
-    return (
-      <SpinnerCentered />
-    )
-  }
 
   if (error) {
     return (

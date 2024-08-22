@@ -43,6 +43,7 @@ export type Guild = DatabaseResource<{
   administratorIds: string[]
   moderatorIds: string[]
   memberIds: string[]
+  lastMessageAt: string
 }>
 
 /* ---

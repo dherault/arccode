@@ -1,7 +1,13 @@
 import useGuild from '~hooks/guild/useGuild'
+import useGuilds from '~hooks/guild/useGuilds'
 
 function Guild() {
+  const { guilds } = useGuilds()
   const { guild } = useGuild()
+
+  if (!guilds.length) {
+    return null
+  }
 
   if (!guild) {
     return (
