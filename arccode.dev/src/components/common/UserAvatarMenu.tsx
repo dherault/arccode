@@ -45,10 +45,12 @@ function UserAvatarMenu() {
             </DropdownMenuItem>
           </Link>
         )}
-        <DropdownMenuItem>
-          <User className="mr-2 w-4 h-4" />
-          Account
-        </DropdownMenuItem>
+        <Link to="/account">
+          <DropdownMenuItem>
+            <User className="mr-2 w-4 h-4" />
+            Account
+          </DropdownMenuItem>
+        </Link>
         <Link to="/support">
           <DropdownMenuItem>
             <CircleHelp className="mr-2 w-4 h-4" />
