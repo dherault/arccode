@@ -28,7 +28,7 @@ service cloud.firestore {
     }
 
     function isGuildPublicOrHasMember() {
-      return !resource.data.isPrivate || (request.auth != null && request.auth.uid in resource.data.members);
+      return !resource.data.isPrivate || (request.auth != null && request.auth.uid in resource.data.memberIds);
     }
 
     function isGuildAdministrator() {
@@ -57,10 +57,11 @@ service cloud.firestore {
         && hasUnlockedItem('spell4ItemId');
     }
 
-    match /guilds/{huildId} {
-      allow read: if request.auth != null && isGuildPublicOrHasMember();
+    match /guilds/{guildId} {
+      allow list: if request.auth != null && request.query.limit <= 100 && isGuildPublicOrHasMember();
+      allow get: if request.auth != null && isGuildPublicOrHasMember();
       allow create: if request.auth != null && isAdministrator();
-      allow update, delete: if request.auth != null && (isAdministrator() || isGuildAdministrator());
+      allow update, delete: if request.auth != null && (isGuildAdministrator() || isAdministrator());
     }
 
   }
