@@ -18,7 +18,7 @@ function LevelUpChest() {
   const { levelUpCount, levelUpCursor, openChest } = useCharacter()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const treasureChestIndex = useMemo(() => Math.round(Math.random() * treasureChests.length), [levelUpCursor])
+  const treasureChestIndex = useMemo(() => Math.floor(Math.random() * treasureChests.length), [levelUpCursor])
   const [animation, setAnimation] = useState('shake')
   const [open, setOpen] = useState(false)
   const [rewardDisplayed, setRewardDisplayed] = useState(false)
