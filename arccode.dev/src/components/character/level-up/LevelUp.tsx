@@ -1,7 +1,7 @@
 import useCharacter from '~hooks/character/useCharacter'
 
 import { Button } from '~components/ui/Button'
-import LevelUpChest from '~components/character/LevelUpChest'
+import LevelUpChest from '~components/character/level-up/LevelUpChest'
 
 function LevelUp() {
   const {

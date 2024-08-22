@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import usePreloadImage from '~hooks/common/usePreloadImage'
 import useCharacter from '~hooks/character/useCharacter'
 
-import LevelUpReward from '~components/character/LevelUpReward'
+import LevelUpReward from '~components/character/level-up/LevelUpReward'
 
 import treasureChests from '~data/treasure-chests'
 

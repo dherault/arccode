@@ -1,6 +1,5 @@
-
-import CharacterGear from '~components/character/CharacterGear'
-import CharacterKeywords from '~components/character/CharacterKeywords'
+import CharacterGear from '~components/character/gear/CharacterGear'
+import CharacterKeywords from '~components/character/keywords/CharacterKeywords'
 import CharacterHeader from '~components/character/CharacterHeader'
 
 function CharacterProfile() {

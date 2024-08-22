@@ -1,4 +1,3 @@
-
 import type { Keyword } from '~types'
 
 type Props = {

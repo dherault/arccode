@@ -1,6 +1,6 @@
 import useCharacter from '~hooks/character/useCharacter'
 
-import CharacterGearSlot from '~components/character/CharacterGearSlot'
+import CharacterGearSlot from '~components/character/gear/CharacterGearSlot'
 
 import items from '~data/items'
 

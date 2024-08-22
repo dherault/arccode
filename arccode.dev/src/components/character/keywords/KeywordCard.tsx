@@ -1,7 +1,7 @@
 import type { Keyword } from '~types'
 
-import KeywordProgress from '~components/character/KeywordProgress'
-import LanguageImage from '~components/character/LanguageImage'
+import KeywordProgress from '~components/character/keywords/KeywordProgress'
+import LanguageImage from '~components/character/keywords/LanguageImage'
 
 type Props = {
   keyword: Keyword

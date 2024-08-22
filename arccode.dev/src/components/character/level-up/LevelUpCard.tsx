@@ -1,7 +1,7 @@
 import useCharacter from '~hooks/character/useCharacter'
 
 import SlidingBanner from '~components/common/SlidingBanner'
-import LanguageImage from '~components/character/LanguageImage'
+import LanguageImage from '~components/character/keywords/LanguageImage'
 
 function LevelUpCard() {
   const { character, openLevelUp } = useCharacter()

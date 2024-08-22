@@ -13,7 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '~components/ui/Popover'
-import ItemCard from '~components/character/ItemCard'
+import ItemCard from '~components/character/gear/ItemCard'
 
 import items from '~data/items'
 

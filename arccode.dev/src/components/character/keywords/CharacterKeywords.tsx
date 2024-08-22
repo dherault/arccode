@@ -1,12 +1,11 @@
-
 import { getKeywords } from 'arccode-core'
 
 import useCharacter from '~hooks/character/useCharacter'
 import useBreakpoint from '~hooks/common/useBreakpoint'
 
-import KeywordCard from '~components/character/KeywordCard'
-import KeywordListItem from '~components/character/KeywordListItem'
-import LevelUpCard from '~components/character/LevelUpCard'
+import KeywordCard from '~components/character/keywords/KeywordCard'
+import KeywordListItem from '~components/character/keywords/KeywordListItem'
+import LevelUpCard from '~components/character/level-up/LevelUpCard'
 import CharacterEmpty from '~components/character/CharacterEmpty'
 
 const breakpointToKeywordsCount = {

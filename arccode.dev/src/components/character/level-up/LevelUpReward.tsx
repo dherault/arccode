@@ -3,7 +3,7 @@ import { ITEM_TYPE_LABELS } from '~constants'
 import useCharacter from '~hooks/character/useCharacter'
 
 import { Button } from '~components/ui/Button'
-import ItemCard from '~components/character/ItemCard'
+import ItemCard from '~components/character/gear/ItemCard'
 import Spinner from '~components/common/Spinner'
 
 import items from '~data/items'

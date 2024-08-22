@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 import useCharacter from '~hooks/character/useCharacter'
 
-import LevelUp from '~components/character/LevelUp'
+import LevelUp from '~components/character/level-up/LevelUp'
 
 function LevelUpContainer() {
   const { isLevelUpOpen } = useCharacter()

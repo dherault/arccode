@@ -1,6 +1,6 @@
 import type { Keyword } from '~types'
 
-import LanguageImage from '~components/character/LanguageImage'
+import LanguageImage from '~components/character/keywords/LanguageImage'
 
 type Props = {
   keyword: Keyword

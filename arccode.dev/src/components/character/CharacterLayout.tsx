@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 
 import useCharacter from '~hooks/character/useCharacter'
 
-import LevelUpContainer from '~components/character/LevelUpContainer'
+import LevelUpContainer from '~components/character/level-up/LevelUpContainer'
 
 function CharacterLayout({ children }: PropsWithChildren) {
   const { character, isEditable } = useCharacter()
