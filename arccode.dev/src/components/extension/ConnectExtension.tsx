@@ -26,7 +26,7 @@ function ConnectExtension({ subtitle }: Props) {
           {subtitle}
         </div>
       )}
-      <div className="mt-8 md:mt-12 text-xl font-semibold text-blue">
+      <div className="mt-6 md:mt-10 text-xl font-semibold text-blue">
         1. Install the extension
       </div>
       <img
