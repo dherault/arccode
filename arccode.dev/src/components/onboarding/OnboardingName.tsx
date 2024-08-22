@@ -18,8 +18,8 @@ function OnboardingName() {
   const { src: boatSrc, status: boatStatus } = useImageLoading('/images/onboarding/boat.png')
   const navigate = useNavigate()
 
-  const [name, setName] = useState(user?.name ?? '')
-  const [valid, setValid] = useState(false)
+  const [name, setName] = useState('')
+  const [valid, setValid] = useState(true)
   const [loading, setLoading] = useState(false)
 
   const q = useMemo(() => query(collection(db, 'users'), where('character.name', '==', name.trim())), [name])
@@ -39,6 +39,7 @@ function OnboardingName() {
 
     if (!docs.empty) {
       setLoading(false)
+      setValid(false)
 
       return
     }

@@ -15,6 +15,9 @@ function CharacterEmpty() {
       <div>
         Come back in 15 minutes to see your progress.
       </div>
+      <div>
+        We will also send you an email by the end of the day.
+      </div>
     </div>
   )
 }

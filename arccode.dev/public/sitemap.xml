@@ -2,51 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://arccode.dev/</loc>
-    <lastmod>2024-08-19</lastmod>
+    <lastmod>2024-08-22</lastmod>
   </url>
   <url>
     <loc>https://arccode.dev/authentication</loc>
-    <lastmod>2024-08-19</lastmod>
+    <lastmod>2024-08-22</lastmod>
   </url>
   <url>
     <loc>https://arccode.dev/authentication/password-reset</loc>
-    <lastmod>2024-08-19</lastmod>
-  </url>
-  <url>
-    <loc>https://arccode.dev/administrator</loc>
-    <lastmod>2024-08-19</lastmod>
-  </url>
-  <url>
-    <loc>https://arccode.dev/administrator/emails</loc>
-    <lastmod>2024-08-19</lastmod>
-  </url>
-  <url>
-    <loc>https://arccode.dev/administrator/users</loc>
-    <lastmod>2024-08-19</lastmod>
+    <lastmod>2024-08-22</lastmod>
   </url>
   <url>
     <loc>https://arccode.dev/~</loc>
-    <lastmod>2024-08-19</lastmod>
+    <lastmod>2024-08-22</lastmod>
+  </url>
+  <url>
+    <loc>https://arccode.dev/account</loc>
+    <lastmod>2024-08-22</lastmod>
   </url>
   <url>
     <loc>https://arccode.dev/support</loc>
-    <lastmod>2024-08-19</lastmod>
+    <lastmod>2024-08-22</lastmod>
   </url>
   <url>
     <loc>https://arccode.dev/legal</loc>
-    <lastmod>2024-08-19</lastmod>
+    <lastmod>2024-08-22</lastmod>
   </url>
   <url>
     <loc>https://arccode.dev/onboarding</loc>
-    <lastmod>2024-08-19</lastmod>
+    <lastmod>2024-08-22</lastmod>
   </url>
   <url>
     <loc>https://arccode.dev/onboarding/install-extension</loc>
-    <lastmod>2024-08-19</lastmod>
+    <lastmod>2024-08-22</lastmod>
   </url>
   <url>
     <loc>https://arccode.dev/onboarding/start-adventure</loc>
-    <lastmod>2024-08-19</lastmod>
+    <lastmod>2024-08-22</lastmod>
   </url>
 
 </urlset>

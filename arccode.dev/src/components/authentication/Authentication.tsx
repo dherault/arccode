@@ -354,7 +354,7 @@ function Authentication() {
         </>
       )}
       {!!error && (
-        <p className="mt-2 text-sm text-red-500">
+        <div className="mt-2 text-sm text-red-500">
           {error}
           {error === AUTHENTICATION_ERRORS.default && (
             <>
@@ -362,28 +362,28 @@ function Authentication() {
               {errorCode}
             </>
           )}
-        </p>
+        </div>
       )}
       <div className="mt-4 flex justify-between gap-4">
         {mode !== MODES.START && (
-          <p
+          <div
             className="text-sm font-light text-neutral-600 dark:text-neutral-400 hover:underline cursor-pointer"
             onClick={handleBack}
           >
             Back
-          </p>
+          </div>
         )}
         {mode === MODES.LOGIN && providers.includes('password') && (
-          <p className="text-sm font-light text-neutral-600 dark:text-neutral-400">
+          <div className="text-sm font-light text-neutral-600 dark:text-neutral-400">
             Forgot your password?
             {' '}
             <Link
               to="/authentication/password-reset"
-              className="link"
+              className="hover:underline"
             >
               Reset it
             </Link>
-          </p>
+          </div>
         )}
       </div>
     </>

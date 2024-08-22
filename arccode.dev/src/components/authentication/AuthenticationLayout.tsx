@@ -24,10 +24,10 @@ function AuthenticationLayout({ children }: PropsWithChildren) {
         <div className="mt-1 px-0 container max-w-[384px]">
           {passwordResetSuccess && (
             <Alert
-              className="mb-4"
               variant="success"
+              className="mt-4"
             >
-              <MailCheck className="w-4" />
+              <MailCheck className="-mt-1 w-4" />
               <AlertTitle>
                 Password reset
               </AlertTitle>
