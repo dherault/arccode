@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form'
 import { type FormEvent, useCallback, useMemo, useState } from 'react'
 import { updatePassword } from 'firebase/auth'
 import { collection, getDocs, query, where } from 'firebase/firestore'
+import { ArrowLeft } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 import { AUTHENTICATION_ERRORS } from '~constants'
 
@@ -133,11 +135,20 @@ function Account() {
   if (!user) return null
 
   return (
-    <div className="container space-y-8">
-      <h1 className="-mb-4 text-3xl font-semibold">
+    <div className="container">
+      <Link to="/~">
+        <Button
+          variant="ghost"
+          className="-ml-4"
+        >
+          <ArrowLeft className="mr-2 w-4 h-4" />
+          Back to profile
+        </Button>
+      </Link>
+      <h1 className="mt-1 text-3xl font-semibold">
         Account
       </h1>
-      <section>
+      <section className="mt-6">
         <form
           onSubmit={handleNameSubmit}
           className="w-full md:w-fit space-y-4"
@@ -154,7 +165,10 @@ function Account() {
             />
           </div>
           <div className="md:flex items-center gap-2">
-            <Button type="submit">
+            <Button
+              type="submit"
+              loading={nameLoading}
+            >
               Change character name
             </Button>
             {!nameValid && (
@@ -171,7 +185,7 @@ function Account() {
         </form>
       </section>
       {user.signInProviders.includes('password') && (
-        <section>
+        <section className="mt-8">
           <Form {...passwordForm}>
             <form
               onSubmit={passwordForm.handleSubmit(handlePasswordSubmit)}
