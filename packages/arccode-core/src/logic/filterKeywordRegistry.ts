@@ -1,6 +1,6 @@
 import type { KeywordRegistry } from '../types'
 
-function filterKeywordRegistry(keywordRegistry: KeywordRegistry) {
+function filterKeywordRegistry(keywordRegistry: KeywordRegistry): KeywordRegistry {
   return Object.fromEntries(
     Object.entries(keywordRegistry)
       .map(([language, keywords]) => [
