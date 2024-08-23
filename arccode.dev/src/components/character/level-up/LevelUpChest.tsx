@@ -70,6 +70,12 @@ function LevelUpChest() {
     levelUpCursor,
   ])
 
+  useEffect(() => {
+    setTimesClicked(0)
+  }, [
+    levelUpCount,
+  ])
+
   return (
     <div
       className="h-fit w-fit cursor-pointer rounded-full relative"
