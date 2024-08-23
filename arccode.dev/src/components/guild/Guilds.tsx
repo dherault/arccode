@@ -11,7 +11,7 @@ function Guilds() {
           Guilds
         </div>
         <div className="mt-4 flex flex-col lg:flex-row lg:items-start gap-4">
-          <div className="lg:min-w-[320px]">
+          <div className="lg:w-[320px]">
             <GuildsList />
           </div>
           <div className="grow">

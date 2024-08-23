@@ -22,7 +22,7 @@ function CharacterProfile() {
           <CharacterKeywords />
         </div>
       </div>
-      {isEditable && <Guilds />}
+      {import.meta.env.DEV && isEditable && <Guilds />}
     </div>
   )
 }

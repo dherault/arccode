@@ -35,7 +35,7 @@ function Guilds() {
       const createdAt = new Date(now + i).toISOString()
       const guild: Guild = {
         id: nanoid(),
-        name: data[i].title,
+        name: Math.random() < 0.8 ? data[i].title : data[i].title + data[i].title + data[i].title,
         description: data[i].content,
         emoji: emojies[Math.floor(Math.random() * emojies.length)],
         isPrivate,
