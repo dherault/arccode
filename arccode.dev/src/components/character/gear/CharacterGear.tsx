@@ -14,7 +14,7 @@ function CharacterGear() {
   return (
     <div className="mx-auto relative w-full max-w-[448px] lg:w-auto lg:min-w-[448px] lg:max-w-auto grid grid-cols-2 gap-y-14">
       <img
-        src={`/images/avatars/${avatar.image}`}
+        src={`/images/avatars/resized/${avatar.image}`}
         alt={avatar.name}
         draggable={false}
         className="absolute inset-0 z-0 select-none"
