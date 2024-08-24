@@ -4,13 +4,17 @@ import { RARITY_COLORS } from '~constants'
 
 import capitalize from '~utils/string/capitalize'
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '~components/ui/Tooltip'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '~components/ui/Tooltip'
 
 type Props = {
   item: Item
 }
 
-function ItemCard({ item }: Props) {
+function GearCard({ item }: Props) {
   return (
     <div className="w-full h-full border bg-white rounded overflow-hidden relative flex items-start justify-end">
       <Tooltip delayDuration={150}>
@@ -23,7 +27,9 @@ function ItemCard({ item }: Props) {
           />
         </TooltipTrigger>
         <TooltipContent>
-          {capitalize(item.rarity)}
+          <div className="text-xs">
+            {capitalize(item.rarity)}
+          </div>
         </TooltipContent>
       </Tooltip>
       <img
@@ -37,4 +43,4 @@ function ItemCard({ item }: Props) {
   )
 }
 
-export default ItemCard
+export default GearCard

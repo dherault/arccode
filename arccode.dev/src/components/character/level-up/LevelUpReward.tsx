@@ -1,10 +1,11 @@
-import { ITEM_TYPE_LABELS } from '~constants'
+import { CHARACTER_GEAR_TYPES, ITEM_TYPE_LABELS, RARITY_ORDERS } from '~constants'
 
 import useCharacter from '~hooks/character/useCharacter'
 
 import { Button } from '~components/ui/Button'
-import ItemCard from '~components/character/gear/ItemCard'
+import GearCard from '~components/character/gear/GearCard'
 import Spinner from '~components/common/Spinner'
+import Avatar from '~components/character/gear/Avatar'
 
 import items from '~data/items'
 
@@ -34,18 +35,29 @@ function LevelUpReward() {
       >
         {levelUpsUnlockedItemsEntries
         .filter(([itemId]) => items[itemId])
-        .map(([itemId, amount]) => (
+        .map(([itemId, amount]) => [items[itemId], amount] as const)
+        .sort(([a], [b]) => RARITY_ORDERS[a.rarity] - RARITY_ORDERS[b.rarity])
+        .map(([item, amount]) => (
           <div
-            key={itemId}
+            key={item.id}
             className="relative w-[88px] aspect-square flex flex-col items-center text-center"
           >
             <div className="mb-1 text-xs font-light text-neutral-500">
-              {ITEM_TYPE_LABELS[items[itemId].type]}
+              {ITEM_TYPE_LABELS[item.type]}
             </div>
-            <ItemCard item={items[itemId]} />
-            <div className="mt-1 text-xs text-neutral-700 leading-none">
-              {items[itemId].name}
-            </div>
+            {CHARACTER_GEAR_TYPES.includes(item.type) && (
+              <GearCard item={item} />
+            )}
+            {item.type === 'avatar' && (
+              <div className="w-20 grow">
+                <Avatar item={item} />
+              </div>
+            )}
+            {!!item.name && (
+              <div className="mt-1 text-xs text-neutral-700 leading-none">
+                {item.name}
+              </div>
+            )}
             {amount > 1 && (
               <div className="absolute top-2 -left-3 h-6 w-6 bg-neutral-50 border rounded-full text-xs text-neutral-500 flex items-center justify-center z-30">
                 x

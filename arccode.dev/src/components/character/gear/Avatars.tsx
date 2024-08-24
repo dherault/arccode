@@ -3,7 +3,10 @@ import _ from 'clsx'
 
 import useCharacter from '~hooks/character/useCharacter'
 
+import sortItems from '~utils/items/sortItems'
+
 import { Button } from '~components/ui/Button'
+import Avatar from '~components/character/gear/Avatar'
 
 import items from '~data/items'
 
@@ -18,6 +21,7 @@ function Avatars({ open, onClose }: Props) {
   const unlockedAvatars = Object.entries(character.unlockedItems)
     .filter(([itemId, count]) => items[itemId]?.type === 'avatar' && count > 0)
     .map(([itemId]) => items[itemId])
+    .sort(sortItems)
 
   return (
     <motion.div
@@ -37,7 +41,7 @@ function Avatars({ open, onClose }: Props) {
           {unlockedAvatars.map(avatar => (
             <div
               key={avatar.id}
-              className={_('p-2 cursor-pointer border border-transparent', {
+              className={_('cursor-pointer border border-transparent', {
                 '!border-blue': character.avatarItemId === avatar.id,
               })}
               onClick={() => {
@@ -45,14 +49,7 @@ function Avatars({ open, onClose }: Props) {
                 onClose()
               }}
             >
-              <img
-                src={`/images/avatars/resized/${avatar.image}`}
-                alt="Avatar"
-                draggable={false}
-                style={{
-                  filter: 'invert(96%) sepia(6%) saturate(96%) hue-rotate(202deg) brightness(89%) contrast(93%)',
-                }}
-              />
+              <Avatar item={avatar} />
             </div>
           ))}
         </div>

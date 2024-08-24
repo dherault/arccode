@@ -2,8 +2,9 @@ import { useState } from 'react'
 
 import useCharacter from '~hooks/character/useCharacter'
 
-import CharacterGearSlot from '~components/character/gear/CharacterGearSlot'
+import Avatar from '~components/character/gear/Avatar'
 import Avatars from '~components/character/gear/Avatars'
+import CharacterGearSlot from '~components/character/gear/CharacterGearSlot'
 
 import items from '~data/items'
 
@@ -12,22 +13,17 @@ function CharacterGear() {
 
   const [isAvatarOpen, setIsAvatarOpen] = useState(false)
 
-  const avatar = items[character.avatarItemId]
-
-  if (!avatar) return null
+  const avatarItem = items[character.avatarItemId] ?? items['avatar-7']
 
   return (
     <>
       <div className="group mx-auto relative w-full max-w-[448px] lg:w-auto lg:min-w-[448px] lg:max-w-auto grid grid-cols-2 gap-y-14">
-        <img
-          src={`/images/avatars/resized/${avatar.image}`}
-          alt={avatar.name}
-          draggable={false}
-          className="absolute inset-0 z-0 select-none"
-          style={{
-            filter: 'invert(96%) sepia(6%) saturate(96%) hue-rotate(202deg) brightness(89%) contrast(93%)',
-          }}
-        />
+        <div className="absolute inset-0 z-0 select-none">
+          <Avatar
+            item={avatarItem}
+            showRarity={false}
+          />
+        </div>
         <div className="absolute top-0 left-0 right-0 z-10 flex justify-center sm:opacity-0 group-hover:opacity-100">
           <div
             className="hover:underline cursor-pointer text-neutral-500"
