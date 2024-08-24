@@ -71,7 +71,7 @@ function UserUnlockGearDialog({ userId, setUserId }: Props) {
                 {item.type}
               </div>
               <div>
-                {item.name}
+                {item.name || item.id}
               </div>
               <div>
                 {finalUser?.character.unlockedItems[item.id] ?? 0}
