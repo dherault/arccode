@@ -13,7 +13,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '~components/ui/Popover'
-import ItemCard from '~components/character/gear/ItemCard'
+import GearCard from '~components/character/gear/GearCard'
 
 import items from '~data/items'
 
@@ -68,7 +68,7 @@ function CharacterGearSlot({ type, slotId, itemId, filteredItemIds = [] }: Props
           {item && (
             <>
               <div className="w-[72px] md:w-[88px] aspect-square cursor-pointer">
-                <ItemCard item={item} />
+                <GearCard item={item} />
               </div>
               <div className="mt-1 absolute top-full w-[72px] md:w-[88px] text-xs text-neutral-700 text-center leading-none">
                 {item.name}
@@ -111,7 +111,7 @@ function CharacterGearSlot({ type, slotId, itemId, filteredItemIds = [] }: Props
             className="w-[52px] md:w-[66px] aspect-square cursor-pointer"
             onClick={() => handleEquip(itemId)}
           >
-            <ItemCard item={items[itemId]} />
+            <GearCard item={items[itemId]} />
           </div>
         ))}
         {!!unlockedItemIds.length && (

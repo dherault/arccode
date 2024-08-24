@@ -26,8 +26,8 @@ export const AUTHENTICATION_ERRORS = {
 --- */
 
 export const WIN_PROBABILITIES = {
-  avatars: [0, 0],
-  gears: [0, 1],
+  avatars: [0, 0.1], // 10%
+  gears: [0.1, 1], // 90%
 } as const
 
 export const RARITY_PROBABILITIES: Record<ItemRarity, [number, number]> = {
@@ -78,6 +78,18 @@ export const CHARACTER_SLOTS = [
   'spell3ItemId',
   'spell4ItemId',
 ] as const
+
+export const CHARACTER_GEAR_TYPES: ItemType[] = [
+  'main-hand',
+  'off-hand',
+  'helm',
+  'armor',
+  'gloves',
+  'boots',
+  'amulet',
+  'ring',
+  'spell',
+]
 
 export const CHARACTER_SLOT_LABELS: Record<CharacterSlot, string> = {
   avatarItemId: 'Avatar',
