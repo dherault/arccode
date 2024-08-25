@@ -162,6 +162,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
 
   const characterContextValue = useMemo<CharacterContextType>(() => ({
     character: character!,
+    characterId: finalUser?.id ?? '',
     isEditable,
     updateCharacter,
     isLevelUpOpen: searchParams.has(LEVEL_UP_SEARCH_PARAMETERS_KEY),
@@ -179,6 +180,7 @@ function CharacterProvider({ children }: PropsWithChildren) {
     updateLevelUpCount: setNLevelUpToOpen,
   }), [
     character,
+    finalUser?.id,
     isEditable,
     searchParams,
     isChestOpen,
