@@ -13,6 +13,7 @@ function ShareButton() {
 
   const link = `https://arccode.dev/~/${characterId}`
 
+  const [open, setOpen] = useState(false)
   const [copied, setCopied] = useState(false)
 
   const handleCopy = useCallback(async () => {
@@ -28,7 +29,10 @@ function ShareButton() {
   }, [link])
 
   return (
-    <Dialog>
+    <Dialog
+      open={open}
+      onOpenChange={setOpen}
+    >
       <DialogTrigger asChild>
         <Button
           size="icon-sm"
@@ -69,7 +73,10 @@ function ShareButton() {
           </div>
         </div>
         <DialogFooter>
-          <Button variant="ghost">
+          <Button
+            variant="ghost"
+            onClick={() => setOpen(false)}
+          >
             Close
           </Button>
         </DialogFooter>
