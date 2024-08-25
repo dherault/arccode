@@ -4,6 +4,7 @@ import type { Character, KeywordRegistry } from '~types'
 
 export type CharacterContextType = {
   character: Character
+  characterId: string
   isEditable: boolean
   updateCharacter: (payload: Record<string, any>) => Promise<void>
   isLevelUpOpen: boolean
@@ -23,6 +24,7 @@ export type CharacterContextType = {
 
 export default createContext<CharacterContextType>({
   character: {} as Character,
+  characterId: '',
   isEditable: false,
   updateCharacter: async () => {},
   isLevelUpOpen: false,

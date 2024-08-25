@@ -1,5 +1,7 @@
 import useCharacter from '~hooks/character/useCharacter'
 
+import ShareButton from '~components/character/ShareButton'
+
 function CharacterHeader() {
   const { character } = useCharacter()
   const characterName = character.name || '(An unnamed character)'
@@ -14,6 +16,7 @@ function CharacterHeader() {
         {' '}
         {character.level}
       </div>
+      <ShareButton />
     </div>
   )
 }
