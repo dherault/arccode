@@ -17,7 +17,8 @@ import {
   getDoc,
   increment,
   setDoc,
-  updateDoc } from 'firebase/firestore'
+  updateDoc,
+} from 'firebase/firestore'
 import LogRocket from 'logrocket'
 
 import type { SignInProvider, User } from '~types'
