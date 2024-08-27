@@ -1,5 +1,5 @@
 import { FieldValue } from 'firebase-admin/firestore'
-import { getNextLevelUpKeywordRegistry } from 'arccode-core'
+import { filterKeywordRegistry, getNextLevelUpKeywordRegistry } from 'arccode-core'
 import cloneDeep = require('lodash.clonedeep')
 
 import type { User } from '~types'
@@ -36,7 +36,7 @@ function processKeywordRegistry(user: User, keywordRegistryInput: unknown) {
 
   if (!Object.keys(userPayload).length) return null
 
-  userPayload['character.levelUpKeywordRegistry'] = getNextLevelUpKeywordRegistry(user.character, nextKeywordRegistry)
+  userPayload['character.levelUpKeywordRegistry'] = filterKeywordRegistry(getNextLevelUpKeywordRegistry(user.character, nextKeywordRegistry))
   userPayload.updatedAt = new Date().toISOString()
   userPayload.nUpdates = FieldValue.increment(1)
 

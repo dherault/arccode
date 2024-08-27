@@ -14,7 +14,7 @@ const registerKeywords = onRequest({ cors: true }, async (request, response) => 
     return
   }
 
-  logger.log(`Updating keywords for ${user.id}`)
+  logger.log(`Updating keywords for ${user.email}`)
 
   const userPayload = processKeywordRegistry(user, request.body.keywordRegistry)
 
@@ -23,6 +23,8 @@ const registerKeywords = onRequest({ cors: true }, async (request, response) => 
 
     return
   }
+
+  logger.log('Update:', userPayload)
 
   await userDocument.update(userPayload)
 
