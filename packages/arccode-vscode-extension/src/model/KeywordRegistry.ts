@@ -78,7 +78,9 @@ class KeywordRegistry {
         vscode.window.showInformationMessage('Arccode: reset daily keyword registry')
       }
     }
+  }
 
+  public resetUpdateAt() {
     this.updatedAt = new Date()
   }
 

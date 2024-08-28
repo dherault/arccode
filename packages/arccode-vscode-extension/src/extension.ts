@@ -196,6 +196,7 @@ export function activate(context: vscode.ExtensionContext) {
       const keywordRegistryPayload = keywordRegistry.filteredCurrentKeywordRegistry
 
       keywordRegistry.resetDailyKeywordRegistry()
+      keywordRegistry.resetUpdateAt()
 
       if (Object.keys(keywordRegistryPayload).length) {
         const idToken = await getIdToken()
