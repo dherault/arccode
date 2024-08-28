@@ -1,7 +1,7 @@
 {
   "name": "arccode-core",
   "description": "Core domain logic for Arccode.dev",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "type": "module",
   "main": "./dist/arccode-core.umd.cjs",
   "module": "./dist/arccode-core.js",
