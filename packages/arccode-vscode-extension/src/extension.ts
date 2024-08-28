@@ -195,6 +195,8 @@ export function activate(context: vscode.ExtensionContext) {
     try {
       const keywordRegistryPayload = keywordRegistry.filteredCurrentKeywordRegistry
 
+      keywordRegistry.resetDailyKeywordRegistry()
+
       if (Object.keys(keywordRegistryPayload).length) {
         const idToken = await getIdToken()
 
@@ -212,7 +214,7 @@ export function activate(context: vscode.ExtensionContext) {
           }
         )
 
-        keywordRegistry.reset()
+        keywordRegistry.resetCurrentKeywordRegistry()
       }
 
       if (displayMessage) {
