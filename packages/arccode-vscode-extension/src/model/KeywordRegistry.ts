@@ -69,6 +69,12 @@ class KeywordRegistry {
     if (new Date().getDate() !== this.updatedAt.getDate()) {
       this.dailyKeywordRegistry = {}
       this.context.globalState.update(DAILY_KEYWORDS_STORAGE_KEY, JSON.stringify(this.dailyKeywordRegistry))
+
+      const configuration = vscode.workspace.getConfiguration(CONFIGURATION_KEY)
+
+      if (configuration.get('debug')) {
+        vscode.window.showInformationMessage('Arccode: reset daily keyword registry')
+      }
     }
 
     this.updatedAt = new Date()
