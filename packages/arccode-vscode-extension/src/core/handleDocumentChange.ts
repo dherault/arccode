@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { extractKeywords } from 'arccode-core'
 import { diffArray } from 'array-differences'
 
 import type { Language } from '../types'
@@ -6,8 +7,7 @@ import { MAX_LINES } from '../constants'
 import type FileRegistry from '../model/FileRegistry'
 import type KeywordRegistry from '../model/KeywordRegistry'
 
-import { supportedLanguageIds } from './languages'
-import extractKeywords from './extractKeywords'
+import { languageToKeywords, supportedLanguageIds } from './languages'
 
 function handleDocumentChange(document: vscode.TextDocument, fileRegistry: FileRegistry, keywordRegistry: KeywordRegistry) {
   if (!supportedLanguageIds.includes(document.languageId)) return
@@ -22,11 +22,15 @@ function handleDocumentChange(document: vscode.TextDocument, fileRegistry: FileR
 
   if (previousLines.length > MAX_LINES || currentLines.length > MAX_LINES) return
 
+  const keywords = languageToKeywords[language] as string[]
+
+  if (!keywords) return
+
   diffArray(previousLines, currentLines).forEach(lineDiff => {
     const [lineOperation, lineIndex, lineValue] = lineDiff
 
     if (lineOperation === 'deleted') {
-      extractKeywords(language, previousLines[lineIndex] ?? '').forEach(keyword => {
+      extractKeywords(keywords, previousLines[lineIndex] ?? '').forEach(keyword => {
         keywordRegistry.registerKeyword(language, keyword, -1)
       })
 
@@ -34,7 +38,7 @@ function handleDocumentChange(document: vscode.TextDocument, fileRegistry: FileR
     }
 
     if (lineOperation === 'inserted') {
-      extractKeywords(language, lineValue).forEach(keyword => {
+      extractKeywords(keywords, lineValue).forEach(keyword => {
         keywordRegistry.registerKeyword(language, keyword, 1)
       })
 
@@ -42,8 +46,8 @@ function handleDocumentChange(document: vscode.TextDocument, fileRegistry: FileR
     }
 
     // Here operation === 'modified'
-    const previousKeywords = extractKeywords(language, previousLines[lineIndex])
-    const nextKeywords = extractKeywords(language, lineValue)
+    const previousKeywords = extractKeywords(keywords, previousLines[lineIndex])
+    const nextKeywords = extractKeywords(keywords, lineValue)
 
     diffArray(previousKeywords, nextKeywords).forEach(keywordDiff => {
       const [keywordOperation, keywordIndex, keywordValue] = keywordDiff

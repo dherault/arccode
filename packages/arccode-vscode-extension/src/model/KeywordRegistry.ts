@@ -62,10 +62,12 @@ class KeywordRegistry {
     }
   }
 
-  public reset() {
+  public resetCurrentKeywordRegistry() {
     this.currentKeywordRegistry = {}
     this.context.globalState.update(CURRENT_KEYWORDS_STORAGE_KEY, JSON.stringify(this.currentKeywordRegistry))
+  }
 
+  public resetDailyKeywordRegistry() {
     if (new Date().getDate() !== this.updatedAt.getDate()) {
       this.dailyKeywordRegistry = {}
       this.context.globalState.update(DAILY_KEYWORDS_STORAGE_KEY, JSON.stringify(this.dailyKeywordRegistry))
@@ -76,7 +78,9 @@ class KeywordRegistry {
         vscode.window.showInformationMessage('Arccode: reset daily keyword registry')
       }
     }
+  }
 
+  public resetUpdateAt() {
     this.updatedAt = new Date()
   }
 
