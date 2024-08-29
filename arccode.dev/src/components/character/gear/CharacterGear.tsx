@@ -9,7 +9,7 @@ import CharacterGearSlot from '~components/character/gear/CharacterGearSlot'
 import items from '~data/items'
 
 function CharacterGear() {
-  const { character } = useCharacter()
+  const { character, isEditable } = useCharacter()
 
   const [isAvatarOpen, setIsAvatarOpen] = useState(false)
 
@@ -24,14 +24,16 @@ function CharacterGear() {
             showRarity={false}
           />
         </div>
-        <div className="absolute top-0 left-0 right-0 z-10 flex justify-center sm:opacity-0 group-hover:opacity-100">
-          <div
-            className="hover:underline cursor-pointer text-neutral-500"
-            onClick={() => setIsAvatarOpen(true)}
-          >
-            Change avatar
+        {isEditable && (
+          <div className="absolute top-0 left-0 right-0 z-10 flex justify-center sm:opacity-0 group-hover:opacity-100">
+            <div
+              className="hover:underline cursor-pointer text-neutral-500"
+              onClick={() => setIsAvatarOpen(true)}
+            >
+              Change avatar
+            </div>
           </div>
-        </div>
+        )}
         <div className="flex">
           <CharacterGearSlot
             type="helm"
@@ -131,10 +133,12 @@ function CharacterGear() {
           />
         </div>
       </div>
-      <Avatars
-        open={isAvatarOpen}
-        onClose={() => setIsAvatarOpen(false)}
-      />
+      {isEditable && (
+        <Avatars
+          open={isAvatarOpen}
+          onClose={() => setIsAvatarOpen(false)}
+        />
+      )}
     </>
   )
 }
