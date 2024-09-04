@@ -74,6 +74,7 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
 
     await signOut(auth)
 
+    logAnalytics('signout')
     navigate('/')
   }, [
     navigate,
@@ -85,7 +86,8 @@ function AuthenticationProvider({ children }: PropsWithChildren) {
     onAuthStateChanged(auth, async viewer => {
       setViewer(viewer)
       setLoadingAuthentication(false)
-      logAnalytics(viewer ? 'signin' : 'signout')
+
+      if (viewer) logAnalytics('signin')
     })
   }, [])
 

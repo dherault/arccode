@@ -294,7 +294,7 @@ const gears: Record<string, Item> = {
     id: 'sqlite',
     type: 'gloves',
     rarity: 'rare',
-    name: 'SQLite  Brigandine Gloves',
+    name: 'SQLite Brigandine Gloves',
     image: 'sqlite.png',
   },
   digitalocean: {
