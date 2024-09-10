@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import { sumKeywordRegistry } from 'arccode-core'
 
 import useUsers from '~hooks/administrator/useUsers'
 
@@ -76,6 +77,12 @@ function Users() {
                 Email
               </TableHead>
               <TableHead>
+                Has extension
+              </TableHead>
+              <TableHead>
+                Registry size
+              </TableHead>
+              <TableHead>
                 Updates
               </TableHead>
               <TableHead>
@@ -94,6 +101,12 @@ function Users() {
               <TableRow key={user.id}>
                 <TableCell>
                   {user.email}
+                </TableCell>
+                <TableCell>
+                  {user.hasConnectedExtension ? 'Yes' : 'No'}
+                </TableCell>
+                <TableCell>
+                  {sumKeywordRegistry(user.character.keywordRegistry)}
                 </TableCell>
                 <TableCell>
                   {user.nUpdates}
