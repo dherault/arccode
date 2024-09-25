@@ -11,13 +11,24 @@ function AdministratorLayout({ children }: PropsWithChildren) {
         >
           Users
         </Link>
-        {' - '}
-        <Link
-          to="/administrator/emails"
-          className="text-blue hover:underline"
-        >
-          Emails
-        </Link>
+        {import.meta.env.DEV && (
+          <>
+            {' - '}
+            <Link
+              to="/administrator/emails"
+              className="text-blue hover:underline"
+            >
+              Emails
+            </Link>
+            {' - '}
+            <Link
+              to="/administrator/guilds"
+              className="text-blue hover:underline"
+            >
+              Guilds
+            </Link>
+          </>
+        )}
       </div>
       {children}
     </>

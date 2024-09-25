@@ -3,9 +3,12 @@ import { Outlet, Route, Routes } from 'react-router-dom'
 
 import AdministratorLayout from '~app/administrator.../layout'
 import Administrator from '~app/administrator.../page'
+import EmailsLayout from '~app/administrator.../emails/layout'
 import Emails from '~app/administrator.../emails/page'
 import UsersLayout from '~app/administrator.../users/layout'
 import Users from '~app/administrator.../users/page'
+import GuildsLayout from '~app/administrator.../guilds/layout'
+import Guilds from '~app/administrator.../guilds/page'
 
 import NotFound from '~components/common/NotFound'
 
@@ -22,7 +25,7 @@ function AdministratorSubRouter() {
         />
         <Route
           path="emails"
-          element={<Outlet />}
+          element={<EmailsLayout><Outlet /></EmailsLayout>}
         >
           <Route
             index
@@ -40,6 +43,19 @@ function AdministratorSubRouter() {
           <Route
             index
             element={<Users />}
+          />
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
+        </Route>
+        <Route
+          path="guilds"
+          element={<GuildsLayout><Outlet /></GuildsLayout>}
+        >
+          <Route
+            index
+            element={<Guilds />}
           />
           <Route
             path="*"
