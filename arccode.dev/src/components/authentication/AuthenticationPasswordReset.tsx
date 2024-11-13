@@ -108,7 +108,7 @@ function AuthenticationPasswordReset() {
         Remember your password?
         {' '}
         <Link
-          to="/authentication/login"
+          to="/authentication"
           className="hover:underline"
         >
           Log in
