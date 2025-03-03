@@ -1,4 +1,4 @@
-import { languageToKeywords } from './core/languages'
+import type { languageToKeywords } from './core/languages'
 
 export type UserInfo = {
   idToken: string

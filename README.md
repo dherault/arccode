@@ -1,6 +1,5 @@
 # Arccode
 
-
 ## What is it
 
 Arccode is a role-playing game for developers. It works with a VSCode extension that collects the keywords you code (such as `let` or `function`) to turn them into XP and level ups!

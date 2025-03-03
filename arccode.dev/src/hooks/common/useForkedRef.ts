@@ -1,5 +1,5 @@
 // From https://github.com/mui/material-ui/blob/0432934ec306458b6ff11e6572d1419fe2ab96e1/packages/mui-utils/src/useForkRef.ts
-import { Ref, useMemo } from 'react'
+import { type Ref, useMemo } from 'react'
 
 function setRef<T>(
   ref: React.MutableRefObject<T | null> | ((instance: T | null) => void) | null | undefined,

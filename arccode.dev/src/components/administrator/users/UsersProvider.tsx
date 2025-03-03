@@ -1,7 +1,7 @@
 import { collection, limit, orderBy, query, startAt } from 'firebase/firestore'
 import { type PropsWithChildren, useCallback, useMemo, useState } from 'react'
 
-import { User } from '~types'
+import type { User } from '~types'
 
 import { db } from '~firebase'
 

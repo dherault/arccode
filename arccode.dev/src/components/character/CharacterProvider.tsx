@@ -4,13 +4,13 @@ import { doc } from 'firebase/firestore'
 import { httpsCallable } from 'firebase/functions'
 import { pickLevelUpKeywordRegistry, sumKeywordRegistry } from 'arccode-core'
 
-import { User } from '~types'
+import type { User } from '~types'
 
 import { LEVEL_UP_SEARCH_PARAMETERS_KEY, NULL_DOCUMENT_ID } from '~constants'
 
 import { db, functions } from '~firebase'
 
-import CharacterContext, { CharacterContextType } from '~contexts/character/CharacterContext'
+import CharacterContext, { type CharacterContextType } from '~contexts/character/CharacterContext'
 
 import useDocument from '~hooks/db/useDocument'
 import useUser from '~hooks/user/useUser'

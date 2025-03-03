@@ -1,4 +1,4 @@
-import * as vscode from 'vscode'
+import type * as vscode from 'vscode'
 import { extractKeywords } from 'arccode-core'
 import { diffArray } from 'array-differences'
 

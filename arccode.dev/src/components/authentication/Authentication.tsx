@@ -6,7 +6,7 @@ import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 
-import { SignInProvider, type User } from '~types'
+import type { SignInProvider, User } from '~types'
 
 import { AUTHENTICATION_ERRORS } from '~constants'
 

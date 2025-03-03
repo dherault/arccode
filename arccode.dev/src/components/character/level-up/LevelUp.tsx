@@ -51,7 +51,7 @@ function LevelUp() {
           >
             {levelUpCount === 1 ? `Open ${levelUpMax} at once` : 'Open only one'}
           </Button>
-        ) }
+        )}
         <Button
           variant="ghost"
           onClick={closeLevelUp}

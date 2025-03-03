@@ -49,7 +49,7 @@ class ArccodeAuthenticationProvider implements vscode.AuthenticationProvider, vs
    /**
    * Get the existing sessions
    */
-  public async getSessions(): Promise<readonly vscode.AuthenticationSession[]> {
+  public async getSessions(): Promise<vscode.AuthenticationSession[]> {
     const allSessions = await this.context.secrets.get(SESSIONS_SECRET_KEY)
 
     if (allSessions) {
