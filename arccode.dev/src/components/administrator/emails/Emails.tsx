@@ -9,13 +9,12 @@ import { useToast } from '~hooks/ui/useToast'
 import { Button } from '~components/ui/Button'
 import Spinner from '~components/common/Spinner'
 
-const sendRecapEmails = httpsCallable<unknown, { count: number }>(functions, 'sendRecapEmailsRequest')
+const sendRecapEmails = httpsCallable<unknown, void>(functions, 'sendRecapEmailsRequest')
 
 function Emails() {
   const { toast } = useToast()
 
   const [loading, setLoading] = useState(false)
-  const [count, setCount] = useState(0)
 
   const handleSendRecap = useCallback(async () => {
     if (loading) return
@@ -23,9 +22,7 @@ function Emails() {
     setLoading(true)
 
     try {
-      const { data } = await sendRecapEmails()
-
-      setCount(data.count)
+      await sendRecapEmails()
     }
     catch (error: any) {
       toast({
@@ -56,11 +53,6 @@ function Emails() {
           {loading && (
             <Spinner className="w-4" />
           )}
-          <div>
-            Emails sent:
-            {' '}
-            {count}
-          </div>
         </div>
       </div>
     </>

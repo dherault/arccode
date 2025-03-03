@@ -10,6 +10,7 @@ type CreateUserArg = Omit<
   | 'character'
   | 'nUpdates'
   | 'sentDailyRecapEmailAt'
+  | 'recapEmailPeriodicity'
   | 'timezoneOffset'
   | 'createdAt'
   | 'updatedAt'
@@ -27,6 +28,7 @@ function createUser(user: CreateUserArg): User {
     character: INITIAL_CHARACTER,
     nUpdates: 0,
     sentDailyRecapEmailAt: new Date(0).toISOString(),
+    recapEmailPeriodicity: 'weekly',
     timezoneOffset: new Date().getTimezoneOffset(),
     createdAt: now,
     updatedAt: now,

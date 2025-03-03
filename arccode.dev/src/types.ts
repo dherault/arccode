@@ -31,6 +31,7 @@ export type User = DatabaseResource<{
   character: Character
   nUpdates: number
   sentDailyRecapEmailAt: string
+  recapEmailPeriodicity?: 'daily' | 'weekly' | 'monthly' | 'never'
   timezoneOffset: number
 }>
 

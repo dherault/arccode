@@ -24,6 +24,7 @@ import {
 import { Button } from '~components/ui/Button'
 import { Input } from '~components/ui/Input'
 import { Label } from '~components/ui/Label'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~components/ui/Select'
 
 const passwordFormSchema = z.object({
   password: z
@@ -183,6 +184,25 @@ function Account() {
             )}
           </div>
         </form>
+      </section>
+      <section className="mt-6">
+        <Label>
+          Emails periodicity
+        </Label>
+        <Select
+          value={user.recapEmailPeriodicity ?? 'weekly'}
+          onValueChange={value => updateUser({ recapEmailPeriodicity: value })}
+        >
+          <SelectTrigger className="mt-2 w-[300px]">
+            <SelectValue placeholder="Select a fruit" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="never">Never</SelectItem>
+            <SelectItem value="daily">Daily</SelectItem>
+            <SelectItem value="weekly">Weekly</SelectItem>
+            <SelectItem value="monthly">Monthly</SelectItem>
+          </SelectContent>
+        </Select>
       </section>
       {user.signInProviders.includes('password') && (
         <section className="mt-8">

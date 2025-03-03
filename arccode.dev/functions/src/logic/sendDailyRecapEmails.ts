@@ -7,6 +7,7 @@ import type { User } from '~types'
 
 import { firestore } from '../firebase'
 import sendRecapEmail from '../emails/recap'
+import { findLastFridayOfTheMonth, findThisWeekFriday } from '../utils/date'
 
 import getTimezoneOffsetAtHour from './getTimezoneOffsetAtHour'
 
@@ -38,6 +39,12 @@ async function sendDailyRecapEmails() {
     const user = userDoc.data() as User
 
     if (!user.email) continue
+
+    const recapPeriodicity = user.recapEmailPeriodicity ?? 'weekly'
+
+    if (recapPeriodicity === 'never') continue
+    if (recapPeriodicity === 'monthly' && !DateTime.now().hasSame(findLastFridayOfTheMonth(), 'day')) continue
+    if (recapPeriodicity === 'weekly' && !DateTime.now().hasSame(findThisWeekFriday(), 'day')) continue
 
     logger.log(`Considering user ${user.email}`)
 
