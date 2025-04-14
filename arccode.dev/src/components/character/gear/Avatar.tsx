@@ -17,7 +17,7 @@ type Props = {
 
 function Avatar({ item, showRarity = true }: Props) {
   return (
-    <div className="relative h-full aspect-[512/768]">
+    <div className="relative h-full aspect-512/768">
       <div className="absolute inset-0 overflow-hidden">
         {showRarity && (
           <Tooltip delayDuration={150}>

@@ -10,7 +10,7 @@ type Props = {
 function KeywordCard({ keyword }: Props) {
 
   return (
-    <div className="py-3 px-4 bg-white border rounded">
+    <div className="py-3 px-4 bg-white border rounded-sm">
       <div className="mb-2 flex flex-wrap items-center gap-4">
         <LanguageImage
           language={keyword.language}

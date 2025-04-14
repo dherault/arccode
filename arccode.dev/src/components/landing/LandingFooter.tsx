@@ -6,7 +6,7 @@ import Logo from '~components/common/logos/Logo'
 
 function LandingFooter() {
   return (
-    <footer className="pt-16 pb-32 md:pt-32 md:px-8 flex flex-col items-center md:grid grid-cols-[2fr,3fr] md:items-start">
+    <footer className="pt-16 pb-32 md:pt-32 md:px-8 flex flex-col items-center md:grid grid-cols-[2fr_3fr] md:items-start">
       <div className="flex items-center gap-4 text-blue ">
         <Logo className="h-11 md:h-8 shrink-0" />
         <div className="leading-[1.1] text-xl font-semibold max-w-[72px] md:max-w-max">

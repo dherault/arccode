@@ -34,7 +34,7 @@ function LevelUpCard() {
   return (
     <div
       onClick={openLevelUp}
-      className="py-3 flex flex-col items-center justify-center bg-white border border-blue rounded cursor-pointer"
+      className="py-3 flex flex-col items-center justify-center bg-white border border-blue rounded-sm cursor-pointer"
     >
       <div className="mt-1 text-blue animate-bounce">
         Level up!

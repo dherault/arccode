@@ -48,7 +48,7 @@ function CharacterKeywords() {
         {keyword6 && <KeywordCard keyword={keyword6} />}
       </div>
       {!!listedKeywords.length && (
-        <div className="my-4 bg-white border rounded grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-flow-row">
+        <div className="my-4 bg-white border rounded-sm grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-flow-row">
           {listedKeywords.map(keyword => (
             <KeywordListItem
               key={keyword.language + keyword.name}

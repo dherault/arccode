@@ -6,7 +6,7 @@ import { Button } from '~components/ui/Button'
 function ExtensionSuccess() {
   return (
     <div className="h-full flex flex-col items-center justify-center gap-4">
-      <div className="p-8 border shadow rounded-lg text-center max-w-[512px]">
+      <div className="p-8 border shadow-sm rounded-lg text-center max-w-[512px]">
         <h1 className="text-2xl font-bold">
           <Balancer>
             You've successfully installed the extension

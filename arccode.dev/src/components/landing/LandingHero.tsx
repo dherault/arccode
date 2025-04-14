@@ -8,7 +8,7 @@ function LandingHero() {
     <section className="pt-12 md:pt-24 px-2 md:container flex flex-col items-center">
       <h1 className="text-4xl md:text-6xl font-bold text-center tracking-tight">
         The first
-        <div className="-my-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent leading-tight">
+        <div className="-my-1 bg-linear-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent leading-tight">
           role-playing game
         </div>
         for developers

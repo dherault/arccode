@@ -42,7 +42,7 @@ function Avatars({ open, onClose }: Props) {
             <div
               key={avatar.id}
               className={_('cursor-pointer border border-transparent', {
-                '!border-blue': character.avatarItemId === avatar.id,
+                'border-blue!': character.avatarItemId === avatar.id,
               })}
               onClick={() => {
                 updateCharacter({ avatarItemId: avatar.id })

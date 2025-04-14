@@ -7,7 +7,7 @@ type Props = {
 function KeywordProgress({ keyword }: Props) {
   return (
     <div className="">
-      <div className="h-2 grow flex bg-neutral-200 rounded-sm overflow-hidden">
+      <div className="h-2 grow flex bg-neutral-200 rounded-xs overflow-hidden">
         <div
           className="bg-blue"
           style={{

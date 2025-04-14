@@ -53,7 +53,7 @@ function ShareButton() {
             {' '}
             character.
           </div>
-          <div className="mt-2 py-1 px-3 bg-neutral-50 border rounded flex items-center justify-between text-xs">
+          <div className="mt-2 py-1 px-3 bg-neutral-50 border rounded-sm flex items-center justify-between text-xs">
             <div>
               {link}
             </div>

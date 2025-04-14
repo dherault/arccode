@@ -73,7 +73,7 @@ function LandingProduct() {
               </code>
               .
             </Balancer>
-            <div className="py-2 px-3 mt-2 w-fit border bg-neutral-50 rounded text-neutral-500 text-xs">
+            <div className="py-2 px-3 mt-2 w-fit border bg-neutral-50 rounded-sm text-neutral-500 text-xs">
               <Balancer>
                 Arccode never uploads your code to a remote server.
                 Everything is processed locally and only metadata is sent to the database.

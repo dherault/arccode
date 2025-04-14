@@ -25,7 +25,7 @@ function TextareaAutosize({ className, error = false, ...props }: TextareaAutosi
         file:text-sm
         file:font-medium
         placeholder:text-neutral-500
-        focus-visible:outline-none
+        focus-visible:outline-hidden
         focus-visible:border-blue
         focus-visible:ring-offset-2
         disabled:cursor-not-allowed

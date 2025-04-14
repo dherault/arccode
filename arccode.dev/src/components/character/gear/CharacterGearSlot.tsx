@@ -76,7 +76,7 @@ function CharacterGearSlot({ type, slotId, itemId, filteredItemIds = [] }: Props
             </>
           )}
           {!item && (
-            <div className="w-[72px] md:w-[88px] aspect-square border bg-white rounded overflow-hidden cursor-pointer">
+            <div className="w-[72px] md:w-[88px] aspect-square border bg-white rounded-sm overflow-hidden cursor-pointer">
               <img
                 src={`/images/gear-placeholders/${type}.png`}
                 alt={type}
@@ -116,7 +116,7 @@ function CharacterGearSlot({ type, slotId, itemId, filteredItemIds = [] }: Props
         ))}
         {!!unlockedItemIds.length && (
           <div
-            className="w-[52px] md:w-[66px] aspect-square rounded cursor-pointer border text-xs text-neutral-200 flex items-center justify-center"
+            className="w-[52px] md:w-[66px] aspect-square rounded-sm cursor-pointer border text-xs text-neutral-200 flex items-center justify-center"
             onClick={() => handleEquip('')}
           >
             <CircleSlash2 className="h-4 w-4" />

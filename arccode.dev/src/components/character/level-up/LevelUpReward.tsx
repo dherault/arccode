@@ -16,7 +16,7 @@ function LevelUpReward() {
 
   if (levelUpLoading) {
     return (
-      <div className="p-4 bg-white border rounded overflow-auto shadow-lg select-none">
+      <div className="p-4 bg-white border rounded-sm overflow-auto shadow-lg select-none">
         <Spinner className="w-6" />
       </div>
     )
@@ -25,7 +25,7 @@ function LevelUpReward() {
   if (!levelUpsUnlockedItemsEntries.length) return null
 
   return (
-    <div className="p-4 bg-white border rounded max-h-[320px] overflow-auto shadow-lg select-none">
+    <div className="p-4 bg-white border rounded-sm max-h-[320px] overflow-auto shadow-lg select-none">
       <div className="text-center">
         You unlocked:
       </div>

@@ -16,7 +16,7 @@ type Props = {
 
 function GearCard({ item }: Props) {
   return (
-    <div className="w-full h-full border bg-white rounded overflow-hidden relative flex items-start justify-end">
+    <div className="w-full h-full border bg-white rounded-sm overflow-hidden relative flex items-start justify-end">
       <Tooltip delayDuration={150}>
         <TooltipTrigger>
           <div

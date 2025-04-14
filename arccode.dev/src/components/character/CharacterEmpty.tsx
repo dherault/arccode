@@ -2,7 +2,7 @@ import { InfoIcon } from 'lucide-react'
 
 function CharacterEmpty() {
   return (
-    <div className="p-4 bg-white border rounded w-fit">
+    <div className="p-4 bg-white border rounded-sm w-fit">
       <div className="flex items-center gap-2">
         <InfoIcon className="h-4 w-4" />
         <div className="font-semibold">
