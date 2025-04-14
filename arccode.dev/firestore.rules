@@ -16,6 +16,7 @@ service cloud.firestore {
         'level',
         'keywordRegistry',
         'levelUpKeywordRegistry',
+        'displayKeywordRegistry',
         'lastDailyRecapKeywordRegistry',
         'unlockedItems',
       ])
