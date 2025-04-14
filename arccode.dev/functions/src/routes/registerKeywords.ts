@@ -1,5 +1,5 @@
-import { onRequest } from 'firebase-functions/v2/https'
-import { logger } from 'firebase-functions/v2'
+import { onRequest } from 'firebase-functions/https'
+import { logger } from 'firebase-functions'
 
 import { getUserFromRequest } from '../authentication/getUser'
 import processKeywordRegistry from '../logic/processKeywordRegistry'

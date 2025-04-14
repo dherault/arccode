@@ -1,4 +1,4 @@
-import { logger } from 'firebase-functions/v2'
+import { logger } from 'firebase-functions'
 import { FieldValue } from 'firebase-admin/firestore'
 import { DateTime } from 'luxon'
 import { diffKeywordRegistries, filterKeywordRegistry, sumKeywordRegistry } from 'arccode-core'
@@ -13,21 +13,21 @@ import getTimezoneOffsetAtHour from './getTimezoneOffsetAtHour'
 
 const IS_DEV = process.env.IS_FIREBASE_CLI === 'true'
 const RECAP_HOUR = IS_DEV
-  ? 9 // HACK to set the recap hour to current hour in development. Modify this
+  ? 21 // HACK to set the recap hour to current hour in development. Modify this
   : 18
 
 async function sendDailyRecapEmails() {
   const timezoneOffset = getTimezoneOffsetAtHour(RECAP_HOUR)
 
+  if (IS_DEV) console.log('Timezone offset', timezoneOffset)
   if (timezoneOffset === null) return
 
-  const yesterday = DateTime.now().minus({ days: 1 }).toISO()
-  const aBitAfterYesterday = DateTime.now().minus({ days: 1 }).plus({ minutes: 15 }).toISO()
+  const yesterday = DateTime.now().minus({ days: 1 }).startOf('day').toISO()
 
   const users = await firestore.collection('users')
       .where('hasConnectedExtension', '==', true)
       .where('updatedAt', '>=', yesterday)
-      .where('sentDailyRecapEmailAt', '<=', aBitAfterYesterday)
+      .where('sentDailyRecapEmailAt', '<=', yesterday)
       .where('timezoneOffset', '==', timezoneOffset)
       .get()
 
@@ -41,6 +41,8 @@ async function sendDailyRecapEmails() {
     if (!user.email) continue
 
     const recapPeriodicity = user.recapEmailPeriodicity ?? 'weekly'
+
+    console.log('recapPeriodicity', recapPeriodicity, findThisWeekFriday().toISO(), DateTime.now().hasSame(findThisWeekFriday(), 'day'))
 
     if (recapPeriodicity === 'never') continue
     if (recapPeriodicity === 'monthly' && !DateTime.now().hasSame(findLastFridayOfTheMonth(), 'day')) continue
@@ -84,7 +86,7 @@ async function sendDailyRecapEmails() {
       count++
 
       // Do not update user if in development to test again and again
-      // if (IS_DEV) continue
+      if (IS_DEV) continue
 
       const userUpdatePayload: Record<string, any> = {
         'character.lastDailyRecapKeywordRegistry': user.character.keywordRegistry,

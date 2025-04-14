@@ -2,7 +2,7 @@
   "name": "functions",
   "private": true,
   "engines": {
-    "node": "18"
+    "node": "22"
   },
   "main": "lib/functions/src/index.js",
   "scripts": {
@@ -16,21 +16,21 @@
     "logs": "firebase functions:log"
   },
   "dependencies": {
-    "@react-email/components": "^0.0.33",
+    "@react-email/components": "^0.0.36",
     "arccode-core": "^4.1.0",
-    "firebase-admin": "^12.4.0",
-    "firebase-functions": "^5.1.0",
-    "luxon": "^3.5.0",
-    "react": "^18.3.1",
-    "resend": "^4.1.2",
+    "firebase-admin": "^13.2.0",
+    "firebase-functions": "^6.3.2",
+    "luxon": "^3.6.1",
+    "react": "^19.1.0",
+    "resend": "^4.2.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/html-to-text": "^9.0.4",
     "@types/prismjs": "^1.26.5",
-    "firebase-functions-test": "^3.4.0",
+    "firebase-functions-test": "^3.4.1",
     "nodemon": "^3.1.9",
-    "tsc-alias": "^1.8.11",
-    "typescript": "^5.8.2"
+    "tsc-alias": "^1.8.15",
+    "typescript": "^5.8.3"
   }
 }

@@ -1,6 +1,5 @@
 import { logger } from 'firebase-functions'
-import type { Request } from 'firebase-functions'
-import type { CallableRequest } from 'firebase-functions/v2/https'
+import type { CallableRequest, Request } from 'firebase-functions/https'
 
 import type { User } from '~types'
 

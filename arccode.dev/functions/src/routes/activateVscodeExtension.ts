@@ -1,6 +1,6 @@
-import { onRequest } from 'firebase-functions/v2/https'
+import { onRequest } from 'firebase-functions/https'
 import { FieldValue } from 'firebase-admin/firestore'
-import { logger } from 'firebase-functions/v2'
+import { logger } from 'firebase-functions'
 
 import { getUserFromRequest } from '../authentication/getUser'
 

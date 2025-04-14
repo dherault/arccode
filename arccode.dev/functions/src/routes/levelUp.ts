@@ -1,5 +1,5 @@
-import { HttpsError, onCall } from 'firebase-functions/v2/https'
-import { logger } from 'firebase-functions/v2'
+import { HttpsError, onCall } from 'firebase-functions/https'
+import { logger } from 'firebase-functions'
 
 import { getUserFromCallableRequest } from '../authentication/getUser'
 import processLevelUp from '../logic/processLevelUp'

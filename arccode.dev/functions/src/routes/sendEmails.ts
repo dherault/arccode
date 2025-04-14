@@ -1,5 +1,5 @@
-import { HttpsError, onCall } from 'firebase-functions/v2/https'
-import { onSchedule } from 'firebase-functions/v2/scheduler'
+import { HttpsError, onCall } from 'firebase-functions/https'
+import { onSchedule } from 'firebase-functions/scheduler'
 
 import { getUserFromCallableRequest } from '../authentication/getUser'
 import sendDailyRecapEmails from '../logic/sendDailyRecapEmails'
