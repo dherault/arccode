@@ -33,15 +33,18 @@ export type User = DatabaseResource<{
   sentDailyRecapEmailAt: string
   recapEmailPeriodicity?: 'daily' | 'weekly' | 'monthly' | 'never'
   timezoneOffset: number
+  guildIds?: string[]
 }>
 
-export type Email = DatabaseResource<{
-  to: string
-  message: {
-    subject: string
-    text?: string
-    html?: string
-  }
+export type Guild = DatabaseResource<{
+  name: string
+  description: string
+  emoji: string
+  isPrivate: boolean
+  administratorIds: string[]
+  moderatorIds: string[]
+  memberIds: string[]
+  lastMessageAt: string
 }>
 
 /* ---
